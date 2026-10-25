@@ -1,18 +1,18 @@
 {
   "storm_id": "CHAMPI_2026",
   "name_cn": "蔷琵",
-  "started_at_utc": "2026-10-25T04:30:49.627215+00:00",
-  "generated_at_utc": "2026-10-25T04:31:50.432371+00:00",
-  "last_checked_at_utc": "2026-10-25T06:33:52.303409+00:00",
-  "refresh_interval_seconds": 1800,
+  "started_at_utc": "2026-10-25T07:20:49.499726+00:00",
+  "generated_at_utc": "2026-10-25T07:22:19.310714+00:00",
+  "last_checked_at_utc": "2026-10-25T07:22:19.310719+00:00",
+  "refresh_interval_seconds": 900,
   "official": {
     "center": {
       "storm_id": "CHAMPI_2026",
       "agency": "中央气象台",
-      "issued_at_utc": "2026-10-25T06:05:00+00:00",
-      "valid_time_utc": "2026-10-25T06:00:00+00:00",
-      "lat_deg": 30.0,
-      "lon_deg": 125.4,
+      "issued_at_utc": "2026-10-25T07:11:00+00:00",
+      "valid_time_utc": "2026-10-25T07:00:00+00:00",
+      "lat_deg": 30.2,
+      "lon_deg": 125.5,
       "vmax_ms": 23.0,
       "wind_force": 9,
       "intensity": "热带风暴",
@@ -29,8 +29,8 @@
       "wind_averaging_period": "原快讯未明确标注，不与ATCF风速直接合并",
       "stale_after_hours": 3,
       "source_url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "retrieved_at_utc": "2026-10-25T06:13:31.849053+00:00",
-      "raw_file_sha256": "48dec071a4138819ce38b6604ddd3986bb38c9011bb831d6cfff881d83564896"
+      "retrieved_at_utc": "2026-10-25T07:21:21.843984+00:00",
+      "raw_file_sha256": "56ee4044f3de1f5715a9f4e5b18335a48814c0919c625c1a88d1f426e1f47b85"
     },
     "warning": {
       "agency": "中央气象台",
@@ -43,34 +43,28 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-25T06:33:52.303409+00:00",
-      "raw_file_sha256": "5801995d9a45fdb39f6318234d03845d4fca11ee55994364509be69ca4809127"
+      "retrieved_at_utc": "2026-10-25T07:21:22.351236+00:00",
+      "raw_file_sha256": "370c42f0b40d91f56565349c39b13656e6b3bd3f146b93a2113f1d909aec8106"
     }
   },
   "fetch_status": {
-    "bdeck": {
+    "ucar": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T06:33:52.303409+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
-      "sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a"
-    },
-    "adeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T06:33:52.303409+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-      "sha256": "643c5a8b582ffc8237e86252787c119c2530fff04a4b33e7a313edac35adaa47"
+      "checked_at_utc": "2026-10-25T07:21:21.083674+00:00"
     },
     "center": {
-      "ok": false,
-      "checked_at_utc": "2026-10-25T06:33:52.303409+00:00",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "error": "NMC current bulletin is not CHAMPI"
+      "ok": true,
+      "cached": false,
+      "checked_at_utc": "2026-10-25T07:21:21.843984+00:00",
+      "sha256": "56ee4044f3de1f5715a9f4e5b18335a48814c0919c625c1a88d1f426e1f47b85",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
     },
     "warning": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T06:33:52.303409+00:00",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "sha256": "5801995d9a45fdb39f6318234d03845d4fca11ee55994364509be69ca4809127"
+      "cached": false,
+      "checked_at_utc": "2026-10-25T07:21:22.351236+00:00",
+      "sha256": "370c42f0b40d91f56565349c39b13656e6b3bd3f146b93a2113f1d909aec8106",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
     }
   },
   "model": {
@@ -83,7 +77,7 @@
         "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
         "raw_file_sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-        "processed_input_sha256": "93c4097e44f24544d8ef072ddd011834743d7e5acf60480625c2916136c2a4b1",
+        "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
         "wind_averaging_period": null,
         "calibrator": "Causal rolling rank, empirical under dependence",
         "points": [
@@ -210,8 +204,8 @@
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-25T04:31:50.087671+00:00",
-        "input_downloaded_at_utc": "2026-10-25T04:30:51.102912+00:00"
+        "generated_at_utc": "2026-10-25T07:22:17.352522+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
       },
       {
         "model_id": "TabPFN CV-F2 + C0",
@@ -219,7 +213,7 @@
         "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
         "raw_file_sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-        "processed_input_sha256": "93c4097e44f24544d8ef072ddd011834743d7e5acf60480625c2916136c2a4b1",
+        "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
         "wind_averaging_period": null,
         "calibrator": "Causal rolling rank, empirical under dependence",
         "points": [
@@ -325,8 +319,8 @@
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-25T04:31:50.179099+00:00",
-        "input_downloaded_at_utc": "2026-10-25T04:30:51.102912+00:00"
+        "generated_at_utc": "2026-10-25T07:22:17.813700+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
       },
       {
         "model_id": "TabPFN CV-F2 + C1",
@@ -334,7 +328,7 @@
         "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
         "raw_file_sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-        "processed_input_sha256": "93c4097e44f24544d8ef072ddd011834743d7e5acf60480625c2916136c2a4b1",
+        "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
         "wind_averaging_period": null,
         "calibrator": "Causal rolling rank, empirical under dependence",
         "points": [
@@ -440,182 +434,173 @@
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-25T04:31:50.259636+00:00",
-        "input_downloaded_at_utc": "2026-10-25T04:30:51.102912+00:00"
+        "generated_at_utc": "2026-10-25T07:22:18.126075+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
       },
       {
         "model_id": "ATCF:CMC / TECHNUM 03",
         "model_raw_aid": "CMC",
-        "issue_time_utc": "2026-10-24T12:00:00+00:00",
+        "issue_time_utc": "2026-10-25T00:00:00+00:00",
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-        "raw_file_sha256": "643c5a8b582ffc8237e86252787c119c2530fff04a4b33e7a313edac35adaa47",
+        "raw_file_sha256": "61b50abedb57e72eb1133dc30f38abcc78c551693c9a07417d38c3050460a212",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T06:33:52.303409+00:00",
-        "input_downloaded_at_utc": "2026-10-25T06:33:52.303409+00:00",
         "points": [
           {
-            "valid_time_utc": "2026-10-24T18:00:00.000Z",
-            "lead_h": 6,
-            "lat_deg": 28.1,
-            "lon_deg": 123.5,
-            "vmax_kt": 40.0,
-            "mslp_hpa": 999.0
-          },
-          {
-            "valid_time_utc": "2026-10-25T00:00:00.000Z",
-            "lead_h": 12,
-            "lat_deg": 28.9,
-            "lon_deg": 124.1,
-            "vmax_kt": 39.0,
-            "mslp_hpa": 1003.0
-          },
-          {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
-            "lead_h": 18,
-            "lat_deg": 30.0,
-            "lon_deg": 125.0,
-            "vmax_kt": 37.0,
+            "lead_h": 6,
+            "lat_deg": 30.1,
+            "lon_deg": 125.4,
+            "vmax_kt": 44.0,
             "mslp_hpa": 1003.0
           },
           {
             "valid_time_utc": "2026-10-25T12:00:00.000Z",
-            "lead_h": 24,
-            "lat_deg": 31.1,
-            "lon_deg": 125.9,
-            "vmax_kt": 41.0,
+            "lead_h": 12,
+            "lat_deg": 31.2,
+            "lon_deg": 126.3,
+            "vmax_kt": 38.0,
             "mslp_hpa": 1005.0
           },
           {
             "valid_time_utc": "2026-10-25T18:00:00.000Z",
-            "lead_h": 30,
+            "lead_h": 18,
             "lat_deg": 32.1,
-            "lon_deg": 127.0,
-            "vmax_kt": 37.0,
+            "lon_deg": 127.3,
+            "vmax_kt": 34.0,
             "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-26T00:00:00.000Z",
-            "lead_h": 36,
-            "lat_deg": 32.8,
-            "lon_deg": 128.9,
-            "vmax_kt": 33.0,
+            "lead_h": 24,
+            "lat_deg": 32.9,
+            "lon_deg": 128.8,
+            "vmax_kt": 34.0,
             "mslp_hpa": 1008.0
           },
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
-            "lead_h": 42,
-            "lat_deg": 34.6,
-            "lon_deg": 131.8,
-            "vmax_kt": 30.0,
-            "mslp_hpa": 1006.0
+            "lead_h": 30,
+            "lat_deg": 34.5,
+            "lon_deg": 131.9,
+            "vmax_kt": 27.0,
+            "mslp_hpa": 1007.0
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
-            "lead_h": 48,
-            "lat_deg": 36.1,
-            "lon_deg": 136.2,
-            "vmax_kt": 25.0,
+            "lead_h": 36,
+            "lat_deg": 36.0,
+            "lon_deg": 135.7,
+            "vmax_kt": 27.0,
             "mslp_hpa": 1007.0
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
-            "lead_h": 54,
-            "lat_deg": 36.9,
-            "lon_deg": 141.7,
-            "vmax_kt": 35.0,
-            "mslp_hpa": 1003.0
+            "lead_h": 42,
+            "lat_deg": 37.0,
+            "lon_deg": 140.3,
+            "vmax_kt": 26.0,
+            "mslp_hpa": 1005.0
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
-            "lead_h": 60,
-            "lat_deg": 37.4,
-            "lon_deg": 145.8,
-            "vmax_kt": 35.0,
-            "mslp_hpa": 1000.0
+            "lead_h": 48,
+            "lat_deg": 36.9,
+            "lon_deg": 145.4,
+            "vmax_kt": 37.0,
+            "mslp_hpa": 1003.0
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00.000Z",
-            "lead_h": 66,
-            "lat_deg": 38.9,
-            "lon_deg": 149.1,
-            "vmax_kt": 38.0,
-            "mslp_hpa": 996.0
+            "lead_h": 54,
+            "lat_deg": 38.8,
+            "lon_deg": 150.4,
+            "vmax_kt": 37.0,
+            "mslp_hpa": 997.0
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00.000Z",
-            "lead_h": 72,
-            "lat_deg": 40.0,
-            "lon_deg": 153.3,
+            "lead_h": 60,
+            "lat_deg": 40.3,
+            "lon_deg": 154.2,
             "vmax_kt": 39.0,
             "mslp_hpa": 994.0
+          },
+          {
+            "valid_time_utc": "2026-10-27T18:00:00.000Z",
+            "lead_h": 66,
+            "lat_deg": 42.4,
+            "lon_deg": 156.8,
+            "vmax_kt": 38.0,
+            "mslp_hpa": 990.0
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00.000Z",
+            "lead_h": 72,
+            "lat_deg": 44.5,
+            "lon_deg": 159.5,
+            "vmax_kt": 42.0,
+            "mslp_hpa": 988.0
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-24T12:00:00+00:00",
-          "lat_deg": 27.8,
-          "lon_deg": 123.30000000000001
+          "valid_time_utc": "2026-10-25T00:00:00+00:00",
+          "lat_deg": 29.0,
+          "lon_deg": 124.69999999999999
         },
         "landfall_candidates": [
           {
-            "lat_deg": 32.715393990040084,
-            "lon_deg": 128.66456041517688,
-            "valid_time_utc": "2026-10-25T23:15:41.538462+00:00",
+            "lat_deg": 33.04467426626113,
+            "lon_deg": 129.06970987615716,
+            "valid_time_utc": "2026-10-26T00:31:51.504425+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 32.89811847055322,
-            "lon_deg": 129.05230892252547,
-            "valid_time_utc": "2026-10-26T00:19:17.142857+00:00",
+            "lat_deg": 33.23187960785914,
+            "lon_deg": 129.42165747754143,
+            "valid_time_utc": "2026-10-26T01:13:16.460177+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.24006854365956,
-            "lon_deg": 129.58805701806386,
-            "valid_time_utc": "2026-10-26T01:26:47.142857+00:00",
+            "lat_deg": 33.33227096797693,
+            "lon_deg": 129.6117909438807,
+            "valid_time_utc": "2026-10-26T01:35:34.513274+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.402091320877275,
-            "lon_deg": 129.8446453705294,
-            "valid_time_utc": "2026-10-26T01:58:55.714286+00:00",
+            "lat_deg": 33.77334682948467,
+            "lon_deg": 130.45909559534903,
+            "valid_time_utc": "2026-10-26T03:14:20.176991+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.788773304974015,
-            "lon_deg": 130.46437463899065,
-            "valid_time_utc": "2026-10-26T03:16:04.285714+00:00",
+            "lat_deg": 34.01275361716241,
+            "lon_deg": 130.9274374097684,
+            "valid_time_utc": "2026-10-26T04:08:29.734513+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 34.076737245774176,
-            "lon_deg": 130.93284188164898,
-            "valid_time_utc": "2026-10-26T04:13:55.714286+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 36.05096914643008,
-            "lon_deg": 136.04556116828167,
-            "valid_time_utc": "2026-10-26T11:47:35.172414+00:00",
+            "lat_deg": 36.08372075474137,
+            "lon_deg": 136.0520242227176,
+            "valid_time_utc": "2026-10-26T12:27:53.239437+00:00",
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T07:22:18.631130+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
         "model_raw_aid": "NGX",
         "issue_time_utc": "2026-10-24T12:00:00+00:00",
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-        "raw_file_sha256": "643c5a8b582ffc8237e86252787c119c2530fff04a4b33e7a313edac35adaa47",
+        "raw_file_sha256": "61b50abedb57e72eb1133dc30f38abcc78c551693c9a07417d38c3050460a212",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T06:33:52.303409+00:00",
-        "input_downloaded_at_utc": "2026-10-25T06:33:52.303409+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-24T18:00:00.000Z",
@@ -697,14 +682,14 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 32.93188368989459,
+            "lat_deg": 32.93188368989458,
             "lon_deg": 129.02227196227,
             "valid_time_utc": "2026-10-26T00:18:27.692308+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.12067568843456,
+            "lat_deg": 33.120675688434545,
             "lon_deg": 129.75774626790167,
             "valid_time_utc": "2026-10-26T02:09:13.846154+00:00",
             "region": "日本九州附近",
@@ -738,136 +723,122 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T07:22:18.856505+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
         "model_raw_aid": "UKM",
-        "issue_time_utc": "2026-10-24T12:00:00+00:00",
+        "issue_time_utc": "2026-10-25T00:00:00+00:00",
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-        "raw_file_sha256": "643c5a8b582ffc8237e86252787c119c2530fff04a4b33e7a313edac35adaa47",
+        "raw_file_sha256": "61b50abedb57e72eb1133dc30f38abcc78c551693c9a07417d38c3050460a212",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T06:33:52.303409+00:00",
-        "input_downloaded_at_utc": "2026-10-25T06:33:52.303409+00:00",
         "points": [
           {
-            "valid_time_utc": "2026-10-24T18:00:00.000Z",
-            "lead_h": 6,
-            "lat_deg": 28.0,
-            "lon_deg": 123.7,
-            "vmax_kt": 40.0,
-            "mslp_hpa": 997.0
-          },
-          {
-            "valid_time_utc": "2026-10-25T00:00:00.000Z",
-            "lead_h": 12,
-            "lat_deg": 29.3,
-            "lon_deg": 124.8,
-            "vmax_kt": 41.0,
-            "mslp_hpa": 1000.0
-          },
-          {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
-            "lead_h": 18,
-            "lat_deg": 30.4,
+            "lead_h": 6,
+            "lat_deg": 30.3,
             "lon_deg": 125.4,
-            "vmax_kt": 44.0,
-            "mslp_hpa": 1000.0
+            "vmax_kt": 40.0,
+            "mslp_hpa": 1001.0
           },
           {
             "valid_time_utc": "2026-10-25T12:00:00.000Z",
-            "lead_h": 24,
-            "lat_deg": 30.6,
-            "lon_deg": 126.0,
+            "lead_h": 12,
+            "lat_deg": 31.0,
+            "lon_deg": 126.2,
             "vmax_kt": 38.0,
             "mslp_hpa": 1004.0
           },
           {
             "valid_time_utc": "2026-10-25T18:00:00.000Z",
-            "lead_h": 30,
-            "lat_deg": 30.4,
-            "lon_deg": 127.3,
-            "vmax_kt": 36.0,
-            "mslp_hpa": 1004.0
+            "lead_h": 18,
+            "lat_deg": 31.0,
+            "lon_deg": 127.2,
+            "vmax_kt": 37.0,
+            "mslp_hpa": 1005.0
           },
           {
             "valid_time_utc": "2026-10-26T00:00:00.000Z",
-            "lead_h": 36,
-            "lat_deg": 31.1,
-            "lon_deg": 129.1,
-            "vmax_kt": 34.0,
-            "mslp_hpa": 1007.0
+            "lead_h": 24,
+            "lat_deg": 31.7,
+            "lon_deg": 128.8,
+            "vmax_kt": 33.0,
+            "mslp_hpa": 1008.0
           },
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
-            "lead_h": 42,
+            "lead_h": 30,
             "lat_deg": 32.0,
             "lon_deg": 131.0,
-            "vmax_kt": 33.0,
+            "vmax_kt": 32.0,
             "mslp_hpa": 1005.0
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
-            "lead_h": 48,
+            "lead_h": 36,
             "lat_deg": 32.5,
-            "lon_deg": 133.5,
+            "lon_deg": 133.6,
             "vmax_kt": 31.0,
             "mslp_hpa": 1007.0
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
-            "lead_h": 54,
-            "lat_deg": 33.5,
-            "lon_deg": 136.4,
+            "lead_h": 42,
+            "lat_deg": 33.2,
+            "lon_deg": 136.7,
             "vmax_kt": 32.0,
-            "mslp_hpa": 1005.0
+            "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
-            "lead_h": 60,
-            "lat_deg": 33.4,
-            "lon_deg": 138.2,
-            "vmax_kt": 31.0,
-            "mslp_hpa": 1005.0
+            "lead_h": 48,
+            "lat_deg": 32.8,
+            "lon_deg": 137.8,
+            "vmax_kt": 28.0,
+            "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00.000Z",
-            "lead_h": 66,
-            "lat_deg": 34.9,
-            "lon_deg": 142.3,
-            "vmax_kt": 30.0,
-            "mslp_hpa": 1001.0
+            "lead_h": 54,
+            "lat_deg": 33.5,
+            "lon_deg": 140.8,
+            "vmax_kt": 29.0,
+            "mslp_hpa": 1002.0
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00.000Z",
-            "lead_h": 72,
-            "lat_deg": 35.0,
-            "lon_deg": 144.7,
-            "vmax_kt": 30.0,
-            "mslp_hpa": 1000.0
+            "lead_h": 60,
+            "lat_deg": 34.7,
+            "lon_deg": 146.0,
+            "vmax_kt": 31.0,
+            "mslp_hpa": 1002.0
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-24T12:00:00+00:00",
-          "lat_deg": 27.8,
-          "lon_deg": 123.30000000000001
+          "valid_time_utc": "2026-10-25T00:00:00+00:00",
+          "lat_deg": 29.0,
+          "lon_deg": 124.69999999999999
         },
         "landfall_candidates": [
           {
-            "lat_deg": 31.67716687350333,
-            "lon_deg": 130.30735535359486,
-            "valid_time_utc": "2026-10-26T03:49:33.913043+00:00",
+            "lat_deg": 31.898689528460718,
+            "lon_deg": 130.223728111058,
+            "valid_time_utc": "2026-10-26T03:53:14.366197+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T07:22:19.310700+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
       }
     ],
-    "config_sha256": "ceb0e22d541a3fa2dbda60bfa0e2a732f70ca2425c30559e9cdbf1c05a8893ee",
+    "config_sha256": "6c46eebbb0746b4e99243e20514e9921a6c083eda6c61a5b6702572a708ee189",
     "checkpoint_sha256": "ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3",
     "selected": "TabPFN CV-F2",
     "artifact_namespace": "champi_operations_v2",
-    "processed_input_sha256": "93c4097e44f24544d8ef072ddd011834743d7e5acf60480625c2916136c2a4b1",
+    "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
     "label": "Fresh inference after retrieval; prior origins reconstructed only for causal residuals, not past operational publications"
   },
   "observations": [
@@ -1176,11 +1147,60 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-    "downloaded_at_utc": "2026-10-25T06:33:52.303409+00:00",
-    "definition": "UCAR working/revised B-deck; row publication times unknown"
+    "downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00",
+    "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
-  "publication_note": "Model origin follows latest6h observation; generated_at is actual computation time. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
-  "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
-  "public_data_generated_at_utc": "2026-10-25T06:33:52.303409+00:00"
+  "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
+  "inference_refresh": {
+    "reused_identical_bdeck": false,
+    "predictor_sha256": "d321f461f4b72b27715bc4226a1d7dd1ec8930f0229f0645067f05b04ccf5bd3",
+    "checked_at_utc": "2026-10-25T07:22:19.312598+00:00"
+  },
+  "data_profile": {
+    "observation_source": "UCAR TCGP working/revised ATCF B-deck",
+    "observation_count": 43,
+    "first_valid_utc": "2026-10-14T12:00:00+00:00",
+    "last_valid_utc": "2026-10-25T00:00:00+00:00",
+    "interval_hours": 6,
+    "required_prefix_fixes": 9,
+    "prefix_hours": 48,
+    "missing_wind_count": 2,
+    "missing_pressure_count": 0,
+    "quarantined_conflicting_records": 4,
+    "external_normalized_rows": 70132,
+    "external_origin_count": 43,
+    "feature_group": "F2",
+    "base_feature_count": 52,
+    "c0_feature_count": 54,
+    "c1_feature_count": 70,
+    "base_context_rows": 1020,
+    "residual_context_rows": 320,
+    "base_context_years": "1945–2015 sampled IBTrACS contexts; 761 storms represented",
+    "split": {
+      "base": "through 2015",
+      "residual_fit": "2016",
+      "selection": "2017",
+      "calibration": "2019"
+    },
+    "horizons_hours": [
+      6,
+      12,
+      24,
+      48,
+      72
+    ],
+    "display_focus_hours": 24,
+    "nwp_as_model_input": false,
+    "environmental_steering": false,
+    "regime_gate": false,
+    "original_row_publication_times_known": false
+  },
+  "site_status": "local watcher required for ongoing updates; stale states computed in browser",
+  "publication": {
+    "mode": "mac_auto",
+    "transfer_prepared_at_utc": "2026-10-25T07:22:20.994191+00:00",
+    "poll_interval_seconds": 900,
+    "model_source": "private local TabPFN-3.5 + frozen C0/C1; actual version times retained"
+  }
 }
