@@ -1,0 +1,16 @@
+.runtime/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.env
+.env.*
+!.env.example
+*.safetensors
+*.ckpt
+*.pt
+*.pem
+.DS_Store
+.openai/

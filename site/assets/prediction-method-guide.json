@@ -1,0 +1,1688 @@
+{
+  "scope": "CHAMPI本次可用预测的名称解释；不改变预测、校准或模型选择",
+  "catalog": [
+    {
+      "id": "Persistence",
+      "group": "运动基线",
+      "idea": "把最后一次观测中心原地保持到所有预报时距。",
+      "difference": "零位移基线；不读取运动方向，不调用TabPFN。",
+      "implementation": "src/forecasting/baselines.py"
+    },
+    {
+      "id": "Constant velocity",
+      "group": "运动基线",
+      "idea": "由最近两次6小时中心求速度和方向，沿同一大圆以恒定角速度外推。",
+      "difference": "是确定性运动外推，未学习转向、强度变化或背景天气；不是官方CLIPER。",
+      "implementation": "src/forecasting/baselines.py"
+    },
+    {
+      "id": "TabPFN-TS official",
+      "group": "官方TS单风暴基线",
+      "idea": "按官方TabPFN-TS数值流程，把本场台风每个坐标的历史序列与时间特征建成表格，再用冻结的TabPFN-3.5预测中位数。",
+      "difference": "这里的official指官方软件流程，不是气象部门官方台风预报；单风暴历史上下文，与跨风暴F0–F2信息预算不同。",
+      "implementation": "scripts/tfm_alignment_worker.py"
+    },
+    {
+      "id": "TabPFN F0",
+      "group": "直接位移F0–F2",
+      "idea": "用过去9个连续6小时中心组成48小时窗口，输入纬度、相对经度、起报经度周期编码和时距，共21维。",
+      "difference": "两个TabPFN输出头预测起报中心切平面的东/北位移，再映回球面；不是原地保持，也不是只拿一个中心推未来。",
+      "implementation": "scripts/run_champi_features.py"
+    },
+    {
+      "id": "TabPFN F1",
+      "group": "直接位移F0–F2",
+      "idea": "在F0上增加6/12/24/48小时运动、速度、航向正余弦、加速度、转向率、曲率代理和观测间隔，共40维。",
+      "difference": "仍只依赖中心坐标历史；显式告诉TFM当前如何移动和转弯，没有读取环境风场。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN F2",
+      "group": "直接位移F0–F2",
+      "idea": "在F1上增加已观测强度/气压及缺失标记、过去变化、年内周期、仅截至2015年训练风暴生成的气候运动先验，共52维。",
+      "difference": "引入轻量协变量，没有引入GFS/IFS路径或GRIB。强度作为位置预测输入，不代表模型会输出未来风速。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN F0 + C0",
+      "group": "直接位移二层校正",
+      "idea": "在F0基础位移预测后，再用F0输入和本次基础预测条件化一个TabPFN，预测位置残差。",
+      "difference": "23维校正输入；不含已完成预报的残差滞后。C0用于隔离二层容量和近期状态信息的效果。",
+      "implementation": "scripts/run_champi_features.py"
+    },
+    {
+      "id": "TabPFN F0 + C1",
+      "group": "直接位移二层校正",
+      "idea": "在F0+C0的输入上加入4个同台风、同时距、真值已到达的历史残差，以及年龄和可用标记。",
+      "difference": "39维校正输入；检验误差历史的额外价值。旧分支跨锚点ENU直接使用，存在已记录的几何近似。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN F2 + C0",
+      "group": "直接位移二层校正",
+      "idea": "在F2位置预测后，用完整F2特征和本次基础位移预测条件化二层残差模型。",
+      "difference": "54维输入，不含残差滞后；2016校正上下文冻结，与F2+C1对照。",
+      "implementation": "scripts/run_champi_features.py"
+    },
+    {
+      "id": "TabPFN F2 + C1",
+      "group": "直接位移二层校正",
+      "idea": "在F2+C0基础上加入4个已成熟同场同lead历史残差及年龄/可用标记。",
+      "difference": "70维输入；网络权重仍冻结，反馈只改变上下文输入。不能假定一定改善点误差或Conformal。旧几何近似仍保留。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN CV-F0",
+      "group": "恒速偏差目标F0–F2",
+      "idea": "使用与F0完全相同的21维特征和1020条基础上下文，改为学习真实位移减去恒速外推位移的偏差，最后加回恒速位移。",
+      "difference": "CV在这里是Constant Velocity，不是Cross Validation；不是固定加权平均，也不是多了一个二层校正器。",
+      "implementation": "scripts/run_motion_residual.py"
+    },
+    {
+      "id": "TabPFN CV-F1",
+      "group": "恒速偏差目标F0–F2",
+      "idea": "保持F1的40维特征与同一基础上下文，用TabPFN学习恒速位移的剩余偏差。",
+      "difference": "与CV-F0的差别是运动特征；与直接F1的差别是预测目标表示。",
+      "implementation": "scripts/run_motion_residual.py"
+    },
+    {
+      "id": "TabPFN CV-F2",
+      "group": "恒速偏差目标F0–F2",
+      "idea": "保持F2的52维特征和同一基础上下文，预测相对于恒速外推的偏差后加回。",
+      "difference": "2017验证在CV-F0/F1/F2中选中它；这是新分支Base，不等于已经胜过旧F2。",
+      "implementation": "scripts/run_motion_residual.py"
+    },
+    {
+      "id": "TabPFN CV-F2 + C0",
+      "group": "恒速偏差二层校正",
+      "idea": "在CV-F2输出后，再用F2特征和基础位移预测条件化二层残差模型，输入54维。",
+      "difference": "这才是恒速偏差目标之外新增的二层校正；不含历史残差。校正目标统一定义在当前起报中心切平面。",
+      "implementation": "scripts/run_motion_residual.py"
+    },
+    {
+      "id": "TabPFN CV-F2 + C1",
+      "group": "恒速偏差二层校正",
+      "idea": "在CV-F2+C0上增加4个已成熟历史残差、年龄和可用标记，共70维；历史残差先平行移动到当前起报切平面。",
+      "difference": "与旧F2+C1相比同时改变了基础目标表示和几何处理，不能把差值全归因于平行移动。实时区重新运行该配置。",
+      "implementation": "src/forecasting/motion_residual.py"
+    },
+    {
+      "id": "TabPFN F1_no_multiscale",
+      "group": "删除特征消融",
+      "idea": "从F1删除显式12/24/48小时运动及短长趋势差，共剩32维。",
+      "difference": "过去48小时原始位置仍在；该实验删除的是派生多尺度运动特征，不是删除历史窗口。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN F1_no_turn",
+      "group": "删除特征消融",
+      "idea": "从F1删除显式转向率和曲率代理，共剩38维。",
+      "difference": "仍保留历史位置、航向和加速度；模型仍可能间接识别转向，用于检验显式转向编码增量。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN F2_no_clim",
+      "group": "删除特征消融",
+      "idea": "从F2删除训练风暴生成的气候运动先验两个分量，共剩50维。",
+      "difference": "保留位置、季节和强度；不是删除所有气候学信息，只检验这两个人工先验分量。",
+      "implementation": "src/features/champi.py"
+    },
+    {
+      "id": "TabPFN F2 + AlongCross RC",
+      "group": "沿轨/横轨与门控探索",
+      "idea": "把F2的残差转到历史运动方向对应的沿轨/横轨坐标，由TabPFN预测后旋回东/北，再作全量校正。",
+      "difference": "侧重把走得过快/过慢与偏左/偏右分开。当前为purged-v2结果；旧分支跨锚点几何近似仍存在。",
+      "implementation": "scripts/run_champi_gate_v2.py"
+    },
+    {
+      "id": "TabPFN F2 + AlongCross fixed shrink",
+      "group": "沿轨/横轨与门控探索",
+      "idea": "对AlongCross校正向量乘一个由验证集选择的全局固定系数λ，再叠加到F2。",
+      "difference": "当前λ=0，所以路径与F2相同；这是保留的负结果，不是遗漏模型运行。",
+      "implementation": "artifacts/champi_gate_v2/gate_policy.json"
+    },
+    {
+      "id": "TabPFN F2 + Regime Gated RC",
+      "group": "沿轨/横轨与门控探索",
+      "idea": "用标准化逻辑回归预测全量AlongCross校正是否可能改善点误差，再用其输出γ作为每个样本的校正权重。",
+      "difference": "γ不是登陆概率或Conformal置信度。purged-v2剔除了53条越过验证起报的标签；验证未优于不校正，未证明有效。",
+      "implementation": "scripts/run_champi_gate_v2.py"
+    },
+    {
+      "id": "ATCF:AC00",
+      "aid": "AC00",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系的集合控制成员。与扰动成员共享模式系统，不是一个额外独立基础模型。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AEMN",
+      "aid": "AEMN",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS集合平均产品；均值路径可能比单成员平滑，不是成员散布的Conformal区域。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP01",
+      "aid": "AP01",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第01个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP02",
+      "aid": "AP02",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第02个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP03",
+      "aid": "AP03",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第03个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP04",
+      "aid": "AP04",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第04个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP05",
+      "aid": "AP05",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第05个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP06",
+      "aid": "AP06",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第06个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP07",
+      "aid": "AP07",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第07个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP08",
+      "aid": "AP08",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第08个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP09",
+      "aid": "AP09",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第09个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP10",
+      "aid": "AP10",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第10个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP11",
+      "aid": "AP11",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第11个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP12",
+      "aid": "AP12",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第12个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP13",
+      "aid": "AP13",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第13个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP14",
+      "aid": "AP14",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第14个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP15",
+      "aid": "AP15",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第15个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP16",
+      "aid": "AP16",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第16个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP17",
+      "aid": "AP17",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第17个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP18",
+      "aid": "AP18",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第18个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP19",
+      "aid": "AP19",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第19个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP20",
+      "aid": "AP20",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第20个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP21",
+      "aid": "AP21",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第21个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP22",
+      "aid": "AP22",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第22个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP23",
+      "aid": "AP23",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第23个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP24",
+      "aid": "AP24",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第24个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP25",
+      "aid": "AP25",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第25个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP26",
+      "aid": "AP26",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第26个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP27",
+      "aid": "AP27",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第27个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP28",
+      "aid": "AP28",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第28个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP29",
+      "aid": "AP29",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第29个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:AP30",
+      "aid": "AP30",
+      "group": "外部ATCF产品",
+      "idea": "GFS/GEFS体系第30个扰动成员；初始状态/集合配置的差异产生不同路径。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CC00",
+      "aid": "CC00",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合控制成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CEMN",
+      "aid": "CEMN",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合平均产品；与CMC确定性运行及CP成员分别记录。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHIP",
+      "aid": "CHIP",
+      "group": "外部ATCF产品",
+      "idea": "CHIPS耦合台风强度预测产品。即使ATCF行包含经纬度，也不能据此视作独立研发的路径模式。",
+      "difference": "强度用途；经纬度可能是其条件路径。未核实本次运行的路径来源及版本。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHP2",
+      "aid": "CHP2",
+      "group": "外部ATCF产品",
+      "idea": "CHIP强度产品的变体；UCAR历史目录把CHP2–7列作成员/扰动配置。",
+      "difference": "强度用途，2026具体扰动配置未核实。CHP2在NHC目录另指12小时插值产品，存在跨目录语义冲突，不擅自选定一种解释。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHP3",
+      "aid": "CHP3",
+      "group": "外部ATCF产品",
+      "idea": "CHIP强度产品的变体；UCAR历史目录把CHP2–7列作成员/扰动配置。",
+      "difference": "强度用途，2026具体扰动配置未核实。不把其经纬度当作独立路径预报技能的证据。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHP4",
+      "aid": "CHP4",
+      "group": "外部ATCF产品",
+      "idea": "CHIP强度产品的变体；UCAR历史目录把CHP2–7列作成员/扰动配置。",
+      "difference": "强度用途，2026具体扰动配置未核实。不把其经纬度当作独立路径预报技能的证据。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHP5",
+      "aid": "CHP5",
+      "group": "外部ATCF产品",
+      "idea": "CHIP强度产品的变体；UCAR历史目录把CHP2–7列作成员/扰动配置。",
+      "difference": "强度用途，2026具体扰动配置未核实。不把其经纬度当作独立路径预报技能的证据。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHP6",
+      "aid": "CHP6",
+      "group": "外部ATCF产品",
+      "idea": "CHIP强度产品的变体；UCAR历史目录把CHP2–7列作成员/扰动配置。",
+      "difference": "强度用途，2026具体扰动配置未核实。不把其经纬度当作独立路径预报技能的证据。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CHP7",
+      "aid": "CHP7",
+      "group": "外部ATCF产品",
+      "idea": "CHIP强度产品的变体；UCAR历史目录把CHP2–7列作成员/扰动配置。",
+      "difference": "强度用途，2026具体扰动配置未核实。不把其经纬度当作独立路径预报技能的证据。",
+      "reference_id": "ucar",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": false,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CMC",
+      "aid": "CMC",
+      "group": "外部ATCF产品",
+      "idea": "加拿大GEM体系的确定性数值模式aid；使用气象场，提供独立外部基准。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP01",
+      "aid": "CP01",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第01个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP02",
+      "aid": "CP02",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第02个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP03",
+      "aid": "CP03",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第03个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP04",
+      "aid": "CP04",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第04个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP05",
+      "aid": "CP05",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第05个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP06",
+      "aid": "CP06",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第06个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP07",
+      "aid": "CP07",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第07个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP08",
+      "aid": "CP08",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第08个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP09",
+      "aid": "CP09",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第09个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP10",
+      "aid": "CP10",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第10个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP11",
+      "aid": "CP11",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第11个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP12",
+      "aid": "CP12",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第12个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP13",
+      "aid": "CP13",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第13个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP14",
+      "aid": "CP14",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第14个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP15",
+      "aid": "CP15",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第15个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP16",
+      "aid": "CP16",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第16个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP17",
+      "aid": "CP17",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第17个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP18",
+      "aid": "CP18",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第18个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP19",
+      "aid": "CP19",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第19个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:CP20",
+      "aid": "CP20",
+      "group": "外部ATCF产品",
+      "idea": "加拿大模式集合第20个扰动成员。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NC00",
+      "aid": "NC00",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NEMN",
+      "aid": "NEMN",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NGX",
+      "aid": "NGX",
+      "group": "外部ATCF产品",
+      "idea": "官方目录的NAVGEM/NOGAPS场配GFS型涡旋跟踪器产品；不是GFS气象场本身。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP01",
+      "aid": "NP01",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP02",
+      "aid": "NP02",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP03",
+      "aid": "NP03",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP04",
+      "aid": "NP04",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP05",
+      "aid": "NP05",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP06",
+      "aid": "NP06",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP07",
+      "aid": "NP07",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP08",
+      "aid": "NP08",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP09",
+      "aid": "NP09",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP10",
+      "aid": "NP10",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP11",
+      "aid": "NP11",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP12",
+      "aid": "NP12",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP13",
+      "aid": "NP13",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP14",
+      "aid": "NP14",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP15",
+      "aid": "NP15",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP16",
+      "aid": "NP16",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP17",
+      "aid": "NP17",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP18",
+      "aid": "NP18",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP19",
+      "aid": "NP19",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:NP20",
+      "aid": "NP20",
+      "group": "外部ATCF产品",
+      "idea": "N系集合样式的真实原始aid。已核对的官方techlist未确认其精确身份；当前不强行赋予控制/成员/平均或NAVGEM版本含义。",
+      "difference": "身份待核验。该记录存在不等于目录映射已证实，不能把它改名为GFS/ECMWF或当作独立模型家族。",
+      "reference_id": "unresolved",
+      "identity_status": "unresolved",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    },
+    {
+      "id": "ATCF:UKM",
+      "aid": "UKM",
+      "group": "外部ATCF产品",
+      "idea": "英国Met Office模式aid；目录将其与EGRR等其他跟踪/发布产品区分，不能互换。",
+      "difference": "文档中的aid含义；本次2026运行版本、成员组成与风速平均时段仍须另行核实。保留原码和TECHNUM。",
+      "reference_id": "nhc",
+      "identity_status": "documented_family_run_unverified",
+      "independent_track": true,
+      "implementation": "src/data/champi.py"
+    }
+  ],
+  "local_count": 21,
+  "aid_count": 86,
+  "references": [
+    {
+      "id": "nhc",
+      "title": "NHC官方ATCF techlist（目录定义，不等于2026运行版本认证）",
+      "url": "https://ftp.nhc.noaa.gov/atcf/docs/nhc_techlist.dat"
+    },
+    {
+      "id": "ucar",
+      "title": "UCAR Global Techlist（包括历史与现行aid，CHP2跨目录有歧义）",
+      "url": "https://hurricanes.ral.ucar.edu/repository/techlist/index.php"
+    },
+    {
+      "id": "guide",
+      "title": "UCAR模式图例说明",
+      "url": "https://hurricanes.ral.ucar.edu/guide/late/"
+    },
+    {
+      "id": "spci",
+      "title": "MultiDimSPCI原论文：多维时序椭圆预测区域",
+      "url": "https://arxiv.org/abs/2403.03850"
+    }
+  ],
+  "diagnostics": {
+    "summary": [
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 6,
+        "n": 188,
+        "storms": 28,
+        "mean_error_km": 47.25273485009963,
+        "marginal_coverage90": 0.8457446808510638,
+        "mean_marginal_radius90_km": 71.32944603542454
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 12,
+        "n": 182,
+        "storms": 28,
+        "mean_error_km": 98.89587346434205,
+        "marginal_coverage90": 0.9340659340659341,
+        "mean_marginal_radius90_km": 198.0658795294049
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 24,
+        "n": 169,
+        "storms": 27,
+        "mean_error_km": 219.86275661812172,
+        "marginal_coverage90": 0.9171597633136095,
+        "mean_marginal_radius90_km": 442.6229114661232
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 48,
+        "n": 142,
+        "storms": 26,
+        "mean_error_km": 492.3040684711368,
+        "marginal_coverage90": 0.852112676056338,
+        "mean_marginal_radius90_km": 843.211733248894
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 72,
+        "n": 116,
+        "storms": 24,
+        "mean_error_km": 778.4081108155407,
+        "marginal_coverage90": 0.8793103448275862,
+        "mean_marginal_radius90_km": 1350.2522492838411
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 6,
+        "n": 188,
+        "storms": 28,
+        "mean_error_km": 47.89378264843553,
+        "marginal_coverage90": 0.851063829787234,
+        "mean_marginal_radius90_km": 76.92406166250318
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 12,
+        "n": 182,
+        "storms": 28,
+        "mean_error_km": 98.6110339999798,
+        "marginal_coverage90": 0.945054945054945,
+        "mean_marginal_radius90_km": 218.01812210756114
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 24,
+        "n": 169,
+        "storms": 27,
+        "mean_error_km": 222.924828245946,
+        "marginal_coverage90": 0.9467455621301775,
+        "mean_marginal_radius90_km": 484.8616233057994
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 48,
+        "n": 142,
+        "storms": 26,
+        "mean_error_km": 510.9982376687342,
+        "marginal_coverage90": 0.8873239436619719,
+        "mean_marginal_radius90_km": 942.7305414124583
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 72,
+        "n": 116,
+        "storms": 24,
+        "mean_error_km": 823.933642129289,
+        "marginal_coverage90": 0.8362068965517241,
+        "mean_marginal_radius90_km": 1435.390974926269
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 6,
+        "n": 188,
+        "storms": 28,
+        "mean_error_km": 47.978438043570144,
+        "marginal_coverage90": 0.8723404255319149,
+        "mean_marginal_radius90_km": 76.8972164688184
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 12,
+        "n": 182,
+        "storms": 28,
+        "mean_error_km": 100.38051374683401,
+        "marginal_coverage90": 0.9395604395604396,
+        "mean_marginal_radius90_km": 217.15517094823295
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 24,
+        "n": 169,
+        "storms": 27,
+        "mean_error_km": 224.17507666890054,
+        "marginal_coverage90": 0.9408284023668639,
+        "mean_marginal_radius90_km": 448.00104576839357
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 48,
+        "n": 142,
+        "storms": 26,
+        "mean_error_km": 514.9143464903888,
+        "marginal_coverage90": 0.9154929577464789,
+        "mean_marginal_radius90_km": 987.0605388321159
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 72,
+        "n": 116,
+        "storms": 24,
+        "mean_error_km": 829.0890652431774,
+        "marginal_coverage90": 0.9051724137931034,
+        "mean_marginal_radius90_km": 1682.6867574997455
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 6,
+        "n": 30,
+        "storms": 1,
+        "mean_error_km": 39.09226488770163,
+        "marginal_coverage90": 0.9333333333333333,
+        "mean_marginal_radius90_km": 69.59088047275537
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 12,
+        "n": 29,
+        "storms": 1,
+        "mean_error_km": 73.1640769388481,
+        "marginal_coverage90": 0.9655172413793104,
+        "mean_marginal_radius90_km": 177.68061918474487
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 24,
+        "n": 27,
+        "storms": 1,
+        "mean_error_km": 119.9821673835813,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 414.5080550821613
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 48,
+        "n": 23,
+        "storms": 1,
+        "mean_error_km": 202.77789157655147,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 840.3308593836325
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 72,
+        "n": 19,
+        "storms": 1,
+        "mean_error_km": 295.31600985024374,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 1350.234884734617
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 6,
+        "n": 30,
+        "storms": 1,
+        "mean_error_km": 36.804232785862595,
+        "marginal_coverage90": 0.9333333333333333,
+        "mean_marginal_radius90_km": 75.86833760874575
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 12,
+        "n": 29,
+        "storms": 1,
+        "mean_error_km": 69.56450271524096,
+        "marginal_coverage90": 0.9655172413793104,
+        "mean_marginal_radius90_km": 200.28591218634318
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 24,
+        "n": 27,
+        "storms": 1,
+        "mean_error_km": 114.24443075487955,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 420.29649680643536
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 48,
+        "n": 23,
+        "storms": 1,
+        "mean_error_km": 200.91099468098747,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 941.0953194580106
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 72,
+        "n": 19,
+        "storms": 1,
+        "mean_error_km": 270.1267436918344,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 1430.7780960643902
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 6,
+        "n": 30,
+        "storms": 1,
+        "mean_error_km": 37.72702437887696,
+        "marginal_coverage90": 0.9333333333333333,
+        "mean_marginal_radius90_km": 75.57477075909834
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 12,
+        "n": 29,
+        "storms": 1,
+        "mean_error_km": 73.59021550979986,
+        "marginal_coverage90": 0.9655172413793104,
+        "mean_marginal_radius90_km": 195.36662160496692
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 24,
+        "n": 27,
+        "storms": 1,
+        "mean_error_km": 118.91672133138444,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 420.73651650461915
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 48,
+        "n": 23,
+        "storms": 1,
+        "mean_error_km": 206.88109706541772,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 985.6776743712064
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 72,
+        "n": 19,
+        "storms": 1,
+        "mean_error_km": 261.6837473116551,
+        "marginal_coverage90": 1.0,
+        "mean_marginal_radius90_km": 1682.2567481038307
+      }
+    ],
+    "same_complete72h_origins": [
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 6,
+        "n": 116,
+        "mean_error_km": 42.140005247915866
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 12,
+        "n": 116,
+        "mean_error_km": 91.72682500475514
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 24,
+        "n": 116,
+        "mean_error_km": 200.14958149132724
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 48,
+        "n": 116,
+        "mean_error_km": 473.95781232115417
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2",
+        "lead_h": 72,
+        "n": 116,
+        "mean_error_km": 778.4081108155408
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 6,
+        "n": 116,
+        "mean_error_km": 42.44142796771365
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 12,
+        "n": 116,
+        "mean_error_km": 91.23154589728057
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 24,
+        "n": 116,
+        "mean_error_km": 206.20171945757883
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 48,
+        "n": 116,
+        "mean_error_km": 490.1635934537494
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 72,
+        "n": 116,
+        "mean_error_km": 823.9336421292888
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 6,
+        "n": 116,
+        "mean_error_km": 43.42624107842549
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 12,
+        "n": 116,
+        "mean_error_km": 94.13421433911145
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 24,
+        "n": 116,
+        "mean_error_km": 208.4389174126243
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 48,
+        "n": 116,
+        "mean_error_km": 494.0998650012269
+      },
+      {
+        "phase": "test",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 72,
+        "n": 116,
+        "mean_error_km": 829.0890652431774
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 6,
+        "n": 19,
+        "mean_error_km": 31.439410792525702
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 12,
+        "n": 19,
+        "mean_error_km": 62.65197003585205
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 24,
+        "n": 19,
+        "mean_error_km": 110.671835066925
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 48,
+        "n": 19,
+        "mean_error_km": 213.36752435545773
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2",
+        "lead_h": 72,
+        "n": 19,
+        "mean_error_km": 295.31600985024374
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 6,
+        "n": 19,
+        "mean_error_km": 27.941602661335075
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 12,
+        "n": 19,
+        "mean_error_km": 56.3339041705538
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 24,
+        "n": 19,
+        "mean_error_km": 102.10594727964722
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 48,
+        "n": 19,
+        "mean_error_km": 200.16302682580155
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C0",
+        "lead_h": 72,
+        "n": 19,
+        "mean_error_km": 270.1267436918344
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 6,
+        "n": 19,
+        "mean_error_km": 28.626228991266018
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 12,
+        "n": 19,
+        "mean_error_km": 61.085676208827074
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 24,
+        "n": 19,
+        "mean_error_km": 107.97069516785017
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 48,
+        "n": 19,
+        "mean_error_km": 217.89248947929647
+      },
+      {
+        "phase": "champi",
+        "method": "TabPFN CV-F2 + C1",
+        "lead_h": 72,
+        "n": 19,
+        "mean_error_km": 261.6837473116551
+      }
+    ],
+    "marginal24_efficiency": [
+      {
+        "phase": "test",
+        "base": "TabPFN CV-F2",
+        "candidate": "TabPFN CV-F2 + C0",
+        "n": 169,
+        "storms": 27,
+        "matched_area_ratio": 1.0385192138687336,
+        "ratio_ci95": [
+          0.883999306591552,
+          1.2831672949980635
+        ],
+        "diagnostic": "24h endpoint marginal circles; posthoc target ceil(.9*n)/n; issued q unchanged"
+      },
+      {
+        "phase": "test",
+        "base": "TabPFN CV-F2",
+        "candidate": "TabPFN CV-F2 + C1",
+        "n": 169,
+        "storms": 27,
+        "matched_area_ratio": 1.0409935950201812,
+        "ratio_ci95": [
+          0.8250256085916914,
+          1.2969702978080075
+        ],
+        "diagnostic": "24h endpoint marginal circles; posthoc target ceil(.9*n)/n; issued q unchanged"
+      },
+      {
+        "phase": "champi",
+        "base": "TabPFN CV-F2",
+        "candidate": "TabPFN CV-F2 + C0",
+        "n": 27,
+        "storms": 1,
+        "matched_area_ratio": 0.8285135138642821,
+        "ratio_ci95": null,
+        "diagnostic": "24h endpoint marginal circles; posthoc target ceil(.9*n)/n; issued q unchanged"
+      },
+      {
+        "phase": "champi",
+        "base": "TabPFN CV-F2",
+        "candidate": "TabPFN CV-F2 + C1",
+        "n": 27,
+        "storms": 1,
+        "matched_area_ratio": 1.0374122828498236,
+        "ratio_ci95": null,
+        "diagnostic": "24h endpoint marginal circles; posthoc target ceil(.9*n)/n; issued q unchanged"
+      }
+    ],
+    "source_sha256": "37a2b511bd789f5e114c040765f90f58cc4ddb730202771e9b55feb3f2871767",
+    "scope": "Existing predictions and marginal radii only. No new inference, no new24h joint calibration. Previously exposed exploratory cohort."
+  }
+}

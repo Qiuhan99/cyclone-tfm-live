@@ -1,0 +1,161 @@
+{
+  "owner": "Qiuhan99",
+  "scope": "website, public-data refresh and deployment code only",
+  "excluded": [
+    "model weights",
+    "training and calibration raw rows",
+    "full research source",
+    "private conversations",
+    "workspace inventory",
+    "credentials"
+  ],
+  "files": {
+    "champi.html": {
+      "original_sha256": "fb78d7a0dc57ea11f2ca352984ce11600c9f3e646df493fa52fe8bd12dc48834",
+      "published_sha256": "0314269612e673f6e57a497ac9a2903ebdb421f5df1daab5df640d6020f77b6f"
+    },
+    "champi.mjs": {
+      "original_sha256": "408ad298df378855f3278fde021606b3474221b2e5bb71c10a82a5a57e38a49b",
+      "published_sha256": "408ad298df378855f3278fde021606b3474221b2e5bb71c10a82a5a57e38a49b"
+    },
+    "champi-engine.mjs": {
+      "original_sha256": "76ae7afe025952de758f4aed8ed0cc7549e28810d7d002875d38cb90aa6a9597",
+      "published_sha256": "76ae7afe025952de758f4aed8ed0cc7549e28810d7d002875d38cb90aa6a9597"
+    },
+    "champi.css": {
+      "original_sha256": "a956f77c01cfe63e03de5d6b10964aed19efc7887e347523a231ea3e1aaafebf",
+      "published_sha256": "a956f77c01cfe63e03de5d6b10964aed19efc7887e347523a231ea3e1aaafebf"
+    },
+    "style.css": {
+      "original_sha256": "2d9f54c80ab4c17fd66abe3397d1e70f7805a805d6b22dc003f16e1f222894bc",
+      "published_sha256": "2d9f54c80ab4c17fd66abe3397d1e70f7805a805d6b22dc003f16e1f222894bc"
+    },
+    "engine.mjs": {
+      "original_sha256": "9b2a609dd759cf70e4bbcd84c73bb35a343811216348f4ddf37712bf90d836d9",
+      "published_sha256": "9b2a609dd759cf70e4bbcd84c73bb35a343811216348f4ddf37712bf90d836d9"
+    },
+    "operations.mjs": {
+      "original_sha256": "6d33aa20c93e64708bb44aa5720de40873ae7a16689b390d55e0972c36f46856",
+      "published_sha256": "3c984512891c8dc7c4aa18a68f4e9f49f547b5ad94d1bc09e5496044e9f73c1d"
+    },
+    "operations-engine.mjs": {
+      "original_sha256": "63bce12de9c254cf09bfc5261c6f4702f83c5103c989584d08163c5987f5d7d9",
+      "published_sha256": "63bce12de9c254cf09bfc5261c6f4702f83c5103c989584d08163c5987f5d7d9"
+    },
+    "operations.css": {
+      "original_sha256": "20f7a4f78b274c6ea9746b697481eb6431dcde0c39ad85c281ebb76b118b9c33",
+      "published_sha256": "20f7a4f78b274c6ea9746b697481eb6431dcde0c39ad85c281ebb76b118b9c33"
+    },
+    "method-guide.mjs": {
+      "original_sha256": "0cea166cdacf023c466ad33c41dc2368fcd67a07feb94b7a476f180888fc1107",
+      "published_sha256": "0cea166cdacf023c466ad33c41dc2368fcd67a07feb94b7a476f180888fc1107"
+    },
+    "method-guide-engine.mjs": {
+      "original_sha256": "cdf636e3795008714731d6e13647300f7a745ba2f6c5fddb8619404e4b8b3430",
+      "published_sha256": "cdf636e3795008714731d6e13647300f7a745ba2f6c5fddb8619404e4b8b3430"
+    },
+    "method-guide.css": {
+      "original_sha256": "ed505ac94ee61a356594a689efb514b3db28e7f447ce960107c8b514c26edc84",
+      "published_sha256": "ed505ac94ee61a356594a689efb514b3db28e7f447ce960107c8b514c26edc84"
+    },
+    "endpoint-shapes.mjs": {
+      "original_sha256": "f6774c57f6b98f9b3a4757483dbc0ff8da52b9004f293455515f05699048abd2",
+      "published_sha256": "f6774c57f6b98f9b3a4757483dbc0ff8da52b9004f293455515f05699048abd2"
+    },
+    "endpoint-shapes-engine.mjs": {
+      "original_sha256": "a6313f76dd915478aebd80fa37e797c6ee40aa98977a7387ee2e77965520abdf",
+      "published_sha256": "a6313f76dd915478aebd80fa37e797c6ee40aa98977a7387ee2e77965520abdf"
+    },
+    "tfm-alignment.mjs": {
+      "original_sha256": "b4e7d76353924ab2e314f3c216a7bed27b960641141828beca031b9f668768f6",
+      "published_sha256": "b4e7d76353924ab2e314f3c216a7bed27b960641141828beca031b9f668768f6"
+    },
+    "tfm-alignment-engine.mjs": {
+      "original_sha256": "08ddf8a40e6c0d88b0dee3e13c8e68a566d01b6c5983846aedfae9e2da260803",
+      "published_sha256": "08ddf8a40e6c0d88b0dee3e13c8e68a566d01b6c5983846aedfae9e2da260803"
+    },
+    "assets/mark.svg": {
+      "original_sha256": "3f818591812780f7a62c9ec91fec5344c43ffe9a9894fb0868e89d3cd0019fd4",
+      "published_sha256": "3f818591812780f7a62c9ec91fec5344c43ffe9a9894fb0868e89d3cd0019fd4"
+    },
+    "assets/coastline.json": {
+      "original_sha256": "686996b5358fb4d441234f246b19878080ce17e30d983046b3acceb9cb4f619a",
+      "published_sha256": "686996b5358fb4d441234f246b19878080ce17e30d983046b3acceb9cb4f619a"
+    },
+    "assets/champi-2026.json": {
+      "original_sha256": "ca181fc1ecaf7c81ee80ecfd6f2d76e1feb57809ac2353082b08a51d39fdaefe",
+      "published_sha256": "ca181fc1ecaf7c81ee80ecfd6f2d76e1feb57809ac2353082b08a51d39fdaefe"
+    },
+    "assets/champi-features.json": {
+      "original_sha256": "62888bcbc225ce0f6a6f2fe6770c299e40307931de21ef0d9384120b163ac253",
+      "published_sha256": "62888bcbc225ce0f6a6f2fe6770c299e40307931de21ef0d9384120b163ac253"
+    },
+    "assets/champi-operations.json": {
+      "original_sha256": "80a9fb3aff400bf9874dbf854e94d362249e93aaf258e622ba220cfd1b955cdc",
+      "published_sha256": "80a9fb3aff400bf9874dbf854e94d362249e93aaf258e622ba220cfd1b955cdc"
+    },
+    "assets/champi-operations-health.json": {
+      "original_sha256": "b52e3f6340913bc1adbcba3402d6e0ff150d31c6562a3ff6969f6b985b24d44b",
+      "published_sha256": "b52e3f6340913bc1adbcba3402d6e0ff150d31c6562a3ff6969f6b985b24d44b"
+    },
+    "assets/champi-external-comparison.csv": {
+      "original_sha256": "da17b28c385ff7416403983e5c78a889de2a69d68d0e1fedc361aaa557c911fd",
+      "published_sha256": "da17b28c385ff7416403983e5c78a889de2a69d68d0e1fedc361aaa557c911fd"
+    },
+    "assets/motion-residual.json": {
+      "original_sha256": "6278233fdfd4743323052a0db7767dcd13a792b88db1c9e2561c49112c444891",
+      "published_sha256": "6278233fdfd4743323052a0db7767dcd13a792b88db1c9e2561c49112c444891"
+    },
+    "assets/tfm-alignment.json": {
+      "original_sha256": "08321a11dbbab754ebbeaf79cf6d2c50fac63d95ae494aaca9f788a94b3e57ad",
+      "published_sha256": "08321a11dbbab754ebbeaf79cf6d2c50fac63d95ae494aaca9f788a94b3e57ad"
+    },
+    "assets/tfm-alignment-summary.csv": {
+      "original_sha256": "766448cff9e74ffd7bb515fb5f15319496be89be7ab6345783afc83ab90ecbdd",
+      "published_sha256": "766448cff9e74ffd7bb515fb5f15319496be89be7ab6345783afc83ab90ecbdd"
+    },
+    "assets/prediction-method-guide.json": {
+      "original_sha256": "55d74c64a8af95af21997c9ab4e75033bd04220906fb79b0d7e4380d4225c29b",
+      "published_sha256": "55d74c64a8af95af21997c9ab4e75033bd04220906fb79b0d7e4380d4225c29b"
+    },
+    "assets/endpoint24-shapes.json": {
+      "original_sha256": "3d42293b6d0d0f68ef42d514e488d46fc84e3fc8b5df616a0c2331ee735abc0f",
+      "published_sha256": "3d42293b6d0d0f68ef42d514e488d46fc84e3fc8b5df616a0c2331ee735abc0f"
+    },
+    "assets/docs/CHAMPI_PREDICTION_METHODS_CN.md": {
+      "original_sha256": "caf74ca148d4b1a24e690f5099c1e0f97a0fc42c194bc89381143c522202dc1f",
+      "published_sha256": "47ec302252614cb59420805b2894a4208454d4ba9865bf65d35261726551961c"
+    },
+    "assets/docs/ELLIPSE_EVIDENCE_ALIGNMENT_CN.md": {
+      "original_sha256": "5dcd069ede41a2a5bee56f497f522664c84f9e64de9cf401ad631debe18140f7",
+      "published_sha256": "10fd4a9d82a8c747a858e43b8f5101a57ce0133773d40b0fe6a9ee2dec016024"
+    },
+    "assets/docs/ENDPOINT24_SHAPES_V1.md": {
+      "original_sha256": "6649eb7c6b4380ad80fb4545d5b8e6cc56ae1ee0dc7cb94823c0380c2aa8949a",
+      "published_sha256": "fa2a23f707f222ff0671e3d56a65bfbb6b95208e971ccacf937d7fe6da69efe1"
+    },
+    "assets/docs/MOTION_RESIDUAL_V1.md": {
+      "original_sha256": "28263da974df77636082044f3b563a11452a3fcaa81421125b335a8d870f4ee3",
+      "published_sha256": "58c41117d65af9de9f561dcd453fcef5f07a1c148dc8ccebd40667017803587a"
+    },
+    "assets/docs/TFM_CAUSAL_ALIGNMENT_V1.md": {
+      "original_sha256": "92695b3486c71fcdfbb908617af4ee9d310adedae6d2b8bebd8f31bac77eb72e",
+      "published_sha256": "3f275787fe3ee6b79213291cf9a8222e0bdb3b3eabcf11c6001e7bd4dee033ca"
+    },
+    "publisher/atcf.py": {
+      "original_sha256": "5e0b7fe952bdfd81b4d3b618975b63013f59cf2f30eada04f72beb2ed9778072",
+      "source": "src/data/champi.py",
+      "modification": "relative import adapted to standalone package only"
+    },
+    "publisher/official.py": {
+      "original_sha256": "845c92b8cc1425ed5858c0cef9533273e8c450be37b9011c4cea7fdd17009dc0",
+      "source": "src/data/operations.py",
+      "modification": "relative import adapted to standalone package only"
+    },
+    "publisher/geometry.py": {
+      "original_sha256": "44a221e24ea442e5a16dcca96c9e7b7cc4d678627416f41d0d4a41272f39c2a0",
+      "source": "src/geometry/sphere.py",
+      "modification": "relative import adapted to standalone package only"
+    }
+  }
+}
