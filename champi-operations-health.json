@@ -1,30 +1,5 @@
 {
-  "checked_at_utc": "2026-10-25T07:34:20.539840+00:00",
+  "checked_at_utc": "2026-10-25T07:49:31.783089+00:00",
   "ok": true,
-  "sources": {
-    "bdeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T07:34:20.539840+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
-      "sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a"
-    },
-    "adeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T07:34:20.539840+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-      "sha256": "145ab6469bf6eae487a7a0cc00739b9daf462b942df5ab688b85d7b6b0a96f03"
-    },
-    "center": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T07:34:20.539840+00:00",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "sha256": "ea38b5065724a2701f3bbb65e18f1211227c9aa8a943f5580d15e88881d0a7db"
-    },
-    "warning": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T07:34:20.539840+00:00",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "sha256": "2274cf35bfc7f8d4b64e2d556fe8691896a9ecdd8bfed8792331ec9811346b6b"
-    }
-  }
+  "model_transfer": true
 }
