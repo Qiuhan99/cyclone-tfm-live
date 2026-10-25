@@ -3,8 +3,8 @@
   "name_cn": "蔷琵",
   "started_at_utc": "2026-10-25T07:55:20.989996+00:00",
   "generated_at_utc": "2026-10-25T07:56:50.469655+00:00",
-  "last_checked_at_utc": "2026-10-25T07:56:50.469659+00:00",
-  "refresh_interval_seconds": 900,
+  "last_checked_at_utc": "2026-10-25T07:57:31.880599+00:00",
+  "refresh_interval_seconds": 1800,
   "official": {
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -29,7 +29,7 @@
       "wind_averaging_period": "原快讯未明确标注，不与ATCF风速直接合并",
       "stale_after_hours": 3,
       "source_url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "retrieved_at_utc": "2026-10-25T07:55:54.459601+00:00",
+      "retrieved_at_utc": "2026-10-25T07:57:31.880599+00:00",
       "raw_file_sha256": "02c3fc2311b4fb944b85922b09cf4478aa32cf45cc2f9abe41134c6a4b255df1"
     },
     "warning": {
@@ -43,28 +43,34 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-25T07:55:54.964995+00:00",
+      "retrieved_at_utc": "2026-10-25T07:57:31.880599+00:00",
       "raw_file_sha256": "e174f3e5afcab654a91a7397159dc3929dc8b0541fa37afc8ea8710b2f807881"
     }
   },
   "fetch_status": {
-    "ucar": {
+    "bdeck": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T07:55:53.905863+00:00"
+      "checked_at_utc": "2026-10-25T07:57:31.880599+00:00",
+      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
+      "sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042"
+    },
+    "adeck": {
+      "ok": true,
+      "checked_at_utc": "2026-10-25T07:57:31.880599+00:00",
+      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+      "sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c"
     },
     "center": {
       "ok": true,
-      "cached": false,
-      "checked_at_utc": "2026-10-25T07:55:54.459601+00:00",
-      "sha256": "02c3fc2311b4fb944b85922b09cf4478aa32cf45cc2f9abe41134c6a4b255df1",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
+      "checked_at_utc": "2026-10-25T07:57:31.880599+00:00",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
+      "sha256": "02c3fc2311b4fb944b85922b09cf4478aa32cf45cc2f9abe41134c6a4b255df1"
     },
     "warning": {
       "ok": true,
-      "cached": false,
-      "checked_at_utc": "2026-10-25T07:55:54.964995+00:00",
-      "sha256": "e174f3e5afcab654a91a7397159dc3929dc8b0541fa37afc8ea8710b2f807881",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
+      "checked_at_utc": "2026-10-25T07:57:31.880599+00:00",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
+      "sha256": "e174f3e5afcab654a91a7397159dc3929dc8b0541fa37afc8ea8710b2f807881"
     }
   },
   "model": {
@@ -500,6 +506,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
+        "generated_at_utc": "2026-10-25T07:57:31.880599+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:57:31.880599+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -605,7 +613,7 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 33.04467426626113,
+            "lat_deg": 33.04467426626114,
             "lon_deg": 129.06970987615716,
             "valid_time_utc": "2026-10-26T00:31:51.504425+00:00",
             "region": "日本九州附近",
@@ -646,9 +654,7 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ],
-        "generated_at_utc": "2026-10-25T07:56:49.992630+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
+        ]
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
@@ -657,6 +663,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
+        "generated_at_utc": "2026-10-25T07:57:31.880599+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:57:31.880599+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-24T18:00:00.000Z",
@@ -738,14 +746,14 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 32.93188368989458,
+            "lat_deg": 32.93188368989459,
             "lon_deg": 129.02227196227,
             "valid_time_utc": "2026-10-26T00:18:27.692308+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.120675688434545,
+            "lat_deg": 33.12067568843456,
             "lon_deg": 129.75774626790167,
             "valid_time_utc": "2026-10-26T02:09:13.846154+00:00",
             "region": "日本九州附近",
@@ -779,9 +787,7 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ],
-        "generated_at_utc": "2026-10-25T07:56:50.134984+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
+        ]
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
@@ -790,6 +796,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
+        "generated_at_utc": "2026-10-25T07:57:31.880599+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:57:31.880599+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -879,15 +887,13 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 31.898689528460718,
+            "lat_deg": 31.89868952846074,
             "lon_deg": 130.223728111058,
             "valid_time_utc": "2026-10-26T03:53:14.366197+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           }
-        ],
-        "generated_at_utc": "2026-10-25T07:56:50.469636+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
+        ]
       }
     ],
     "config_sha256": "42b2233e22d6d43594b4e0c7f9f0b98b1c40733ba8cd28ea2971f529f7b26c47",
@@ -1210,8 +1216,8 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042",
-    "downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00",
-    "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
+    "downloaded_at_utc": "2026-10-25T07:57:31.880599+00:00",
+    "definition": "UCAR working/revised B-deck; row publication times unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
   "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
@@ -1259,11 +1265,12 @@
     "regime_gate": false,
     "original_row_publication_times_known": false
   },
-  "site_status": "local watcher required for ongoing updates; stale states computed in browser",
+  "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
   "publication": {
     "mode": "mac_auto",
     "transfer_prepared_at_utc": "2026-10-25T07:56:52.429728+00:00",
     "poll_interval_seconds": 900,
     "model_source": "private local TabPFN-3.5 + frozen C0/C1; actual version times retained"
-  }
+  },
+  "public_data_generated_at_utc": "2026-10-25T07:57:31.880599+00:00"
 }
