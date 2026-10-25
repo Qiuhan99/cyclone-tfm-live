@@ -1,0 +1,12 @@
+name: CHAMPI model update
+on:
+  push:
+    branches: [live-data]
+permissions:
+  contents: read
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify protected main deployment
+        run: python3 -c "print('CHAMPI public model snapshot received.')"
