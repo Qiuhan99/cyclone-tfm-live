@@ -1,10 +1,10 @@
 {
   "storm_id": "CHAMPI_2026",
   "name_cn": "蔷琵",
-  "started_at_utc": "2026-10-25T07:48:58.749927+00:00",
-  "generated_at_utc": "2026-10-25T07:22:19.310714+00:00",
-  "last_checked_at_utc": "2026-10-25T07:55:08.614106+00:00",
-  "refresh_interval_seconds": 1800,
+  "started_at_utc": "2026-10-25T07:55:20.989996+00:00",
+  "generated_at_utc": "2026-10-25T07:56:50.469655+00:00",
+  "last_checked_at_utc": "2026-10-25T07:56:50.469659+00:00",
+  "refresh_interval_seconds": 900,
   "official": {
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -29,7 +29,7 @@
       "wind_averaging_period": "原快讯未明确标注，不与ATCF风速直接合并",
       "stale_after_hours": 3,
       "source_url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "retrieved_at_utc": "2026-10-25T07:55:08.614106+00:00",
+      "retrieved_at_utc": "2026-10-25T07:55:54.459601+00:00",
       "raw_file_sha256": "02c3fc2311b4fb944b85922b09cf4478aa32cf45cc2f9abe41134c6a4b255df1"
     },
     "warning": {
@@ -43,55 +43,49 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-25T07:55:08.614106+00:00",
+      "retrieved_at_utc": "2026-10-25T07:55:54.964995+00:00",
       "raw_file_sha256": "e174f3e5afcab654a91a7397159dc3929dc8b0541fa37afc8ea8710b2f807881"
     }
   },
   "fetch_status": {
-    "bdeck": {
+    "ucar": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T07:55:08.614106+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
-      "sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042"
-    },
-    "adeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T07:55:08.614106+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-      "sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c"
+      "checked_at_utc": "2026-10-25T07:55:53.905863+00:00"
     },
     "center": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T07:55:08.614106+00:00",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "sha256": "02c3fc2311b4fb944b85922b09cf4478aa32cf45cc2f9abe41134c6a4b255df1"
+      "cached": false,
+      "checked_at_utc": "2026-10-25T07:55:54.459601+00:00",
+      "sha256": "02c3fc2311b4fb944b85922b09cf4478aa32cf45cc2f9abe41134c6a4b255df1",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
     },
     "warning": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T07:55:08.614106+00:00",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "sha256": "e174f3e5afcab654a91a7397159dc3929dc8b0541fa37afc8ea8710b2f807881"
+      "cached": false,
+      "checked_at_utc": "2026-10-25T07:55:54.964995+00:00",
+      "sha256": "e174f3e5afcab654a91a7397159dc3929dc8b0541fa37afc8ea8710b2f807881",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
     }
   },
   "model": {
-    "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
-    "input_last_valid_utc": "2026-10-25T00:00:00+00:00",
+    "model_origin_time_utc": "2026-10-25T06:00:00+00:00",
+    "input_last_valid_utc": "2026-10-25T06:00:00+00:00",
     "paths": [
       {
         "model_id": "TabPFN CV-F2",
-        "issue_time_utc": "2026-10-25T00:00:00+00:00",
-        "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
+        "issue_time_utc": "2026-10-25T06:00:00+00:00",
+        "model_origin_time_utc": "2026-10-25T06:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
-        "raw_file_sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-        "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
+        "raw_file_sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042",
+        "processed_input_sha256": "225ba9fe28b5e3b461b05b9775a746d6570ba7cac30b6506c97ca5126f6f6b94",
         "wind_averaging_period": null,
         "calibrator": "Causal rolling rank, empirical under dependence",
         "points": [
           {
-            "valid_time_utc": "2026-10-25T06:00:00+00:00",
+            "valid_time_utc": "2026-10-25T12:00:00+00:00",
             "lead_h": 6,
-            "lat_deg": 29.7277276928579,
-            "lon_deg": 125.95139290999805,
+            "lat_deg": 31.239397976424552,
+            "lon_deg": 126.7552786618869,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -101,13 +95,13 @@
             "joint_radius_90_km": 83.57305014450051,
             "radius_90_km": 76.61418933121521,
             "joint_radius_95_km": 101.80044920178318,
-            "radius_95_km": 138.35957242944716
+            "radius_95_km": 138.3595850002544
           },
           {
-            "valid_time_utc": "2026-10-25T12:00:00+00:00",
+            "valid_time_utc": "2026-10-25T18:00:00+00:00",
             "lead_h": 12,
-            "lat_deg": 30.54771970930919,
-            "lon_deg": 127.40012028813692,
+            "lat_deg": 32.44642416518739,
+            "lon_deg": 128.81777960916622,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -115,47 +109,47 @@
             "joint_radius_80_km": 141.8693361707461,
             "radius_80_km": 119.01892293972378,
             "joint_radius_90_km": 173.91045726491973,
-            "radius_90_km": 219.79890393857153,
+            "radius_90_km": 219.79886172569329,
             "joint_radius_95_km": 211.84057109134196,
             "radius_95_km": 328.0678035198314
           },
           {
-            "valid_time_utc": "2026-10-26T00:00:00+00:00",
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
             "lead_h": 24,
-            "lat_deg": 32.32148030419933,
-            "lon_deg": 131.54360093955114,
+            "lat_deg": 34.86790208576977,
+            "lon_deg": 133.72373724963023,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
             "joint_calibration_n": 100,
             "joint_radius_80_km": 326.168113242061,
-            "radius_80_km": 254.12424744364162,
+            "radius_80_km": 256.63464031259787,
             "joint_radius_90_km": 399.83302417721205,
-            "radius_90_km": 370.264875412022,
+            "radius_90_km": 389.50768110247697,
             "joint_radius_95_km": 487.03716564814255,
-            "radius_95_km": 566.2142969709929
+            "radius_95_km": 566.214278062631
           },
           {
-            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
             "lead_h": 48,
-            "lat_deg": 35.788063876473224,
-            "lon_deg": 138.61495489428205,
+            "lat_deg": 38.83999475279239,
+            "lon_deg": 142.43357709986878,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
             "joint_calibration_n": 100,
             "joint_radius_80_km": 791.8055861448005,
-            "radius_80_km": 488.33474607309034,
+            "radius_80_km": 479.16175527913765,
             "joint_radius_90_km": 970.6344955729404,
             "radius_90_km": 774.7548850437413,
             "joint_radius_95_km": 1182.3312358376784,
             "radius_95_km": 1022.208128882103
           },
           {
-            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
             "lead_h": 72,
-            "lat_deg": 38.58806090818741,
-            "lon_deg": 146.48704012441328,
+            "lat_deg": 41.49961721371546,
+            "lon_deg": 151.76642082786248,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -169,65 +163,72 @@
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-25T00:00:00+00:00",
-          "lat_deg": 29.0,
-          "lon_deg": 124.69999999999999
+          "valid_time_utc": "2026-10-25T06:00:00+00:00",
+          "lat_deg": 30.1,
+          "lon_deg": 125.5
         },
         "landfall_candidates": [
           {
-            "lat_deg": 31.768957958948985,
-            "lon_deg": 130.2017204687512,
-            "valid_time_utc": "2026-10-25T20:09:47.755102+00:00",
+            "lat_deg": 32.900886156607214,
+            "lon_deg": 129.68937123303158,
+            "valid_time_utc": "2026-10-25T20:10:54.545455+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 32.924349678070776,
-            "lon_deg": 132.67784599811472,
-            "valid_time_utc": "2026-10-26T03:59:03.083004+00:00",
+            "lat_deg": 33.01355369544502,
+            "lon_deg": 129.90865967020653,
+            "valid_time_utc": "2026-10-25T20:43:38.181818+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 33.9963271743827,
+            "lon_deg": 131.87960345961505,
+            "valid_time_utc": "2026-10-26T01:34:05.454545+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.3078870131924,
+            "lon_deg": 132.52775032526483,
+            "valid_time_utc": "2026-10-26T03:08:10.909091+00:00",
             "region": "日本四国附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.50285201731161,
-            "lon_deg": 133.799963121193,
-            "valid_time_utc": "2026-10-26T07:52:24.664032+00:00",
-            "region": "日本四国附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 34.18075665550611,
-            "lon_deg": 135.1606817360621,
-            "valid_time_utc": "2026-10-26T12:31:18.260870+00:00",
+            "lat_deg": 36.023133372493,
+            "lon_deg": 136.03055579342197,
+            "valid_time_utc": "2026-10-26T12:36:14.496644+00:00",
             "region": "日本本州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 35.00328291158456,
-            "lon_deg": 136.88513312674843,
-            "valid_time_utc": "2026-10-26T18:18:29.881423+00:00",
+            "lat_deg": 38.382478305441246,
+            "lon_deg": 141.30232769385907,
+            "valid_time_utc": "2026-10-27T03:01:12.483221+00:00",
             "region": "日本本州附近",
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-25T07:22:17.352522+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
+        "generated_at_utc": "2026-10-25T07:56:48.869530+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
       },
       {
         "model_id": "TabPFN CV-F2 + C0",
-        "issue_time_utc": "2026-10-25T00:00:00+00:00",
-        "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
+        "issue_time_utc": "2026-10-25T06:00:00+00:00",
+        "model_origin_time_utc": "2026-10-25T06:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
-        "raw_file_sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-        "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
+        "raw_file_sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042",
+        "processed_input_sha256": "225ba9fe28b5e3b461b05b9775a746d6570ba7cac30b6506c97ca5126f6f6b94",
         "wind_averaging_period": null,
         "calibrator": "Causal rolling rank, empirical under dependence",
         "points": [
           {
-            "valid_time_utc": "2026-10-25T06:00:00+00:00",
+            "valid_time_utc": "2026-10-25T12:00:00+00:00",
             "lead_h": 6,
-            "lat_deg": 29.789044695186856,
-            "lon_deg": 126.0519125361389,
+            "lat_deg": 31.305616319129204,
+            "lon_deg": 126.86109161868927,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -240,10 +241,10 @@
             "radius_95_km": 156.75778429609596
           },
           {
-            "valid_time_utc": "2026-10-25T12:00:00+00:00",
+            "valid_time_utc": "2026-10-25T18:00:00+00:00",
             "lead_h": 12,
-            "lat_deg": 30.59815483593137,
-            "lon_deg": 127.66048370669392,
+            "lat_deg": 32.47684668784012,
+            "lon_deg": 129.09347825766554,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -251,47 +252,47 @@
             "joint_radius_80_km": 138.68137555679667,
             "radius_80_km": 121.48439905821192,
             "joint_radius_90_km": 180.18619804368635,
-            "radius_90_km": 228.13094809084322,
+            "radius_90_km": 228.1713715715243,
             "joint_radius_95_km": 211.9806871758762,
-            "radius_95_km": 329.89049057552285
+            "radius_95_km": 329.89047236109536
           },
           {
-            "valid_time_utc": "2026-10-26T00:00:00+00:00",
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
             "lead_h": 24,
-            "lat_deg": 32.317174206874206,
-            "lon_deg": 132.2103722268335,
+            "lat_deg": 34.62802007068833,
+            "lon_deg": 134.58397579281313,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
             "joint_calibration_n": 100,
             "joint_radius_80_km": 317.0966786425475,
-            "radius_80_km": 273.88438598084895,
+            "radius_80_km": 285.12255198619295,
             "joint_radius_90_km": 411.9979680579467,
-            "radius_90_km": 348.99482420951347,
+            "radius_90_km": 362.85954485950606,
             "joint_radius_95_km": 484.6964602850082,
-            "radius_95_km": 570.5565288324522
+            "radius_95_km": 569.3171390879675
           },
           {
-            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
             "lead_h": 48,
-            "lat_deg": 35.36296709613675,
-            "lon_deg": 142.27385441657646,
+            "lat_deg": 37.18795767641932,
+            "lon_deg": 146.55749997354883,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
             "joint_calibration_n": 100,
             "joint_radius_80_km": 780.5273912139291,
-            "radius_80_km": 547.7797467430588,
+            "radius_80_km": 561.5497916150557,
             "joint_radius_90_km": 1014.1250944990516,
             "radius_90_km": 854.8567353969147,
             "joint_radius_95_km": 1193.0710384492847,
             "radius_95_km": 1142.7627812920227
           },
           {
-            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
             "lead_h": 72,
-            "lat_deg": 36.911649531831394,
-            "lon_deg": 153.26371490497814,
+            "lat_deg": 37.6641200256796,
+            "lon_deg": 157.07696512506504,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -305,44 +306,65 @@
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-25T00:00:00+00:00",
-          "lat_deg": 29.0,
-          "lon_deg": 124.69999999999999
+          "valid_time_utc": "2026-10-25T06:00:00+00:00",
+          "lat_deg": 30.1,
+          "lon_deg": 125.5
         },
         "landfall_candidates": [
           {
-            "lat_deg": 31.62952355339206,
-            "lon_deg": 130.31834184441323,
-            "valid_time_utc": "2026-10-25T19:03:47.848101+00:00",
+            "lat_deg": 32.77665996157077,
+            "lon_deg": 129.80786428288332,
+            "valid_time_utc": "2026-10-25T19:35:44.680851+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.48990365715325,
-            "lon_deg": 135.69571801296388,
-            "valid_time_utc": "2026-10-26T08:30:32.727273+00:00",
+            "lat_deg": 33.0253518974588,
+            "lon_deg": 130.41165489104952,
+            "valid_time_utc": "2026-10-25T20:56:10.212766+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 33.95680898201458,
+            "lon_deg": 132.7724625488794,
+            "valid_time_utc": "2026-10-26T02:06:22.978723+00:00",
+            "region": "日本四国附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.498093851253294,
+            "lon_deg": 134.225325129647,
+            "valid_time_utc": "2026-10-26T05:14:02.553191+00:00",
+            "region": "日本四国附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.703652806370926,
+            "lon_deg": 134.86407764524927,
+            "valid_time_utc": "2026-10-26T06:34:50.322581+00:00",
             "region": "日本本州附近",
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-25T07:22:17.813700+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
+        "generated_at_utc": "2026-10-25T07:56:49.224284+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
       },
       {
         "model_id": "TabPFN CV-F2 + C1",
-        "issue_time_utc": "2026-10-25T00:00:00+00:00",
-        "model_origin_time_utc": "2026-10-25T00:00:00+00:00",
+        "issue_time_utc": "2026-10-25T06:00:00+00:00",
+        "model_origin_time_utc": "2026-10-25T06:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
-        "raw_file_sha256": "eadac5d116fccc95847ec2a64fae56f03716b523d103eb34994ed15e547f4f9a",
-        "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
+        "raw_file_sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042",
+        "processed_input_sha256": "225ba9fe28b5e3b461b05b9775a746d6570ba7cac30b6506c97ca5126f6f6b94",
         "wind_averaging_period": null,
         "calibrator": "Causal rolling rank, empirical under dependence",
         "points": [
           {
-            "valid_time_utc": "2026-10-25T06:00:00+00:00",
+            "valid_time_utc": "2026-10-25T12:00:00+00:00",
             "lead_h": 6,
-            "lat_deg": 29.794934037514302,
-            "lon_deg": 126.03028799390057,
+            "lat_deg": 31.284568939291862,
+            "lon_deg": 126.950527955486,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -355,10 +377,10 @@
             "radius_95_km": 154.314239081075
           },
           {
-            "valid_time_utc": "2026-10-25T12:00:00+00:00",
+            "valid_time_utc": "2026-10-25T18:00:00+00:00",
             "lead_h": 12,
-            "lat_deg": 30.618139184427147,
-            "lon_deg": 127.31486362522827,
+            "lat_deg": 32.496726935818906,
+            "lon_deg": 128.95723534485046,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -371,26 +393,26 @@
             "radius_95_km": 318.06691799770135
           },
           {
-            "valid_time_utc": "2026-10-26T00:00:00+00:00",
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
             "lead_h": 24,
-            "lat_deg": 32.61121071456192,
-            "lon_deg": 132.4394183814174,
+            "lat_deg": 34.838575804725345,
+            "lon_deg": 135.25870820094792,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
             "joint_calibration_n": 100,
             "joint_radius_80_km": 341.9615222559784,
-            "radius_80_km": 276.23532577308276,
+            "radius_80_km": 277.36313393787634,
             "joint_radius_90_km": 451.86279950687964,
-            "radius_90_km": 378.41975653349743,
+            "radius_90_km": 398.3693182493323,
             "joint_radius_95_km": 530.0709426062309,
-            "radius_95_km": 541.5099412650603
+            "radius_95_km": 541.4765678156281
           },
           {
-            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
             "lead_h": 48,
-            "lat_deg": 35.321636232784925,
-            "lon_deg": 143.07580491700492,
+            "lat_deg": 37.33314740617471,
+            "lon_deg": 149.62001688934276,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -403,10 +425,10 @@
             "radius_95_km": 1208.383498634981
           },
           {
-            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
             "lead_h": 72,
-            "lat_deg": 37.0180418100044,
-            "lon_deg": 148.50495876194555,
+            "lat_deg": 38.333716670180145,
+            "lon_deg": 159.73524834065108,
             "vmax_kt": null,
             "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
             "calibration_n": 100,
@@ -420,28 +442,56 @@
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-25T00:00:00+00:00",
-          "lat_deg": 29.0,
-          "lon_deg": 124.69999999999999
+          "valid_time_utc": "2026-10-25T06:00:00+00:00",
+          "lat_deg": 30.1,
+          "lon_deg": 125.5
         },
         "landfall_candidates": [
           {
-            "lat_deg": 31.774229675282196,
-            "lon_deg": 130.19565157017428,
-            "valid_time_utc": "2026-10-25T18:48:32.359551+00:00",
+            "lat_deg": 32.822520775086545,
+            "lon_deg": 129.7660152361675,
+            "valid_time_utc": "2026-10-25T19:34:38.873239+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.52291374743888,
-            "lon_deg": 135.57044452790637,
-            "valid_time_utc": "2026-10-26T07:13:41.052632+00:00",
+            "lat_deg": 32.90315476413993,
+            "lon_deg": 129.96913228596202,
+            "valid_time_utc": "2026-10-25T19:58:18.591549+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 33.07483193960881,
+            "lon_deg": 130.40562763572177,
+            "valid_time_utc": "2026-10-25T20:49:00.845070+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 33.97510499466174,
+            "lon_deg": 132.79211440145804,
+            "valid_time_utc": "2026-10-26T01:22:49.014085+00:00",
+            "region": "日本四国附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.48656868771187,
+            "lon_deg": 134.2297946674164,
+            "valid_time_utc": "2026-10-26T04:05:04.225352+00:00",
+            "region": "日本四国附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.70500636360041,
+            "lon_deg": 134.86426792702588,
+            "valid_time_utc": "2026-10-26T05:16:03.380282+00:00",
             "region": "日本本州附近",
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-25T07:22:18.126075+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:20:51.374999+00:00"
+        "generated_at_utc": "2026-10-25T07:56:49.607731+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
       },
       {
         "model_id": "ATCF:CMC / TECHNUM 03",
@@ -450,8 +500,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T07:55:08.614106+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:55:08.614106+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -557,7 +605,7 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 33.04467426626114,
+            "lat_deg": 33.04467426626113,
             "lon_deg": 129.06970987615716,
             "valid_time_utc": "2026-10-26T00:31:51.504425+00:00",
             "region": "日本九州附近",
@@ -598,7 +646,9 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T07:56:49.992630+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
@@ -607,8 +657,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T07:55:08.614106+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:55:08.614106+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-24T18:00:00.000Z",
@@ -690,14 +738,14 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 32.93188368989459,
+            "lat_deg": 32.93188368989458,
             "lon_deg": 129.02227196227,
             "valid_time_utc": "2026-10-26T00:18:27.692308+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.12067568843456,
+            "lat_deg": 33.120675688434545,
             "lon_deg": 129.75774626790167,
             "valid_time_utc": "2026-10-26T02:09:13.846154+00:00",
             "region": "日本九州附近",
@@ -731,7 +779,9 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T07:56:50.134984+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
@@ -740,8 +790,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "95ebd2db3f614ed283b01d7bcd383a3d8e54a93c6696f345675bdc6b840b820c",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T07:55:08.614106+00:00",
-        "input_downloaded_at_utc": "2026-10-25T07:55:08.614106+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -831,20 +879,22 @@
         },
         "landfall_candidates": [
           {
-            "lat_deg": 31.89868952846074,
+            "lat_deg": 31.898689528460718,
             "lon_deg": 130.223728111058,
             "valid_time_utc": "2026-10-26T03:53:14.366197+00:00",
             "region": "日本九州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T07:56:50.469636+00:00",
+        "input_downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00"
       }
     ],
-    "config_sha256": "6c46eebbb0746b4e99243e20514e9921a6c083eda6c61a5b6702572a708ee189",
+    "config_sha256": "42b2233e22d6d43594b4e0c7f9f0b98b1c40733ba8cd28ea2971f529f7b26c47",
     "checkpoint_sha256": "ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3",
     "selected": "TabPFN CV-F2",
     "artifact_namespace": "champi_operations_v2",
-    "processed_input_sha256": "a8ab5182a03363ace5194c9e616364b0b6458520bb00b56f47d24b0efd59e46f",
+    "processed_input_sha256": "225ba9fe28b5e3b461b05b9775a746d6570ba7cac30b6506c97ca5126f6f6b94",
     "label": "Fresh inference after retrieval; prior origins reconstructed only for causal residuals, not past operational publications"
   },
   "observations": [
@@ -1160,29 +1210,29 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "6fa64d3536e028b092101198a92498cd523bba79e20a70e8f20100cd53e19042",
-    "downloaded_at_utc": "2026-10-25T07:55:08.614106+00:00",
-    "definition": "UCAR working/revised B-deck; row publication times unknown"
+    "downloaded_at_utc": "2026-10-25T07:55:22.973183+00:00",
+    "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
   "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
   "inference_refresh": {
     "reused_identical_bdeck": false,
     "predictor_sha256": "d321f461f4b72b27715bc4226a1d7dd1ec8930f0229f0645067f05b04ccf5bd3",
-    "checked_at_utc": "2026-10-25T07:22:19.312598+00:00"
+    "checked_at_utc": "2026-10-25T07:56:50.472025+00:00"
   },
   "data_profile": {
     "observation_source": "UCAR TCGP working/revised ATCF B-deck",
-    "observation_count": 43,
+    "observation_count": 44,
     "first_valid_utc": "2026-10-14T12:00:00+00:00",
-    "last_valid_utc": "2026-10-25T00:00:00+00:00",
+    "last_valid_utc": "2026-10-25T06:00:00+00:00",
     "interval_hours": 6,
     "required_prefix_fixes": 9,
     "prefix_hours": 48,
     "missing_wind_count": 2,
     "missing_pressure_count": 0,
     "quarantined_conflicting_records": 4,
-    "external_normalized_rows": 70132,
-    "external_origin_count": 43,
+    "external_normalized_rows": 70182,
+    "external_origin_count": 44,
     "feature_group": "F2",
     "base_feature_count": 52,
     "c0_feature_count": 54,
@@ -1209,12 +1259,11 @@
     "regime_gate": false,
     "original_row_publication_times_known": false
   },
-  "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
+  "site_status": "local watcher required for ongoing updates; stale states computed in browser",
   "publication": {
     "mode": "mac_auto",
-    "transfer_prepared_at_utc": "2026-10-25T07:22:20.994191+00:00",
+    "transfer_prepared_at_utc": "2026-10-25T07:56:52.429728+00:00",
     "poll_interval_seconds": 900,
     "model_source": "private local TabPFN-3.5 + frozen C0/C1; actual version times retained"
-  },
-  "public_data_generated_at_utc": "2026-10-25T07:55:08.614106+00:00"
+  }
 }
