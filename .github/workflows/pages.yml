@@ -3,16 +3,18 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      repair_bot:
+        description: 'Apply owner-approved metadata-only bot contributor repair (backup retained)'
+        type: boolean
+        default: false
   schedule:
     - cron: '7,37 * * * *'
-
 permissions:
   contents: read
-
 concurrency:
   group: public-pages
   cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,35 +24,41 @@ jobs:
       pages: read
     steps:
       - uses: actions/checkout@v4
-      - name: Expand first browser upload into readable source files
-        id: bootstrap
+        with:
+          fetch-depth: 0
+      - name: Import tested full portal release once
         shell: bash
         run: |
-          if [ ! -f pyproject.toml ]; then
-            python3 - <<'PY'
-          import os, pathlib, stat, zipfile
-          with zipfile.ZipFile('cyclone-tfm-live.zip') as archive:
-              for entry in archive.infolist():
-                  path = pathlib.PurePosixPath(entry.filename)
+          if [ ! -f PORTAL_RELEASE.json ]; then
+            python3 - <<'PYZIP'
+          import pathlib, hashlib, stat, zipfile
+          archive = pathlib.Path('portal-upgrade-v2.zip')
+          if hashlib.sha256(archive.read_bytes()).hexdigest() != '5b6a57a36ec7c83a2b0d82e1b98e26a9c611e65e347c28e7ec5d35b6d95c8257':
+              raise ValueError('unreviewed release archive')
+          with zipfile.ZipFile(archive) as z:
+              for item in z.infolist():
+                  path = pathlib.PurePosixPath(item.filename)
                   if path.is_absolute() or '..' in path.parts or not path.parts:
-                      raise ValueError('unsafe archive path')
-                  if path.parts[0] in ('.git', '.github', '.runtime', '.venv', '.openai'):
-                      continue
-                  if stat.S_ISLNK(entry.external_attr >> 16):
-                      raise ValueError('symlink archive entry rejected')
-                  archive.extract(entry, '.')
-          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
-              output.write('expanded=true\n')
-          PY
+                      raise ValueError('unsafe release path')
+                  if path.parts[0] not in ('site', 'src', 'tests', 'tools', 'PUBLIC_EXPORT_V2.json', 'PORTAL_RELEASE.json'):
+                      raise ValueError('outside approved public scope')
+                  if stat.S_ISLNK(item.external_attr >> 16):
+                      raise ValueError('symlink rejected')
+                  z.extract(item, '.')
+          PYZIP
           fi
-      - name: Keep uploaded package browsable as normal source
-        if: steps.bootstrap.outputs.expanded == 'true'
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src site tools tests README.md NOTICE.md PUBLIC_EXPORT.json pyproject.toml .gitignore
-          git commit -m 'Expand public website and data publisher source'
-          git push origin HEAD:main
+      - name: Apply explicitly approved contributor metadata repair
+        if: github.event_name == 'workflow_dispatch' && inputs.repair_bot
+        run: python tools/repair_author_history.py --expected-head "$GITHUB_SHA" --apply
+      - name: Preserve pre-repair history backup
+        if: always() && github.event_name == 'workflow_dispatch' && inputs.repair_bot
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-before-owner-approved-repair
+          path: .runtime/before-author-repair.bundle
+          retention-days: 7
+      - name: Import portal source under existing owner identity
+        run: python tools/commit_portal.py
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -58,27 +66,28 @@ jobs:
         with:
           node-version: '22'
       - run: python -m pip install -e .
-      - name: Restore last published public state
+      - name: Restore latest public state
         run: python tools/live_branch.py restore
-      - name: Check official data and external paths
+      - name: Refresh public sources without retiming private models
         run: cyclone-live refresh --site site
-      - name: Validate public release and run tests
+      - name: Validate all restored pages and actual model maps
         run: |
           python -m unittest discover -s tests -p 'test_*.py'
           node --test tests/*.test.mjs
+          python tools/build_site_manifest.py
           python tools/check_public.py
-      - name: Save latest public state
+      - name: Preserve public data across runs
         run: python tools/live_branch.py save
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
   deploy:
+    runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     permissions:
       pages: write
       id-token: write
