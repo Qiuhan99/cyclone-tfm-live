@@ -80,3 +80,5 @@ python tools/check_public.py
 ## Conformal与时序基础模型对照
 
 [Conformal基准窗口](https://qiuhan99.github.io/cyclone-tfm-live/conformal-benchmark.html)将覆盖偏差、已发区域面积、同覆盖效率及过去运动变化分层作为主要评价，MAE作为辅助。新增Chronos-Bolt-small、Chronos-2、Moirai-small真实802起报推理；TimeGPT待API接入。模型版本、原始结果边界与[完整报告](site/assets/docs/TSFM_CONFORMAL_BENCHMARK_CN.md)一同保留。短上下文、协变量和训练预算差异不作隐藏。
+
+公平性复核另提供共享6h匀速残差表示，网站默认CV对齐，可切换原直接ENU外推。两种目标表示的真实原始结果均保留；不把运动预处理收益全部归于网络架构。

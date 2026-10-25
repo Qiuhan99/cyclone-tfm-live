@@ -1,9 +1,9 @@
 import {REFERENCES,NAMES,ORDER,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 const COLORS=['#e1ae78','#d6bc95','#b69ee0','#8bdec4','#83b6df','#e09fac','#bac37f'];
-let D;const full=$('#cp-evidence').dataset.cpView==='full';
+let D;const SETS={};const full=$('#cp-evidence').dataset.cpView==='full';
 const filters=()=>({phase:$('#cp-phase').value,lead_h:+$('#cp-lead').value,level:+$('#cp-level').value,shape:$('#cp-shape').value,calibrator:$('#cp-calibrator').value,regime:$('#cp-regime').value});
-const name=m=>NAMES[m]??m;
+const name=m=>NAMES[m]??(m+(D?.protocol.preprocessing==='shared_6h_CV_offset'?' + CV':' · 直接ENU'));
 function frontier(rows,f){
  const W=700,H=390,margin={l:80,r:35,t:25,b:90},valid=rows.filter(r=>r.mean_area_km2>0);
  if(!valid.length){$('#cp-frontier').innerHTML='';return;}
@@ -29,22 +29,22 @@ function curve(f){
  svg+=`<text x="65" y="314" fill="#a7bec2" font-size="12">1</text><text x="665" y="314" text-anchor="end" fill="#a7bec2" font-size="12">${max}个成熟终点 →</text>`;$('#cp-curve').innerHTML=svg;
 }
 function render(){
- if(!D)return;const f=filters(),rows=metricRows(D,f,!full),e=correctionEvidence(rows);
- $('#cp-status').textContent=rows.length?`${f.phase==='test'?'2024历史队列':'CHAMPI锁定研究快照'} · +${f.lead_h}h单终点${f.level}%边际区域 · ${f.shape==='ellipse'?'椭圆':'圆'} · ${f.calibrator==='Causal rolling'?'仅成熟标签因果滚动':'固定2019几何和秩阈值'} · 共同${rows[0].n}终点 / ${rows[0].storms}场。${f.regime!=='all'?'当前为过去运动状态代理分层，不是经证实的概念漂移标签。':''}`:'当前筛选没有共同成熟终点；不补零或生成成绩。';
- $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r.matched_area_ratio_vs_f2,3)}×</td></tr>`).join(''):'<tr><td colspan="6">无共同成熟终点</td></tr>';
+ if(!D)return;const f=filters(),rows=metricRows(D,f,!full),e=correctionEvidence(rows),reference=full?$('#cp-ratio-reference').value:'f2';if(full)$('#cp-ratio-heading').textContent='同覆盖面积比 / CV-'+(reference==='f0'?'F0 · 位置':'F2 · Base');
+ $('#cp-status').textContent=rows.length?`${f.phase==='test'?'2024历史队列':'CHAMPI锁定研究快照'} · +${f.lead_h}h单终点${f.level}%边际区域 · ${f.shape==='ellipse'?'椭圆':'圆'} · ${f.calibrator==='Causal rolling'?'仅成熟标签因果滚动':'固定2019几何和秩阈值'} · 共同${rows[0].n}终点 / ${rows[0].storms}场。时序模型${D.protocol.preprocessing==='shared_6h_CV_offset'?'已对齐6h匀速残差变换':'直接ENU外推，原始对照'}。${f.regime!=='all'?'当前为过去运动状态代理分层，不是经证实的概念漂移标签。':''}`:'当前筛选没有共同成熟终点；不补零或生成成绩。';
+ $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r[reference==='f0'?'matched_area_ratio_vs_f0':'matched_area_ratio_vs_f2'],3)}×</td></tr>`).join(''):'<tr><td colspan="6">无共同成熟终点</td></tr>';
  $('#cp-cards').innerHTML=e?[
   ['Base → C1 实际覆盖',`${fmt(e.base*100)}% → ${fmt(e.c1*100)}%`,`名义${f.level}%；偏离目标的方向也需核对。`],
   ['C1相对Base的绝对覆盖偏差',`${e.gapReduction>=0?'减少':'增加'} ${fmt(Math.abs(e.gapReduction),2)} pp`,'不将过覆盖自动判定为改善。'],
   ['C1 / Base 同覆盖面积',`${fmt(e.matchedAreaRatio,3)}×`,'事后统一覆盖诊断；小于1表示更紧致。'],
   ['C1 / Base 已发平均面积',`${fmt(e.issuedAreaRatio,3)}×`,'实际起报规则的面积代价，未用后验尺度替换。']
  ].map(([a,b,c])=>`<div><span>${a}</span><strong>${b}</strong><small>${c}</small></div>`).join(''):'';
- const comparisons=primaryEvidence(D,f);$('#cp-intervals').textContent=comparisons.length?comparisons.filter(r=>r.candidate===REFERENCES[3]).map(r=>`${name(r.candidate)} / ${name(r.base)} 同覆盖面积比 ${fmt(r.matched_area_ratio,3)}，整台风95%区间 [${r.ratio_ci95.map(v=>fmt(v,3)).join(', ')}]。`).join(' ')+'500次整台风配对bootstrap，每次重做匹配；探索性，区间跨1不能确认稳定效率优势。':'该筛选未计算配对区间；不借用其他时效、队列或运动子集的区间。CHAMPI单场不按重叠起报构造伪独立区间。';
+ const comparisons=primaryEvidence(D,f);$('#cp-intervals').textContent=comparisons.length?(full?comparisons:comparisons.filter(r=>r.candidate===REFERENCES[3])).map(r=>`${name(r.candidate)} / ${name(r.base)} 同覆盖面积比 ${fmt(r.matched_area_ratio,3)}，整台风95%区间 [${r.ratio_ci95.map(v=>fmt(v,3)).join(', ')}]。`).join('\n')+'\n500次整台风配对bootstrap，每次重做匹配；包含1的区间不支持稳定差异。其余结果也受短上下文、标签预算与探索性多重比较限制。':'该筛选未计算配对区间；不借用其他时效、队列或运动子集的区间。CHAMPI单场不按重叠起报构造伪独立区间。';
  if(full){$('#cp-point-errors').innerHTML=rows.map(r=>`${esc(name(r.model_id))}：${fmt(r.mae_km,2)} km（n=${r.n}）`).join('<br>');frontier(rows,f);curve(f);}
 }
 function models(){
  $('#cp-model-status').innerHTML=D.model_status.map(m=>{const complete=m.status==='completed',version=D.protocol.models[m.name];return `<article class="cp-model-card"><strong>${esc(m.name)}</strong><span>${complete?'真实推理完成 · '+m.n+'起报':'待接入 · 未调用、未评分'}<br>${complete?fmt(m.parameters/1e6,2)+'M参数 · CPU':''}</span><div>${complete?`<small>${esc(version.repo)}</small><br><code>revision ${esc(version.revision)}</code><br><small>${m.name.startsWith('Chronos')?'chronos-forecasting '+esc(m.versions['chronos-forecasting']):'uni2ts '+esc(m.versions.uni2ts)}；同一48h位置历史，无微调</small>`:'待配置Nixtla API；本轮按用户选择不调用、不生成分数。'}</div></article>`;}).join('');
  $('#cp-native').innerHTML='<details><summary>查看原生二维矩形的经验覆盖（每坐标80%，不是同定义90% Conformal）</summary>'+D.native_summary.filter(r=>r.phase==='test'&&r.lead_h===24).map(r=>`<div class="cp-native-row">${esc(r.model_id)}：${fmt(r.coverage*100)}%（n=${r.n}，2024 / +24h）</div>`).join('')+'</details>';
 }
-async function init(){const r=await fetch('assets/tsfm-conformal.json');if(!r.ok)throw Error('真实实验缓存 '+r.status);D=await r.json();render();if(full)models();
- for(const id of ['cp-phase','cp-lead','cp-level','cp-shape','cp-calibrator','cp-regime'])$('#'+id).addEventListener('change',render);if(full)$('#cp-curve-method').addEventListener('change',()=>curve(filters()));}
+async function init(){await Promise.all((full?[['direct','tsfm-conformal.json'],['shared_cv','tsfm-cv-sensitivity.json']]:[['shared_cv','tsfm-cv-sensitivity.json']]).map(async([key,file])=>{const r=await fetch('assets/'+file);if(!r.ok)throw Error('真实实验缓存 '+r.status);SETS[key]=await r.json();}));D=SETS.shared_cv;render();if(full)models();
+ for(const id of ['cp-phase','cp-lead','cp-level','cp-shape','cp-calibrator','cp-regime'])$('#'+id).addEventListener('change',render);if(full){$('#cp-curve-method').addEventListener('change',()=>curve(filters()));$('#cp-preprocessing').addEventListener('change',()=>{D=SETS[$('#cp-preprocessing').value];render();models();});$('#cp-ratio-reference').addEventListener('change',render);}}
 init().catch(e=>{$('#cp-status').textContent='实验数据读取失败：'+e.message+'；没有生成演示结果。';});

@@ -1,3 +1,67 @@
+# Conformal与时序基础模型：CV公平性复核
+
+网站默认展示本次共享CV运动基线的复核结果，原始直接ENU对照完整保留并可切换。这是看到初始结果后进行的探索性表示敏感性分析，不作为新的独立验证。两组均为同一802个原起报，不是1604个独立评价样本；2024的主24h评价仍为27场169个终点。
+
+## 为什么补做
+
+原TabPFN CV-F0/F2分支学习相对于6h匀速外推的位移残差，并将匀速基线加回。首次新增TSFM直接外推ENU位置，差异包含显式运动先验和目标表示，不能全部归于网络架构。复核让三个TSFM也在同一CV残差表示上预测；模型版本、48h/9点历史、原起报、标签成熟、几何/秩预算均保持一致。
+
+令u_j=Log_anchor(P_j)，j=-8,...,0，最近6h速度v=(u_0-u_-1)/6。输入为r_j=u_j-v*(6j)；模型预测未来残差r_hat_h，再还原u_hat_h=r_hat_h+v*h并映回球面。该v只使用起报前最近两点，未来offset由已知v和lead确定，不读取未来真值。已逐点检验球面Exp(v*h)与原项目GreatCircleContinuation的前4步相同。
+
+每模型原始残差预测、分位数与样本全部保留，另外保存加回运动offset后的coordinate_predictions.npz，不覆盖原始残差数组。新命名空间tsfm_cv_sensitivity_v1，原tsfm_conformal_v1保持原样。
+
+## 默认对照：2024 / 24h / 90% / 椭圆 / 因果滚动
+
+|方法|n|实际覆盖|绝对偏差pp|已发平均面积km²|同覆盖面积比/CV-F0|MAEkm（辅助）|
+|---|---:|---:|---:|---:|---:|---:|
+|Chronos-2 + CV|169|88.17%|1.83|586814|1.460|246.65|
+|Chronos-Bolt-small + CV|169|89.94%|0.06|649029|1.424|244.85|
+|Moirai-1.1-R-small + CV|169|89.35%|0.65|609020|1.349|243.99|
+|TabPFN CV-F0|169|93.49%|3.49|615738|1.000|222.27|
+|TabPFN CV-F2|169|91.12%|1.12|596682|1.192|219.86|
+|TabPFN CV-F2 + C0|169|93.49%|3.49|648006|1.026|222.92|
+|TabPFN CV-F2 + C1|169|94.67%|4.67|615838|1.042|224.18|
+
+CV对齐后，Chronos-2的MAE从284.55降至246.65km，Chronos-Bolt-small的MAE从454.88降至244.85km，Moirai-1.1-R-small的MAE从474.65降至243.99km。运动预处理解释了原差距的一部分。
+
+CV对齐后，同覆盖面积Chronos-2/CV-F0为1.460，整台风95%区间[1.004,1.765]；Chronos-Bolt/CV-F0为1.424，[1.051,1.785]；Moirai/CV-F0为1.349，[1.036,1.987]。原直接ENU对照分别为2.006、4.426、5.313。CV-F0在此48h短上下文设定下仍有区域效率竞争力，但优势幅度缩小。这些区间未校正多重比较，且条件于固定模型、历史上下文和2019校准状态，不能推广为普遍优越。
+
+实际覆盖也需核对：CV-F0为93.49%，三个CV对齐TSFM为88.17%–89.94%；不能把后验同覆盖效率当作实际起报校准质量，也不能忽略过覆盖。TabPFN仍使用额外跨台风有标签上下文；F2/C0/C1还用强度和气候特征，因此统一CV并没有完全匹配全部信息预算。
+
+## 运动变化代理：48个共同终点
+
+|方法|n|实际覆盖|绝对偏差pp|已发平均面积km²|同覆盖面积比/CV-F0|MAEkm（辅助）|
+|---|---:|---:|---:|---:|---:|---:|
+|Chronos-2 + CV|48|83.33%|6.67|589496|1.657|280.60|
+|Chronos-Bolt-small + CV|48|83.33%|6.67|649283|1.758|278.55|
+|Moirai-1.1-R-small + CV|48|85.42%|4.58|610273|1.962|276.69|
+|TabPFN CV-F0|48|89.58%|0.42|617350|1.000|238.26|
+|TabPFN CV-F2|48|87.50%|2.50|600030|0.879|230.50|
+|TabPFN CV-F2 + C0|48|89.58%|0.42|651936|0.997|238.24|
+|TabPFN CV-F2 + C1|48|93.75%|3.75|619057|0.752|228.41|
+
+三个CV对齐TSFM在该子集实际覆盖83.33%–85.42%；Base为87.5%，C0为89.58%，C1为93.75%。C1高覆盖伴随过覆盖，绝对偏差3.75pp高于Base的2.5pp，仍不能宣称证明了抗概念漂移。CV-F0为89.58%；未来应隔离运动特征、残差中心、历史反馈和校准更新的贡献。
+
+## 残差算法本身的结论未改变
+
+C1/Base同覆盖面积比仍为0.874，[0.777,1.344]，C1/C0仍为1.016，[0.764,1.246]。本次复核只改变TSFM目标表示，所有TabPFN中心、覆盖、面积和旧24h六格结果逐项不变。未来需要更长上下文、协变量对齐以及未暴露风季/已知漂移过程验证，不能据这组探索性结果作普遍保证。
+
+## 复现与检查
+
+```sh
+../.tsfm-local-venv/bin/python scripts/run_tsfm_cv_sensitivity.py prepare
+../.tsfm-local-venv/bin/python scripts/run_tsfm_cv_sensitivity.py infer --model Chronos-Bolt-small
+../.tsfm-local-venv/bin/python scripts/run_tsfm_cv_sensitivity.py infer --model Chronos-2
+../.tsfm-local-venv/bin/python scripts/run_tsfm_cv_sensitivity.py infer --model Moirai-1.1-R-small
+../.tsfm-local-venv/bin/python scripts/run_tsfm_cv_sensitivity.py evaluate
+../.tsfm-local-venv/bin/python -m unittest discover -s tests -p test_tsfm_conformal.py
+```
+
+CV复核后科研测试增至9项，另有23项发布端Python测试与33项网页测试，总计65项。检验CV球面运动基线与原算法一致、原始残差数组保留、offset精确加回、原TabPFN统计不变，以及网页目标表示/参考模型切换。来源、基础权重revision、Conformal公式、原生概率区间边界、漂移代理限制和原始直接ENU全结果如下保留。
+
+---
+
+## 原直接ENU对照报告（原样保留；其TSFM结果不是默认CV对齐结果）
 # Conformal校准与时序基础模型对照 v1
 
 本阶段将覆盖校准、区域效率与运动变化诊断作为主要评价，点预测MAE作为辅助。复用全部原有合格起报，固定原TabPFN/C0/C1预测，新增真实Chronos-Bolt-small、Chronos-2和Moirai-small推理；原实验结果不覆盖。所有已研究风季与CHAMPI均已暴露，本阶段是探索性对照，不是独立盲测。
