@@ -10,13 +10,24 @@ on:
         default: false
   schedule:
     - cron: '7,37 * * * *'
+  workflow_run:
+    workflows: ['Refresh public data and deploy Pages']
+    types: [completed]
+    branches: [live-data]
 permissions:
   contents: read
 concurrency:
   group: public-pages
   cancel-in-progress: false
 jobs:
+  model_update:
+    if: github.ref == 'refs/heads/live-data'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify the protected main-branch deployment workflow
+        run: python3 -c "print('Public model snapshot received; main workflow performs deployment.')"
   build:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:

@@ -23,7 +23,7 @@ def visible_text(html):
 def hazard_facts(text,kind):
     """Rephrase numerical/geographical facts rather than republish the bulletin."""
     if not text:return None
-    places=[x for x in ['黄海南部','东海','台湾海峡','台湾以东','长江口','杭州湾','江苏沿海','浙江沿海','福建北部沿海','台湾东部沿海','上海','浙江中东部','台湾中北部','浙江东北部'] if x in text]
+    places=[x for x in ['黄海南部','东海','东海北部','台湾海峡','台湾以东','长江口','杭州湾','江苏沿海','江苏南部沿海','浙江沿海','浙江北部沿海','福建北部沿海','台湾东部沿海','上海','浙江中东部','台湾中北部','浙江东北部'] if x in text]
     window=re.search(r'(\d+)日(\d+)时至(\d+)日(\d+)时',text)
     parts=[]
     if window:parts.append(f'公报时段：{window[1]}日{window[2]}时—{window[3]}日{window[4]}时（北京时间）')
@@ -82,13 +82,16 @@ def nmc_warning(html,retrieved_at):
     if not warning or '蔷琵' not in text:raise ValueError('no verified CHAMPI warning; unknown, not no-warning')
     # Concise factual extracts retain attribution. No derived alert color.
     trajectory=re.search(r'预计[，,]?(.*?)(?=大风预报)',text)
-    wind=re.search(r'大风预报[：:](.*?)(?=降水预报)',text)
+    wind=re.search(r'大风预报[：:](.*?)(?=降水预报|防御指南|展开阅读全文|$)',text)
     rain=re.search(r'降水预报[：:](.*?)(?=防御指南|展开阅读全文|$)',text)
     outlook=[]
     if trajectory:
         raw=trajectory[1]
         if '浙江东部近海' in raw:outlook.append('预计接近浙江东部近海')
         if '转向东北' in raw:outlook.append('随后转向东北')
+        elif '东北方向移动' in raw:outlook.append('继续向东北移动')
+        if '强度迅速减弱' in raw:outlook.append('强度迅速减弱')
+        if '温带气旋' in raw:outlook.append('预计逐渐变性为温带气旋')
         if '日本西南部' in raw:outlook.append('后续关注日本西南部沿海')
         if '登陆' in raw:outlook.append('原报提及登陆可能，具体地区与条件须查原报')
         elif outlook:outlook.append('这份公报未确认具体登陆点')

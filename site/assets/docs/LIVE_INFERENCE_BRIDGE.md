@@ -32,6 +32,6 @@ Base/C0/C1的点误差、联合覆盖及区域效率须分别评价；C1/C0隔�
 
 用户已授权当前Mac自动推理与单仓库发布。正式运行使用一个登录LaunchAgent，桥接器带`--run-inference --publish`调用既有私有单轮执行器，不再叠加旧watcher。900秒是每轮完成后的等待间隔。SSH使用仓库专用部署公钥，私钥留本机并严格校验GitHub主机；不公开机器路径或私钥。
 
-`live-data`的新模型提交触发Pages构建，云端始终checkout main；合并规则分别保留较新模型和较新公开资料，避免并发回退。相同原始B-deck内容复用真实模型时间，不把再次抓取写成新推理。完整来源、52/54/70维特征、冻结上下文和Conformal边界见[数据与推理说明](CHAMPI_REALTIME_DATA_PIPELINE_CN.md)。
+`live-data`的新模型提交先发出更新通知，由main分支工作流部署Pages，云端始终checkout main；合并规则分别保留较新模型和较新公开资料，避免并发回退。相同原始B-deck内容复用真实模型时间，不把再次抓取写成新推理。完整来源、52/54/70维特征、冻结上下文和Conformal边界见[数据与推理说明](CHAMPI_REALTIME_DATA_PIPELINE_CN.md)。
 
 旧文档中的“默认不上传”是CLI默认行为；已部署任务通过显式参数启用上传。实际是否持续更新须核对网站的起报、生成和核验时间。
