@@ -1,7 +1,7 @@
 name: Refresh public data and deploy Pages
 on:
   push:
-    branches: [main, live-data]
+    branches: [main]
   workflow_dispatch:
     inputs:
       repair_bot:
@@ -11,7 +11,7 @@ on:
   schedule:
     - cron: '7,37 * * * *'
   workflow_run:
-    workflows: ['Refresh public data and deploy Pages']
+    workflows: ['CHAMPI model update']
     types: [completed]
     branches: [live-data]
 permissions:
@@ -20,12 +20,6 @@ concurrency:
   group: public-pages
   cancel-in-progress: false
 jobs:
-  model_update:
-    if: github.ref == 'refs/heads/live-data'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify the protected main-branch deployment workflow
-        run: python3 -c "print('Public model snapshot received; main workflow performs deployment.')"
   build:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest

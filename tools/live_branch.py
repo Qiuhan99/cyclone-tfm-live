@@ -37,8 +37,8 @@ def main():
             digest=git('hash-object','-w','site/assets/'+name).stdout.decode().strip()
             subprocess.run(['git','update-index','--add','--cacheinfo',f'100644,{digest},{name}'],env=env,check=True)
         # Retain the public workflow so an SSH model update triggers Pages.
-        digest=git('hash-object','-w','.github/workflows/pages.yml').stdout.decode().strip()
-        subprocess.run(['git','update-index','--add','--cacheinfo',f'100644,{digest},.github/workflows/pages.yml'],env=env,check=True)
+        digest=git('hash-object','-w','.github/workflows/model-update.yml').stdout.decode().strip()
+        subprocess.run(['git','update-index','--add','--cacheinfo',f'100644,{digest},.github/workflows/model-update.yml'],env=env,check=True)
         tree=subprocess.check_output(['git','write-tree'],env=env).decode().strip()
     if exists and git('rev-parse','FETCH_HEAD^{tree}').stdout.decode().strip()==tree:return
     git('config','user.name','github-actions[bot]');git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')

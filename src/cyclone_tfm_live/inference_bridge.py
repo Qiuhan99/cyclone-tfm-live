@@ -56,9 +56,9 @@ def publish(payload,cache):
     # Two public caches and the already-public main deployment workflow only.
     # A data branch needs its own workflow file for a push to trigger Actions.
     git('fetch','origin','main')
-    workflow=git('show','FETCH_HEAD:.github/workflows/pages.yml').stdout
+    workflow=git('show','FETCH_HEAD:.github/workflows/model-update.yml').stdout
     workflow_blob=git('hash-object','-w','--stdin',input=workflow).stdout.decode().strip()
-    workflows_tree=git('mktree',input=f'100644 blob {workflow_blob}\tpages.yml\n'.encode()).stdout.decode().strip()
+    workflows_tree=git('mktree',input=f'100644 blob {workflow_blob}\tmodel-update.yml\n'.encode()).stdout.decode().strip()
     github_tree=git('mktree',input=f'040000 tree {workflows_tree}\tworkflows\n'.encode()).stdout.decode().strip()
     git('config','user.name','Qiuhan99');git('config','user.email','Qiuhan99@users.noreply.github.com')
     for attempt in range(3):

@@ -13,13 +13,13 @@ class BranchTests(unittest.TestCase):
             assets=repo/'site/assets';assets.mkdir(parents=True)
             original={'champi-operations.json':json.loads((ROOT/'site/assets/champi-operations.json').read_text()),'champi-operations-health.json':{'ok':True}}
             for n,v in original.items():(assets/n).write_text(json.dumps(v))
-            workflow=repo/'.github/workflows/pages.yml';workflow.parent.mkdir(parents=True);workflow.write_bytes((ROOT/'.github/workflows/pages.yml').read_bytes())
+            workflow=repo/'.github/workflows/model-update.yml';workflow.parent.mkdir(parents=True);workflow.write_bytes((ROOT/'.github/workflows/model-update.yml').read_bytes())
             (repo/'site/private-should-not-be-in-live-branch.txt').write_text('not a live payload')
             command=['python3',str(ROOT/'tools/live_branch.py')]
             subprocess.run(command+['save'],cwd=repo,check=True,capture_output=True)
             git(repo,'fetch','origin','live-data')
             names=git(repo,'ls-tree','-r','--name-only','FETCH_HEAD').stdout.decode().splitlines()
-            self.assertEqual(sorted(names),sorted([*original,'.github/workflows/pages.yml']))
+            self.assertEqual(sorted(names),sorted([*original,'.github/workflows/model-update.yml']))
             before=git(repo,'rev-parse','FETCH_HEAD').stdout
             subprocess.run(command+['save'],cwd=repo,check=True,capture_output=True)
             git(repo,'fetch','origin','live-data');self.assertEqual(before,git(repo,'rev-parse','FETCH_HEAD').stdout)
