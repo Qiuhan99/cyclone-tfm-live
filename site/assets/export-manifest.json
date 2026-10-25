@@ -1,0 +1,44 @@
+{
+  "created_utc": "2026-10-21T00:57:41.600151+00:00",
+  "source_cache": "artifacts/prediction_cache/tabpfn_paths_stride2_cap10k.parquet",
+  "cache_sha256": "6463ba88bc2c66d7597e6d3c7e0fc5559ee1ff6dd7125d8e799b9e3ee3e3c76e",
+  "n_storms_test": 124,
+  "n_storms_e7": 3,
+  "n_fit": 494,
+  "n_cal": 777,
+  "methods": [
+    "persistence",
+    "velocity",
+    "tabpfn",
+    "corrected"
+  ],
+  "source_code_sha256": "3c554abf99e3c9f30c73498b1a23ad69f4df78ec32ff0867655eb62b7b6fed90",
+  "model_calls": 0,
+  "output_sha256": "61393fa6b1cde9a0f7f52d76969ac36b0ae18b53efc7cdc0f52aa28fbf6c61d5",
+  "source_input_sha256": {
+    "tabpfn_joint_trajectory_research/artifacts/prediction_cache/tabpfn_paths_stride2_cap10k.parquet": "6463ba88bc2c66d7597e6d3c7e0fc5559ee1ff6dd7125d8e799b9e3ee3e3c76e",
+    "tabpfn_joint_trajectory_research/data/processed/ibtracs_wp.parquet": "fd5a19f83f45995609799f0ffd8e55674302357cd8e6afc029d082f28972305a",
+    "cyclonepath-tabpfn/results/predictions/p3_base_B4F1_uncorrected_predictions.csv": "a5b9b860730ddbc03943db84fa92ca35f54fa07639e6fe592a44d5c705d5b9f8",
+    "cyclonepath-tabpfn/results/predictions/p3_C3_tabpfn_predictions.csv": "6ce69d5d6c19ce2f022fb5b58d3287ff08bf4ebf561cc74309f2c422848795b7",
+    "tabpfn_joint_trajectory_research/src/residuals/feedback.py": "d63dcb518365ade31708b31d1cbd06c6895ab45c56a3a8aebfbcfdb613524d74",
+    "tabpfn_joint_trajectory_research/src/geometry/sphere.py": "44a221e24ea442e5a16dcca96c9e7b7cc4d678627416f41d0d4a41272f39c2a0",
+    "tabpfn_joint_trajectory_research/src/conformal/scores.py": "4162dc9023f1808b2e8550afedec5f85e65443c3c9e58eb100c0ee6bcb193981",
+    "tabpfn_joint_trajectory_research/src/conformal/covariance.py": "979a69289364637009ec1f5e284d1f778e6ce3cf05a07b371d95ac91728a20f0"
+  },
+  "python": "3.10.0 (v3.10.0:b494f5935c, Oct  4 2021, 14:59:19) [Clang 12.0.5 (clang-1205.0.22.11)]",
+  "software": {
+    "numpy": "2.2.6",
+    "pandas": "2.3.3"
+  },
+  "hardware": "arm64",
+  "seed": 42,
+  "base_context": "10k cached arm; no model inference in this run",
+  "gpu_used": false,
+  "elapsed_s": 5.996,
+  "notes": [
+    "New website export only; prior experiment artifacts unchanged.",
+    "Shorter horizons recalibrated with joint-prefix scores.",
+    "E7 is a distinct validation protocol.",
+    "Scores/corrector fit before quantile period."
+  ]
+}

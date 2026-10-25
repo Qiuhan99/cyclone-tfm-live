@@ -1,0 +1,28 @@
+{
+  "status": "ARCHIVE_SAMPLE_IMPORTED_NOT_BENCHMARKED",
+  "source_url": "https://osdf-director.osg-htc.org/ncar/gdex/d330003/ecmf/2023/20230525/z_tigge_c_ecmf_20230525000000_ifs_glob_prod_all_glo.xml",
+  "raw_sha256": "1157c2250ed64fc1035ac7a109c1bf69a21c9305e00df1213b7478659fe60c5d",
+  "source_model": "ECMWF IFS historical deterministic/control track forecasts",
+  "n_forecast_targets": 162,
+  "n_matched_targets": 76,
+  "nominal_issue": "2023-05-25 00:00:00+00:00",
+  "archive_creation": "2023-05-25 19:58:49+00:00",
+  "qualification_24h": {
+    "ready": false,
+    "reasons": [
+      "Fit rows 0 < 128",
+      "Calibration rows 1 < 100",
+      "Test storms 0 < 20",
+      "Forecast publication/availability times not verified"
+    ],
+    "fit_rows": 0,
+    "calibration_rows": 1,
+    "test_storms": 0
+  },
+  "public_summary": "已接入一份 ECMWF 历史路径档案，并完成真实位置匹配。SPCI／MultiDimSPCI 校准接口已实现；完整历史队列和预报可用时间仍待补齐，目前没有强预测器上的正式覆盖—效率结果。",
+  "baseline_adapters": "SPCI coordinate Bonferroni rectangles; MultiDimSPCI radial regions; fixed external predictions and quantile-forest backend, not full upstream bootstrap pipeline",
+  "upstream_sha256": {
+    "SPCI-code-main/SPCI_class.py": "95472afad19571af87135c6fd9c3f45b638b16a3615955de28c72120af28bf6f",
+    "MultiDimSPCI-main/helpers/MultiDim_SPCI_class.py": "b6949c16e78f7edb5ed914b8302bb13997d4d73eb7bdc9ec5bbf650305ce2cc2"
+  }
+}

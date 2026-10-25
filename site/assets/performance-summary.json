@@ -1,0 +1,210 @@
+{
+  "definition": "Common-origin, origin-weighted endpoint geodesic MAE (km). Positive gain = reduced MAE. No year or storm filtering.",
+  "source_sha256": "61393fa6b1cde9a0f7f52d76969ac36b0ae18b53efc7cdc0f52aa28fbf6c61d5",
+  "protocol": {
+    "source_cache": "artifacts/prediction_cache/tabpfn_paths_stride2_cap10k.parquet",
+    "cache_sha256": "6463ba88bc2c66d7597e6d3c7e0fc5559ee1ff6dd7125d8e799b9e3ee3e3c76e",
+    "corrector_fit": "2016–2017 OOS residuals",
+    "geometry_fit": "2016–2017",
+    "quantile": "2018–2019",
+    "test": "2020–2025",
+    "n_fit": 494,
+    "n_cal": 777,
+    "causal": "Same-h residual origin j only if j+h <= issue; unavailable residual => zero correction",
+    "coverage": "Empirical historical joint coverage; exchangeability not assumed under drift",
+    "c2": "E7 validation 2016–2019: separate season-frozen B4-F1 protocol; no conformal geometry exported"
+  },
+  "bootstrap": {
+    "unit": "whole storm, sampled with replacement; paired methods, 124 storm draws per replicate",
+    "repetitions": 2000,
+    "seed": 20261021,
+    "interpretation": "Exploratory percentile interval; preserves within-storm overlap. Does not model inter-storm dependence or guarantee uncertainty validity under drift."
+  },
+  "horizons": [
+    {
+      "hours": 6,
+      "nStorms": 124,
+      "nOrigins": 1369,
+      "values": {
+        "persistence": {
+          "mae": 109.10532009722439
+        },
+        "velocity": {
+          "mae": 37.60050413929879
+        },
+        "tabpfn": {
+          "mae": 36.9532680921841
+        },
+        "corrected": {
+          "mae": 36.9532680921841
+        }
+      },
+      "changed": 0,
+      "gainVsBase": 0,
+      "gainVsVelocity": 1.7213493859467133,
+      "winsVsBase": 0,
+      "stormBootstrap95Gain": {
+        "tabpfn": [
+          0,
+          0
+        ],
+        "velocity": [
+          -0.5605963967339811,
+          4.000947764010421
+        ],
+        "persistence": [
+          64.20122644920745,
+          67.85075899850467
+        ]
+      }
+    },
+    {
+      "hours": 12,
+      "nStorms": 124,
+      "nOrigins": 1369,
+      "values": {
+        "persistence": {
+          "mae": 217.886936054273
+        },
+        "velocity": {
+          "mae": 85.65509091044565
+        },
+        "tabpfn": {
+          "mae": 84.61018456347695
+        },
+        "corrected": {
+          "mae": 80.6587699154128
+        }
+      },
+      "changed": 1245,
+      "gainVsBase": 4.670140679222468,
+      "gainVsVelocity": 5.833069513937728,
+      "winsVsBase": 0.5208181154127101,
+      "stormBootstrap95Gain": {
+        "tabpfn": [
+          2.3518999747473845,
+          6.971875128272831
+        ],
+        "velocity": [
+          3.210629612525162,
+          8.46669943961641
+        ],
+        "persistence": [
+          60.77423355353585,
+          64.959392938238
+        ]
+      }
+    },
+    {
+      "hours": 24,
+      "nStorms": 124,
+      "nOrigins": 1369,
+      "values": {
+        "persistence": {
+          "mae": 434.9122998425127
+        },
+        "velocity": {
+          "mae": 211.73485689802757
+        },
+        "tabpfn": {
+          "mae": 188.45152891497435
+        },
+        "corrected": {
+          "mae": 184.68399435456553
+        }
+      },
+      "changed": 1131,
+      "gainVsBase": 1.999206152425892,
+      "gainVsVelocity": 12.775819220209861,
+      "winsVsBase": 0.44631117604090575,
+      "stormBootstrap95Gain": {
+        "tabpfn": [
+          -0.3993010225142424,
+          4.419629921708346
+        ],
+        "velocity": [
+          10.409293728344593,
+          14.984472019869099
+        ],
+        "persistence": [
+          54.63422290422694,
+          60.02609432596532
+        ]
+      }
+    },
+    {
+      "hours": 48,
+      "nStorms": 124,
+      "nOrigins": 1369,
+      "values": {
+        "persistence": {
+          "mae": 866.6463751980276
+        },
+        "velocity": {
+          "mae": 545.2825843471144
+        },
+        "tabpfn": {
+          "mae": 426.95164204390164
+        },
+        "corrected": {
+          "mae": 432.56929593476985
+        }
+      },
+      "changed": 917,
+      "gainVsBase": -1.3157588208293047,
+      "gainVsVelocity": 20.670619537079116,
+      "winsVsBase": 0.3133674214755296,
+      "stormBootstrap95Gain": {
+        "tabpfn": [
+          -3.1207093228494687,
+          0.452867425525294
+        ],
+        "velocity": [
+          17.60037422784675,
+          23.517381308828877
+        ],
+        "persistence": [
+          46.257651521646814,
+          53.60599354970012
+        ]
+      }
+    },
+    {
+      "hours": 72,
+      "nStorms": 124,
+      "nOrigins": 1369,
+      "values": {
+        "persistence": {
+          "mae": 1296.5524292834193
+        },
+        "velocity": {
+          "mae": 939.2122485934989
+        },
+        "tabpfn": {
+          "mae": 688.5384169176041
+        },
+        "corrected": {
+          "mae": 709.799355915559
+        }
+      },
+      "changed": 728,
+      "gainVsBase": -3.087836273992406,
+      "gainVsVelocity": 24.426096765826177,
+      "winsVsBase": 0.22352081811541272,
+      "stormBootstrap95Gain": {
+        "tabpfn": [
+          -5.3242096621786805,
+          -0.8978907282390258
+        ],
+        "velocity": [
+          20.517086456812738,
+          27.85206422015807
+        ],
+        "persistence": [
+          41.053782366472625,
+          49.15939482510064
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+CHAMPI final verification · 2026-10-24 · local only
+
+Python: 105 passed; 614 NumPy timedelta deprecation warnings retained.
+Command: ../tabpfn_residual_realdata/.venv/bin/python -m pytest tests -q
+Log: reports/python_tests.txt
+Website: 49 passed, 0 failed.
+Command: node --test web/tests/*.test.mjs
+Log: reports/website_tests.txt
+
+M0/M1 coverage: storm identity, hemisphere coordinates, cycle separation,
+ATCF radii deduplication, conflicting centers, intensity masking, exact valid-time joins.
+M2/M3 coverage: all feature-group future sentinels, dateline handling, gap rejection,
+same origins/context, whole-storm split isolation, residual-label maturity,
+finite-sample quantile rank with insufficient calibration -> missing.
+M4/F3 prototype coverage: rotation roundtrip/stationary fallback, issue-only gate
+inputs, field availability/reanalysis exclusion, core-excluding annular averages.
+Gate v2: actual saved fit labels all mature by first policy validation issue;
+53 late labels purged, original gate-v1 outputs retained and marked time-invalid.
+Website coverage: original-page navigation, actual data provenance, default
+multi-aid comparison, no cross-cycle paths, hidden future truth, duplicate-lead
+guard, local baseline provenance, 80/90/95 radius ordering, equal external cohort.
+
+Cold inference audit: three real F0/F1/F2 model pairs, original final170-query
+batch; exact repeat difference 0km; retained-query perturbation difference 0km;
+single/batch maximum ENU difference 0.004506km (<0.1km tolerance).
+Log: reports/inference_audit.log
+Machine-readable: artifacts/champi_feature_v1/verified/inference_audit.json
+
+All 10739 pre-existing artifacts match their protected SHA-256.
+Independent CHAMPI error recomputation maximum discrepancy: 5.883e-12 km.
+HTTP: 22 loopback URLs returned200 (reports/http_validation.json).
+Chrome: real map and own/external paths, cycle/lead change, truth/error visibility,
+marginal calibration radii and joint empirical coverage verified in live UI.
+Screenshot evidence was displayed in conversation; no local PNG file created.
+Timezone toggle was attempted but native UI state changed concurrently; no
+completed manual timezone interaction is claimed. Drag/play/mobile not exhaustively tested.
+No F3 model, IFS/AIFS/Google ingestion, or new-branch SPCI/PID completion claimed.

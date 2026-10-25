@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "COMPLETED_SELECTED_EXPLORATORY_ADAPTER_COMPARISON",
+  "source_sha256": "16a75099573c94d468984c60579c42e7a0d69f678a3d0c4eb4d37caea084d26c",
+  "config_sha256": "73503f3751fdf6c8507dde6a1c734799f2b970632f532a5b38d7fe5920e5fa98",
+  "scope": "Previously selected4storms; all44origins; rolling-v2 cached TabPFN; not strong-forecast experiment",
+  "hours": 24,
+  "dimension": 8,
+  "alpha": 0.1,
+  "n": 44,
+  "n_storms": 4,
+  "selected_families": [
+    "spci",
+    "rolling_maxscore"
+  ],
+  "rows": [
+    {
+      "arm": "tabpfn",
+      "family": "spci",
+      "n": 44,
+      "covered": 38,
+      "coverage": 0.8636363636363636,
+      "mean_log_volume": 47.46013997407319,
+      "matched_coverage": 0.9090909090909091,
+      "posthoc_scale": 1.1428133136087752,
+      "matched_mean_log_volume": 48.52808430444757,
+      "matched_volume_ratio_vs_same_family_base": 1.0
+    },
+    {
+      "arm": "rolling_c0",
+      "family": "spci",
+      "n": 44,
+      "covered": 38,
+      "coverage": 0.8636363636363636,
+      "mean_log_volume": 47.58563978960464,
+      "matched_coverage": 0.9090909090909091,
+      "posthoc_scale": 1.1664150404141558,
+      "matched_mean_log_volume": 48.81711960496505,
+      "matched_volume_ratio_vs_same_family_base": 1.3351388587892692
+    },
+    {
+      "arm": "rolling_c1",
+      "family": "spci",
+      "n": 44,
+      "covered": 37,
+      "coverage": 0.8409090909090909,
+      "mean_log_volume": 47.51533303040576,
+      "matched_coverage": 0.9090909090909091,
+      "posthoc_scale": 1.0967058623554555,
+      "matched_mean_log_volume": 48.25382116016688,
+      "matched_volume_ratio_vs_same_family_base": 0.7601320245461085
+    },
+    {
+      "arm": "tabpfn",
+      "family": "rolling_maxscore",
+      "n": 44,
+      "covered": 38,
+      "coverage": 0.8636363636363636,
+      "mean_log_volume": 46.52774236590909,
+      "matched_coverage": 0.9090909090909091,
+      "posthoc_scale": 1.0436180771622001,
+      "matched_mean_log_volume": 46.869291134362136,
+      "matched_volume_ratio_vs_same_family_base": 1.0
+    },
+    {
+      "arm": "rolling_c0",
+      "family": "rolling_maxscore",
+      "n": 44,
+      "covered": 40,
+      "coverage": 0.9090909090909091,
+      "mean_log_volume": 46.78596228181818,
+      "matched_coverage": 0.9090909090909091,
+      "posthoc_scale": 0.977559383267967,
+      "matched_mean_log_volume": 46.60439237124559,
+      "matched_volume_ratio_vs_same_family_base": 0.7672836234468406
+    },
+    {
+      "arm": "rolling_c1",
+      "family": "rolling_maxscore",
+      "n": 44,
+      "covered": 39,
+      "coverage": 0.8863636363636364,
+      "mean_log_volume": 46.69756905,
+      "matched_coverage": 0.9090909090909091,
+      "posthoc_scale": 1.0115184269274955,
+      "matched_mean_log_volume": 46.789189809094495,
+      "matched_volume_ratio_vs_same_family_base": 0.9230228161143441
+    }
+  ],
+  "spci_volume_reduction_pct": 23.986797545389148,
+  "spci_ratio_vs_c0": 0.5693280661723916,
+  "matching": "Posthoc nested common empirical coverage; not issued thresholds",
+  "adaptations": [
+    "External fixed OOS forecast centers instead of bootstrap/LOO predictor",
+    "quantile-forest backend instead of sklearn_quantile",
+    "Same-storm4revealed lags with missingness masks; pooled320completed training rows",
+    "SPCI coordinate Bonferroni alpha/8; 8D simultaneous event"
+  ],
+  "private_full_results": "artifacts/spci_typhoon_v1/results.json",
+  "references": {
+    "spci": "https://proceedings.mlr.press/v202/xu23r.html",
+    "multidim_spci": "https://arxiv.org/abs/2403.03850"
+  }
+}

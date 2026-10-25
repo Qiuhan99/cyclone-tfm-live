@@ -1,0 +1,596 @@
+{
+  "status": "COMPLETED_EXPLORATORY",
+  "config": {
+    "protocol": "rolling_repair_v2",
+    "status": "EXPLORATORY; previously exposed seasons",
+    "horizons_steps": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "display_hours": [
+      6,
+      12,
+      24
+    ],
+    "seed": 42,
+    "n_estimators": 1,
+    "threads": 6,
+    "output_type": "median",
+    "checkpoint_sha256": "ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3",
+    "base_source_sha256": "b42cec6c6b440f16d3e34be5f015e35ae740ba0e3c3393b28b8502ce75a6c2a3",
+    "jobs_sha256": "d539f6a94e09621c1c04527a341e9aaf971f36c294d13932773fd17f608913a7",
+    "context": 320,
+    "refresh_completed": 32,
+    "minimum_completed": 32,
+    "features": {
+      "c0": [
+        "lat",
+        "lon",
+        "lat_lag1",
+        "lon_lag1",
+        "lat_lag2",
+        "lon_lag2",
+        "hour_sin",
+        "hour_cos",
+        "cos_lat",
+        "h_over_12",
+        "base_displacement_e_km",
+        "base_displacement_n_km"
+      ],
+      "c1": [
+        "lat",
+        "lon",
+        "lat_lag1",
+        "lon_lag1",
+        "lat_lag2",
+        "lon_lag2",
+        "hour_sin",
+        "hour_cos",
+        "cos_lat",
+        "h_over_12",
+        "base_displacement_e_km",
+        "base_displacement_n_km",
+        "lag1_residual_e_km",
+        "lag1_residual_n_km",
+        "lag1_age_over_24",
+        "lag1_available",
+        "lag2_residual_e_km",
+        "lag2_residual_n_km",
+        "lag2_age_over_24",
+        "lag2_available",
+        "lag3_residual_e_km",
+        "lag3_residual_n_km",
+        "lag3_age_over_24",
+        "lag3_available",
+        "lag4_residual_e_km",
+        "lag4_residual_n_km",
+        "lag4_age_over_24",
+        "lag4_available"
+      ]
+    },
+    "max_residual_age_hours": 96,
+    "models": "separate horizon and ENU regressors; pooled storms, latest completed320; warm-up base fallback",
+    "inference": "fixed-context query groups, cache fit; no query labels or inter-query preprocessing; numerical perturbation audit recorded",
+    "point_policy": "unshrunk lambda=1 fixed a priori; no MAE gate or test tuning",
+    "calibration": {
+      "geometry_window": 128,
+      "score_window": 256,
+      "min_scores": 100,
+      "shrinkage": 0.1,
+      "method": "delayed rolling rank, not PI+: historical score uses covariance frozen at its original issue",
+      "alphas": [
+        0.2,
+        0.1,
+        0.05
+      ],
+      "label_delay": "full displayed trajectory horizon; equal issues use identical history",
+      "fixed_reference": "geometry2018 / calibration2019; evaluated on same test cohort",
+      "coverage_match": "posthoc global rescaling of issued q, diagnostic only; never deployed"
+    },
+    "comparison": "Base / rolling C0(X+base) / rolling C1(X+base+4verifiedResiduals) / rolling ridge C1; same calibration per arm",
+    "evaluation": "2017 validation and2020–2024 test reported; no tuning. Online past test labels allowed after actual availability.",
+    "deviations_from_ECL": "frozen pre2016 base; base already sees latest3 fixes; sparse stride2 cached origins; pooled storms; rank adaptation instead of PI+; no claim exact ECL replication",
+    "primary": "joint coverage and mean log tangent volume; posthoc exactly matched empirical coverage; point MAE secondary",
+    "privacy": "local checkpoint, offline hub and telemetry disabled; no remote inference or publishing"
+  },
+  "provenance": {
+    "protocol": "rolling_repair_v2",
+    "n_test": 1245,
+    "n_validation": 231,
+    "n_cal": 256,
+    "n_geometry": 128,
+    "n_fit": "online latest320 completed / horizon",
+    "test_years_present": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "exposure": "Exploratory chronological reanalysis: historical test seasons already inspected; strictly delayed online adaptation",
+    "coverage": "Empirical prequential joint coverage; no finite-sample coverage guarantee under drift",
+    "efficiency": "Mean log volume in 2H tangent coordinates. Posthoc exact empirical-coverage match via one global multiplicative rescaling per arm; never issued.",
+    "bootstrap": "Point:2000 / volume:500 paired whole-storm percentile resamples. Posthoc scale refitted each resample; exploratory dependence limits remain.",
+    "config_sha256": "c4aad1b78b96b9f68d7e824eaa750ff9aceea9560e147538233942a2cbb7ccc1",
+    "base_source_sha256": "b42cec6c6b440f16d3e34be5f015e35ae740ba0e3c3393b28b8502ce75a6c2a3"
+  },
+  "inference": {
+    "tabpfn": "9.1.0",
+    "torch": "2.14.1",
+    "checkpoint_sha256": "ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3",
+    "config_sha256": "c4aad1b78b96b9f68d7e824eaa750ff9aceea9560e147538233942a2cbb7ccc1",
+    "elapsed_s": 707.6561778,
+    "component_groups": 1184,
+    "source_sha256": {
+      "scripts/rolling_layer_v2.py": "4fe68b0b4a110d79ae22778bd07438b9d27ab3529bfbfdefcebe25b14e23b91e",
+      "src/residuals/rolling_v2.py": "f93b10036dec309f82c0f4ba29e510e07719320240b008f421e03f27c3ca1b44"
+    }
+  },
+  "numerics": {
+    "samples": [
+      {
+        "h": 1,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 4.3e-06,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 3.46e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.56e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 6e-06,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001636,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 5.68e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 2.19e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.35e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001541,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 8.78e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.4e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 1,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.01e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 4.43e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 3.4e-06,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.61e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.74e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001032,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 4.5e-06,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.4e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001338,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0007905,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1e-07,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 2,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 1.4e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0004689,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001315,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 4.88e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 9.4e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0004914,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 4.42e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0004234,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 3.06e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001817,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0005654,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001498,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 3,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001586,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0007712,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 0,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 6.67e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001989,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 0,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 3.33e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0001664,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 20,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.000107,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0021439,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 20,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0002558,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 0.0002206,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 50,
+        "arm": "rolling_c0",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 9.03e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 0,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 9.46e-05,
+        "tolerance_km": 0.1
+      },
+      {
+        "h": 4,
+        "group": 50,
+        "arm": "rolling_c1",
+        "component": 1,
+        "other_query_perturb_km": 0.0,
+        "single_vs_batch_km": 8.9e-06,
+        "tolerance_km": 0.1
+      }
+    ],
+    "tolerance_km": 0.1,
+    "passed": true,
+    "note": "Numerical sensitivity audit, not statistical validity proof; v1 stricter tolerance failure retained."
+  },
+  "source_sha256": {
+    "scripts/rolling_layer_evaluate.py": "03f14a3443c2c634d8a3c6c89e66fac17c33d4189388f8b8889fb650e74304ce",
+    "src/conformal/rolling_regions.py": "97e6db74138c6d3f46b797adbb0e5e2fa2d56c075106cf6d6073b0592685c5d2"
+  },
+  "output_sha256": "40d7efc77079040b62e7cf983f216ec8d77194d94fdabdb70109108e8fd4be1d",
+  "artifact_audit": {
+    "status": "PASS",
+    "component_group_caches_verified": 1184,
+    "query_context_features": "all cache stamps bind actual context X/Y and query X",
+    "timestamps": "all refreshed model labels <= first query issue",
+    "predictions": "all raw delta components exactly match verified group cache",
+    "cache_sha256_digest": "769cf124b1734981ed8a5f1846688e31be5694b0c15fcce9ff70f013a70e72aa"
+  },
+  "additional_output_sha256": {
+    "locked_config.json": "c4aad1b78b96b9f68d7e824eaa750ff9aceea9560e147538233942a2cbb7ccc1",
+    "context_plan.json": "888df6dbf040d3be46eb1c21ebbd05f9deb8ab851425ab47343e3ef9329f778b",
+    "issue_time_arrays.npz": "f4efd3497209d2f7a306425b9dacb637588740b796e1c0b006b772976ddd6fad",
+    "residual_availability.json": "19f48e71ebf5c431c2a1991c19d34eb4e0c2d96bb6932cc4cb60c0126321d717",
+    "query_numerics_audit.json": "7835d6c67689650ddce7536b63e37427975469cfb513baec5bc4231ee2df7d32",
+    "validation_signal_diagnostic.json": "5d35ed8656e019fbeaa636a1b64c924d2e713c81238cb49f977b645a64e41a28",
+    "point_metrics.csv": "24c2bbbb08be84b6b65fbd52c9e2be8c9988023aaef515450e8b2944cb31cbb3",
+    "region_metrics.csv": "5f6f86162baa3c4ab61861a0aa2a99d952b84ee284a2f984ad4d2be317dac797",
+    "rolling_c0_deltas.npy": "645ea407d64bda5f4960fc70acb20afc97aab0d74d919c99f67bc1460043ce6e",
+    "rolling_c1_deltas.npy": "a13f6ee249880869b0a5b128027b2357959c919a6d3874a31274c8a1b3a563df",
+    "rolling_ridge_deltas.npy": "056fc700e0a46cc32fd6fa0b6dd23b3db815d569742c5fba1f9dd984d0233e36"
+  }
+}

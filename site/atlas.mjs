@@ -1,0 +1,110 @@
+import {distance,sphereExp,wrap,mercator} from './engine.mjs';
+import {issuedBoundary,currentMetrics,observations,cohortRows} from './atlas-engine.mjs';
+import {operationalState,futurePoints} from './operations-engine.mjs';
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(v,n=1)=>Number.isFinite(v)?v.toFixed(n):'—';
+const time=t=>new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Hong_Kong',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t))+' 香港时间';
+const colors={tabpfn:'#e1ae78',rolling_c0:'#b69ee0',rolling_c1:'#8bdec4',truth:'#f3eee2'},labels={tabpfn:'TabPFN Base',rolling_c0:'C0 · 无历史残差',rolling_c1:'C1 · 历史残差反馈'};
+let A,G,L,liveError='',S={mode:'history',storm:null,origin:0,hours:24,level:90,zoom:1,dx:0,dy:0},drag=null;
+const storm=()=>A.storms.find(s=>s.id===S.storm),origin=()=>storm().origins[S.origin],retro=()=>S.mode==='history'&&$('#atlas-retro').checked;
+const layer=m=>$('#layer-'+({tabpfn:'base',rolling_c0:'c0',rolling_c1:'c1'}[m])).checked;
+function selectStorm(){
+ const s=storm();$('#atlas-issue').innerHTML=s.origins.map((o,i)=>`<option value="${i}">${time(o.issue)}</option>`).join('');
+ S.origin=Math.min(S.origin,s.origins.length-1);$('#atlas-issue').value=S.origin;$('#atlas-slider').max=s.origins.length-1;$('#atlas-slider').value=S.origin;
+ reset();
+}
+function reset(){S.zoom=1;S.dx=S.dy=0;render();}
+function setMode(mode){S.mode=mode;$('#mode-history').classList.toggle('selected',mode==='history');$('#mode-live').classList.toggle('selected',mode==='live');$('#history-controls').hidden=mode==='live';$('#history-timeline').hidden=mode==='live';$('#live-extra').hidden=mode!=='live';reset();}
+function historical(){
+ const s=storm(),o=origin(),i=S.hours/6-1,paths=['tabpfn','rolling_c0','rolling_c1'].filter(layer).map(method=>({method,label:labels[method],points:[o.anchor,...o.paths[method].slice(0,i+1)],color:colors[method]}));
+ const rings=$('#layer-region').checked?paths.map(p=>({method:p.method,points:issuedBoundary(o,p.method,S.hours,S.level),color:p.color})):[];
+ return {paths,rings,past:observations(s,o.issue),truth:retro()?o.truth.slice(0,i+1):[],base:o.paths.tabpfn[i],c1:o.paths.rolling_c1[i],target:retro()?o.truth[i]:null,title:s.name+' / '+s.year+' · +'+S.hours+'h',issue:o.issue};
+}
+function live(){
+ if(!L)return null;
+ const paths=[],rings=[];const ownNames={'TabPFN CV-F2':'tabpfn','TabPFN CV-F2 + C0':'rolling_c0','TabPFN CV-F2 + C1':'rolling_c1'};
+ for(const p of L.model.paths){const method=ownNames[p.model_id]??'external';if(method==='external'?!$('#layer-external').checked:!layer(method))continue;
+  const pts=futurePoints(p);if(!pts.length)continue;const color=colors[method]??['#8db3d1','#dd929d','#9ea8e4'][paths.filter(x=>x.method==='external').length%3];
+  paths.push({method,label:p.model_id+' / '+time(p.issue_time_utc),points:[...(p.anchor?[[p.anchor.lat_deg,p.anchor.lon_deg]]:[]),...pts.map(x=>[x.lat_deg,x.lon_deg])],color,raw:p});
+  const target=pts.find(x=>x.lead_h===24),q=target?.radius_90_km;
+  if($('#layer-region').checked&&method!=='external'&&Number.isFinite(q))rings.push({method,color,points:Array.from({length:97},(_,i)=>sphereExp([target.lat_deg,target.lon_deg],q*Math.cos(i*2*Math.PI/96),q*Math.sin(i*2*Math.PI/96)))});
+ }
+ const b=paths.find(p=>p.method==='tabpfn'),c=paths.find(p=>p.method==='rolling_c1');
+ const comparable=b&&c&&b.raw.issue_time_utc===c.raw.issue_time_utc,b24=b?.raw.points.find(p=>p.lead_h===24),c24=c?.raw.points.find(p=>p.lead_h===24);
+ return {paths,rings,past:L.observations.slice(-15).map(p=>[p.lat_deg,p.lon_deg]),truth:[],target:null,
+  base:comparable&&b24?[b24.lat_deg,b24.lon_deg]:null,c1:comparable&&c24?[c24.lat_deg,c24.lon_deg]:null,
+  center:L.official.center,title:'CHAMPI · 最新可用路径',issue:L.model.input_last_valid_utc};
+}
+function renderMap(v){
+ if(!v){$('#atlas-map').innerHTML='';$('#atlas-map-error').textContent=liveError||'实时缓存尚未读取；没有补画路径。';return;}
+ $('#atlas-map-error').textContent=liveError&&S.mode==='live'?liveError:'';
+ const pts=[...v.past.slice(-12),...v.paths.flatMap(p=>p.points),...v.rings.flatMap(r=>r.points),...v.truth];if(v.center)pts.push([v.center.lat_deg,v.center.lon_deg]);if(!pts.length)return;
+ const lon0=pts[0][1],xs=pts.map(p=>lon0+wrap(p[1]-lon0)),ys=pts.map(p=>mercator(p[0]));const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;
+ const split=$('#atlas-layout').value==='split',panes=split?[{x:0,w:542,method:'tabpfn',name:'BASE / 原始预测'},{x:558,w:542,method:'rolling_c1',name:'C1 / 因果残差校正'}]:[{x:0,w:1100,method:null,name:''}];
+ let spanx=Math.max(6,(Math.max(...xs)-Math.min(...xs))*1.35),spany=Math.max(5,(Math.max(...ys)-Math.min(...ys))*1.35);const aspect=panes[0].w/650;if(spanx/spany<aspect)spanx=spany*aspect;else spany=spanx/aspect;
+ let svg='<defs><marker id="correction-tip" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#d2f0e4"/></marker>';
+ for(let j=0;j<panes.length;j++)svg+=`<clipPath id="atlas-clip-${j}"><rect width="${panes[j].w}" height="650" rx="5"/></clipPath>`;svg+='</defs>';
+ for(const [j,pane] of panes.entries()){
+  const P=p=>[pane.w/2+(lon0+wrap(p[1]-lon0)-cx)*pane.w/spanx*S.zoom+S.dx,325-(mercator(p[0])-cy)*650/spany*S.zoom+S.dy];
+  const line=ps=>ps.map((p,i)=>`${i?'L':'M'}${P(p).map(x=>x.toFixed(2)).join(',')}`).join(' ');
+  svg+=`<g transform="translate(${pane.x},0)" clip-path="url(#atlas-clip-${j})"><rect width="${pane.w}" height="650" fill="#0d2632"/>`;
+  for(const ring of G.rings){if(!ring.some(([lo,la])=>Math.abs(lon0+wrap(lo-lon0)-cx)<spanx&&Math.abs(mercator(la)-cy)<spany))continue;svg+=`<path d="${line(ring.map(([lo,la])=>[la,lo]))}Z" fill="#1c3b44" stroke="#4c6970" stroke-width=".65"/>`;}
+  for(let lo=60;lo<210;lo+=10)svg+=`<path d="${line([[-5,lo],[65,lo]])}" stroke="#3a5e6a" stroke-width=".6" stroke-dasharray="3 7" opacity=".5"/>`;
+  for(let la=0;la<=60;la+=10)svg+=`<path d="${line([[la,70],[la,210]])}" stroke="#3a5e6a" stroke-width=".6" stroke-dasharray="3 7" opacity=".5"/>`;
+  for(const [name,ll] of [['台湾',[23.7,121]],['浙江',[29,120.4]],['九州',[32.6,130.6]],['本州',[36.2,137.2]],['朝鲜半岛',[36,127.6]],['菲律宾',[13,122]],['广东',[23,113.5]]]){const [x,y]=P(ll);svg+=`<text x="${x}" y="${y}" fill="#829da4" font-size="12">${name}</text>`;}
+  for(const r of v.rings.filter(r=>!pane.method||r.method===pane.method))if(r.points.length)svg+=`<path d="${line(r.points)}Z" fill="${r.color}" fill-opacity=".10" stroke="${r.color}" stroke-opacity=".65" stroke-width="1.5"><title>${esc(labels[r.method])} · 原起报阈值的区域投影</title></path>`;
+  svg+=`<path d="${line(v.past)}" fill="none" stroke="#a2bac1" stroke-width="2" opacity=".8"/>`;
+  if(v.truth.length)svg+=`<path d="${line([v.past.at(-1),...v.truth])}" fill="none" stroke="${colors.truth}" stroke-width="1.4" stroke-dasharray="3 5"/>`;
+  for(const p of v.paths.filter(p=>!pane.method||p.method===pane.method||p.method==='external')){
+   svg+=`<path d="${line(p.points)}" fill="none" stroke="${p.color}" stroke-width="${p.method==='rolling_c1'?3.2:2.2}" ${p.method==='tabpfn'?'stroke-dasharray="7 5"':''}><title>${esc(p.label)}</title></path>`;
+   for(const ll of p.points.slice(1)){const [x,y]=P(ll);svg+=`<circle cx="${x}" cy="${y}" r="3.7" fill="${p.color}" stroke="#0d2632"><title>${esc(p.label)} · ${fmt(ll[0],2)}°N / ${fmt(ll[1],2)}°E</title></circle>`;}
+   if(v.target&&$('#layer-errors').checked)svg+=`<path d="${line([p.points.at(-1),v.target])}" fill="none" stroke="${p.color}" stroke-width="1" stroke-dasharray="2 3" opacity=".7"/>`;
+  }
+  if(v.base&&v.c1&&$('#layer-residual').checked)svg+=`<path d="${line([v.base,v.c1])}" stroke="#d2f0e4" fill="none" stroke-width="2.2" marker-end="url(#correction-tip)"><title>Base → C1 实际校正方向，不保证更接近真值</title></path>`;
+  if(v.target){const [x,y]=P(v.target);svg+=`<path d="M${x-7},${y-7}l14,14m-14,0l14,-14" stroke="${colors.truth}" stroke-width="2.5"><title>事后真值</title></path>`;}
+  if(v.center){const [x,y]=P([v.center.lat_deg,v.center.lon_deg]);svg+=`<circle cx="${x}" cy="${y}" r="7" fill="#eef1df" stroke="#183b45" stroke-width="2"><title>官方当前中心 ${esc(time(v.center.valid_time_utc))}</title></circle>`;}
+  if(pane.name)svg+=`<rect x="12" y="12" width="235" height="30" rx="5" fill="#07151ddd"/><text x="23" y="32" fill="${colors[pane.method]}" font-size="13">${pane.name}</text>`;
+  svg+='</g>';
+ }
+ $('#atlas-map').innerHTML=svg;
+}
+function renderHistory(){
+ const s=storm(),o=origin(),m=currentMetrics(o,S.hours,retro()),r=o.regions.rolling_c1[S.hours/6],lags=o.residuals[S.hours/6-1]??[];
+ const preset=A.selected_cases.find(c=>c.storm_id===s.id&&c.origin_index===S.origin);
+ $('#atlas-badge').textContent=retro()?(preset?'POSTHOC CASE / 既定回顾案例':'HISTORICAL / 事后真值已开启'):'HINDCAST / 真值隐藏';$('#atlas-badge').classList.remove('live');
+ $('#atlas-map-title').textContent=s.name+' · '+s.year+' / +'+S.hours+'h';$('#atlas-time-label').textContent=time(o.issue);$('#atlas-issue').value=S.origin;$('#atlas-slider').value=S.origin;
+ $('#atlas-prev').disabled=S.origin===0;$('#atlas-next').disabled=S.origin===s.origins.length-1;
+ $('#atlas-metrics').innerHTML=m?[['Base终点误差',m.base],['C0终点误差',m.c0],['C1终点误差',m.c1],['Base → C1减少',m.delta]].map(([name,v])=>`<div><span>${name}</span><strong>${fmt(v)} <small>km</small></strong></div>`).join(''):'<div><span>当前目标误差</span><strong>已隐藏</strong></div><p>开启历史回顾后，才读取事后真值和改善数字。</p>';
+ const verdict=$('#atlas-verdict');verdict.classList.toggle('loss',!!m&&m.delta<0);verdict.textContent=m?`本次C1相对Base误差${m.delta>=0?'减少':'增加'} ${fmt(Math.abs(m.gain))}%；相对C0${m.feedbackDelta>=0?'减少':'增加'} ${fmt(Math.abs(m.feedbackDelta))}km。单次变化不能替代完整队列检验。`:'校正向量只说明模型如何移动预测中心；未来真值与收益已隐藏。';
+ $('#atlas-region-note').textContent=`${S.hours/6}时距MaxScore联合事件的位置投影 · 目标${S.level}% · 几何${r.n_geometry} / 秩分数${r.n_scores}条。校正输入有${lags.length}/4个已成熟同lead残差。地图从原issue切平面整体映射，不使用后验匹配尺度；投影面积不是2H维联合体积。`;
+ $('#atlas-contract').textContent='研究回放使用修订历史资料；这是同一起报Base/C0/C1的固定6–24h路径。转向、退化和欠覆盖均保留，不能当作当时真实业务发布。';
+ $('#atlas-runtime').textContent='当前为锁定历史缓存。原始模型结果未重跑、未修改，地图切换不调用模型。';
+ const rows=cohortRows(A,S.hours),eff=A.efficiency[S.hours/6].maxscore['0.1'];
+ $('#atlas-cohort').innerHTML=`<table><thead><tr><th>完整1245起报</th><th>终点MAE km</th><th>90%已发联合覆盖</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${labels[r.method]}</td><td>${fmt(r.mae_km)}</td><td>${fmt(eff.find(e=>e.method===r.method).coverage*100,2)}%</td></tr>`).join('')}</tbody></table><p>本表固定名义90%，不随地图水平切换。区域效率与探索性区间见原研究总览；改善与退化均属探索结果。</p>`;
+}
+function renderLive(){
+ $('#atlas-badge').textContent='LATEST AVAILABLE / 真实版本';$('#atlas-badge').classList.add('live');$('#atlas-map-title').textContent='CHAMPI · 当前资料与未来路径';
+ if(!L){$('#atlas-runtime').textContent=liveError||'实时缓存尚未读取';return;}
+ const state=operationalState(L),c=L.official.center;
+ $('#atlas-metrics').innerHTML=`<div><span>官方中心风速</span><strong>${fmt(c?.vmax_ms)} <small>m/s</small></strong></div><div><span>官方中心风级</span><strong>${c?.wind_force??'—'} <small>级</small></strong></div><div><span>国家级预警</span><strong>${esc(L.official.warning?.color??'未核实')}</strong></div><div><span>未来真实误差</span><strong>尚未知</strong></div>`;
+ $('#atlas-verdict').classList.toggle('loss',state.forecastStale);$('#atlas-verdict').textContent=`模型资料截止 ${time(L.model.input_last_valid_utc)}；实际生成 ${time(L.generated_at_utc)}。${state.forecastStale?'模型资料已过期，不能当成最新起报。':'以上为已记录的真实模型版本。'}不以新官方资料时间替换模型起报。`;
+ $('#atlas-region-note').textContent='实时地图显示当前缓存中真实的+24h边际90%位置圆。这里没有把研究椭圆或风圈冒充新起报椭圆；历史研究区保留已校准椭圆对照。未来误差不提前评分。';
+ $('#atlas-contract').textContent='TabPFN与C1按同一资料截止比较；外部模式保留各自原起报，不能据本图直接宣称公平技能排名。预警与登陆详情见CHAMPI页面。';
+ $('#atlas-runtime').textContent=`公开源核验 ${time(L.last_checked_at_utc)}。${state.watcherStale?'后台核验心跳已过期。':''}${state.failedSources.length?'失败来源：'+state.failedSources.join('、')+'。':''}模型持续发布状态以版本时间为准。`;
+}
+function render(){if(!A)return;renderHistory();if(S.mode==='live')renderLive();renderMap(S.mode==='history'?historical():live());}
+async function loadLive(){try{const r=await fetch('assets/champi-operations.json',{cache:'no-store'});if(!r.ok)throw Error(r.status);const value=await r.json();if(!value.model?.paths)throw Error('missing real model paths');L=value;liveError='';}catch(e){liveError='实时来源读取失败：'+e.message+'；不生成替代路径。';}if(S.mode==='live')render();}
+async function init(){[A,G]=await Promise.all(['assets/research-atlas.json','assets/coastline.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw Error(url+' '+r.status);return r.json();}));
+ S.storm=A.storms.find(s=>s.name==='TALIM')?.id??A.storms[0].id;S.origin=A.selected_cases.find(c=>c.storm_id===S.storm)?.origin_index??0;
+ $('#atlas-storm').innerHTML=A.storms.map(s=>`<option value="${esc(s.id)}">${esc(s.name)} · ${s.year}</option>`).join('');$('#atlas-storm').value=S.storm;
+ $('#atlas-scope').textContent=`${A.cohort.storms}场 / ${A.cohort.origins}个相同起报`;
+ $('#atlas-selection-note').textContent='初始起报沿用此前锁定的TALIM回顾案例，属于事后选择。地图可切换全部114场、1245次起报，改善和退化都保留；展示案例不能外推总体优势。';
+ $('#atlas-storm').onchange=e=>{S.storm=e.target.value;S.origin=0;selectStorm();};$('#atlas-issue').onchange=e=>{S.origin=+e.target.value;reset();};$('#atlas-slider').oninput=e=>{S.origin=+e.target.value;render();};
+ $('#atlas-prev').onclick=()=>{S.origin=Math.max(0,S.origin-1);render();};$('#atlas-next').onclick=()=>{S.origin=Math.min(storm().origins.length-1,S.origin+1);render();};
+ $('#atlas-lead').onchange=e=>{S.hours=+e.target.value;reset();};$('#atlas-level').onchange=e=>{S.level=+e.target.value;render();};$('#mode-history').onclick=()=>setMode('history');$('#mode-live').onclick=()=>setMode('live');$('#atlas-reset').onclick=reset;
+ for(const id of ['atlas-layout','atlas-retro','layer-base','layer-c0','layer-c1','layer-region','layer-residual','layer-errors','layer-external'])$('#'+id).addEventListener('change',render);
+ $('#atlas-export').onclick=()=>{const svg=$('#atlas-map').outerHTML.replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" '),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'})),a=document.createElement('a');a.href=url;a.download='cyclone-'+S.mode+'-'+S.hours+'h.svg';a.click();URL.revokeObjectURL(url);};
+ const map=$('#atlas-map');map.addEventListener('wheel',e=>{e.preventDefault();S.zoom=Math.max(.5,Math.min(6,S.zoom*(e.deltaY<0?1.12:1/1.12)));renderMap(S.mode==='history'?historical():live());},{passive:false});
+ map.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY,S.dx,S.dy];map.setPointerCapture(e.pointerId);});map.addEventListener('pointermove',e=>{if(!drag)return;const k=1100/map.getBoundingClientRect().width;S.dx=drag[2]+(e.clientX-drag[0])*k;S.dy=drag[3]+(e.clientY-drag[1])*k;renderMap(S.mode==='history'?historical():live());});map.addEventListener('pointerup',()=>drag=null);map.addEventListener('pointercancel',()=>drag=null);
+ selectStorm();loadLive();setInterval(loadLive,60000);
+}
+init().catch(e=>{$('#atlas-map-error').textContent='真实研究数据读取失败：'+e.message;$('#atlas-scope').textContent='加载失败，未生成演示数据';});

@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-10-24T05:46:49.942268+00:00",
+  "local_only": true,
+  "current_predictions": 60150,
+  "python_pass": 105,
+  "website_pass": 49,
+  "retained_original_artifacts": 10739,
+  "gate_version": "purged-v2",
+  "gate_v1_time_validation_rejected": true,
+  "F3_model_complete": false,
+  "versions": {
+    "tabpfn": "9.1.0",
+    "torch": "2.14.1",
+    "numpy": "2.5.3",
+    "pandas": "2.3.3",
+    "pyarrow": "25.0.1",
+    "scikit-learn": "1.9.0"
+  },
+  "model_checkpoint_sha256": "ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3"
+}

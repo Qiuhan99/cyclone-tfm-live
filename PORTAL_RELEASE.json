@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "scope": "full research viewer and actual map comparisons",
+  "private_algorithm_and_weights_included": false,
+  "live_model_auto_publish": "not_enabled"
+}

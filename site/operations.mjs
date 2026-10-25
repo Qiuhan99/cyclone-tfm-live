@@ -7,7 +7,7 @@ const colors=['#007c91','#b06420','#aa3163','#398457','#5663bb','#9262a4'];
 let data,coast,study,selection=new Set(),busy=false,initialized=false;
 function render(){
  if(!data)return;const now=Date.now(),state=operationalState(data,now),c=data.official?.center,w=data.official?.warning,paths=data.model.paths;
- $('#operations-status').textContent=`${state.watcherStale?'后台更新心跳已过期，当前展示旧缓存':'更新缓存可用'} · 最近联网核验 ${time(data.last_checked_at_utc)} · 后台按计划检查，页面每分钟读取；任务可能延迟。${state.failedSources.length?' 来源刷新失败：'+state.failedSources.join('、')+'，保留旧值并显示原时刻。':''}`;
+ $('#operations-status').textContent=`${state.watcherStale?'更新进程心跳已过期，请检查本地更新器':'更新缓存可用'} · 最近联网核验 ${time(data.last_checked_at_utc)} · 资料每15分钟检查，页面每分钟读取。${state.failedSources.length?' 来源刷新失败：'+state.failedSources.join('、')+'，保留旧值并显示原时刻。':''}`;
  $('#operations-status').classList.toggle('operations-stale',state.watcherStale||state.failedSources.length>0);
  $('#operations-center').innerHTML=c?`<span class="eyebrow">官方最新中心 ${state.centerStale?' / 资料过期':''}</span><h3>${esc(c.intensity)}</h3><strong>${fmt(c.vmax_ms)} <small>m/s</small> · ${c.wind_force}级</strong><p>${fmt(c.lat_deg)}°N / ${fmt(c.lon_deg)}°E · ${fmt(c.mslp_hpa,0)} hPa</p><p>中心时刻 ${time(c.valid_time_utc)}<br>发布 ${time(c.issued_at_utc)} · 获取 ${time(c.retrieved_at_utc)}</p><a target="_blank" rel="noreferrer" href="${esc(c.source_url)}">中央气象台快讯 ↗</a>`:'官方中心未能核实';
  $('#operations-warning').innerHTML=w?`<span class="eyebrow">官方预警 / 国家级</span><h3 class="warning-color-${esc(w.color)}">台风${esc(w.color)}预警${state.warningStale?'（资料过期）':''}</h3><p>发布 ${time(w.issued_at_utc)}<br>核验 ${time(w.retrieved_at_utc)}</p><p>${esc(w.jurisdiction)}</p><a target="_blank" rel="noreferrer" href="${esc(w.source_url)}">查看官方更新与解除状态 ↗</a>`:'官方预警状态未核实；不等于没有预警。';
