@@ -95,7 +95,9 @@ def once(research,python,cache,*,infer=False,allow_publish=False):
         model_generated_at_utc=value['generated_at_utc'],payload_sha256=hashlib.sha256(output.read_bytes()).hexdigest(),
         inference_requested=infer,publish_enabled=allow_publish,published=False,
         state='validated_for_transfer' if allow_publish else 'ready_local_only; publishing not enabled')
-    if allow_publish:status['published']=publish(value,cache)
+    if allow_publish:
+        status['published']=publish(value,cache)
+        status['state']='uploaded; website deployment pending' if status['published'] else 'no new transfer; current model version retained'
     atomic(cache/'status.json',status)
     print(json.dumps(status,ensure_ascii=False));return status
 

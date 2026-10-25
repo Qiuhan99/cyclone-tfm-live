@@ -10,11 +10,17 @@ ROOT=Path(__file__).resolve().parents[1]
 class PublicationTests(unittest.TestCase):
     def setUp(self):
         self.value=json.loads((ROOT/'site/assets/champi-operations.json').read_text())
+        # Cloud refresh changes the fixture file before tests run. Fix the
+        # scenario clocks explicitly instead of depending on deployment time.
+        self.value['model']['input_last_valid_utc']='2026-10-25T00:00:00+00:00'
+        self.value['generated_at_utc']='2026-10-25T04:00:00+00:00'
+        self.value['last_checked_at_utc']='2026-10-25T04:00:00+00:00'
 
     def test_cloud_refresh_cannot_erase_newer_mac_model(self):
         remote=copy.deepcopy(self.value);cloud=copy.deepcopy(self.value)
         remote['generated_at_utc']='2026-10-25T06:00:00+00:00'
         remote['publication']={'mode':'mac_auto'}
+        remote['data_profile']={'base_feature_count':52,'model_input_marker':'new model'}
         cloud['generated_at_utc']='2026-10-25T05:00:00+00:00'
         cloud['last_checked_at_utc']='2026-10-25T07:00:00+00:00'
         cloud['official']['center']['test_marker']='newer official information'
@@ -22,6 +28,7 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(result['generated_at_utc'],remote['generated_at_utc'])
         self.assertEqual(result['official'],cloud['official'])
         self.assertEqual(result['publication'],remote['publication'])
+        self.assertEqual(result['data_profile'],remote['data_profile'])
         self.assertEqual(remote['publication'],{'mode':'mac_auto'})
 
     def test_late_upload_cannot_regress_origin_or_observed_prefix(self):

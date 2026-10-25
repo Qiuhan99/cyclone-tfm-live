@@ -33,8 +33,9 @@ def merge_live(existing, candidate):
     external = [p for p in public['model']['paths'] if p.get('model_raw_aid')]
     out['model']['paths'] = own + copy.deepcopy(external)
     out['generated_at_utc'] = model['generated_at_utc']
-    if 'publication' in model:
-        out['publication'] = copy.deepcopy(model['publication'])
+    for field in ('publication', 'data_profile', 'inference_refresh'):
+        if field in model:
+            out[field] = copy.deepcopy(model[field])
     # Keep the most recent observed prefix, including source revisions.
     def observation_version(p):
         return (max((stamp(o['valid_time_utc']) for o in p.get('observations', [])), default=stamp(None)),
