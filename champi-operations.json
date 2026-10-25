@@ -1,10 +1,10 @@
 {
   "storm_id": "CHAMPI_2026",
   "name_cn": "蔷琵",
-  "started_at_utc": "2026-10-25T14:44:44.155973+00:00",
+  "started_at_utc": "2026-10-25T15:01:23.166143+00:00",
   "generated_at_utc": "2026-10-25T14:29:28.716371+00:00",
-  "last_checked_at_utc": "2026-10-25T15:01:02.738090+00:00",
-  "refresh_interval_seconds": 1800,
+  "last_checked_at_utc": "2026-10-25T15:02:14.488690+00:00",
+  "refresh_interval_seconds": 900,
   "official": {
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -29,7 +29,7 @@
       "wind_averaging_period": "原快讯未明确标注，不与ATCF风速直接合并",
       "stale_after_hours": 3,
       "source_url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "retrieved_at_utc": "2026-10-25T15:01:02.738090+00:00",
+      "retrieved_at_utc": "2026-10-25T15:02:11.948956+00:00",
       "raw_file_sha256": "633c6d739b29007378b998ea627c90938fd56f1cb239119f858ee81ca938003a"
     },
     "warning": {
@@ -48,29 +48,22 @@
     }
   },
   "fetch_status": {
-    "bdeck": {
+    "ucar": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T15:01:02.738090+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
-      "sha256": "b6299a2d3645c10a5508d95944a03349cd998a55c69079ce997a8a5d518c35e8"
-    },
-    "adeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T15:01:02.738090+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-      "sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3"
+      "checked_at_utc": "2026-10-25T15:02:11.385980+00:00"
     },
     "center": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T15:01:02.738090+00:00",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "sha256": "633c6d739b29007378b998ea627c90938fd56f1cb239119f858ee81ca938003a"
+      "cached": false,
+      "checked_at_utc": "2026-10-25T15:02:11.948956+00:00",
+      "sha256": "633c6d739b29007378b998ea627c90938fd56f1cb239119f858ee81ca938003a",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
     },
     "warning": {
       "ok": false,
-      "checked_at_utc": "2026-10-25T15:01:02.738090+00:00",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "error": "no verified CHAMPI warning; unknown, not no-warning"
+      "checked_at_utc": "2026-10-25T15:02:12.596746+00:00",
+      "error": "no verified CHAMPI warning; unknown, not no-warning",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
     }
   },
   "model": {
@@ -492,8 +485,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T15:01:02.738090+00:00",
-        "input_downloaded_at_utc": "2026-10-25T15:01:02.738090+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -640,7 +631,9 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T15:02:13.991917+00:00",
+        "input_downloaded_at_utc": "2026-10-25T15:01:24.946687+00:00"
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
@@ -649,8 +642,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T15:01:02.738090+00:00",
-        "input_downloaded_at_utc": "2026-10-25T15:01:02.738090+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -791,7 +782,7 @@
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.78021601428397,
+            "lat_deg": 33.78021601428398,
             "lon_deg": 135.31630409478532,
             "valid_time_utc": "2026-10-26T14:37:18.655462+00:00",
             "region": "日本本州附近",
@@ -825,7 +816,9 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T15:02:14.261816+00:00",
+        "input_downloaded_at_utc": "2026-10-25T15:01:24.946687+00:00"
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
@@ -834,8 +827,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T15:01:02.738090+00:00",
-        "input_downloaded_at_utc": "2026-10-25T15:01:02.738090+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -931,7 +922,9 @@
             "region": "日本九州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T15:02:14.488674+00:00",
+        "input_downloaded_at_utc": "2026-10-25T15:01:24.946687+00:00"
       }
     ],
     "config_sha256": "78f4bf8418e0ed7f7e7702fb432468109c8de104564636a825b49e0151bfe28e",
@@ -1261,8 +1254,8 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "b6299a2d3645c10a5508d95944a03349cd998a55c69079ce997a8a5d518c35e8",
-    "downloaded_at_utc": "2026-10-25T15:01:02.738090+00:00",
-    "definition": "UCAR working/revised B-deck; row publication times unknown"
+    "downloaded_at_utc": "2026-10-25T15:01:24.946687+00:00",
+    "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
   "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
@@ -1310,16 +1303,9 @@
     "regime_gate": false,
     "original_row_publication_times_known": false
   },
-  "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
-  "publication": {
-    "mode": "mac_auto",
-    "transfer_prepared_at_utc": "2026-10-25T14:29:31.177980+00:00",
-    "poll_interval_seconds": 900,
-    "model_source": "private local TabPFN-3.5 + frozen C0/C1; actual version times retained"
-  },
-  "public_data_generated_at_utc": "2026-10-25T15:01:02.738090+00:00",
+  "site_status": "local watcher required for ongoing updates; stale states computed in browser",
   "agency_forecasts": {
-    "checked_at_utc": "2026-10-25T15:01:02.738090+00:00",
+    "checked_at_utc": "2026-10-25T15:02:14.983121+00:00",
     "ok": true,
     "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
     "paths": [
@@ -1388,6 +1374,12 @@
     ],
     "note": "CMA公开地图原始BABJ位置预报；逐行首次业务发布时间未知。仅保留原报时效，不外推缺失24h路径。"
   },
+  "publication": {
+    "mode": "mac_auto",
+    "transfer_prepared_at_utc": "2026-10-25T14:29:31.177980+00:00",
+    "poll_interval_seconds": 900,
+    "model_source": "private local TabPFN-3.5 + frozen C0/C1; actual version times retained"
+  },
   "verification": {
     "schema": 1,
     "started_at_utc": "2026-10-25T15:01:22.106826+00:00",
@@ -1409,7 +1401,10 @@
         "lon_deg": 127.5085896270624,
         "radius_80_km": 53.649412177798084,
         "radius_90_km": 76.61418933121521,
-        "radius_95_km": 138.3595850002544
+        "radius_95_km": 138.3595850002544,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "310603fcc5a0842bf4cf51b2ba762b5c463cac89d26a326d02b325072541bf86",
@@ -1428,7 +1423,10 @@
         "lon_deg": 129.27925252129427,
         "radius_80_km": 119.01892293972378,
         "radius_90_km": 219.79890393857153,
-        "radius_95_km": 328.0678035198314
+        "radius_95_km": 328.0678035198314,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "6d2a24d0a114af6a569165d023bc828dc79ed1584de33fc2fcd3332229758dd0",
@@ -1447,7 +1445,10 @@
         "lon_deg": 133.58216928246884,
         "radius_80_km": 256.63464031259787,
         "radius_90_km": 389.50768110247697,
-        "radius_95_km": 566.214278062631
+        "radius_95_km": 566.214278062631,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "ea820dc83d0605e0b05471116d9aac3515820d77308d5c405ffed69f231f0611",
@@ -1466,7 +1467,10 @@
         "lon_deg": 141.19086309369789,
         "radius_80_km": 479.16175527913765,
         "radius_90_km": 774.7548850437413,
-        "radius_95_km": 1022.208128882103
+        "radius_95_km": 1022.208128882103,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "a783aedf329c1720fd3bb354e171a5efcd6c6e305dfa5781073c0a451eccec8c",
@@ -1485,7 +1489,10 @@
         "lon_deg": 149.67016870884095,
         "radius_80_km": 935.92374956141,
         "radius_90_km": 1350.2348847346168,
-        "radius_95_km": 1674.9594541178978
+        "radius_95_km": 1674.9594541178978,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "27ddc0c7ac8fb9577db6b59920474b5d04ab9332d6974f3bc4d1ac8d9f20d814",
@@ -1504,7 +1511,10 @@
         "lon_deg": 127.59674129922519,
         "radius_80_km": 55.95064866833556,
         "radius_90_km": 80.5880292817687,
-        "radius_95_km": 156.75778429609596
+        "radius_95_km": 156.75778429609596,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "385d7456d179b941bf4ba94ad1ae2e1c6135d49d1b1aef00d3a8c5a83da889f7",
@@ -1523,7 +1533,10 @@
         "lon_deg": 129.50104572748955,
         "radius_80_km": 126.5504159613293,
         "radius_90_km": 228.13094809084322,
-        "radius_95_km": 329.89047236109536
+        "radius_95_km": 329.89047236109536,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "952744994f6ded3e24f9a4d1b66d289f7ee67d96dc56dfed88aa38e0161ffec5",
@@ -1542,7 +1555,10 @@
         "lon_deg": 134.05499689393832,
         "radius_80_km": 285.12255198619295,
         "radius_90_km": 362.85954485950606,
-        "radius_95_km": 569.3171390879675
+        "radius_95_km": 569.3171390879675,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "008ec9b044b1cc75d63389ce6e03d7c0a32d5588e25011225ce7a2d552f36afd",
@@ -1561,7 +1577,10 @@
         "lon_deg": 143.14065831519133,
         "radius_80_km": 561.5497916150557,
         "radius_90_km": 854.8567353969147,
-        "radius_95_km": 1142.7627812920227
+        "radius_95_km": 1142.7627812920227,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "49f6679d1dff121bab537e499f79370bc6b46f09cbc58d43da0ae6c66d0f3b42",
@@ -1580,7 +1599,10 @@
         "lon_deg": 152.79281356137847,
         "radius_80_km": 1116.206314521525,
         "radius_90_km": 1417.4721002401177,
-        "radius_95_km": 1750.894424367245
+        "radius_95_km": 1750.894424367245,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "c059cf71c31d061f0ee49d781d2edc1f0c69edf6f9dfdd4dc2a8d951283ad89f",
@@ -1599,7 +1621,10 @@
         "lon_deg": 127.63870688616805,
         "radius_80_km": 57.518821296273245,
         "radius_90_km": 77.92081816010678,
-        "radius_95_km": 154.314239081075
+        "radius_95_km": 154.314239081075,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "9c31039c14a208336078cc53a3304bc3ad61a967d346325c98ce2f8462884782",
@@ -1618,7 +1643,10 @@
         "lon_deg": 129.50846347913875,
         "radius_80_km": 124.38646017172937,
         "radius_90_km": 223.49726524317688,
-        "radius_95_km": 318.06691799770135
+        "radius_95_km": 318.06691799770135,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "54fc4541638567fc2f191860b81c45c2fa290e1f90a97161f58f84886d24d0df",
@@ -1637,7 +1665,10 @@
         "lon_deg": 132.94768553679887,
         "radius_80_km": 277.194544183732,
         "radius_90_km": 398.3693182493323,
-        "radius_95_km": 541.477831823344
+        "radius_95_km": 541.477831823344,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "bea188362ebd5034d8ab57c724ea15e505f09e6f65c5ca410a208997f9af4edf",
@@ -1656,7 +1687,10 @@
         "lon_deg": 140.27249063385642,
         "radius_80_km": 580.6878699181184,
         "radius_90_km": 923.8957256295188,
-        "radius_95_km": 1208.383498634981
+        "radius_95_km": 1208.383498634981,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "3520ab3e03ffe31a5264e27e9637f9a3b34df600ac660f6ef6b05a7cd5dafe4f",
@@ -1675,7 +1709,10 @@
         "lon_deg": 152.95364078767784,
         "radius_80_km": 1038.9271307651131,
         "radius_90_km": 1620.8973511668912,
-        "radius_95_km": 1870.0383502460754
+        "radius_95_km": 1870.0383502460754,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "7d09229f9d74ce6e65007e816110e45127c0d2ad36dcdfd28ee002d9179d2f2f",
@@ -1691,7 +1728,10 @@
         "valid_time_utc": "2026-10-25T18:00:00+00:00",
         "lead_h": 18,
         "lat_deg": 32.1,
-        "lon_deg": 127.3
+        "lon_deg": 127.3,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "ce9923cf0c8161696b4602b2c61b1809c35fdd99640da807d89c8283fb5bc45a",
@@ -1707,7 +1747,10 @@
         "valid_time_utc": "2026-10-26T00:00:00+00:00",
         "lead_h": 24,
         "lat_deg": 32.9,
-        "lon_deg": 128.8
+        "lon_deg": 128.8,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "7ad7c84a7396fa245de8d68565ab7164d6098b73d893989728ed06696ff15342",
@@ -1723,7 +1766,10 @@
         "valid_time_utc": "2026-10-26T06:00:00+00:00",
         "lead_h": 30,
         "lat_deg": 34.5,
-        "lon_deg": 131.9
+        "lon_deg": 131.9,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "c8ec73af9174641b5b4da1f59e906ac0a59976131485195d3ede06aab6668f2c",
@@ -1739,7 +1785,10 @@
         "valid_time_utc": "2026-10-26T12:00:00+00:00",
         "lead_h": 36,
         "lat_deg": 36.0,
-        "lon_deg": 135.7
+        "lon_deg": 135.7,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "15cde28338c1c7ceb29c87c78bf2311c02fc7c8411543bc1416e630ece78a328",
@@ -1755,7 +1804,10 @@
         "valid_time_utc": "2026-10-26T18:00:00+00:00",
         "lead_h": 42,
         "lat_deg": 37.0,
-        "lon_deg": 140.3
+        "lon_deg": 140.3,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "71071b858566788c15be9dc5186a714371c4386805150c6cdd5ee07ad27269fa",
@@ -1771,7 +1823,10 @@
         "valid_time_utc": "2026-10-27T00:00:00+00:00",
         "lead_h": 48,
         "lat_deg": 36.9,
-        "lon_deg": 145.4
+        "lon_deg": 145.4,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "ca5175af4aa9aa4fcd4e3858535d86d5870597e525b37997ab1d69a948ac8e75",
@@ -1787,7 +1842,10 @@
         "valid_time_utc": "2026-10-27T06:00:00+00:00",
         "lead_h": 54,
         "lat_deg": 38.8,
-        "lon_deg": 150.4
+        "lon_deg": 150.4,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "cd32d3b02b1ca8b82534a10c7d24c71b2e480ecbb9598d72d026f6f5330e5d66",
@@ -1803,7 +1861,10 @@
         "valid_time_utc": "2026-10-27T12:00:00+00:00",
         "lead_h": 60,
         "lat_deg": 40.3,
-        "lon_deg": 154.2
+        "lon_deg": 154.2,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "9e344f3093b2c1cf684a662a6ac7906596f468f44cccce5dbbf79cadefd5203b",
@@ -1819,7 +1880,10 @@
         "valid_time_utc": "2026-10-27T18:00:00+00:00",
         "lead_h": 66,
         "lat_deg": 42.4,
-        "lon_deg": 156.8
+        "lon_deg": 156.8,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "08ec3979915fc630681cd3579668cd2f2b6305968c3797780a1a29b637b64dd8",
@@ -1835,7 +1899,10 @@
         "valid_time_utc": "2026-10-28T00:00:00+00:00",
         "lead_h": 72,
         "lat_deg": 44.5,
-        "lon_deg": 159.5
+        "lon_deg": 159.5,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "15122013e076ea28018002587fa28ccd37f2aac06ed1dfae5179d5427a4fa6eb",
@@ -1851,7 +1918,10 @@
         "valid_time_utc": "2026-10-25T18:00:00+00:00",
         "lead_h": 18,
         "lat_deg": 31.9,
-        "lon_deg": 127.6
+        "lon_deg": 127.6,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "45b1e2694248abe6e14dcc10bbac4220b667fb5973c460ec1bb75700fadfb7c8",
@@ -1867,7 +1937,10 @@
         "valid_time_utc": "2026-10-26T00:00:00+00:00",
         "lead_h": 24,
         "lat_deg": 32.6,
-        "lon_deg": 129.0
+        "lon_deg": 129.0,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "233dc909adfa80825671c5c702aa843e08ff050b996e1fc432ba5e56affefba2",
@@ -1883,7 +1956,10 @@
         "valid_time_utc": "2026-10-26T06:00:00+00:00",
         "lead_h": 30,
         "lat_deg": 33.0,
-        "lon_deg": 131.0
+        "lon_deg": 131.0,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "f0a299909f198656554d6407452202c90d8ae5fb2cada45669c60aae9f65ea66",
@@ -1899,7 +1975,10 @@
         "valid_time_utc": "2026-10-26T12:00:00+00:00",
         "lead_h": 36,
         "lat_deg": 33.2,
-        "lon_deg": 133.8
+        "lon_deg": 133.8,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "d8e948573ef02c4da22cbab98c164816a291d58af76f4df48db5309dfae6121c",
@@ -1915,7 +1994,10 @@
         "valid_time_utc": "2026-10-26T18:00:00+00:00",
         "lead_h": 42,
         "lat_deg": 34.5,
-        "lon_deg": 137.3
+        "lon_deg": 137.3,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "19cad70a5504705a4d8c707cf041498567fa485bfd4c05e74af09dcbd279b65c",
@@ -1931,7 +2013,10 @@
         "valid_time_utc": "2026-10-27T00:00:00+00:00",
         "lead_h": 48,
         "lat_deg": 35.1,
-        "lon_deg": 139.6
+        "lon_deg": 139.6,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "c138dc54223b84bc114cfd4025b40361c4e23779ecb17ca736affaedb361b8a0",
@@ -1947,7 +2032,10 @@
         "valid_time_utc": "2026-10-27T06:00:00+00:00",
         "lead_h": 54,
         "lat_deg": 34.9,
-        "lon_deg": 142.4
+        "lon_deg": 142.4,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "df05ffb2462680854d80e574b9d8bc9ea0b0a79e9588ab9732f95d142db47013",
@@ -1963,7 +2051,10 @@
         "valid_time_utc": "2026-10-27T12:00:00+00:00",
         "lead_h": 60,
         "lat_deg": 35.6,
-        "lon_deg": 146.6
+        "lon_deg": 146.6,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "99d3d79a75fa20aeb524c2ad72d80cbb9441402626a838ef05ab69c3f424bb29",
@@ -1979,7 +2070,10 @@
         "valid_time_utc": "2026-10-27T18:00:00+00:00",
         "lead_h": 66,
         "lat_deg": 36.2,
-        "lon_deg": 151.3
+        "lon_deg": 151.3,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "403d0f009828b9836ab6ecf02e0307a31151db0b4cdbab0ebafc1f5b07f1672e",
@@ -1995,7 +2089,10 @@
         "valid_time_utc": "2026-10-28T00:00:00+00:00",
         "lead_h": 72,
         "lat_deg": 36.7,
-        "lon_deg": 155.6
+        "lon_deg": 155.6,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "59c0025842015ebd899c8f7564261eec44ee4be717c8e8096e723642d6b64d2b",
@@ -2011,7 +2108,10 @@
         "valid_time_utc": "2026-10-25T18:00:00+00:00",
         "lead_h": 18,
         "lat_deg": 31.0,
-        "lon_deg": 127.2
+        "lon_deg": 127.2,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "dce2953bfcfcbe512a99bc7f6a1816d74d76dcb49fe0124e8456b29c8a2b917d",
@@ -2027,7 +2127,10 @@
         "valid_time_utc": "2026-10-26T00:00:00+00:00",
         "lead_h": 24,
         "lat_deg": 31.7,
-        "lon_deg": 128.8
+        "lon_deg": 128.8,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "6411ab264244d4cc103c5c884bdb772b4d92e2ae05c008cb34a3976ccb8ea538",
@@ -2043,7 +2146,10 @@
         "valid_time_utc": "2026-10-26T06:00:00+00:00",
         "lead_h": 30,
         "lat_deg": 32.0,
-        "lon_deg": 131.0
+        "lon_deg": 131.0,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "a8e3bb6f327b826a0ce442f3dffb2fcee39cffdeb7cc63084815274e8e4599d8",
@@ -2059,7 +2165,10 @@
         "valid_time_utc": "2026-10-26T12:00:00+00:00",
         "lead_h": 36,
         "lat_deg": 32.5,
-        "lon_deg": 133.6
+        "lon_deg": 133.6,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "142eb7dcdee7594ffb1e72eeca87c9828d298f44fda77ebbaa01380f3e41b0a0",
@@ -2075,7 +2184,10 @@
         "valid_time_utc": "2026-10-26T18:00:00+00:00",
         "lead_h": 42,
         "lat_deg": 33.2,
-        "lon_deg": 136.7
+        "lon_deg": 136.7,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "aca76a3634ff17870344004c4a21fd907568b20effb392ff9722f9dc9c5220aa",
@@ -2091,7 +2203,10 @@
         "valid_time_utc": "2026-10-27T00:00:00+00:00",
         "lead_h": 48,
         "lat_deg": 32.8,
-        "lon_deg": 137.8
+        "lon_deg": 137.8,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "d2b0685597398601a672eb3ba1c13ffe2bf6b365fc688eca6470acc7e891fae7",
@@ -2107,7 +2222,10 @@
         "valid_time_utc": "2026-10-27T06:00:00+00:00",
         "lead_h": 54,
         "lat_deg": 33.5,
-        "lon_deg": 140.8
+        "lon_deg": 140.8,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "9fe7ce14ed447756a83d429b31ea3c2cd0e3a1ea3151fd66c45a36176c8e5506",
@@ -2123,7 +2241,10 @@
         "valid_time_utc": "2026-10-27T12:00:00+00:00",
         "lead_h": 60,
         "lat_deg": 34.7,
-        "lon_deg": 146.0
+        "lon_deg": 146.0,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "ed8e4c44d2a629a063df4d2b10cec72b6120ab9e285a3a1ac23c29dc9db9cf99",
@@ -2139,7 +2260,10 @@
         "valid_time_utc": "2026-10-25T18:00:00+00:00",
         "lead_h": 6,
         "lat_deg": 31.1,
-        "lon_deg": 127.6
+        "lon_deg": 127.6,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "ef332a9f467fbc102456c8a353d2700c2849a37198e23e20772cac4630ab4359",
@@ -2155,7 +2279,10 @@
         "valid_time_utc": "2026-10-26T00:00:00+00:00",
         "lead_h": 12,
         "lat_deg": 31.5,
-        "lon_deg": 128.9
+        "lon_deg": 128.9,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "cfd08ea21cb31319ab40603e586e82e36d94ab559f9d4d7571bdeb98e775f932",
@@ -2171,7 +2298,10 @@
         "valid_time_utc": "2026-10-25T20:00:00+00:00",
         "lead_h": 6,
         "lat_deg": 31.2333,
-        "lon_deg": 128.0333
+        "lon_deg": 128.0333,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "55bc11e136775749d3ef4e5599f1896746e99b2347db5fcdda8882726bcc589f",
@@ -2187,11 +2317,14 @@
         "valid_time_utc": "2026-10-26T02:00:00+00:00",
         "lead_h": 12,
         "lat_deg": 31.6333,
-        "lon_deg": 129.3333
+        "lon_deg": 129.3333,
+        "confirmed_at_utc": "2026-10-25T15:02:24.286399+00:00",
+        "eligible": true,
+        "exclusion": null
       }
     ],
     "truths": {},
     "protocol": "Public Git snapshot confirmed before valid; exact storm/issue/lead/valid pairing; first subsequently retrieved UCAR truth; no backfill",
-    "updated_at_utc": "2026-10-25T15:01:22.106826+00:00"
+    "updated_at_utc": "2026-10-25T15:02:24.286399+00:00"
   }
 }
