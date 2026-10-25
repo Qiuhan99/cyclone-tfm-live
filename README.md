@@ -76,3 +76,7 @@ python tools/check_public.py
 [独立算法窗口](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html)展示Base/C0/C1、6/12/24h等时效的真实Conformal区域，并对照CMA/BABJ机构路径与外部数值模式。风级及预警报道保留于原CHAMPI页面。
 
 新预测先封存至公开Git分支；后续在目标到达前确认后，才有资格用首见UCAR实况进行同storm/issue/lead/valid配对评分。旧回顾实验单列，n=0不伪造误差或覆盖率。完整规则见[前瞻检验协议](site/assets/docs/ALGORITHM_LIVE_VERIFICATION_CN.md)。
+
+## Conformal与时序基础模型对照
+
+[Conformal基准窗口](https://qiuhan99.github.io/cyclone-tfm-live/conformal-benchmark.html)将覆盖偏差、已发区域面积、同覆盖效率及过去运动变化分层作为主要评价，MAE作为辅助。新增Chronos-Bolt-small、Chronos-2、Moirai-small真实802起报推理；TimeGPT待API接入。模型版本、原始结果边界与[完整报告](site/assets/docs/TSFM_CONFORMAL_BENCHMARK_CN.md)一同保留。短上下文、协变量和训练预算差异不作隐藏。

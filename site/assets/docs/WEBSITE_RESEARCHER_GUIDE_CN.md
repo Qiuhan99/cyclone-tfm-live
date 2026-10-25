@@ -743,3 +743,11 @@ CMA公开地图通过CHAMPI/2630双重身份解析，保留原始UTC起报和lea
 新增 `verification` 前瞻账本：先封存未来预测，后续从已存在的公开Git提交确认；只有确认时间早于目标有效时刻者才合格。等待UCAR同有效时刻首见实况，固定首次参考位置，按storm/issue/lead/valid严格配对，保留修订版本但用最早合格版评分。n=0显示待实况，旧回顾结果不补记前瞻成绩。确认时间基于公开Git分支，不代表Pages精确上线时间。完整协议见 [ALGORITHM_LIVE_VERIFICATION_CN.md](ALGORITHM_LIVE_VERIFICATION_CN.md)。
 
 实时仍原样使用last100校准器的圆形输出；第25节历史六格椭圆未套用于新起报。锁定的 `motion-residual.json:external_common` 在独立回顾表逐值复用，保留残差修正退化和外部模式更优的原始结果。
+
+## 27. Conformal主评价与时序基础模型基准
+
+新增 `conformal-benchmark.html`，算法实时窗口也将Conformal覆盖与面积提升为主评价，原外部模式MAE表保留为辅助。新实验 `artifacts/tsfm_conformal_v1` 对Chronos-Bolt-small、Chronos-2、Moirai-small各实际推理802个原合格起报，保留全部原始分批输出；TimeGPT按用户选择待API接入，不生成成绩。
+
+固定同一48h/9点位置历史，以原有TabPFN F0/F2/C0/C1缓存对照，统一6/12/24h、2017几何种子、2019校准、圆/椭圆、固定/因果滚动状态和80/90/95%规则。网页显示共同样本覆盖、绝对覆盖偏差、已发面积、事后同覆盖面积比、20个成熟终点滚动覆盖图；MAE另列。原模型和24h六格结果逐项保留。
+
+运动变化只由过去轨迹的转向/变速阈值分层，不将其冒充经检验证实的概念漂移。2024的48个运动变化24h终点中，C1覆盖93.75%高于Base87.5%，但离名义90%更远；CHAMPI该阈值下没有运动变化24h成熟样本。主队列C1/Base同覆盖面积比0.874但区间跨1，残差历史独立收益尚未确认。位置参考F0相对真实TSFM在该短上下文设定下显示区域效率竞争力，不能外推为所有模型/上下文的普遍优势。完整协议与正负结果见 [TSFM_CONFORMAL_BENCHMARK_CN.md](TSFM_CONFORMAL_BENCHMARK_CN.md)。
