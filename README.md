@@ -1,4 +1,4 @@
-# CYCLONE TFM Live · Qiuhan99
+# CYCLONE TFM Live 
 
 CHAMPI台风公开路径查看器，复用既有CYCLONE网站。展示官方中心/风级/预警、UCAR外部模式路径、真实TabPFN研究预测，以及24h圆/椭圆Conformal对照。
 
