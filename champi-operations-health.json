@@ -1,5 +1,30 @@
 {
-  "checked_at_utc": "2026-10-25T19:52:16.782948+00:00",
+  "checked_at_utc": "2026-10-25T19:53:13.324696+00:00",
   "ok": false,
-  "model_transfer": true
+  "sources": {
+    "bdeck": {
+      "ok": true,
+      "checked_at_utc": "2026-10-25T19:53:13.324696+00:00",
+      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
+      "sha256": "a0887277024532c09b0e630d81126603d15d6ce211c6bc28327c141a320f1f05"
+    },
+    "adeck": {
+      "ok": true,
+      "checked_at_utc": "2026-10-25T19:53:13.324696+00:00",
+      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+      "sha256": "588cb2d20125a6b1b96d37f452ce83afc4d9a35cefe2614930e25233ff399779"
+    },
+    "center": {
+      "ok": false,
+      "checked_at_utc": "2026-10-25T19:53:13.324696+00:00",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
+      "error": "NMC current bulletin is not CHAMPI"
+    },
+    "warning": {
+      "ok": false,
+      "checked_at_utc": "2026-10-25T19:53:13.324696+00:00",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
+      "error": "no verified CHAMPI warning; unknown, not no-warning"
+    }
+  }
 }
