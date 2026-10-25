@@ -1,10 +1,10 @@
 {
   "storm_id": "CHAMPI_2026",
   "name_cn": "蔷琵",
-  "started_at_utc": "2026-10-25T15:17:29.996772+00:00",
+  "started_at_utc": "2026-10-25T15:33:23.747449+00:00",
   "generated_at_utc": "2026-10-25T14:29:28.716371+00:00",
-  "last_checked_at_utc": "2026-10-25T15:18:50.513350+00:00",
-  "refresh_interval_seconds": 1800,
+  "last_checked_at_utc": "2026-10-25T15:34:11.387013+00:00",
+  "refresh_interval_seconds": 900,
   "official": {
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -48,29 +48,21 @@
     }
   },
   "fetch_status": {
-    "bdeck": {
+    "ucar": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T15:18:50.513350+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
-      "sha256": "b6299a2d3645c10a5508d95944a03349cd998a55c69079ce997a8a5d518c35e8"
-    },
-    "adeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-25T15:18:50.513350+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-      "sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3"
+      "checked_at_utc": "2026-10-25T15:34:07.838736+00:00"
     },
     "center": {
       "ok": false,
-      "checked_at_utc": "2026-10-25T15:18:50.513350+00:00",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "error": "NMC current bulletin is not CHAMPI"
+      "checked_at_utc": "2026-10-25T15:34:08.680847+00:00",
+      "error": "NMC current bulletin is not CHAMPI",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
     },
     "warning": {
       "ok": false,
-      "checked_at_utc": "2026-10-25T15:18:50.513350+00:00",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "error": "no verified CHAMPI warning; unknown, not no-warning"
+      "checked_at_utc": "2026-10-25T15:34:09.283233+00:00",
+      "error": "no verified CHAMPI warning; unknown, not no-warning",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
     }
   },
   "model": {
@@ -492,8 +484,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T15:18:50.513350+00:00",
-        "input_downloaded_at_utc": "2026-10-25T15:18:50.513350+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -640,7 +630,9 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T15:34:10.841580+00:00",
+        "input_downloaded_at_utc": "2026-10-25T15:33:26.802905+00:00"
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
@@ -649,8 +641,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T15:18:50.513350+00:00",
-        "input_downloaded_at_utc": "2026-10-25T15:18:50.513350+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -791,7 +781,7 @@
             "resolution_km": 3
           },
           {
-            "lat_deg": 33.78021601428397,
+            "lat_deg": 33.78021601428398,
             "lon_deg": 135.31630409478532,
             "valid_time_utc": "2026-10-26T14:37:18.655462+00:00",
             "region": "日本本州附近",
@@ -825,7 +815,9 @@
             "region": "日本本州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T15:34:11.160836+00:00",
+        "input_downloaded_at_utc": "2026-10-25T15:33:26.802905+00:00"
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
@@ -834,8 +826,6 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "eafe62f4ab6165bbaface53e250d448db71baed00ae4f170c9b86d289c65b6c3",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T15:18:50.513350+00:00",
-        "input_downloaded_at_utc": "2026-10-25T15:18:50.513350+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T06:00:00.000Z",
@@ -931,7 +921,9 @@
             "region": "日本九州附近",
             "resolution_km": 3
           }
-        ]
+        ],
+        "generated_at_utc": "2026-10-25T15:34:11.387002+00:00",
+        "input_downloaded_at_utc": "2026-10-25T15:33:26.802905+00:00"
       }
     ],
     "config_sha256": "78f4bf8418e0ed7f7e7702fb432468109c8de104564636a825b49e0151bfe28e",
@@ -1261,8 +1253,8 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "b6299a2d3645c10a5508d95944a03349cd998a55c69079ce997a8a5d518c35e8",
-    "downloaded_at_utc": "2026-10-25T15:18:50.513350+00:00",
-    "definition": "UCAR working/revised B-deck; row publication times unknown"
+    "downloaded_at_utc": "2026-10-25T15:33:26.802905+00:00",
+    "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
   "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
@@ -1310,9 +1302,9 @@
     "regime_gate": false,
     "original_row_publication_times_known": false
   },
-  "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
+  "site_status": "local watcher required for ongoing updates; stale states computed in browser",
   "agency_forecasts": {
-    "checked_at_utc": "2026-10-25T15:18:50.513350+00:00",
+    "checked_at_utc": "2026-10-25T15:34:11.915969+00:00",
     "ok": true,
     "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
     "paths": [
@@ -2333,6 +2325,5 @@
     "truths": {},
     "protocol": "Public Git snapshot confirmed before valid; exact storm/issue/lead/valid pairing; first subsequently retrieved UCAR truth; no backfill",
     "updated_at_utc": "2026-10-25T15:02:24.286399+00:00"
-  },
-  "public_data_generated_at_utc": "2026-10-25T15:18:50.513350+00:00"
+  }
 }
