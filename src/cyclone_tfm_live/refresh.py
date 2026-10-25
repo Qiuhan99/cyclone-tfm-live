@@ -5,6 +5,7 @@ import copy,hashlib,json,subprocess
 import pandas as pd
 from .atcf import UCAR,parse_atcf
 from .official import nmc_center,nmc_warning,Coast
+from .agency_forecast import attach
 
 URLS={'bdeck':UCAR+'bwp292026.dat','adeck':UCAR+'awp292026.dat',
       'center':'https://www.nmc.cn/publish/typhoon/typhoon_new.html','warning':'https://m.nmc.cn/publish/typhoon/warning_index.html'}
@@ -94,6 +95,7 @@ def refresh(site,cache,tfm_path=None):
     coast=Coast(json.loads((assets/'coastline.json').read_text())['rings'])
     tfm=json.loads(Path(tfm_path).read_text()) if tfm_path else None
     output=assemble(previous,b,a,{k:parsed[k] for k in ['center','warning'] if k in parsed},status,coast,checked,tfm)
+    attach(output,checked)
     atomic(raw/'manifest.json',dict(checked_at_utc=checked,sources=status))
     atomic(assets/'champi-operations.json',output)
     atomic(assets/'champi-operations-health.json',dict(checked_at_utc=checked,ok=all(r['ok'] for r in status.values()),sources=status))

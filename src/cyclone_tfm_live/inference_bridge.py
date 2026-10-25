@@ -8,6 +8,8 @@ from datetime import datetime,timezone
 import argparse,copy,hashlib,json,os,re,subprocess,time
 from .refresh import validate_tfm,atomic
 from .publication import merge_live
+from .verification import advance
+from .agency_forecast import attach
 
 
 def checked_payload(value):
@@ -65,6 +67,7 @@ def publish(payload,cache):
         git('fetch','origin','live-data');parent=git('rev-parse','FETCH_HEAD').stdout.decode().strip()
         previous=json.loads(git('show',parent+':champi-operations.json').stdout)
         merged=merge_live(previous,payload)
+        merged['verification']=advance(previous,merged)
         entries=[f'040000 tree {github_tree}\t.github\n']
         files={'champi-operations.json':merged,'champi-operations-health.json':dict(checked_at_utc=merged['last_checked_at_utc'],ok=all(s['ok'] for s in merged['fetch_status'].values()),model_transfer=True)}
         for name,value in files.items():
@@ -88,6 +91,7 @@ def once(research,python,cache,*,infer=False,allow_publish=False):
     path=research/'web/dist/assets/champi-operations.json'
     value=checked_payload(json.loads(path.read_text()))
     if allow_publish:
+        attach(value,datetime.now(timezone.utc).isoformat())
         value['publication']=dict(mode='mac_auto',transfer_prepared_at_utc=datetime.now(timezone.utc).isoformat(),poll_interval_seconds=900,
                                   model_source='private local TabPFN-3.5 + frozen C0/C1; actual version times retained')
     output=cache/'ready/champi-operations.json';atomic(output,value)

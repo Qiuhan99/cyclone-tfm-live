@@ -733,3 +733,13 @@ A/B-deck可能后修订，公开可得时刻未知；默认隐藏事后真值和
 2024共27场、169个成熟24h终点。历史C0、C1的椭圆/圆同覆盖面积比为0.901、0.970，Base为1.038；所有主要配对95%区间跨1。椭圆内C1/Base为0.874，但C1/C0为1.016，尚未确认残差历史的独立收益。CHAMPI27终点C1/C0椭圆比0.786，C1椭圆/圆却为1.060；单场不计算伪独立区间。完整正负结果见 `reports/champi_endpoint24_shape_v1/REPORT_CN.md`。
 
 本区锁定原39中心研究快照，顶部实时缓存继续独立更新；新研究椭圆没有冒充最新实时起报、官方风圈或6/12/24h联合区域。既有点误差、外部模型排序及所有旧实验均保留。原始区域、逐起报成熟证据、锁定配置与旧产物保护分别见 `regions.json`、`causality_trace.json`、`locked_config.json`、`protected_artifacts.json`。复现运行 `scripts/run_endpoint24_shapes.py` 和 `scripts/report_endpoint24_shapes.py`。
+
+## 26. 本研究算法实时窗口与前瞻核验
+
+公开网站新增 `algorithm-live.html`，从首页和CHAMPI导航进入。左图单独展示TabPFN CV-F2 Base、C0、C1真实路径、校正向量和所选Conformal位置区域；右图以相同地理范围对照CMA/BABJ机构预报及UCAR外部数值模式。默认24h，支持6/12/48/72h及80/90/95%边际区域。官方风级和预警继续在原实时报道页面；算法当前只预测位置。
+
+CMA公开地图通过CHAMPI/2630双重身份解析，保留原始UTC起报和lead。某时效没有机构预报时不外推补齐。严格同起报与各来源最新态势模式分别展示，后者不参加公平技能排名。
+
+新增 `verification` 前瞻账本：先封存未来预测，后续从已存在的公开Git提交确认；只有确认时间早于目标有效时刻者才合格。等待UCAR同有效时刻首见实况，固定首次参考位置，按storm/issue/lead/valid严格配对，保留修订版本但用最早合格版评分。n=0显示待实况，旧回顾结果不补记前瞻成绩。确认时间基于公开Git分支，不代表Pages精确上线时间。完整协议见 [ALGORITHM_LIVE_VERIFICATION_CN.md](ALGORITHM_LIVE_VERIFICATION_CN.md)。
+
+实时仍原样使用last100校准器的圆形输出；第25节历史六格椭圆未套用于新起报。锁定的 `motion-residual.json:external_common` 在独立回顾表逐值复用，保留残差修正退化和外部模式更优的原始结果。

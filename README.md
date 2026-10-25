@@ -70,3 +70,9 @@ python tools/check_public.py
 当前发布链：Mac本地TabPFN-3.5/C0/C1 → 校验后的公开JSON → live-data → GitHub Actions → Pages。Mac登录后台任务每轮完成后等待15分钟；相同B-deck内容保留原模型生成时间。live-data除两个公开JSON外，仅包含与main一致的公开部署工作流，使SSH数据提交可以自动触发部署。权重、原始历史数组和私钥继续留在本机。
 
 来源、52维F2输入、54/70维校正器、历史上下文和经验Conformal边界见[网站数据与推理页](https://qiuhan99.github.io/cyclone-tfm-live/champi-pipeline.html)及[详细说明](site/assets/docs/CHAMPI_REALTIME_DATA_PIPELINE_CN.md)。当前只适配CHAMPI；TabPFN只预测中心位置，官方强度和预警另有来源。
+
+## 本研究算法实时窗口
+
+[独立算法窗口](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html)展示Base/C0/C1、6/12/24h等时效的真实Conformal区域，并对照CMA/BABJ机构路径与外部数值模式。风级及预警报道保留于原CHAMPI页面。
+
+新预测先封存至公开Git分支；后续在目标到达前确认后，才有资格用首见UCAR实况进行同storm/issue/lead/valid配对评分。旧回顾实验单列，n=0不伪造误差或覆盖率。完整规则见[前瞻检验协议](site/assets/docs/ALGORITHM_LIVE_VERIFICATION_CN.md)。

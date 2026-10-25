@@ -20,12 +20,19 @@ class BranchTests(unittest.TestCase):
             git(repo,'fetch','origin','live-data')
             names=git(repo,'ls-tree','-r','--name-only','FETCH_HEAD').stdout.decode().splitlines()
             self.assertEqual(sorted(names),sorted([*original,'.github/workflows/model-update.yml']))
-            before=git(repo,'rev-parse','FETCH_HEAD').stdout
+            # The next transfer confirms pending records from the public branch.
+            subprocess.run(command+['save'],cwd=repo,check=True,capture_output=True)
+            git(repo,'fetch','origin','live-data');before=git(repo,'rev-parse','FETCH_HEAD').stdout
+            expected=json.loads((assets/'champi-operations.json').read_text())
+            self.assertIn('verification',expected)
             subprocess.run(command+['save'],cwd=repo,check=True,capture_output=True)
             git(repo,'fetch','origin','live-data');self.assertEqual(before,git(repo,'rev-parse','FETCH_HEAD').stdout)
             for n in original:(assets/n).write_text('{}')
             subprocess.run(command+['restore'],cwd=repo,check=True,capture_output=True)
-            for n,v in original.items():self.assertEqual(json.loads((assets/n).read_text()),v)
+            self.assertEqual(json.loads((assets/'champi-operations.json').read_text()),expected)
+            for key,value in original['champi-operations.json'].items():
+                if key!='verification':self.assertEqual(expected[key],value)
+            self.assertEqual(json.loads((assets/'champi-operations-health.json').read_text()),original['champi-operations-health.json'])
 
 
 if __name__=='__main__':unittest.main()

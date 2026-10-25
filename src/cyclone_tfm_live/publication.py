@@ -44,4 +44,9 @@ def merge_live(existing, candidate):
     for field in ('observations', 'track_source'):
         if field in observed:
             out[field] = copy.deepcopy(observed[field])
+    # Agency retrieval and the public verification ledger have their own clocks.
+    for field, clock in [('agency_forecasts', 'checked_at_utc'), ('verification', 'updated_at_utc')]:
+        choices = [p[field] for p in (existing, candidate) if field in p]
+        if choices:
+            out[field] = copy.deepcopy(max(choices, key=lambda v: stamp(v.get('last_attempt_at_utc',v.get(clock)) if field=='agency_forecasts' else v.get(clock))))
     return out

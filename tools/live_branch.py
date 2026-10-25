@@ -3,6 +3,7 @@ from pathlib import Path
 import subprocess,argparse,tempfile,json,sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
 from cyclone_tfm_live.publication import merge_live
+from cyclone_tfm_live.verification import advance
 FILES=['champi-operations.json','champi-operations-health.json']
 
 
@@ -25,9 +26,11 @@ def main():
         return
     # Separate temporary index/tree; never commit the checkout or private data.
     target=Path('site/assets/champi-operations.json');candidate=json.loads(target.read_text())
+    current={}
     if exists:
         current=json.loads(git('show','FETCH_HEAD:champi-operations.json').stdout)
         candidate=merge_live(current,candidate)
+    candidate['verification']=advance(current,candidate)
     target.write_text(json.dumps(candidate,ensure_ascii=False,indent=2,allow_nan=False))
     import os
     with tempfile.TemporaryDirectory() as temp:
