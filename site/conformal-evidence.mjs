@@ -34,7 +34,7 @@ function render(){
  $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(Math.max(0,f.level-r.coverage*100),2)} / ${fmt(Math.max(0,r.coverage*100-f.level),2)}</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r[reference==='f0'?'matched_area_ratio_vs_f0':'matched_area_ratio_vs_f2'],3)}×</td></tr>`).join(''):'<tr><td colspan="7">无共同成熟终点</td></tr>';
  $('#cp-cards').innerHTML=e?[
   ['Base → C1 实际覆盖',`${fmt(e.base*100)}% → ${fmt(e.c1*100)}%`,`名义${f.level}%；偏离目标的方向也需核对。`],
-  ['Base → C1 样本欠覆盖缺口',`${fmt(e.baseShortfall,2)} → ${fmt(e.c1Shortfall,2)} pp`,'高于目标不自动违反效度；仍需核对面积及覆盖率估计区间。'],
+  ['Base → C1 样本欠覆盖缺口',`${fmt(Math.max(0,f.level-e.base*100),2)} → ${fmt(Math.max(0,f.level-e.c1*100),2)} pp`,'高于目标不自动违反效度；仍需核对面积及覆盖率估计区间。'],
   ['C1 / Base 同覆盖面积',`${fmt(e.matchedAreaRatio,3)}×`,'事后统一覆盖诊断；小于1表示更紧致。'],
   ['C1 / Base 已发平均面积',`${fmt(e.issuedAreaRatio,3)}×`,'实际起报规则的面积代价，未用后验尺度替换。']
  ].map(([a,b,c])=>`<div><span>${a}</span><strong>${b}</strong><small>${c}</small></div>`).join(''):'';
