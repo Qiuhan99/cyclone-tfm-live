@@ -47,7 +47,7 @@
     },
     "champi.html": {
       "source_sha256": "fb78d7a0dc57ea11f2ca352984ce11600c9f3e646df493fa52fe8bd12dc48834",
-      "published_sha256": "a976a7f20ac7f8a79dcc2deaf25a739790b809cafc8f672be90ae13533677762"
+      "published_sha256": "ccdd37ccaca87b807f57bd3dd4e18909e3fc31b7de40a2461842f71d9641e8c2"
     },
     "original-replay.mjs": {
       "source_sha256": "abc12d5fa53bba6df878fa8af3ae45d64de5f02c02d292600aaabe07a458558d",
@@ -322,5 +322,6 @@
       "published_sha256": "28263da974df77636082044f3b563a11452a3fcaa81421125b335a8d870f4ee3"
     }
   },
-  "atlas_sha256": "29ca505d380ef2cb7040c791444d81013a3f6ad1444b3d39b9fac8c4444b1207"
+  "atlas_sha256": "29ca505d380ef2cb7040c791444d81013a3f6ad1444b3d39b9fac8c4444b1207",
+  "release_notes": "Runtime publisher, public data provenance page and race-safe model/public-data merge added 2026-10-25; original scientific caches unchanged."
 }

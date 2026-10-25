@@ -1,7 +1,7 @@
 name: Refresh public data and deploy Pages
 on:
   push:
-    branches: [main]
+    branches: [main, live-data]
   workflow_dispatch:
     inputs:
       repair_bot:
@@ -25,6 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
       - name: Import tested full portal release once
         shell: bash

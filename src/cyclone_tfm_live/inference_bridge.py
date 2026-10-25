@@ -7,6 +7,7 @@ from pathlib import Path
 from datetime import datetime,timezone
 import argparse,copy,hashlib,json,os,re,subprocess,time
 from .refresh import validate_tfm,atomic
+from .publication import merge_live
 
 
 def checked_payload(value):
@@ -45,25 +46,40 @@ def publish(payload,cache):
     repo=cache/'publisher.git';repo.mkdir(parents=True,exist_ok=True)
     env=dict(os.environ,GIT_TERMINAL_PROMPT='0')
     def git(*args,input=None,check=True):
-        return subprocess.run(['git','--git-dir',str(repo),*args],input=input,capture_output=True,env=env,check=check)
+        return subprocess.run(['git','--git-dir',str(repo),*args],input=input,capture_output=True,env=env,check=check,timeout=120)
     if not (repo/'HEAD').exists():git('init','--bare')
     remote=os.environ.get('CYCLONE_GIT_REMOTE','https://github.com/Qiuhan99/cyclone-tfm-live.git')
     if remote not in ['https://github.com/Qiuhan99/cyclone-tfm-live.git','ssh://git@ssh.github.com:443/Qiuhan99/cyclone-tfm-live.git']:
         raise ValueError('only the intended repository is allowed')
     if git('remote','get-url','origin',check=False).returncode:git('remote','add','origin',remote)
-    git('fetch','origin','live-data');parent=git('rev-parse','FETCH_HEAD').stdout.decode().strip()
-    # The branch contains ONLY the two public caches; preserve no private tree.
-    entries=[]
-    files={'champi-operations.json':payload,'champi-operations-health.json':dict(checked_at_utc=payload['last_checked_at_utc'],ok=True,model_transfer=True)}
-    for name,value in files.items():
-        content=json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False).encode()
-        oid=git('hash-object','-w','--stdin',input=content).stdout.decode().strip();entries.append(f'100644 blob {oid}\t{name}\n')
-    tree=git('mktree',input=''.join(entries).encode()).stdout.decode().strip()
-    if tree==git('rev-parse',parent+'^{tree}').stdout.decode().strip():return False
+    else:git('remote','set-url','origin',remote)
+    # Two public caches and the already-public main deployment workflow only.
+    # A data branch needs its own workflow file for a push to trigger Actions.
+    git('fetch','origin','main')
+    workflow=git('show','FETCH_HEAD:.github/workflows/pages.yml').stdout
+    workflow_blob=git('hash-object','-w','--stdin',input=workflow).stdout.decode().strip()
+    workflows_tree=git('mktree',input=f'100644 blob {workflow_blob}\tpages.yml\n'.encode()).stdout.decode().strip()
+    github_tree=git('mktree',input=f'040000 tree {workflows_tree}\tworkflows\n'.encode()).stdout.decode().strip()
     git('config','user.name','Qiuhan99');git('config','user.email','Qiuhan99@users.noreply.github.com')
-    commit=git('commit-tree',tree,'-p',parent,input=b'Publish actual private model inference; original times retained\n').stdout.decode().strip()
-    git('push','origin',commit+':refs/heads/live-data') # normal non-force push
-    return True
+    for attempt in range(3):
+        git('fetch','origin','live-data');parent=git('rev-parse','FETCH_HEAD').stdout.decode().strip()
+        previous=json.loads(git('show',parent+':champi-operations.json').stdout)
+        merged=merge_live(previous,payload)
+        entries=[f'040000 tree {github_tree}\t.github\n']
+        files={'champi-operations.json':merged,'champi-operations-health.json':dict(checked_at_utc=merged['last_checked_at_utc'],ok=all(s['ok'] for s in merged['fetch_status'].values()),model_transfer=True)}
+        for name,value in files.items():
+            content=json.dumps(value,ensure_ascii=False,indent=2,allow_nan=False).encode()
+            oid=git('hash-object','-w','--stdin',input=content).stdout.decode().strip();entries.append(f'100644 blob {oid}\t{name}\n')
+        tree=git('mktree',input=''.join(entries).encode()).stdout.decode().strip()
+        if tree==git('rev-parse',parent+'^{tree}').stdout.decode().strip():return False
+        commit=git('commit-tree',tree,'-p',parent,input=b'Publish actual private model inference; original times retained\n').stdout.decode().strip()
+        pushed=git('push','origin',commit+':refs/heads/live-data',check=False)
+        if pushed.returncode==0:
+            atomic(cache/'last-transfer.json',dict(commit=commit,model_origin=merged['model']['input_last_valid_utc'],model_generated_at_utc=merged['generated_at_utc'],completed_at_utc=datetime.now(timezone.utc).isoformat()))
+            return True
+        # Retry only concurrent branch updates; authentication errors fail promptly.
+        if b'rejected' not in pushed.stderr and b'cannot lock ref' not in pushed.stderr:raise RuntimeError('model upload failed; inspect Git/SSH access')
+    raise RuntimeError('live-data moved during three non-force upload attempts')
 
 
 def once(research,python,cache,*,infer=False,allow_publish=False):
@@ -71,6 +87,9 @@ def once(research,python,cache,*,infer=False,allow_publish=False):
     if infer:run_inference(research,python)
     path=research/'web/dist/assets/champi-operations.json'
     value=checked_payload(json.loads(path.read_text()))
+    if allow_publish:
+        value['publication']=dict(mode='mac_auto',transfer_prepared_at_utc=datetime.now(timezone.utc).isoformat(),poll_interval_seconds=900,
+                                  model_source='private local TabPFN-3.5 + frozen C0/C1; actual version times retained')
     output=cache/'ready/champi-operations.json';atomic(output,value)
     status=dict(checked_at_utc=datetime.now(timezone.utc).isoformat(),model_origin=value['model']['input_last_valid_utc'],
         model_generated_at_utc=value['generated_at_utc'],payload_sha256=hashlib.sha256(output.read_bytes()).hexdigest(),

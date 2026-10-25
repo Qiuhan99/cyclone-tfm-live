@@ -1,6 +1,8 @@
 """Keep public live JSON across ephemeral Actions runs without raw archives."""
 from pathlib import Path
-import subprocess,argparse,tempfile
+import subprocess,argparse,tempfile,json,sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'src'))
+from cyclone_tfm_live.publication import merge_live
 FILES=['champi-operations.json','champi-operations-health.json']
 
 
@@ -17,12 +19,16 @@ def main():
     if args.command=='restore':
         if not exists:return
         # Verify both JSON files before replacing either file.
-        import json
         data={n:git('show','FETCH_HEAD:'+n).stdout for n in FILES}
         for value in data.values():json.loads(value)
         for n,value in data.items():(Path('site/assets')/n).write_bytes(value)
         return
     # Separate temporary index/tree; never commit the checkout or private data.
+    target=Path('site/assets/champi-operations.json');candidate=json.loads(target.read_text())
+    if exists:
+        current=json.loads(git('show','FETCH_HEAD:champi-operations.json').stdout)
+        candidate=merge_live(current,candidate)
+    target.write_text(json.dumps(candidate,ensure_ascii=False,indent=2,allow_nan=False))
     import os
     with tempfile.TemporaryDirectory() as temp:
         env=dict(os.environ,GIT_INDEX_FILE=str(Path(temp)/'index'))
@@ -30,6 +36,9 @@ def main():
         for name in FILES:
             digest=git('hash-object','-w','site/assets/'+name).stdout.decode().strip()
             subprocess.run(['git','update-index','--add','--cacheinfo',f'100644,{digest},{name}'],env=env,check=True)
+        # Retain the public workflow so an SSH model update triggers Pages.
+        digest=git('hash-object','-w','.github/workflows/pages.yml').stdout.decode().strip()
+        subprocess.run(['git','update-index','--add','--cacheinfo',f'100644,{digest},.github/workflows/pages.yml'],env=env,check=True)
         tree=subprocess.check_output(['git','write-tree'],env=env).decode().strip()
     if exists and git('rev-parse','FETCH_HEAD^{tree}').stdout.decode().strip()==tree:return
     git('config','user.name','github-actions[bot]');git('config','user.email','41898282+github-actions[bot]@users.noreply.github.com')

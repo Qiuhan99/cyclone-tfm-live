@@ -64,3 +64,9 @@ python tools/check_public.py
 `PUBLIC_EXPORT.json`记录从既有网站复制的明确文件清单及原始摘要，发布副本仅脱敏机器路径和调整公网文案。历史研究数字未改写。公开版研究说明在`site/assets/docs/`；完整科研复现材料保留本地。
 
 当前数据适配器明确限定`WP292026 / CHAMPI`，没有自动识别全球所有活跃台风。多风暴配置是后续扩展，不伪造当前支持范围。
+
+## CHAMPI Mac实时推理与数据说明
+
+当前发布链：Mac本地TabPFN-3.5/C0/C1 → 校验后的公开JSON → live-data → GitHub Actions → Pages。Mac登录后台任务每轮完成后等待15分钟；相同B-deck内容保留原模型生成时间。live-data除两个公开JSON外，仅包含与main一致的公开部署工作流，使SSH数据提交可以自动触发部署。权重、原始历史数组和私钥继续留在本机。
+
+来源、52维F2输入、54/70维校正器、历史上下文和经验Conformal边界见[网站数据与推理页](https://qiuhan99.github.io/cyclone-tfm-live/champi-pipeline.html)及[详细说明](site/assets/docs/CHAMPI_REALTIME_DATA_PIPELINE_CN.md)。当前只适配CHAMPI；TabPFN只预测中心位置，官方强度和预警另有来源。

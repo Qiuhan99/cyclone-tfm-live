@@ -89,7 +89,7 @@ function renderLive(){
  $('#atlas-verdict').classList.toggle('loss',state.forecastStale);$('#atlas-verdict').textContent=`模型资料截止 ${time(L.model.input_last_valid_utc)}；实际生成 ${time(L.generated_at_utc)}。${state.forecastStale?'模型资料已过期，不能当成最新起报。':'以上为已记录的真实模型版本。'}不以新官方资料时间替换模型起报。`;
  $('#atlas-region-note').textContent='实时地图显示当前缓存中真实的+24h边际90%位置圆。这里没有把研究椭圆或风圈冒充新起报椭圆；历史研究区保留已校准椭圆对照。未来误差不提前评分。';
  $('#atlas-contract').textContent='TabPFN与C1按同一资料截止比较；外部模式保留各自原起报，不能据本图直接宣称公平技能排名。预警与登陆详情见CHAMPI页面。';
- $('#atlas-runtime').textContent=`公开源核验 ${time(L.last_checked_at_utc)}。${state.watcherStale?'后台核验心跳已过期。':''}${state.failedSources.length?'失败来源：'+state.failedSources.join('、')+'。':''}模型持续发布状态以版本时间为准。`;
+ $('#atlas-runtime').textContent=`公开源核验 ${time(L.last_checked_at_utc)}。${state.watcherStale?'后台核验心跳已过期。':''}${state.failedSources.length?'失败来源：'+state.failedSources.join('、')+'。':''}${L.publication?.mode==='mac_auto'?'本模型版本由Mac自动发布。':'当前版本尚未记录Mac自动发布。'}持续更新以版本时间为准。`;
 }
 function render(){if(!A)return;renderHistory();if(S.mode==='live')renderLive();renderMap(S.mode==='history'?historical():live());}
 async function loadLive(){try{const r=await fetch('assets/champi-operations.json',{cache:'no-store'});if(!r.ok)throw Error(r.status);const value=await r.json();if(!value.model?.paths)throw Error('missing real model paths');L=value;liveError='';}catch(e){liveError='实时来源读取失败：'+e.message+'；不生成替代路径。';}if(S.mode==='live')render();}
