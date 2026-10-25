@@ -4,9 +4,10 @@ const read=n=>JSON.parse(fs.readFileSync(new URL('../site/assets/'+n,import.meta
 const D=read('tsfm-conformal.json'),CV=read('tsfm-cv-sensitivity.json'),filters={phase:'test',lead_h:24,level:90,shape:'ellipse',calibrator:'Causal rolling',regime:'all'};
 test('coverage, area and MAE remain separate on exactly matched mature cohorts',()=>{
  const rows=metricRows(D,filters);assert.equal(rows.length,7);assert(rows.every(r=>r.n===169&&r.storms===27));
- const e=correctionEvidence(rows);assert(e.gapReduction<0);assert(e.matchedAreaRatio<1);assert(e.issuedAreaRatio>1);
+ const e=correctionEvidence(rows);assert(e.gapReduction<0);assert.equal(e.baseShortfall,0);assert.equal(e.c1Shortfall,0);assert(e.matchedAreaRatio<1);assert(e.issuedAreaRatio>1);
  assert.equal(metricRows(D,{...filters,phase:'champi',regime:'motion_change'}).length,0);
  assert.equal(primaryEvidence(D,{...filters,regime:'motion_change'}).length,0);assert.equal(primaryEvidence(D,filters).length,5);
+ const changed=correctionEvidence(metricRows(D,{...filters,regime:'motion_change'}));assert.equal(changed.baseShortfall,2.5);assert.equal(changed.c1Shortfall,0);
 });
 test('new benchmark preserves the complete original24h shape summaries',()=>{
  for(const old of read('endpoint24-shapes.json').summary){const rows=metricRows(D,{phase:old.phase,lead_h:24,level:old.level,shape:old.shape,calibrator:'Causal rolling',regime:'all'}),n=rows.find(r=>r.model_id===old.model_id);assert.equal(n.n,old.n);assert.equal(n.coverage,old.coverage);assert(Math.abs(n.mean_area_km2-old.mean_area_km2)<1e-7);}
@@ -17,7 +18,7 @@ for(const [page,view] of [['conformal-benchmark.html','full'],['algorithm-live.h
  const values={'#cp-phase':'test','#cp-lead':'24','#cp-level':'90','#cp-shape':'ellipse','#cp-calibrator':'Causal rolling','#cp-regime':'all','#cp-curve-method':'TabPFN CV-F2 + C1','#cp-preprocessing':'shared_cv','#cp-ratio-reference':'f0'};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s],dataset:{cpView:view},innerHTML:'',textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>url.endsWith('tsfm-cv-sensitivity.json')?CV:D});
- try{await import('../site/conformal-evidence.mjs?'+view);await new Promise(r=>setImmediate(r));assert(nodes.get('#cp-table').innerHTML.includes('94.7%'));assert(nodes.get('#cp-cards').innerHTML.includes('增加'));assert(nodes.get('#cp-intervals').textContent.includes('整台风95%区间'));
+ try{await import('../site/conformal-evidence.mjs?'+view);await new Promise(r=>setImmediate(r));assert(nodes.get('#cp-table').innerHTML.includes('94.7%'));assert(nodes.get('#cp-cards').innerHTML.includes('样本欠覆盖缺口'));assert(nodes.get('#cp-intervals').textContent.includes('整台风95%区间'));
   if(view==='full'){assert(nodes.get('#cp-frontier').innerHTML.includes('目标90%'));assert(nodes.get('#cp-model-status').innerHTML.includes('待接入'));assert(nodes.get('#cp-curve').innerHTML.includes('固定2019'));assert(nodes.get('#cp-table').innerHTML.includes('1.460×'));
    nodes.get('#cp-preprocessing').value='direct';nodes.get('#cp-preprocessing').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('2.006×'));assert(nodes.get('#cp-status').textContent.includes('直接ENU'));
    nodes.get('#cp-ratio-reference').value='f2';nodes.get('#cp-ratio-reference').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('1.683×'));

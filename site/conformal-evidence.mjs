@@ -31,10 +31,10 @@ function curve(f){
 function render(){
  if(!D)return;const f=filters(),rows=metricRows(D,f,!full),e=correctionEvidence(rows),reference=full?$('#cp-ratio-reference').value:'f2';if(full)$('#cp-ratio-heading').textContent='同覆盖面积比 / CV-'+(reference==='f0'?'F0 · 位置':'F2 · Base');
  $('#cp-status').textContent=rows.length?`${f.phase==='test'?'2024历史队列':'CHAMPI锁定研究快照'} · +${f.lead_h}h单终点${f.level}%边际区域 · ${f.shape==='ellipse'?'椭圆':'圆'} · ${f.calibrator==='Causal rolling'?'仅成熟标签因果滚动':'固定2019几何和秩阈值'} · 共同${rows[0].n}终点 / ${rows[0].storms}场。时序模型${D.protocol.preprocessing==='shared_6h_CV_offset'?'已对齐6h匀速残差变换':'直接ENU外推，原始对照'}。${f.regime!=='all'?'当前为过去运动状态代理分层，不是经证实的概念漂移标签。':''}`:'当前筛选没有共同成熟终点；不补零或生成成绩。';
- $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r[reference==='f0'?'matched_area_ratio_vs_f0':'matched_area_ratio_vs_f2'],3)}×</td></tr>`).join(''):'<tr><td colspan="6">无共同成熟终点</td></tr>';
+ $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(Math.max(0,f.level-r.coverage*100),2)} / ${fmt(Math.max(0,r.coverage*100-f.level),2)}</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r[reference==='f0'?'matched_area_ratio_vs_f0':'matched_area_ratio_vs_f2'],3)}×</td></tr>`).join(''):'<tr><td colspan="7">无共同成熟终点</td></tr>';
  $('#cp-cards').innerHTML=e?[
   ['Base → C1 实际覆盖',`${fmt(e.base*100)}% → ${fmt(e.c1*100)}%`,`名义${f.level}%；偏离目标的方向也需核对。`],
-  ['C1相对Base的绝对覆盖偏差',`${e.gapReduction>=0?'减少':'增加'} ${fmt(Math.abs(e.gapReduction),2)} pp`,'不将过覆盖自动判定为改善。'],
+  ['Base → C1 样本欠覆盖缺口',`${fmt(e.baseShortfall,2)} → ${fmt(e.c1Shortfall,2)} pp`,'高于目标不自动违反效度；仍需核对面积及覆盖率估计区间。'],
   ['C1 / Base 同覆盖面积',`${fmt(e.matchedAreaRatio,3)}×`,'事后统一覆盖诊断；小于1表示更紧致。'],
   ['C1 / Base 已发平均面积',`${fmt(e.issuedAreaRatio,3)}×`,'实际起报规则的面积代价，未用后验尺度替换。']
  ].map(([a,b,c])=>`<div><span>${a}</span><strong>${b}</strong><small>${c}</small></div>`).join(''):'';
