@@ -13,6 +13,10 @@ ROOT=Path(__file__).resolve().parents[1]
 class ForecastAnalysisTests(unittest.TestCase):
     def setUp(self):
         self.payload=json.loads((ROOT/'site/assets/champi-operations.json').read_text())
+        # Pages restores a changing live fixture before running this suite.
+        # Build the tested component-addition scenario from its TabPFN/NWP part.
+        self.payload['model']['paths']=[p for p in self.payload['model']['paths'] if p.get('model_family')!='tsfm']
+        self.payload['model'].pop('tsfm',None)
         self.reference=json.loads((ROOT/'site/assets/tsfm-live-reference.json').read_text())
     def test_shortest_spherical_distance_uses_segment_interior_and_guards_endpoints(self):
         a=np.array([unit_vector(0,0)]);b=np.array([unit_vector(0,10)])

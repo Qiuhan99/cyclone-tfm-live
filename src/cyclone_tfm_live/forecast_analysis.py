@@ -4,7 +4,6 @@ Position-region/coast intersections are geometric diagnostics, never landfall
 probabilities, wind footprints or official warnings.
 """
 import math
-from datetime import datetime,timezone
 import numpy as np
 from .geometry import unit_vector, to_lat_lon
 from .official import coastal_region
@@ -77,5 +76,8 @@ def build_analysis(payload,coast):
             nearest=geography.describe(crossing['lat_deg'],crossing['lon_deg'])['nearest_coast']
             crossings.append(dict(crossing,sector=nearest['sector'] if nearest else NAMES.get(crossing.get('region'),'Other coast')))
         paths.append(dict(model_id=path['model_id'],issue_time_utc=path['issue_time_utc'],generated_at_utc=path.get('generated_at_utc'),points=rows,coastal_crossings=crossings))
-    return dict(schema=1,computed_at_utc=datetime.now(timezone.utc).isoformat(),method='Shortest spherical distance to Natural Earth 1:50m coastal segments; approximate named sectors',
+    # A derived version clock must be stable for an identical public snapshot;
+    # a wall-clock timestamp would create a new Git commit on every no-op save.
+    clock=max([stamp(payload['last_checked_at_utc'])]+[stamp(p.get('generated_at_utc')) for p in payload['model']['paths']])
+    return dict(schema=1,as_of_utc=clock.isoformat(),method='Shortest spherical distance to Natural Earth 1:50m coastal segments; approximate named sectors',
                 interpretation='Endpoint position-region/coast overlap is not a landfall probability or a wind/rain impact forecast. Translation speed is not wind speed.',paths=paths)

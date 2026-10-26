@@ -35,7 +35,7 @@ The selection scope is visible. Matched areas are retrospective equal-coverage d
 
 ## Time-resolved geographic report
 
-Every forecast path is interpreted from its original coordinates. The regional table reports the valid UTC time, lead, forecast position, nearest named coastal sector and distance, original 90% position-region/coast intersections where available, and displacement from baseline on the same cutoff/lead. The analysis selector can show baseline, feedback, TSFM or numerical guidance. The frontend rejects an analysis row whose issue, valid time or coordinates do not match the displayed forecast.
+Every forecast path is interpreted from its original coordinates. The regional table reports the valid UTC time, lead, forecast position, nearest named coastal sector and distance, original 90% position-region/coast intersections where available, and displacement from baseline on the same cutoff/lead. The analysis selector can show baseline, feedback, TSFM or numerical guidance. The frontend rejects an analysis row whose issue, valid time or coordinates do not match the displayed forecast. The analysis version clock is derived from the latest source/model timestamp; an identical snapshot does not produce a new version on a no-op save.
 
 Coastal distances use minimum spherical distance to minor great-circle segments of the existing Natural Earth 1:50m coastline. Major islands are identified from their polygons; remaining coastal sectors use approximate regional boxes. This resolves overlaps such as western Shikoku versus Kyushu. Original model coordinates and original archived crossing labels remain preserved; new derived crossing labels use the nearest identified coastline. These sector names are not administrative impact boundaries.
 

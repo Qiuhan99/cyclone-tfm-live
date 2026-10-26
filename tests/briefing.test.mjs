@@ -5,7 +5,7 @@ import {correctionImpact,analysisRows} from '../site/briefing-engine.mjs';
 const read=n=>JSON.parse(fs.readFileSync(new URL('../site/assets/'+n,import.meta.url)));
 function fixture(){const data=read('champi-operations.json'),tsfm=read('tsfm-live-reference.json');data.model.paths=data.model.paths.filter(p=>p.model_family!=='tsfm').concat(tsfm.paths);data.model.tsfm={status:'completed',generated_at_utc:tsfm.generated_at_utc};data.forecast_analysis={paths:data.model.paths.map(p=>({model_id:p.model_id,issue_time_utc:p.issue_time_utc,points:p.points.map(q=>({...q,nearest_coast:{sector:'Test coastal sector',distance_km:25},centre_on_land:false,position_region_coastal_sectors:q.radius_90_km?[{sector:'Test coastal sector'}]:[]}))}))};return data;}
 test('source heartbeat, available observation and separate model computations cannot masquerade as a new fix',()=>{
- const data=fixture(),now=Date.parse('2026-10-26T07:00:00Z');data.last_checked_at_utc='2026-10-26T06:59:00Z';data.inference_refresh={reused_identical_bdeck:true};
+ const data=fixture(),now=Date.parse('2026-10-26T07:00:00Z');data.observations=[{valid_time_utc:'2026-10-26T00:00:00Z',lat_deg:31.4,lon_deg:129}];data.model.input_last_valid_utc='2026-10-26T00:00:00Z';data.last_checked_at_utc='2026-10-26T06:59:00Z';data.inference_refresh={reused_identical_bdeck:true};
  let p=pipelinePulse(data,now);assert.equal(p.state,'awaiting_source');assert.equal(p.latest,data.observations.at(-1).valid_time_utc);assert.equal(p.unchanged,true);assert.equal(p.next,'2026-10-26T06:00:00.000Z');
  data.observations.push({...data.observations.at(-1),valid_time_utc:'2026-10-26T06:00:00Z'});assert.equal(pipelinePulse(data,now).state,'inference_pending');data.last_checked_at_utc='2026-10-25T00:00:00Z';assert.equal(pipelinePulse(data,now).state,'delivery_overdue');
 });
@@ -13,7 +13,7 @@ test('live impacts preserve larger regions as well as smaller ones and analysis 
  const data=fixture(),impact=correctionImpact(data,24);assert(impact.shift>0);assert.equal(impact.base.radius_90_km,data.model.paths.find(p=>p.model_id===OWN[0]).points.find(p=>p.lead_h===24).radius_90_km);
  const f72=data.model.paths.find(p=>p.model_id===OWN[2]).points.find(p=>p.lead_h===72);f72.radius_90_km=data.model.paths.find(p=>p.model_id===OWN[0]).points.find(p=>p.lead_h===72).radius_90_km*1.2;const long=correctionImpact(data,72);assert(long.ratio>1);assert.equal(analysisRows(data,OWN[2],24).length,3);
  data.forecast_analysis.paths.find(p=>p.model_id===OWN[2]).issue_time_utc='2026-10-25T00:00:00Z';assert.equal(analysisRows(data,OWN[2],24).length,0);
- const matched=comparators(data,data.model.input_last_valid_utc,'matched');assert.equal(matched.filter(p=>p.model_family==='tsfm').length,3);assert(matched.filter(p=>p.model_family==='tsfm').every(p=>p.points.length===12));
+ const matched=comparators(data,read('tsfm-live-reference.json').issue_time_utc,'matched');assert.equal(matched.filter(p=>p.model_family==='tsfm').length,3);assert(matched.filter(p=>p.model_family==='tsfm').every(p=>p.points.length===12));
 });
 test('actual briefing renders true TSFM paths, independent clocks, selected historical benefits and model-specific geographic rows',async()=>{
  const data=fixture(),html=fs.readFileSync(new URL('../site/champi.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch,setInterval:globalThis.setInterval};

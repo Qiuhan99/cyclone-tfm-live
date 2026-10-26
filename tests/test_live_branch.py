@@ -31,7 +31,9 @@ class BranchTests(unittest.TestCase):
             subprocess.run(command+['restore'],cwd=repo,check=True,capture_output=True)
             self.assertEqual(json.loads((assets/'champi-operations.json').read_text()),expected)
             for key,value in original['champi-operations.json'].items():
-                if key!='verification':self.assertEqual(expected[key],value)
+                # Geography is a derived view and can be upgraded on restore;
+                # source data and all original forecast versions stay intact.
+                if key not in {'verification','forecast_analysis'}:self.assertEqual(expected[key],value)
             self.assertEqual(json.loads((assets/'champi-operations-health.json').read_text()),original['champi-operations-health.json'])
 
 
