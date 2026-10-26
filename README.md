@@ -1,5 +1,7 @@
 # CYCLONE TFM Live 
 
+[Research briefing](https://qiuhan99.github.io/cyclone-tfm-live/research-briefing.html) · [Matched guidance maps](https://qiuhan99.github.io/cyclone-tfm-live/conformal-benchmark.html#guidance-benchmark) · [Live forecast desk](https://qiuhan99.github.io/cyclone-tfm-live/champi.html)
+
 CHAMPI台风公开路径查看器，复用既有CYCLONE网站。展示官方中心/风级/预警、UCAR外部模式路径、真实TabPFN研究预测，以及24h圆/椭圆Conformal对照。
 
 本仓库仅包含网站、公开数据更新器与部署代码。
@@ -111,3 +113,9 @@ The site entry now opens the method showcase. Operational CHAMPI forecasting rem
 The live monitor now shows both original conformal regions, an endpoint detail, explicit per-method verification and matched-cycle feedback comparisons. Results and Live monitor expose the completed Chronos/Moirai common-cohort experiments. See [map and comparison definitions](site/assets/docs/CONFORMAL_MAP_AND_MODEL_COMPARISON.md).
 
 The CHAMPI forecast desk adds real local Chronos/Moirai 72-hour paths, independent observation/computation clocks, paired correction evidence and time-resolved coastal analysis. See [live forecast desk protocol](site/assets/docs/LIVE_FORECAST_DESK_V1.md). Inference remains on the existing private Mac runner; public hosting receives validated forecasts only.
+
+## Academic demonstration and matched track replay
+
+The research briefing explains vector residual conditioning, conformal calibration, evidence scope and a guided demonstration route. The guidance benchmark now includes original matched-cycle paths for baseline, feedback, CMC, UKM and NGX; subsequent observed truth; an independent endpoint inset; and cycle-specific errors alongside the original aggregate table. Model layers, issue cycles, horizons and original marginal regions are selectable. This is a retrospective replay, separate from live verification.
+
+Run `python3 tools/build_guidance_paths.py` to reproduce the compact map export from existing public archives. It reconstructs the original candidate intersection and all 65 aggregate errors before writing, and records source hashes. No private context, model weights or new inference is needed to build this display artifact.

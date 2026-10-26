@@ -70,3 +70,12 @@ Validate with:
     python tools/check_public.py
 
 Original sources: [live forecast and ledger](../champi-operations.json), [shared-CV experiments](../tsfm-cv-sensitivity.json), [direct ENU experiments](../tsfm-conformal.json), [selected historical export](../feedback-showcase.json), [full benchmark](../../conformal-benchmark.html).
+
+
+## Matched-cycle map replay and research briefing
+
+The guidance benchmark now includes a map on the benchmark, Results and home pages. Its issue selector contains only the exact original scored intersection for the chosen lead. The main map shows the original Base / feedback / CMC / UKM / NGX paths, the subsequent archived observed track, and optionally the research models' original 90% marginal circles. A separate endpoint view uses an explicitly independent extent; model coordinates are never displaced. The selected-cycle errors are separate from the all-cycle MAE table. Native intermediate path points are retained; connecting lines do not add forecast outputs.
+
+`guidance-paths.json` is a compact derived export from the existing public `champi-2026.json` and `motion-residual.json`. Build it with `python3 tools/build_guidance_paths.py`. The exporter rebuilds the original intersection across all 13 candidates, including archived ablations, and reconstructs all 65 aggregate errors to 1e-6 km before writing. The export records both source SHA256 values. No model inference, calibration or original scientific array is changed.
+
+`research-briefing.html` provides the academic presentation route: formulation, selected illustrations, complete foundation-model cohort, matched cyclone guidance, then prospective verification. It distinguishes mature historical residuals from a target's unknown error, equal nominal targets from equal realized coverage, and retrospective matched area from issued regions. Primary references are provided separately from project evidence.
