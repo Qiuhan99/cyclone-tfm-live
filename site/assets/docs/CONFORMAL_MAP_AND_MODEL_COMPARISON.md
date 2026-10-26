@@ -54,6 +54,12 @@ The feedback method has lower point error than these three tested time-series mo
 
 ## Reproduction and preservation
 
+### Restored cyclone-guidance benchmark
+
+The complete benchmark, Results page and public home now also expose the original CHAMPI comparison with ATCF:CMC, ATCF:UKM and ATCF:NGX, alongside CV-F2 baseline and complete vector residual feedback. This table reads `motion-residual.json` → `external_common`, preserving its original point errors. The exporter intersected issue/valid-time keys across all archived candidates before aggregating; it did not compare separate unmatched cohorts. Leads +6/+12/+24/+48/+72h have 10/10/9/8/8 common pairs, respectively, from one storm. These are fixed-origin retrospective results, not prospective live scores or the 2024 TSFM cohort.
+
+The numerical aid IDs are retained without assuming NGX is GFS or any product is IFS/AIFS. Comparable conformal regions are absent for these archived guidance products; only endpoint position MAE is reported. Their official wind radii are not substituted for position uncertainty. CMA and subsequently published guidance remain in the distinct live verification ledger. The existing TSFM/conformal controls and all original result files remain unchanged.
+
 No inference, correction, calibration, raw forecast, verification eligibility or experiment selection rule was changed. Existing scientific JSON files are preserved; the static site manifest is regenerated. Model inference still runs through the existing private Mac workflow. Publication uses the previously authorized GitHub Pages repository and keeps the live-data branch restore/refresh process intact.
 
 Validate with:
