@@ -11,6 +11,11 @@ export function comparators(data,issue,mode='matched'){
 }
 export function boundary(q,level){const r=q?.[`radius_${level}_km`];return Number.isFinite(r)&&r>=0?Array.from({length:97},(_,i)=>sphereExp([q.lat_deg,q.lon_deg],r*Math.cos(i*Math.PI/48),r*Math.sin(i*Math.PI/48))):[];}
 export function area(radius){return Number.isFinite(radius)&&radius>=0?4*Math.PI*RADIUS_KM**2*Math.sin(Math.min(Math.PI,radius/RADIUS_KM)/2)**2:null;}
+export function forecastRegions(paths,hours,level,mode='both'){
+ return paths.filter(p=>PUBLIC_OWN.includes(p.model_id)&&(mode==='both'||mode===p.model_id)).flatMap(p=>{
+  const q=point(p,hours),points=boundary(q,level);return points.length?[{model_id:p.model_id,point:q,points,area:area(q[`radius_${level}_km`])}]:[];
+ });
+}
 // Keep the earliest eligible published version for each model/issue/lead. Later
 // revisions stay in the downloadable ledger but cannot replace its first score.
 export function verified(ledger,hours,now=Date.now()){
@@ -22,6 +27,10 @@ export function verified(ledger,hours,now=Date.now()){
   return [{...r,truth:t,error:distance([r.lat_deg,r.lon_deg],[t.lat_deg,t.lon_deg])}];});
 }
 const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+export function modelScores(ledger,models,hours,level,now=Date.now()){
+ const values=verified(ledger,hours,now);
+ return models.map(model_id=>{const rows=values.filter(r=>r.model_id===model_id),regions=rows.filter(r=>Number.isFinite(r[`radius_${level}_km`]));return {model_id,n:rows.length,mae:mean(rows.map(r=>r.error)),regionN:regions.length,coverage:mean(regions.map(r=>+(r.error<=r[`radius_${level}_km`]))),area:mean(regions.map(r=>area(r[`radius_${level}_km`])))};});
+}
 export function pairedScore(ledger,method,other,hours,level,now=Date.now()){
  const values=verified(ledger,hours,now),key=r=>[r.storm_id,r.issue_time_utc,r.lead_h,r.valid_time_utc].join('|'),b=new Map(values.filter(r=>r.model_id===other).map(r=>[key(r),r]));
  const pairs=values.filter(r=>r.model_id===method&&b.has(key(r))).map(r=>[r,b.get(key(r))]);

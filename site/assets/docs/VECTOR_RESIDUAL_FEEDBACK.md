@@ -44,7 +44,7 @@ All 44 eligible origins in those four storms contribute to the aggregate, includ
 
 Each area comparison retrospectively rescales both arms to 40/44 covered endpoints (90.91%). Matched areas are diagnostic quantities, not issued forecast regions. Original coverage counts remain visible on the Results page. Under the original issued thresholds, the mean areas can be larger for the corrected forecasts; the complete values remain in the source JSON. These comparisons do not establish that every issued region is smaller or that point improvement guarantees conformal improvement.
 
-The Results map uses actual frozen paths, observed truth and, when selected, the original 90% joint-path region projections. It does not draw posthoc matched areas as if they were issued. The plotted joint-path projections and the separately calibrated two-dimensional endpoint area table have distinct definitions.
+The Results map uses actual frozen paths, observed truth and, by default, both original 90% joint-path region projections. It does not draw posthoc matched areas as if they were issued. The plotted joint-path projections and the separately calibrated two-dimensional endpoint area table have distinct definitions.
 
 ## Publication design
 
@@ -59,3 +59,6 @@ The Results map uses actual frozen paths, observed truth and, when selected, the
 The page reads a compact `feedback-showcase.json` export of the previously selected four storms. The export retains source hashes for `selected-cases.json`, `endpoint24-selected.json` and `research-atlas.json`; the complete original files remain accessible. Reproduce the export with `python tools/build_feedback_showcase.py`. The renderer recomputes the 44-origin average and checks it against the frozen selection summary; it validates common coverage and area ratios before displaying any result. All original public scientific JSON hashes are checked unchanged. The complete research logs and private model inputs remain local.
 
 Source links: [case selection and all candidates](../selected-cases.json), [endpoint area evidence](../endpoint24-selected.json), [archived forecast paths](../research-atlas.json), [full model evaluation](../../conformal-benchmark.html), [research archive](../../research.html).
+
+
+The paired live-map presentation and completed Chronos/Moirai experiment comparison are documented in [Map and comparison definitions](CONFORMAL_MAP_AND_MODEL_COMPARISON.md).

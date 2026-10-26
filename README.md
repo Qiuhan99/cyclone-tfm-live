@@ -107,3 +107,5 @@ The public method is **TabPFN + Vector Residual Feedback**. The correction-only 
 Regenerate the compact, source-hashed display bundle with `python tools/build_feedback_showcase.py`. See [method and evidence scope](site/assets/docs/VECTOR_RESIDUAL_FEEDBACK.md). All original numerical archives and internal model IDs are preserved.
 
 The site entry now opens the method showcase. Operational CHAMPI forecasting remains at [Live monitor](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html).
+
+The live monitor now shows both original conformal regions, an endpoint detail, explicit per-method verification and matched-cycle feedback comparisons. Results and Live monitor expose the completed Chronos/Moirai common-cohort experiments. See [map and comparison definitions](site/assets/docs/CONFORMAL_MAP_AND_MODEL_COMPARISON.md).
