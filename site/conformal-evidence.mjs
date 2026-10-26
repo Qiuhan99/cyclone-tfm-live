@@ -1,4 +1,4 @@
-import {REFERENCES,NAMES,ORDER,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=terminal1';
+import {REFERENCES,NAMES,ORDER,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=vector1';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 const COLORS=['#e1ae78','#d6bc95','#b69ee0','#8bdec4','#83b6df','#e09fac','#bac37f'];
 let D;const SETS={};const full=$('#cp-evidence').dataset.cpView==='full';
@@ -33,10 +33,10 @@ function render(){
  $('#cp-status').textContent=rows.length?`${f.phase==='test'?'2024 historical cohort':'CHAMPI locked snapshot'} · +${f.lead_h}h endpoint · ${f.level}% marginal region · ${f.shape==='ellipse'?'ellipse':'circle'} · ${f.calibrator==='Causal rolling'?'causal rolling · mature labels only':'frozen 2019 geometry and threshold'} · ${rows[0].n} common endpoints / ${rows[0].storms} storms. TSFM: ${D.protocol.preprocessing==='shared_6h_CV_offset'?'shared 6h CV-residual target':'direct ENU, original baseline'}. ${f.regime!=='all'?' Motion proxy stratum; not a confirmed concept-drift label.':''}`:'No common mature endpoint for this selection.';
  $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(Math.max(0,f.level-r.coverage*100),2)} / ${fmt(Math.max(0,r.coverage*100-f.level),2)}</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r[reference==='f0'?'matched_area_ratio_vs_f0':'matched_area_ratio_vs_f2'],3)}×</td></tr>`).join(''):'<tr><td colspan="7">No common mature endpoints</td></tr>';
  $('#cp-cards').innerHTML=e?[
-  ['Base → C1 coverage',`${fmt(e.base*100)}% → ${fmt(e.c1*100)}%`,`${f.level}% nominal target. Read the direction of the gap.`],
-  ['Base → C1 shortfall',`${fmt(Math.max(0,f.level-e.base*100),2)} → ${fmt(Math.max(0,f.level-e.c1*100),2)} pp`,'Read with area and coverage-estimation intervals.'],
-  ['C1 / Base matched area',`${fmt(e.matchedAreaRatio,3)}×`,'Retrospective equal-coverage diagnostic; below 1 is smaller.'],
-  ['C1 / Base issued area',`${fmt(e.issuedAreaRatio,3)}×`,'Area under the frozen issue-time rule.']
+  ['Baseline → feedback coverage',`${fmt(e.base*100)}% → ${fmt(e.c1*100)}%`,`${f.level}% nominal target. Read the direction of the gap.`],
+  ['Baseline → feedback shortfall',`${fmt(Math.max(0,f.level-e.base*100),2)} → ${fmt(Math.max(0,f.level-e.c1*100),2)} pp`,'Read with area and coverage-estimation intervals.'],
+  ['Feedback / baseline matched area',`${fmt(e.matchedAreaRatio,3)}×`,'Retrospective equal-coverage diagnostic; below 1 is smaller.'],
+  ['Feedback / baseline issued area',`${fmt(e.issuedAreaRatio,3)}×`,'Area under the frozen issue-time rule.']
  ].map(([a,b,c])=>`<div><span>${a}</span><strong>${b}</strong><small>${c}</small></div>`).join(''):'';
  const comparisons=primaryEvidence(D,f);$('#cp-intervals').textContent=comparisons.length?(full?comparisons:comparisons.filter(r=>r.candidate===REFERENCES[3])).map(r=>`${name(r.candidate)} / ${name(r.base)} matched-area ratio ${fmt(r.matched_area_ratio,3)}; whole-storm 95% interval [${r.ratio_ci95.map(v=>fmt(v,3)).join(', ')}]. `).join('\n')+'\n500 paired whole-storm bootstrap replicates, rematching each time. An interval crossing 1 leaves the direction unresolved. Short contexts, label budgets and exploratory comparisons limit inference.':'No paired interval was computed for this selection. Overlapping origins from the single CHAMPI storm do not supply independent storm replicates.';
  if(full){$('#cp-point-errors').innerHTML=rows.map(r=>`${esc(name(r.model_id))}: ${fmt(r.mae_km,2)} km (n=${r.n})`).join('<br>');frontier(rows,f);curve(f);}

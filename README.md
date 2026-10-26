@@ -87,7 +87,7 @@ C1流程与覆盖估计补充见[独立审计](site/assets/docs/C1_PIPELINE_AUDI
 
 ## English operations terminal · 26 October 2026
 
-Open [Storm monitor](https://qiuhan99.github.io/cyclone-tfm-live/) for actual CHAMPI forecasts, official advisory state and prospective verification. The default verification lead is independent of the map lead and selects an already scoreable horizon. A 24-hour forecast remains pending until its target and source truth arrive.
+Open [Live monitor](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html) for actual CHAMPI forecasts, official advisory state and prospective verification. The default verification lead is independent of the map lead and selects an already scoreable horizon. A 24-hour forecast remains pending until its target and source truth arrive.
 
 - [Storm briefing](https://qiuhan99.github.io/cyclone-tfm-live/champi.html): last CMA analysis, warning cancellation, source clocks and coastal crossing diagnostics.
 - [Model evaluation](https://qiuhan99.github.io/cyclone-tfm-live/conformal-benchmark.html): coverage, shortfall, excess, area and foundation-model comparisons.
@@ -99,3 +99,11 @@ CV means **constant velocity**, not cross-validation. Absolute **coverage** gap 
 The supported live case is CHAMPI. Global active-storm discovery and position-to-intensity prediction are not implemented. Checks do not imply new source observations; source retrieval, model generation and target time remain separate clocks.
 
 See [operations audit and reproduction](site/assets/docs/OPERATIONS_TERMINAL_V1.md).
+
+## Vector residual-feedback presentation
+
+The public method is **TabPFN + Vector Residual Feedback**. The correction-only variant remains an archived ablation. [Selected research results](https://qiuhan99.github.io/cyclone-tfm-live/results.html) present the previously declared four-storm illustrations; selection and the distinction between issued and coverage-matched regions are stated on the page. Live verification is separate and is not filtered to wins.
+
+Regenerate the compact, source-hashed display bundle with `python tools/build_feedback_showcase.py`. See [method and evidence scope](site/assets/docs/VECTOR_RESIDUAL_FEEDBACK.md). All original numerical archives and internal model IDs are preserved.
+
+The site entry now opens the method showcase. Operational CHAMPI forecasting remains at [Live monitor](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html).

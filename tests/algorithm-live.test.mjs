@@ -24,10 +24,10 @@ test('algorithm window renders real paths and changes lead, level, model and lat
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s]??'',innerHTML:'',textContent:'',classList:{toggle(){},add(){}},listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>{const d=JSON.parse(fs.readFileSync(new URL('../site/'+url,import.meta.url)));if(url.endsWith('champi-operations.json'))d.verification={records:[],truths:{}};return d;}});globalThis.setInterval=()=>0;
  try{await import('../site/algorithm-live.mjs?integration');await new Promise(r=>setImmediate(r));
-  assert(nodes.get('#algo-own-map').innerHTML.includes('conformal'));assert(nodes.get('#algo-retro').innerHTML.includes('119.82'));assert(nodes.get('#algo-forward').innerHTML.includes('No eligible forecast'));
+  assert(nodes.get('#algo-own-map').innerHTML.includes('conformal'));assert(nodes.get('#algo-retro').innerHTML.includes('131.94'));assert(!nodes.get('#algo-retro').innerHTML.includes('119.82'));assert(nodes.get('#algo-forward').innerHTML.includes('No eligible forecast'));assert(!nodes.get('#algo-forward').innerHTML.includes('Correction-only ablation'));assert(!nodes.get('#algo-own-map').innerHTML.includes('C0'));assert(!html.match(/<option value="TabPFN CV-F2 \+ C0"/));
   const old=nodes.get('#algo-radius').textContent;nodes.get('#algo-level').value='80';nodes.get('#algo-level').listeners.change();assert.notEqual(nodes.get('#algo-radius').textContent,old);
   nodes.get('#algo-lead').value='6';nodes.get('#algo-lead').listeners.change();assert(nodes.get('#algo-target-time').textContent.includes('+6h'));
-  nodes.get('#algo-method').value=OWN[1];nodes.get('#algo-method').listeners.change();assert(nodes.get('#algo-own-clock').textContent.includes('C0'));
+  nodes.get('#algo-method').value=OWN[0];nodes.get('#algo-method').listeners.change();assert(nodes.get('#algo-own-clock').textContent.includes('baseline'));
   nodes.get('#algo-verify-lead').value='6';nodes.get('#algo-verify-lead').listeners.change();assert(nodes.get('#algo-verification-status').textContent.includes('+6h'));
   nodes.get('#algo-pairing').value='latest';nodes.get('#algo-pairing').listeners.change();assert(nodes.get('#algo-other-note').textContent.includes('not a matched skill ranking'));
  }finally{Object.assign(globalThis,saved);}
