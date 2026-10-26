@@ -1,10 +1,12 @@
+import './release-watch.mjs?v=verify2';
 import {distance,wrap,mercator} from './engine.mjs';
 import {OWN,PUBLIC_OWN,LABELS,point,area,comparators,pairedScore,verified,verificationState,defaultVerificationLead,forecastRegions,modelScores} from './algorithm-engine.mjs?v=direct1';
 import {operationalState} from './operations-engine.mjs?v=terminal1';
+import {historicalRows,historicalScores,historicalPair,evaluationMode} from './verification-view-engine.mjs?v=verify2';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 const time=t=>Number.isFinite(Date.parse(t))?new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t))+' UTC':'Not reported';
 const colors=['#f2ac63','#62ddc0'],otherColors=['#f4ce7b','#91b9df','#d990a3','#a7a5eb','#83c7ef','#d98fd7','#b7c779'];
-let D,G,B,busy=false,error='',view={zoom:1,dx:0,dy:0};
+let D,G,B,H,busy=false,error='',view={zoom:1,dx:0,dy:0};
 const ll=q=>[q.lat_deg,q.lon_deg],method=()=>$('#algo-method').value,hours=()=>+$('#algo-lead').value,level=()=>+$('#algo-level').value;
 const route=p=>[...(p.anchor?[ll(p.anchor)]:[]),...p.points.filter(q=>q.lead_h<=hours()).map(ll)];
 function maps(own,external,selected){
@@ -41,18 +43,40 @@ function maps(own,external,selected){
 }
 function truthState(selected,h){const truth=verified(D.verification,h).find(r=>r.model_id===selected.model_id&&r.issue_time_utc===selected.issue_time_utc);return truth?'This issue has verified truth; consult the score table.':'This issue is not yet verified; a better forecast cannot be identified before truth arrives.';}
 const average=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null;
+function lockedComparison(){
+ const ids=new Set(['ATCF:CMC','ATCF:UKM','ATCF:NGX',...PUBLIC_OWN]);
+ $('#algo-retro').innerHTML=(B.external_common??[]).filter(r=>r.lead_h===hours()&&ids.has(r.model_id)).map(r=>`<tr class="${OWN.includes(r.model_id)?'our-row':''}"><td>${esc(LABELS[r.model_id]??r.model_id)}</td><td>${r.n}</td><td>${fmt(r.mean_error_km,2)}</td></tr>`).join('')||'<tr><td colspan="3">No original common cohort at this lead.</td></tr>';
+}
+function historicalVerification(h){
+ const rows=historicalRows(H,h),models=[...new Set(rows.map(r=>r.model_id))],pair=historicalPair(H,OWN[1],OWN[0],h);
+ const pending=verificationState(D.verification,OWN[1],h),kind=h<=24?'endpoint ellipses · geometry128 / score256':'endpoint circles · last100 mature errors';
+ $('#verification-title').textContent='Forecast verification · completed hindcast';
+ $('#algo-ledger-note').textContent=`Historical CHAMPI replay with revised truth. All forecasts use issue-time features and mature residuals. These scored samples are separate from forecasts published before their targets.`;
+ $('#algo-verification-status').textContent=`Completed hindcast · +${h}h · ${pair.n} paired baseline / feedback cases. Public ledger: ${pending.scored} scored${pending.awaitingTarget?' · '+pending.awaitingTarget+' awaiting target':''}${pending.awaitingTruth?' · '+pending.awaitingTruth+' awaiting source truth':''}${pending.nextValid?' · next target '+time(pending.nextValid):''}.`;
+ $('#algo-verify-method').textContent=`Reference: Vector residual feedback · ${level()}% ${kind}. Historical evaluation; not a prospective score.`;
+ $('#algo-verification-methods').innerHTML=historicalScores(H,models,h,level()).map(r=>`<tr class="${r.model_id===OWN[1]?'feedback-row':''}"><td>${esc(LABELS[r.model_id]??r.model_id)}</td><td>${r.n}</td><td>${fmt(r.mae)}</td><td>${r.regionN?fmt(r.coverage*100)+'% ('+r.regionN+') / '+level()+'%':'Not supplied'}</td><td>${fmt(r.area,0)}</td></tr>`).join('');
+ $('#algo-score-note').textContent='Historical scores have method-specific sample counts. The paired table below uses the exact same storm, issue, lead, valid time and truth for both forecasts. CMA / BABJ has no exact-origin archive in this snapshot.';
+ $('#algo-pair-title').textContent='Residual feedback versus each comparator · historical matched cycles';
+ $('#algo-forward').innerHTML=models.filter(id=>id!==OWN[1]).map(id=>{const v=historicalPair(H,OWN[1],id,h);return v.n?`<tr><td>Vector residual feedback<br><small>vs ${esc(LABELS[id]??id)}</small></td><td>${v.n}</td><td>${fmt(v.own)} / ${fmt(v.other)}</td><td>${v.wins} / ${v.n}</td></tr>`:'';}).join('');
+ $('#algo-all-leads').innerHTML=[6,12,24,48,72].map(lead=>{const v=historicalPair(H,OWN[1],OWN[0],lead);return `<tr><td>+${lead}h</td><td>${v.n}</td><td>${fmt(v.other,2)}</td><td>${fmt(v.own,2)}</td><td>Completed hindcast · revised truth</td></tr>`;}).join('');
+}
 function verification(){
  const ledger=D.verification,selectedLead=$('#algo-verify-lead').value,h=selectedLead==='auto'?defaultVerificationLead(ledger,OWN[1]):+selectedLead;
+ lockedComparison();
+ if(H&&evaluationMode($('#algo-evaluation-mode').value,ledger,h)==='hindcast'){historicalVerification(h);return;}
+ $('#verification-title').textContent='Forecast verification · public ledger';
+ $('#algo-score-note').textContent='Prospective scores require public confirmation before the target and a subsequently retrieved truth. Missing cases are not zero-error forecasts. Completed historical results are available in the evaluation selector.';
+ $('#algo-pair-title').textContent='Residual feedback versus each comparator · public matched cycles';
  const ownState=verificationState(ledger,OWN[1],h),models=new Set(['CMA / BABJ',...D.model.paths.map(p=>p.model_id),...(ledger?.records??[]).map(r=>r.model_id)]);models.delete(OWN[1]);for(const id of [...models])if(id.startsWith('TabPFN')&&!PUBLIC_OWN.includes(id))models.delete(id);
  $('#algo-ledger-note').textContent=ledger?`Protocol started ${time(ledger.started_at_utc)} · ${ledger.records.length} forecast versions retained · ${ledger.records.filter(r=>r.eligible).length} confirmed before target. Verification lead +${h}h is independent of the map lead.`:'Waiting for the first public forecast ledger. Historical forecasts cannot be backfilled as prospective.';
  $('#algo-verification-status').textContent=`+${h}h · ${ownState.scored} verified · ${ownState.awaitingTarget} awaiting target · ${ownState.awaitingTruth} awaiting a source fix${ownState.nextValid?' · next target '+time(ownState.nextValid):''}.`;
  $('#algo-verify-method').textContent=`Reference: Vector residual feedback · +${h}h · ${level()}% conformal target`;
  const modelIds=[...PUBLIC_OWN,...[...models].filter(id=>!PUBLIC_OWN.includes(id))];
  $('#algo-verification-methods').innerHTML=modelScores(ledger,modelIds,h,level()).map(r=>`<tr class="${r.model_id===OWN[1]?'feedback-row':''}"><td>${esc(LABELS[r.model_id]??r.model_id)}</td><td>${r.n}</td><td>${fmt(r.mae)}</td><td>${r.regionN?fmt(r.coverage*100)+'% ('+r.regionN+') / '+level()+'%':PUBLIC_OWN.includes(r.model_id)?'— (no verified region)':'Not supplied'}</td><td>${fmt(r.area,0)}</td></tr>`).join('');
- $('#algo-forward').innerHTML=[...models].map(id=>{const v=pairedScore(ledger,OWN[1],id,h,level()),status=v.n?`${v.wins} / ${v.n}`:ownState.scored?'No eligible common cycle':ownState.awaitingTruth?'Awaiting source fix':ownState.awaitingTarget?'Target not reached':'No eligible forecast';return `<tr><td>Vector residual feedback<br><small>vs ${esc(LABELS[id]??id)}</small></td><td>${v.n}</td><td>${fmt(v.own)} / ${fmt(v.other)}</td><td>${status}</td></tr>`;}).join('');
+ const paired=[...models].map(id=>({id,v:pairedScore(ledger,OWN[1],id,h,level())})).filter(r=>r.v.n);
+ const wait=ownState.awaitingTruth?'Awaiting the source observation for the reached target.':ownState.awaitingTarget?`Target not reached. Next target ${time(ownState.nextValid)}.`:'No eligible forecast was published before this target.';
+ $('#algo-forward').innerHTML=paired.length?paired.map(({id,v})=>`<tr><td>Vector residual feedback<br><small>vs ${esc(LABELS[id]??id)}</small></td><td>${v.n}</td><td>${fmt(v.own)} / ${fmt(v.other)}</td><td>${v.wins} / ${v.n}</td></tr>`).join(''):`<tr><td colspan="4" class="verification-empty">No scored public pair at +${h}h. ${esc(wait)} Choose “Completed CHAMPI hindcast” to inspect existing scored comparisons.</td></tr>`;
  $('#algo-all-leads').innerHTML=[6,12,24,48,72].map(lead=>{const values=verified(ledger,lead),rows=PUBLIC_OWN.map(id=>values.filter(r=>r.model_id===id)),state=verificationState(ledger,method(),lead);return `<tr><td>+${lead}h</td><td>${rows[PUBLIC_OWN.indexOf(method())].length}</td>${rows.map(a=>`<td>${fmt(average(a.map(r=>r.error)),2)}</td>`).join('')}<td>${state.nextValid?time(state.nextValid):state.awaitingTruth?'Awaiting source fix':state.scored?'Verified':'No eligible forecast'}</td></tr>`;}).join('');
- const ids=new Set(['ATCF:CMC','ATCF:UKM','ATCF:NGX',...PUBLIC_OWN]);
- $('#algo-retro').innerHTML=(B.external_common??[]).filter(r=>r.lead_h===hours()&&ids.has(r.model_id)).map(r=>`<tr class="${OWN.includes(r.model_id)?'our-row':''}"><td>${esc(LABELS[r.model_id]??r.model_id)}</td><td>${r.n}</td><td>${fmt(r.mean_error_km,2)}</td></tr>`).join('')||'<tr><td colspan="3">No original common cohort at this lead.</td></tr>';
 }
 function render(){
  if(!D||!G||!B)return;
@@ -73,10 +97,10 @@ function render(){
 }
 async function load(){if(busy)return;busy=true;$('#algo-refresh').disabled=true;try{
  const fetchJSON=async url=>{const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error(url+' '+r.status);return r.json();};
- const [d,g,b]=await Promise.all([fetchJSON('assets/champi-operations.json'),G??fetchJSON('assets/coastline.json'),B??fetchJSON('assets/direct-guidance.json')]);
- if(!PUBLIC_OWN.every(id=>d.model?.paths.some(p=>p.model_id===id)))throw Error('Research forecast unavailable');D=d;G=g;B=b;error='';render();
+ const [d,g,b,h]=await Promise.all([fetchJSON('assets/champi-operations.json'),G??fetchJSON('assets/coastline.json'),B??fetchJSON('assets/direct-guidance.json'),H??fetchJSON('assets/direct-hindcast-verification.json').catch(()=>null)]);
+ if(!PUBLIC_OWN.every(id=>d.model?.paths.some(p=>p.model_id===id)))throw Error('Research forecast unavailable');D=d;G=g;B=b;H=h;error='';render();
  }catch(e){error='Feed unavailable: '+e.message+'. Last successful version retained.';$('#algo-status').textContent=error;$('#algo-status').classList.add('warn');}finally{busy=false;$('#algo-refresh').disabled=false;}}
-for(const id of ['algo-method','algo-lead','algo-level','algo-pairing','algo-verify-lead','algo-region-mode'])$('#'+id).addEventListener('change',()=>{try{view={zoom:1,dx:0,dy:0};render();}catch(e){$('#algo-status').textContent='Display error: '+e.message;}});
+for(const id of ['algo-method','algo-lead','algo-level','algo-pairing','algo-verify-lead','algo-evaluation-mode','algo-region-mode'])$('#'+id).addEventListener('change',()=>{try{view={zoom:1,dx:0,dy:0};render();}catch(e){$('#algo-status').textContent='Display error: '+e.message;}});
 for(const [id,factor] of [['algo-zoom-in',1.3],['algo-zoom-out',1/1.3],['algo-map-reset',0]])$('#'+id).addEventListener('click',()=>{view=factor?{...view,zoom:Math.min(8,Math.max(.5,view.zoom*factor))}:{zoom:1,dx:0,dy:0};render();});
 for(const id of ['algo-own-map','algo-other-map']){const el=$('#'+id);if(!el.setPointerCapture)continue;let drag=null;el.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,dx:view.dx,dy:view.dy};el.setPointerCapture(e.pointerId);});el.addEventListener('pointermove',e=>{if(!drag)return;const scale=700/el.getBoundingClientRect().width;view.dx=drag.dx+(e.clientX-drag.x)*scale;view.dy=drag.dy+(e.clientY-drag.y)*scale;render();});el.addEventListener('pointerup',()=>drag=null);el.addEventListener('pointercancel',()=>drag=null);el.addEventListener('wheel',e=>{e.preventDefault();view.zoom=Math.min(8,Math.max(.5,view.zoom*(e.deltaY<0?1.12:1/1.12)));render();},{passive:false});}
 $('#algo-refresh').onclick=load;load();setInterval(load,60000);
