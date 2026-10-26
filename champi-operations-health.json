@@ -1,31 +1,5 @@
 {
-  "checked_at_utc": "2026-10-26T10:54:57.258949+00:00",
+  "checked_at_utc": "2026-10-26T11:09:59.501183+00:00",
   "ok": true,
-  "sources": {
-    "bdeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-26T10:54:57.258949+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
-      "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
-    },
-    "adeck": {
-      "ok": true,
-      "checked_at_utc": "2026-10-26T10:54:57.258949+00:00",
-      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-      "sha256": "7ab75a7eb581b534c2615a727e4b3f4d5dde4a611ab5dffba4f86f5459778055"
-    },
-    "center": {
-      "ok": true,
-      "state": "other_storm",
-      "checked_at_utc": "2026-10-26T10:54:57.258949+00:00",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
-      "note": "Latest general bulletin covers another storm; CHAMPI analysis retained"
-    },
-    "warning": {
-      "ok": true,
-      "checked_at_utc": "2026-10-26T10:54:57.258949+00:00",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "sha256": "a59baca07942606e54c5d6e204618ff2a94a1bc6e98ab32b7325510e577405f7"
-    }
-  }
+  "model_transfer": true
 }
