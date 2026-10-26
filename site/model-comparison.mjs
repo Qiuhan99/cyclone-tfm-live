@@ -1,5 +1,5 @@
-import './release-watch.mjs?v=verify2';
-import {comparisonEvidence} from './model-comparison-engine.mjs?v=direct1';
+import './release-watch.mjs?v=verify3';
+import {comparisonEvidence} from './model-comparison-engine.mjs?v=verify3';
 import {NAMES,REFERENCES} from './conformal-evidence-engine.mjs?v=direct1';
 const $=s=>document.querySelector(s),fmt=(x,n=1)=>Number.isFinite(x)?x.toFixed(n):'—';
 let sets,diagnostics;

@@ -21,3 +21,9 @@ test('published entry templates declare the current version and direct first-sta
   const s=fs.readFileSync(new URL('../site/'+file,import.meta.url),'utf8');assert(s.includes(`data-site-version="${version}"`));assert(s.includes('release-watch.mjs'));assert(s.includes('site-update-notice'));assert(!s.includes('In the CV branch'));
  }
 });
+test('new chart and evaluation entry points version their changed dependencies',()=>{
+ const model=fs.readFileSync(new URL('../site/model-comparison.mjs',import.meta.url),'utf8');
+ const live=fs.readFileSync(new URL('../site/algorithm-live.mjs',import.meta.url),'utf8');
+ assert(model.includes('model-comparison-engine.mjs?v=verify3'));
+ assert(live.includes('verification-view-engine.mjs?v=verify3'));
+});

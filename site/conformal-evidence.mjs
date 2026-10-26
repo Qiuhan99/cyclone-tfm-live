@@ -1,4 +1,4 @@
-import './release-watch.mjs?v=verify2';
+import './release-watch.mjs?v=verify3';
 import {REFERENCES,NAMES,ORDER,referencesFor,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=direct1';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 const COLORS=['#e1ae78','#d6bc95','#b69ee0','#8bdec4','#83b6df','#e09fac','#bac37f'];
