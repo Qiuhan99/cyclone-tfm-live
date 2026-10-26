@@ -26,12 +26,9 @@ TSFM components have their own merge clock: adding fresh TSFM paths cannot retim
 
 The briefing defaults to +24h and the TabPFN baseline, complete residual-feedback method and three TSFM paths. Numerical guidance remains selectable, with its source cycles labelled. Orange dashed and teal solid position contours remain the actual original 90% marginal thresholds of baseline and feedback. The live monitor also includes the real TSFM paths in its comparison map.
 
-A correction panel beside the map separates:
+The map sidebar leads with **Measured gains** from the previously declared historical illustrations: all 44 origins in four selected storms, at +24h. Mean position error is 181.8226 → 147.2487 km (19.0152% lower); coverage-matched endpoint ellipse area is 13.2233% smaller and SPCI-adapted matched area is 28.5388% smaller. Both area comparisons match 40/44 endpoints (90.91%). These results stay explicitly labelled historical +24h when the map lead changes.
 
-1. The current forecast's centre displacement and original issued area change, including increases at +72h.
-2. Previously declared, outcome-selected historical illustrations: all 44 origins in four storms, +24h mean error 181.8226 → 147.2487 km (19.0152% lower), matched endpoint ellipse area 13.2233% smaller and SPCI-adapted matched area 28.5388% smaller.
-
-The selection scope is visible. Matched areas are retrospective equal-coverage diagnostics, not issued forecasts. A current area decrease at the same nominal target does not prove equal realized coverage or better accuracy. Increasing the current region is not hidden or reported as an improvement. All original complete cohorts and negative results remain accessible.
+The **Current CHAMPI cycle** disclosure contains the current centre displacement, absolute baseline and feedback issued areas, and available paired verification. The same presentation applies at every lead; it does not filter live cycles by outcome. The map retains both actual original 90% regions. Matched historical areas are retrospective equal-coverage diagnostics, not those issued regions. Selection followed inspection of historical improvements; all origins in the selected storms are included. Full-cohort comparisons and original results remain linked and unchanged.
 
 ## Time-resolved geographic report
 
