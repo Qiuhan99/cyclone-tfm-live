@@ -1,5 +1,5 @@
 import {distance,sphereExp} from './engine.mjs';
-import {METHOD_LABELS} from './method-labels.mjs?v=names1';
+import {METHOD_LABELS} from './method-labels.mjs?v=direct1';
 export const GUIDANCE_LEADS=[6,12,24,48,72];
 export const GUIDANCE_MODELS=[
  {id:'TabPFN CV-F2',label:METHOD_LABELS['TabPFN CV-F2'],kind:'Base predictor'},
@@ -8,9 +8,13 @@ export const GUIDANCE_MODELS=[
  {id:'ATCF:UKM',label:'ATCF:UKM',kind:'Archived track guidance'},
  {id:'ATCF:NGX',label:'ATCF:NGX',kind:'Archived track guidance'},
 ];
+export function guidanceModels(data){return data.config?.protocol==='direct_vector_feedback_v1'?[
+ {id:'TabPFN Direct-F2',label:METHOD_LABELS['TabPFN Direct-F2'],kind:'Direct displacement predictor'},
+ {id:'TabPFN Direct-F2 + RF',label:METHOD_LABELS['TabPFN Direct-F2 + RF'],kind:'Current features + mature vector residuals'},
+ ...GUIDANCE_MODELS.slice(2)]:GUIDANCE_MODELS;}
 export function guidanceEvidence(data,lead=24){
- if(!GUIDANCE_LEADS.includes(lead)||data.config?.protocol!=='motion_residual_v1')throw Error('Unsupported guidance benchmark protocol or lead');
- const rows=GUIDANCE_MODELS.map(model=>{
+ if(!GUIDANCE_LEADS.includes(lead)||!['motion_residual_v1','direct_vector_feedback_v1'].includes(data.config?.protocol))throw Error('Unsupported guidance benchmark protocol or lead');
+ const rows=guidanceModels(data).map(model=>{
   const found=(data.external_common??[]).filter(r=>r.model_id===model.id&&r.lead_h===lead);
   if(found.length!==1)throw Error('Incomplete or duplicate archived guidance comparison');
   const row=found[0];
@@ -22,7 +26,7 @@ export function guidanceEvidence(data,lead=24){
 }
 export const GUIDANCE_COLORS=['#ba792f','#008b7e','#4774b9','#8b65b3','#c74e7f'];
 export function guidanceCycles(bundle,lead){
- if(bundle.version!=='guidance_paths_v1'||bundle.scope!=='LOCKED_RETROSPECTIVE_COMMON_COHORT_NOT_LIVE')throw Error('Unverified map export');
+ if(!['guidance_paths_v1','direct_guidance_paths_v1'].includes(bundle.version)||bundle.scope!=='LOCKED_RETROSPECTIVE_COMMON_COHORT_NOT_LIVE')throw Error('Unverified map export');
  const c=bundle.cohorts[String(lead)];
  if(!c||c.issues.length!==c.n||new Set(c.issues).size!==c.n)throw Error('Invalid map cohort');
  return c.issues.map(t=>{const matches=bundle.cycles.filter(o=>o.issue_time_utc===t);if(matches.length!==1)throw Error('Ambiguous map cycle');return matches[0];});
@@ -33,7 +37,7 @@ export function guidanceCase(bundle,summary,lead,issue){
  const cycle=cohort.find(c=>c.issue_time_utc===issue);if(!cycle)throw Error('Cycle is outside the scored intersection');
  const valid=Date.parse(issue)+lead*3600000,truth=cycle.truth.find(p=>Date.parse(p.valid_time_utc)===valid);
  if(!truth)throw Error('Missing archived endpoint truth');
- const rows=GUIDANCE_MODELS.map((m,i)=>{
+ const rows=guidanceModels(summary).map((m,i)=>{
   const matches=cycle.paths.filter(p=>p.model_id===m.id);if(matches.length!==1)throw Error('Missing or duplicate map method');
   const path=matches[0],points=path.points.filter(p=>p.lead_h<=lead).sort((a,b)=>a.lead_h-b.lead_h),end=points.filter(p=>p.lead_h===lead);
   if(end.length!==1||new Set(points.map(p=>p.lead_h)).size!==points.length||points.some(p=>Date.parse(p.valid_time_utc)!==Date.parse(issue)+p.lead_h*3600000||!Number.isFinite(p.lat_deg)||!Number.isFinite(p.lon_deg)))throw Error('Invalid map path time or coordinate');

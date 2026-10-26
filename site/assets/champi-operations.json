@@ -1,9 +1,9 @@
 {
   "storm_id": "CHAMPI_2026",
   "name_cn": "蔷琵",
-  "started_at_utc": "2026-10-26T03:21:56.803247+00:00",
-  "generated_at_utc": "2026-10-26T02:47:45.844327+00:00",
-  "last_checked_at_utc": "2026-10-26T03:22:48.393306+00:00",
+  "started_at_utc": "2026-10-26T17:22:32.063184+00:00",
+  "generated_at_utc": "2026-10-26T17:07:28.172883+00:00",
+  "last_checked_at_utc": "2026-10-26T17:23:00.451383+00:00",
   "refresh_interval_seconds": 900,
   "official": {
     "warning": {
@@ -21,8 +21,8 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-26T03:22:46.228947+00:00",
-      "raw_file_sha256": "12005becb9970d69329a2189a34d5c34ccae97ef8e1798234c30069c6f44c3e6"
+      "retrieved_at_utc": "2026-10-26T17:22:58.589553+00:00",
+      "raw_file_sha256": "578bce975c1473c81f564a3a3988d4acae7863a61461092b1058eb02c9ab3cb9"
     },
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -54,20 +54,20 @@
   "fetch_status": {
     "ucar": {
       "ok": true,
-      "checked_at_utc": "2026-10-26T03:22:45.234374+00:00"
+      "checked_at_utc": "2026-10-26T17:22:57.215345+00:00"
     },
     "center": {
       "ok": true,
       "state": "other_storm",
-      "checked_at_utc": "2026-10-26T03:22:45.798730+00:00",
+      "checked_at_utc": "2026-10-26T17:22:58.016977+00:00",
       "note": "Latest general bulletin covers another storm; CHAMPI analysis retained",
       "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
     },
     "warning": {
       "ok": true,
       "cached": false,
-      "checked_at_utc": "2026-10-26T03:22:46.228947+00:00",
-      "sha256": "12005becb9970d69329a2189a34d5c34ccae97ef8e1798234c30069c6f44c3e6",
+      "checked_at_utc": "2026-10-26T17:22:58.589553+00:00",
+      "sha256": "578bce975c1473c81f564a3a3988d4acae7863a61461092b1058eb02c9ab3cb9",
       "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
     }
   },
@@ -76,94 +76,95 @@
     "input_last_valid_utc": "2026-10-26T00:00:00+00:00",
     "paths": [
       {
-        "model_id": "TabPFN CV-F2",
+        "model_id": "TabPFN Direct-F2",
+        "protocol_id": "direct_vector_feedback_v1",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
         "model_origin_time_utc": "2026-10-26T00:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
         "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-        "processed_input_sha256": "1baed39113b37290e973d4d0eb765444604d70258855037222a81fd2fef5936a",
+        "processed_input_sha256": "5c2845db420b5e313d637cfcb7e6c4a2edcd8e78c81b73df7eb2a3dbc7d7e105",
         "wind_averaging_period": null,
-        "calibrator": "Causal rolling rank, empirical under dependence",
+        "calibrator": "Causal rolling rank; empirical under dependence",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00+00:00",
             "lead_h": 6,
-            "lat_deg": 31.599311843438198,
-            "lon_deg": 130.8740385362317,
+            "lat_deg": 31.527077537110724,
+            "lon_deg": 131.02574800960792,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 66.16398601041548,
-            "radius_80_km": 50.14643911362449,
-            "joint_radius_90_km": 83.57305014450051,
-            "radius_90_km": 76.61418933121521,
-            "joint_radius_95_km": 101.80044920178318,
-            "radius_95_km": 138.3595850002544
+            "radius_80_km": 56.37651194624974,
+            "joint_radius_80_km": 68.1327690390522,
+            "radius_90_km": 78.96495494313682,
+            "joint_radius_90_km": 81.2121850955815,
+            "radius_95_km": 163.38519067845994,
+            "joint_radius_95_km": 104.22390638205948
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00+00:00",
             "lead_h": 12,
-            "lat_deg": 31.90174715948578,
-            "lon_deg": 132.92340514198668,
+            "lat_deg": 31.743910593968884,
+            "lon_deg": 133.1473901419646,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 137.68324886606158,
-            "radius_80_km": 120.29762733099517,
-            "joint_radius_90_km": 173.91045726491973,
-            "radius_90_km": 219.30750541475183,
-            "joint_radius_95_km": 211.84057109134196,
-            "radius_95_km": 328.0678035198314
+            "radius_80_km": 128.56860884732941,
+            "joint_radius_80_km": 145.25340110315804,
+            "radius_90_km": 195.01386372893813,
+            "joint_radius_90_km": 173.1376291104653,
+            "radius_95_km": 325.663694269312,
+            "joint_radius_95_km": 222.19670639797434
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
             "lead_h": 24,
-            "lat_deg": 32.62841647847583,
-            "lon_deg": 137.63972276300206,
+            "lat_deg": 31.882039934401877,
+            "lon_deg": 137.73812398997632,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 316.5439884319455,
-            "radius_80_km": 261.1516506869366,
-            "joint_radius_90_km": 399.83302417721205,
-            "radius_90_km": 389.50768110247697,
-            "joint_radius_95_km": 487.03716564814255,
-            "radius_95_km": 566.214278062631
+            "radius_80_km": 256.77472862378994,
+            "joint_radius_80_km": 336.7799346869683,
+            "radius_90_km": 364.41868895091034,
+            "joint_radius_90_km": 401.43142247160307,
+            "radius_95_km": 529.7860928374074,
+            "joint_radius_95_km": 515.1782450534463
           },
           {
             "valid_time_utc": "2026-10-28T00:00:00+00:00",
             "lead_h": 48,
-            "lat_deg": 33.26417123467022,
-            "lon_deg": 143.90718176853625,
+            "lat_deg": 30.436746735236987,
+            "lon_deg": 144.3309612069596,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 768.4420644606657,
-            "radius_80_km": 488.33474607309034,
-            "joint_radius_90_km": 970.6344955729404,
-            "radius_90_km": 804.6760027936807,
-            "joint_radius_95_km": 1182.3312358376784,
-            "radius_95_km": 1112.3612892578794
+            "radius_80_km": 510.36714552661755,
+            "joint_radius_80_km": 787.0886775470489,
+            "radius_90_km": 781.2921044272089,
+            "joint_radius_90_km": 938.1857257401233,
+            "radius_95_km": 1027.18144141704,
+            "joint_radius_95_km": 1204.0235234828465
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00+00:00",
             "lead_h": 72,
-            "lat_deg": 33.8613638476722,
-            "lon_deg": 149.51158132468828,
+            "lat_deg": 30.429690018698924,
+            "lon_deg": 150.05663688019735,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 1307.7799542792707,
-            "radius_80_km": 926.5825265695532,
-            "joint_radius_90_km": 1651.8829394551428,
-            "radius_90_km": 1350.2348847346168,
-            "joint_radius_95_km": 2012.1609175988824,
-            "radius_95_km": 1674.9594541178978
+            "radius_80_km": 861.8047674857916,
+            "joint_radius_80_km": 1283.5203454006432,
+            "radius_90_km": 1382.091803831423,
+            "joint_radius_90_km": 1529.917150510573,
+            "radius_95_km": 1639.084430565402,
+            "joint_radius_95_km": 1963.4238591099866
           }
         ],
         "anchor": {
@@ -171,114 +172,100 @@
           "lat_deg": 31.4,
           "lon_deg": 129.0
         },
-        "landfall_candidates": [
-          {
-            "lat_deg": 31.545615234358202,
-            "lon_deg": 130.34225703893685,
-            "valid_time_utc": "2026-10-26T04:18:00+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 31.586875479394788,
-            "lon_deg": 130.74885855340415,
-            "valid_time_utc": "2026-10-26T05:36:00+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          }
-        ],
-        "generated_at_utc": "2026-10-26T02:47:44.401499+00:00",
-        "input_downloaded_at_utc": "2026-10-26T02:46:01.294585+00:00"
+        "landfall_candidates": [],
+        "generated_at_utc": "2026-10-26T17:07:25.909631+00:00",
+        "input_downloaded_at_utc": "2026-10-26T17:05:43.916558+00:00"
       },
       {
-        "model_id": "TabPFN CV-F2 + C0",
+        "model_id": "TabPFN Direct-F2 + RF",
+        "protocol_id": "direct_vector_feedback_v1",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
         "model_origin_time_utc": "2026-10-26T00:00:00+00:00",
         "source_url": "local:TabPFN-3.5 frozen checkpoint",
         "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-        "processed_input_sha256": "1baed39113b37290e973d4d0eb765444604d70258855037222a81fd2fef5936a",
+        "processed_input_sha256": "5c2845db420b5e313d637cfcb7e6c4a2edcd8e78c81b73df7eb2a3dbc7d7e105",
         "wind_averaging_period": null,
-        "calibrator": "Causal rolling rank, empirical under dependence",
+        "calibrator": "Causal rolling rank; empirical under dependence",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00+00:00",
             "lead_h": 6,
-            "lat_deg": 31.68969587231194,
-            "lon_deg": 130.96014070408353,
+            "lat_deg": 31.612109445654728,
+            "lon_deg": 131.04966774576837,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 65.86387733497625,
-            "radius_80_km": 55.715366769225035,
-            "joint_radius_90_km": 85.57574222030036,
-            "radius_90_km": 80.5880292817687,
-            "joint_radius_95_km": 100.67588327185165,
-            "radius_95_km": 156.75778429609596
+            "radius_80_km": 51.7470661289211,
+            "joint_radius_80_km": 72.18187693399882,
+            "radius_90_km": 75.82759153148204,
+            "joint_radius_90_km": 97.44406458076168,
+            "radius_95_km": 176.58021478008027,
+            "joint_radius_95_km": 115.27528153348491
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00+00:00",
             "lead_h": 12,
-            "lat_deg": 31.972240043902033,
-            "lon_deg": 133.1649209802082,
+            "lat_deg": 31.817682524897563,
+            "lon_deg": 133.23404699124399,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 138.68137555679667,
-            "radius_80_km": 127.55375753189094,
-            "joint_radius_90_km": 180.18619804368635,
-            "radius_90_km": 227.53662693275686,
-            "joint_radius_95_km": 211.9806871758762,
-            "radius_95_km": 329.89047236109536
+            "radius_80_km": 127.92200107332788,
+            "joint_radius_80_km": 154.30259846594296,
+            "radius_90_km": 212.41956768139667,
+            "joint_radius_90_km": 208.30536706108498,
+            "radius_95_km": 314.26115044588704,
+            "joint_radius_95_km": 246.42301135746393
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
             "lead_h": 24,
-            "lat_deg": 32.670874412723,
-            "lon_deg": 137.76924616771373,
+            "lat_deg": 32.01064081678703,
+            "lon_deg": 138.19122430121058,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 317.0966786425475,
-            "radius_80_km": 286.5564019022601,
-            "joint_radius_90_km": 411.9979680579467,
-            "radius_90_km": 362.85954485950606,
-            "joint_radius_95_km": 484.6964602850082,
-            "radius_95_km": 569.3171390879675
+            "radius_80_km": 258.90194865710924,
+            "joint_radius_80_km": 361.28210033684474,
+            "radius_90_km": 403.55302179050574,
+            "joint_radius_90_km": 487.7234814673363,
+            "radius_95_km": 491.86518529679137,
+            "joint_radius_95_km": 576.9716388425218
           },
           {
             "valid_time_utc": "2026-10-28T00:00:00+00:00",
             "lead_h": 48,
-            "lat_deg": 33.32950561332738,
-            "lon_deg": 143.4890632381099,
+            "lat_deg": 30.915289504701583,
+            "lon_deg": 145.8531621315044,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 780.5273912139291,
-            "radius_80_km": 561.5497916150557,
-            "joint_radius_90_km": 1014.1250944990516,
-            "radius_90_km": 869.7407404606902,
-            "joint_radius_95_km": 1193.0710384492847,
-            "radius_95_km": 1157.1822448121163
+            "radius_80_km": 553.0995242316511,
+            "joint_radius_80_km": 820.3502843885939,
+            "radius_90_km": 883.1572498129348,
+            "joint_radius_90_km": 1107.4561854896317,
+            "radius_95_km": 1061.9242239574082,
+            "joint_radius_95_km": 1310.1087697600092
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00+00:00",
             "lead_h": 72,
-            "lat_deg": 33.71334476328378,
-            "lon_deg": 148.99103434801856,
+            "lat_deg": 30.4555429092367,
+            "lon_deg": 152.86824606425387,
             "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
+            "wind_note": "Position-only model; intensity is not predicted",
             "calibration_n": 100,
             "joint_calibration_n": 100,
-            "joint_radius_80_km": 1350.643904185125,
-            "radius_80_km": 1159.9384753203312,
-            "joint_radius_90_km": 1754.8671480138873,
-            "radius_90_km": 1430.7780960643902,
-            "joint_radius_95_km": 2064.5196356724427,
-            "radius_95_km": 1750.894424367245
+            "radius_80_km": 1171.1505917193745,
+            "joint_radius_80_km": 1339.2927283733948,
+            "radius_90_km": 1552.4518194852253,
+            "joint_radius_90_km": 1808.0179216660288,
+            "radius_95_km": 1877.8269514373837,
+            "joint_radius_95_km": 2138.8657773496234
           }
         ],
         "anchor": {
@@ -286,512 +273,634 @@
           "lat_deg": 31.4,
           "lon_deg": 129.0
         },
-        "landfall_candidates": [
-          {
-            "lat_deg": 31.600971817406194,
-            "lon_deg": 130.33656230414908,
-            "valid_time_utc": "2026-10-26T04:05:42.857143+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 31.6677991703832,
-            "lon_deg": 130.80413478760056,
-            "valid_time_utc": "2026-10-26T05:31:25.714286+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          }
-        ],
-        "generated_at_utc": "2026-10-26T02:47:44.577057+00:00",
-        "input_downloaded_at_utc": "2026-10-26T02:46:01.294585+00:00"
+        "landfall_candidates": [],
+        "generated_at_utc": "2026-10-26T17:07:26.298404+00:00",
+        "input_downloaded_at_utc": "2026-10-26T17:05:43.916558+00:00"
       },
       {
-        "model_id": "TabPFN CV-F2 + C1",
-        "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "model_origin_time_utc": "2026-10-26T00:00:00+00:00",
-        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "model_id": "Chronos-Bolt-small",
+        "model_family": "tsfm",
+        "protocol_id": "champi_tsfm_operations_v1",
+        "issue_time_utc": "2026-10-26T00:00:00.000Z",
+        "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+        "generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "input_downloaded_at_utc": "2026-10-26T06:50:35.513470+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
         "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-        "processed_input_sha256": "1baed39113b37290e973d4d0eb765444604d70258855037222a81fd2fef5936a",
+        "checkpoint_sha256": "06a6a19bbe74bc10a9cd193bd4bf2bf638ae07f7e0d51653ae7ab8ea968a21dd",
+        "model_revision": "772f3d25d38aec6d914c8949dab4462e2d46f5d8",
+        "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+        "context_fixes": 9,
+        "context_hours": 48,
+        "preprocessing": "shared_6h_CV_offset",
+        "calibration_status": "Point forecast; live conformal region not calibrated for this adapter",
         "wind_averaging_period": null,
-        "calibrator": "Causal rolling rank, empirical under dependence",
-        "points": [
-          {
-            "valid_time_utc": "2026-10-26T06:00:00+00:00",
-            "lead_h": 6,
-            "lat_deg": 31.664619606929534,
-            "lon_deg": 130.98132756491418,
-            "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
-            "calibration_n": 100,
-            "joint_calibration_n": 100,
-            "joint_radius_80_km": 70.00586755586936,
-            "radius_80_km": 56.80984354783838,
-            "joint_radius_90_km": 95.88753864241374,
-            "radius_90_km": 77.92081816010678,
-            "joint_radius_95_km": 112.48369648451619,
-            "radius_95_km": 154.314239081075
-          },
-          {
-            "valid_time_utc": "2026-10-26T12:00:00+00:00",
-            "lead_h": 12,
-            "lat_deg": 31.95596738216926,
-            "lon_deg": 132.9332633652644,
-            "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
-            "calibration_n": 100,
-            "joint_calibration_n": 100,
-            "joint_radius_80_km": 151.80813743005677,
-            "radius_80_km": 129.29499089513348,
-            "joint_radius_90_km": 207.93269410510996,
-            "radius_90_km": 223.49726524317688,
-            "joint_radius_95_km": 243.92156044540818,
-            "radius_95_km": 318.06691799770135
-          },
-          {
-            "valid_time_utc": "2026-10-27T00:00:00+00:00",
-            "lead_h": 24,
-            "lat_deg": 32.66675568220156,
-            "lon_deg": 138.20209278015682,
-            "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
-            "calibration_n": 100,
-            "joint_calibration_n": 100,
-            "joint_radius_80_km": 329.8973750246081,
-            "radius_80_km": 279.1375582195253,
-            "joint_radius_90_km": 451.86279950687964,
-            "radius_90_km": 381.6550546911255,
-            "joint_radius_95_km": 530.0709426062309,
-            "radius_95_km": 541.4765678156281
-          },
-          {
-            "valid_time_utc": "2026-10-28T00:00:00+00:00",
-            "lead_h": 48,
-            "lat_deg": 33.421687920592696,
-            "lon_deg": 145.37061431146367,
-            "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
-            "calibration_n": 100,
-            "joint_calibration_n": 100,
-            "joint_radius_80_km": 752.0550782555692,
-            "radius_80_km": 580.6878699181184,
-            "joint_radius_90_km": 1030.095231944717,
-            "radius_90_km": 923.8957256295188,
-            "joint_radius_95_km": 1208.383498634981,
-            "radius_95_km": 1208.383498634981
-          },
-          {
-            "valid_time_utc": "2026-10-29T00:00:00+00:00",
-            "lead_h": 72,
-            "lat_deg": 33.425327693449276,
-            "lon_deg": 151.89528730768973,
-            "vmax_kt": null,
-            "wind_note": "该TabPFN模型只预测中心位置，未预测强度",
-            "calibration_n": 100,
-            "joint_calibration_n": 100,
-            "joint_radius_80_km": 1246.3958224631424,
-            "radius_80_km": 1038.9271307651131,
-            "joint_radius_90_km": 1707.1972930668646,
-            "radius_90_km": 1620.8973511668912,
-            "joint_radius_95_km": 2002.6779795511384,
-            "radius_95_km": 1870.0383502460754
-          }
-        ],
         "anchor": {
-          "valid_time_utc": "2026-10-26T00:00:00+00:00",
+          "valid_time_utc": "2026-10-26T00:00:00.000Z",
           "lat_deg": 31.4,
           "lon_deg": 129.0
         },
-        "landfall_candidates": [
+        "points": [
           {
-            "lat_deg": 31.581161223638443,
-            "lon_deg": 130.32997359815084,
-            "valid_time_utc": "2026-10-26T04:01:52.500000+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
+            "lead_h": 6,
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lat_deg": 31.96413502214202,
+            "lon_deg": 130.59969013157206,
+            "vmax_kt": null
           },
           {
-            "lat_deg": 31.645048564537767,
-            "lon_deg": 130.82613762620304,
-            "valid_time_utc": "2026-10-26T05:31:52.500000+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
+            "lead_h": 12,
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lat_deg": 32.07546322575483,
+            "lon_deg": 132.2744570317982,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 18,
+            "valid_time_utc": "2026-10-26T18:00:00+00:00",
+            "lat_deg": 32.13722588107338,
+            "lon_deg": 134.0972939276175,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 24,
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lat_deg": 31.98614077007359,
+            "lon_deg": 136.0255209242216,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 30,
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
+            "lat_deg": 31.843171676925262,
+            "lon_deg": 138.25630888910587,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 36,
+            "valid_time_utc": "2026-10-27T12:00:00+00:00",
+            "lat_deg": 31.736842029346562,
+            "lon_deg": 140.4727946049241,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 42,
+            "valid_time_utc": "2026-10-27T18:00:00+00:00",
+            "lat_deg": 31.661153612780797,
+            "lon_deg": 142.5400406464679,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 48,
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lat_deg": 31.554466915999846,
+            "lon_deg": 144.5501112993819,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 54,
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
+            "lat_deg": 31.334105646728705,
+            "lon_deg": 146.86806522412934,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 60,
+            "valid_time_utc": "2026-10-28T12:00:00+00:00",
+            "lat_deg": 31.149549199098225,
+            "lon_deg": 148.9418063216891,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 66,
+            "valid_time_utc": "2026-10-28T18:00:00+00:00",
+            "lat_deg": 30.927506429438726,
+            "lon_deg": 151.11704306254012,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 72,
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lat_deg": 30.573711281847974,
+            "lon_deg": 153.23190589031333,
+            "vmax_kt": null
           }
         ],
-        "generated_at_utc": "2026-10-26T02:47:44.838888+00:00",
-        "input_downloaded_at_utc": "2026-10-26T02:46:01.294585+00:00"
+        "landfall_candidates": []
+      },
+      {
+        "model_id": "Chronos-2",
+        "model_family": "tsfm",
+        "protocol_id": "champi_tsfm_operations_v1",
+        "issue_time_utc": "2026-10-26T00:00:00.000Z",
+        "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+        "generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "input_downloaded_at_utc": "2026-10-26T06:50:35.513470+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "checkpoint_sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+        "model_revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+        "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+        "context_fixes": 9,
+        "context_hours": 48,
+        "preprocessing": "shared_6h_CV_offset",
+        "calibration_status": "Point forecast; live conformal region not calibrated for this adapter",
+        "wind_averaging_period": null,
+        "anchor": {
+          "valid_time_utc": "2026-10-26T00:00:00.000Z",
+          "lat_deg": 31.4,
+          "lon_deg": 129.0
+        },
+        "points": [
+          {
+            "lead_h": 6,
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lat_deg": 31.601751976377354,
+            "lon_deg": 130.76137959419833,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 12,
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lat_deg": 31.722050992193097,
+            "lon_deg": 132.4126220985351,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 18,
+            "valid_time_utc": "2026-10-26T18:00:00+00:00",
+            "lat_deg": 31.879750608470953,
+            "lon_deg": 134.0594112089119,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 24,
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lat_deg": 31.99903085341768,
+            "lon_deg": 135.72427558832794,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 30,
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
+            "lat_deg": 32.1133609420607,
+            "lon_deg": 137.41324185707379,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 36,
+            "valid_time_utc": "2026-10-27T12:00:00+00:00",
+            "lat_deg": 32.10569160405397,
+            "lon_deg": 139.07777472148155,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 42,
+            "valid_time_utc": "2026-10-27T18:00:00+00:00",
+            "lat_deg": 32.14933748174542,
+            "lon_deg": 141.0052277493471,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 48,
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lat_deg": 32.08343479920938,
+            "lon_deg": 142.92151610466453,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 54,
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
+            "lat_deg": 31.88137782270207,
+            "lon_deg": 144.88279698085398,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 60,
+            "valid_time_utc": "2026-10-28T12:00:00+00:00",
+            "lat_deg": 31.586512063424216,
+            "lon_deg": 146.6651056071173,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 66,
+            "valid_time_utc": "2026-10-28T18:00:00+00:00",
+            "lat_deg": 31.287901987195298,
+            "lon_deg": 148.69982155235482,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 72,
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lat_deg": 30.7707826648959,
+            "lon_deg": 150.59194031005586,
+            "vmax_kt": null
+          }
+        ],
+        "landfall_candidates": []
+      },
+      {
+        "model_id": "Moirai-1.1-R-small",
+        "model_family": "tsfm",
+        "protocol_id": "champi_tsfm_operations_v1",
+        "issue_time_utc": "2026-10-26T00:00:00.000Z",
+        "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+        "generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "input_downloaded_at_utc": "2026-10-26T06:50:35.513470+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "checkpoint_sha256": "cc46831272ea07e99d78fe05c09e730c7c76a1b272cddbdaf5173dae371cb238",
+        "model_revision": "0c24ab99db2c1a70ea2a0fc03bf113329772ac64",
+        "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+        "context_fixes": 9,
+        "context_hours": 48,
+        "preprocessing": "shared_6h_CV_offset",
+        "calibration_status": "Point forecast; live conformal region not calibrated for this adapter",
+        "wind_averaging_period": null,
+        "anchor": {
+          "valid_time_utc": "2026-10-26T00:00:00.000Z",
+          "lat_deg": 31.4,
+          "lon_deg": 129.0
+        },
+        "points": [
+          {
+            "lead_h": 6,
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lat_deg": 31.311768900477826,
+            "lon_deg": 130.43905064677392,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 12,
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lat_deg": 31.480635379849897,
+            "lon_deg": 132.21845210463363,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 18,
+            "valid_time_utc": "2026-10-26T18:00:00+00:00",
+            "lat_deg": 32.29866362560607,
+            "lon_deg": 133.9603980028628,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 24,
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lat_deg": 32.37643574000366,
+            "lon_deg": 135.86415096414362,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 30,
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
+            "lat_deg": 32.575357794607605,
+            "lon_deg": 137.27111417384026,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 36,
+            "valid_time_utc": "2026-10-27T12:00:00+00:00",
+            "lat_deg": 33.23336489476659,
+            "lon_deg": 139.37735433057873,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 42,
+            "valid_time_utc": "2026-10-27T18:00:00+00:00",
+            "lat_deg": 33.065015672038236,
+            "lon_deg": 140.88995240566032,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 48,
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lat_deg": 32.8965400888692,
+            "lon_deg": 142.97516808606122,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 54,
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
+            "lat_deg": 32.39036734389494,
+            "lon_deg": 143.65903616088497,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 60,
+            "valid_time_utc": "2026-10-28T12:00:00+00:00",
+            "lat_deg": 31.819021892833227,
+            "lon_deg": 145.76502589165534,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 66,
+            "valid_time_utc": "2026-10-28T18:00:00+00:00",
+            "lat_deg": 32.467322433477236,
+            "lon_deg": 148.00169770185028,
+            "vmax_kt": null
+          },
+          {
+            "lead_h": 72,
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lat_deg": 32.008639749033634,
+            "lon_deg": 149.7926990683162,
+            "vmax_kt": null
+          }
+        ],
+        "landfall_candidates": []
       },
       {
         "model_id": "ATCF:CMC / TECHNUM 03",
         "model_raw_aid": "CMC",
-        "issue_time_utc": "2026-10-25T12:00:00+00:00",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-        "raw_file_sha256": "4dd46c7ff604679508481a2df99e75ea6eff50647e0ec95a947a8024eedd9f9a",
+        "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
         "points": [
           {
-            "valid_time_utc": "2026-10-25T18:00:00.000Z",
-            "lead_h": 6,
-            "lat_deg": 32.1,
-            "lon_deg": 127.7,
-            "vmax_kt": 35.0,
-            "mslp_hpa": 1005.0
-          },
-          {
-            "valid_time_utc": "2026-10-26T00:00:00.000Z",
-            "lead_h": 12,
-            "lat_deg": 33.2,
-            "lon_deg": 129.2,
-            "vmax_kt": 33.0,
-            "mslp_hpa": 1007.0
-          },
-          {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
-            "lead_h": 18,
-            "lat_deg": 33.6,
+            "lead_h": 6,
+            "lat_deg": 33.2,
             "lon_deg": 130.9,
-            "vmax_kt": 29.0,
-            "mslp_hpa": 1006.0
+            "vmax_kt": 28.0,
+            "mslp_hpa": 1007.0
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
-            "lead_h": 24,
-            "lat_deg": 33.4,
-            "lon_deg": 134.1,
-            "vmax_kt": 29.0,
-            "mslp_hpa": 1007.0
+            "lead_h": 12,
+            "lat_deg": 33.7,
+            "lon_deg": 133.7,
+            "vmax_kt": 30.0,
+            "mslp_hpa": 1008.0
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
-            "lead_h": 30,
-            "lat_deg": 34.3,
-            "lon_deg": 137.5,
-            "vmax_kt": 31.0,
-            "mslp_hpa": 1005.0
+            "lead_h": 18,
+            "lat_deg": 34.4,
+            "lon_deg": 136.9,
+            "vmax_kt": 24.0,
+            "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
-            "lead_h": 36,
-            "lat_deg": 36.5,
-            "lon_deg": 143.0,
-            "vmax_kt": 33.0,
-            "mslp_hpa": 1000.0
+            "lead_h": 24,
+            "lat_deg": 35.8,
+            "lon_deg": 139.8,
+            "vmax_kt": 29.0,
+            "mslp_hpa": 1003.0
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00.000Z",
-            "lead_h": 42,
-            "lat_deg": 38.6,
-            "lon_deg": 149.8,
-            "vmax_kt": 39.0,
+            "lead_h": 30,
+            "lat_deg": 37.5,
+            "lon_deg": 145.2,
+            "vmax_kt": 33.0,
             "mslp_hpa": 996.0
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00.000Z",
-            "lead_h": 48,
-            "lat_deg": 40.5,
-            "lon_deg": 153.0,
-            "vmax_kt": 39.0,
+            "lead_h": 36,
+            "lat_deg": 40.1,
+            "lon_deg": 151.6,
+            "vmax_kt": 40.0,
             "mslp_hpa": 991.0
           },
           {
             "valid_time_utc": "2026-10-27T18:00:00.000Z",
-            "lead_h": 54,
-            "lat_deg": 42.4,
-            "lon_deg": 155.5,
-            "vmax_kt": 39.0,
-            "mslp_hpa": 987.0
+            "lead_h": 42,
+            "lat_deg": 42.9,
+            "lon_deg": 154.9,
+            "vmax_kt": 45.0,
+            "mslp_hpa": 984.0
           },
           {
             "valid_time_utc": "2026-10-28T00:00:00.000Z",
-            "lead_h": 60,
-            "lat_deg": 44.4,
-            "lon_deg": 158.3,
+            "lead_h": 48,
+            "lat_deg": 44.9,
+            "lon_deg": 158.0,
             "vmax_kt": 45.0,
-            "mslp_hpa": 983.0
+            "mslp_hpa": 981.0
           },
           {
             "valid_time_utc": "2026-10-28T06:00:00.000Z",
-            "lead_h": 66,
-            "lat_deg": 46.2,
+            "lead_h": 54,
+            "lat_deg": 47.0,
             "lon_deg": 161.2,
-            "vmax_kt": 44.0,
-            "mslp_hpa": 979.0
+            "vmax_kt": 45.0,
+            "mslp_hpa": 977.0
           },
           {
             "valid_time_utc": "2026-10-28T12:00:00.000Z",
+            "lead_h": 60,
+            "lat_deg": 49.3,
+            "lon_deg": 162.8,
+            "vmax_kt": 49.0,
+            "mslp_hpa": 969.0
+          },
+          {
+            "valid_time_utc": "2026-10-28T18:00:00.000Z",
+            "lead_h": 66,
+            "lat_deg": 50.4,
+            "lon_deg": 163.4,
+            "vmax_kt": 51.0,
+            "mslp_hpa": 960.0
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00.000Z",
             "lead_h": 72,
-            "lat_deg": 48.5,
-            "lon_deg": 163.9,
-            "vmax_kt": 48.0,
-            "mslp_hpa": 974.0
+            "lat_deg": 51.1,
+            "lon_deg": 165.4,
+            "vmax_kt": 50.0,
+            "mslp_hpa": 959.0
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-25T12:00:00+00:00",
-          "lat_deg": 30.7,
-          "lon_deg": 126.30000000000001
+          "valid_time_utc": "2026-10-26T00:00:00+00:00",
+          "lat_deg": 31.4,
+          "lon_deg": 129.0
         },
         "landfall_candidates": [
           {
-            "lat_deg": 33.57353619831157,
-            "lon_deg": 131.41294877103644,
-            "valid_time_utc": "2026-10-26T06:57:36+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 33.516248467874554,
-            "lon_deg": 132.4058348034825,
-            "valid_time_utc": "2026-10-26T08:49:12+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 33.40719469026588,
-            "lon_deg": 134.00422857905414,
-            "valid_time_utc": "2026-10-26T11:49:12+00:00",
-            "region": "日本四国附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 33.7463422011718,
-            "lon_deg": 135.3588781286711,
-            "valid_time_utc": "2026-10-26T14:14:10.909091+00:00",
-            "region": "日本本州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 34.854861110878,
-            "lon_deg": 138.80315498750412,
-            "valid_time_utc": "2026-10-26T19:27:05.806452+00:00",
-            "region": "日本本州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 35.193028644730944,
-            "lon_deg": 139.6228155774486,
-            "valid_time_utc": "2026-10-26T20:21:17.419355+00:00",
-            "region": "日本本州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 35.28863017039632,
-            "lon_deg": 139.85825123343398,
-            "valid_time_utc": "2026-10-26T20:36:46.451613+00:00",
+            "lat_deg": 34.64959348299554,
+            "lon_deg": 137.39964132872393,
+            "valid_time_utc": "2026-10-26T19:02:54.757282+00:00",
             "region": "日本本州附近",
             "resolution_km": 3
           }
         ],
-        "generated_at_utc": "2026-10-26T03:22:47.932596+00:00",
-        "input_downloaded_at_utc": "2026-10-26T03:21:58.745068+00:00"
+        "generated_at_utc": "2026-10-26T17:23:00.265786+00:00",
+        "input_downloaded_at_utc": "2026-10-26T17:22:34.170167+00:00"
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
         "model_raw_aid": "NGX",
-        "issue_time_utc": "2026-10-25T12:00:00+00:00",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-        "raw_file_sha256": "4dd46c7ff604679508481a2df99e75ea6eff50647e0ec95a947a8024eedd9f9a",
+        "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
         "points": [
           {
-            "valid_time_utc": "2026-10-25T18:00:00.000Z",
-            "lead_h": 6,
-            "lat_deg": 31.8,
-            "lon_deg": 127.5,
-            "vmax_kt": 36.0,
-            "mslp_hpa": 1004.0
-          },
-          {
-            "valid_time_utc": "2026-10-26T00:00:00.000Z",
-            "lead_h": 12,
-            "lat_deg": 32.1,
-            "lon_deg": 129.0,
-            "vmax_kt": 40.0,
-            "mslp_hpa": 1006.0
-          },
-          {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
-            "lead_h": 18,
-            "lat_deg": 32.3,
-            "lon_deg": 130.8,
-            "vmax_kt": 34.0,
-            "mslp_hpa": 1005.0
+            "lead_h": 6,
+            "lat_deg": 32.1,
+            "lon_deg": 130.9,
+            "vmax_kt": 30.0,
+            "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
-            "lead_h": 24,
-            "lat_deg": 32.8,
-            "lon_deg": 133.1,
-            "vmax_kt": 30.0,
-            "mslp_hpa": 1006.0
+            "lead_h": 12,
+            "lat_deg": 32.2,
+            "lon_deg": 132.7,
+            "vmax_kt": 26.0,
+            "mslp_hpa": 1009.0
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
-            "lead_h": 30,
-            "lat_deg": 33.4,
-            "lon_deg": 135.8,
-            "vmax_kt": 36.0,
-            "mslp_hpa": 1004.0
+            "lead_h": 18,
+            "lat_deg": 32.9,
+            "lon_deg": 135.1,
+            "vmax_kt": 27.0,
+            "mslp_hpa": 1007.0
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
-            "lead_h": 36,
-            "lat_deg": 34.7,
-            "lon_deg": 138.7,
-            "vmax_kt": 30.0,
-            "mslp_hpa": 1004.0
+            "lead_h": 24,
+            "lat_deg": 33.0,
+            "lon_deg": 136.8,
+            "vmax_kt": 29.0,
+            "mslp_hpa": 1007.0
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00.000Z",
-            "lead_h": 42,
-            "lat_deg": 35.3,
-            "lon_deg": 141.5,
-            "vmax_kt": 32.0,
-            "mslp_hpa": 1000.0
+            "lead_h": 30,
+            "lat_deg": 33.8,
+            "lon_deg": 139.5,
+            "vmax_kt": 27.0,
+            "mslp_hpa": 1003.0
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00.000Z",
-            "lead_h": 48,
-            "lat_deg": 35.6,
-            "lon_deg": 146.5,
-            "vmax_kt": 33.0,
-            "mslp_hpa": 1000.0
-          },
-          {
-            "valid_time_utc": "2026-10-27T18:00:00.000Z",
-            "lead_h": 54,
-            "lat_deg": 36.8,
-            "lon_deg": 151.3,
-            "vmax_kt": 35.0,
-            "mslp_hpa": 999.0
-          },
-          {
-            "valid_time_utc": "2026-10-28T00:00:00.000Z",
-            "lead_h": 60,
-            "lat_deg": 37.7,
-            "lon_deg": 156.9,
-            "vmax_kt": 36.0,
-            "mslp_hpa": 1000.0
+            "lead_h": 36,
+            "lat_deg": 35.0,
+            "lon_deg": 144.4,
+            "vmax_kt": 32.0,
+            "mslp_hpa": 1001.0
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-25T12:00:00+00:00",
-          "lat_deg": 30.7,
-          "lon_deg": 126.30000000000001
+          "valid_time_utc": "2026-10-26T00:00:00+00:00",
+          "lat_deg": 31.4,
+          "lon_deg": 129.0
         },
-        "landfall_candidates": [
-          {
-            "lat_deg": 32.26339167356616,
-            "lon_deg": 130.45202261021495,
-            "valid_time_utc": "2026-10-26T04:50:31.578947+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 34.72150707670264,
-            "lon_deg": 138.7947711416623,
-            "valid_time_utc": "2026-10-27T00:12:16.363636+00:00",
-            "region": "日本本州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 34.95321758757244,
-            "lon_deg": 139.84047988873186,
-            "valid_time_utc": "2026-10-27T02:27:16.363636+00:00",
-            "region": "日本本州附近",
-            "resolution_km": 3
-          }
-        ],
-        "generated_at_utc": "2026-10-26T03:22:48.281440+00:00",
-        "input_downloaded_at_utc": "2026-10-26T03:21:58.745068+00:00"
+        "landfall_candidates": [],
+        "generated_at_utc": "2026-10-26T17:23:00.385625+00:00",
+        "input_downloaded_at_utc": "2026-10-26T17:22:34.170167+00:00"
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
         "model_raw_aid": "UKM",
-        "issue_time_utc": "2026-10-25T12:00:00+00:00",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
-        "raw_file_sha256": "4dd46c7ff604679508481a2df99e75ea6eff50647e0ec95a947a8024eedd9f9a",
+        "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
         "points": [
           {
-            "valid_time_utc": "2026-10-25T18:00:00.000Z",
-            "lead_h": 6,
-            "lat_deg": 30.8,
-            "lon_deg": 127.3,
-            "vmax_kt": 36.0,
-            "mslp_hpa": 1005.0
-          },
-          {
-            "valid_time_utc": "2026-10-26T00:00:00.000Z",
-            "lead_h": 12,
-            "lat_deg": 30.9,
-            "lon_deg": 129.0,
-            "vmax_kt": 35.0,
-            "mslp_hpa": 1008.0
-          },
-          {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
-            "lead_h": 18,
-            "lat_deg": 31.8,
-            "lon_deg": 130.9,
-            "vmax_kt": 31.0,
-            "mslp_hpa": 1005.0
+            "lead_h": 6,
+            "lat_deg": 31.7,
+            "lon_deg": 131.3,
+            "vmax_kt": 30.0,
+            "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
-            "lead_h": 24,
-            "lat_deg": 32.4,
-            "lon_deg": 133.7,
-            "vmax_kt": 30.0,
-            "mslp_hpa": 1007.0
+            "lead_h": 12,
+            "lat_deg": 32.2,
+            "lon_deg": 133.4,
+            "vmax_kt": 31.0,
+            "mslp_hpa": 1008.0
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
-            "lead_h": 30,
-            "lat_deg": 32.4,
-            "lon_deg": 135.4,
-            "vmax_kt": 29.0,
-            "mslp_hpa": 1005.0
+            "lead_h": 18,
+            "lat_deg": 33.0,
+            "lon_deg": 136.8,
+            "vmax_kt": 31.0,
+            "mslp_hpa": 1006.0
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
-            "lead_h": 36,
-            "lat_deg": 32.9,
-            "lon_deg": 138.0,
-            "vmax_kt": 27.0,
+            "lead_h": 24,
+            "lat_deg": 32.6,
+            "lon_deg": 137.6,
+            "vmax_kt": 30.0,
             "mslp_hpa": 1006.0
           }
         ],
         "anchor": {
-          "valid_time_utc": "2026-10-25T12:00:00+00:00",
-          "lat_deg": 30.7,
-          "lon_deg": 126.30000000000001
+          "valid_time_utc": "2026-10-26T00:00:00+00:00",
+          "lat_deg": 31.4,
+          "lon_deg": 129.0
         },
-        "landfall_candidates": [
-          {
-            "lat_deg": 31.529061141072887,
-            "lon_deg": 130.31788341397237,
-            "valid_time_utc": "2026-10-26T04:10:26.086957+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          },
-          {
-            "lat_deg": 31.72285885493178,
-            "lon_deg": 130.73333432816685,
-            "valid_time_utc": "2026-10-26T05:28:41.739130+00:00",
-            "region": "日本九州附近",
-            "resolution_km": 3
-          }
-        ],
-        "generated_at_utc": "2026-10-26T03:22:48.393289+00:00",
-        "input_downloaded_at_utc": "2026-10-26T03:21:58.745068+00:00"
+        "landfall_candidates": [],
+        "generated_at_utc": "2026-10-26T17:23:00.451367+00:00",
+        "input_downloaded_at_utc": "2026-10-26T17:22:34.170167+00:00"
       }
     ],
-    "config_sha256": "b1a464ea6af396c0cb73c589c6c22486182783ea00a0270062d81d82e0cf3321",
+    "protocol_id": "direct_vector_feedback_v1",
+    "algorithm_contract": {
+      "protocol": "direct_vector_feedback_v1",
+      "base_target": "u = Log_issue(truth); v = TabPFN(X)",
+      "correction_target": "r = u - v, a two-component issue-frame vector in km",
+      "correction_input": "[X, four mature same-storm same-lead residual vectors, ages and availability masks]",
+      "correction_output": "v_RF = v + TabPFN_residual(X, H)",
+      "constant_velocity_offset": false,
+      "base_prediction_as_correction_input": false,
+      "scalar_residual": false,
+      "gate": false,
+      "correction_weight": 1.0,
+      "feature_group": "F2",
+      "base_features": 52,
+      "correction_features": 68,
+      "residual_slots": 4,
+      "max_residual_age_hours": 96,
+      "age_divisor_hours": 144,
+      "calibration": "Separate per-method mature errors; existing circle100 and endpoint geometry128/score256 protocols"
+    },
+    "config_sha256": "e28eb7fb036342b5e9945559a63dada2071c06819cdc8c7aa95674e044230a57",
     "checkpoint_sha256": "ece4d67eadfea42eb0e610df5189bea60cb7f31073d81e9c7a019b76eacf0be3",
-    "selected": "TabPFN CV-F2",
-    "artifact_namespace": "champi_operations_v2",
-    "processed_input_sha256": "1baed39113b37290e973d4d0eb765444604d70258855037222a81fd2fef5936a",
-    "label": "Fresh inference after retrieval; prior origins reconstructed only for causal residuals, not past operational publications"
+    "selected": "TabPFN Direct-F2",
+    "artifact_namespace": "champi_operations_direct_v1",
+    "processed_input_sha256": "5c2845db420b5e313d637cfcb7e6c4a2edcd8e78c81b73df7eb2a3dbc7d7e105",
+    "label": "Actual direct TabPFN and vector residual feedback; earlier reconstructed origins are not retrospective operational publications",
+    "tsfm": {
+      "status": "completed",
+      "checked_at_utc": "2026-10-26T17:22:58.692009+00:00",
+      "worker_sha256": "267a358ce7d14bee813574515348880d6c785b16d38db1b436aa40cd5112737f",
+      "protocol": "champi_tsfm_operations_v1",
+      "generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+      "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+      "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+      "reused_identical_input": true,
+      "n_models": 3,
+      "context_hours": 48,
+      "horizons_hours": [
+        6,
+        12,
+        18,
+        24,
+        30,
+        36,
+        42,
+        48,
+        54,
+        60,
+        66,
+        72
+      ]
+    }
   },
   "observations": [
     {
@@ -1127,15 +1236,15 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-    "downloaded_at_utc": "2026-10-26T03:21:58.745068+00:00",
+    "downloaded_at_utc": "2026-10-26T17:22:34.170167+00:00",
     "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
   "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
   "inference_refresh": {
-    "reused_identical_bdeck": false,
-    "predictor_sha256": "d321f461f4b72b27715bc4226a1d7dd1ec8930f0229f0645067f05b04ccf5bd3",
-    "checked_at_utc": "2026-10-26T02:47:45.846124+00:00"
+    "reused_identical_bdeck": true,
+    "predictor_sha256": "a962d1e456180dae90405e8e2da7ca8f5e4ad09ee2dc8be5eedf295e927d29aa",
+    "checked_at_utc": "2026-10-26T17:07:33.208924+00:00"
   },
   "data_profile": {
     "observation_source": "UCAR TCGP working/revised ATCF B-deck",
@@ -1148,12 +1257,13 @@
     "missing_wind_count": 4,
     "missing_pressure_count": 0,
     "quarantined_conflicting_records": 8,
-    "external_normalized_rows": 72019,
-    "external_origin_count": 47,
+    "external_normalized_rows": 72841,
+    "external_origin_count": 48,
     "feature_group": "F2",
     "base_feature_count": 52,
-    "c0_feature_count": 54,
-    "c1_feature_count": 70,
+    "residual_feature_count": 68,
+    "algorithm_protocol": "direct_vector_feedback_v1",
+    "constant_velocity_offset": false,
     "base_context_rows": 1020,
     "residual_context_rows": 320,
     "base_context_years": "1945–2015 sampled IBTrACS contexts; 761 storms represented",
@@ -1177,6 +1287,1395 @@
     "original_row_publication_times_known": false
   },
   "site_status": "local watcher required for ongoing updates; stale states computed in browser",
+  "source_progress": {
+    "checked_at_utc": "2026-10-26T17:23:00.452506+00:00",
+    "state": "unchanged",
+    "latest_fix_utc": "2026-10-26T00:00:00.000Z",
+    "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
+  },
+  "forecast_analysis": {
+    "schema": 1,
+    "as_of_utc": "2026-10-26T17:23:00.451383+00:00",
+    "method": "Shortest spherical distance to Natural Earth 1:50m coastal segments; approximate named sectors",
+    "interpretation": "Endpoint position-region/coast overlap is not a landfall probability or a wind/rain impact forecast. Translation speed is not wind speed.",
+    "paths": [
+      {
+        "model_id": "TabPFN Direct-F2",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "generated_at_utc": "2026-10-26T17:07:25.909631+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lead_h": 6,
+            "lat_deg": 31.527077537110724,
+            "lon_deg": 131.02574800960792,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 10.896682753476385,
+              "nearest_coast_lat_deg": 31.436999999999998,
+              "nearest_coast_lon_deg": 131.07100000000003
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Kyushu",
+                "distance_km": 10.896682753476385,
+                "nearest_coast_lat_deg": 31.436999999999998,
+                "nearest_coast_lon_deg": 131.07100000000003
+              }
+            ],
+            "radius_90_km": 78.96495494313682,
+            "issued_area_90_km2": 19589.037460178544,
+            "translation_speed_kmh": 32.10848252383736,
+            "displacement_from_baseline_km": 0.0,
+            "issued_area_ratio_vs_baseline": 1.0
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lead_h": 12,
+            "lat_deg": 31.743910593968884,
+            "lon_deg": 133.1473901419646,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 115.41464569030867,
+              "nearest_coast_lat_deg": 32.755,
+              "nearest_coast_lon_deg": 132.87
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Shikoku",
+                "distance_km": 115.41464569030867,
+                "nearest_coast_lat_deg": 32.755,
+                "nearest_coast_lon_deg": 132.87
+              },
+              {
+                "sector": "Kyushu",
+                "distance_km": 157.62445942700768,
+                "nearest_coast_lat_deg": 32.01116609999452,
+                "nearest_coast_lon_deg": 131.50799028836025
+              }
+            ],
+            "radius_90_km": 195.01386372893813,
+            "issued_area_90_km2": 119466.71913117576,
+            "translation_speed_kmh": 33.71634579185905,
+            "displacement_from_baseline_km": 0.0,
+            "issued_area_ratio_vs_baseline": 1.0
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lead_h": 24,
+            "lat_deg": 31.882039934401877,
+            "lon_deg": 137.73812398997632,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 232.85556960934667,
+              "nearest_coast_lat_deg": 33.077999999999996,
+              "nearest_coast_lon_deg": 139.776
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Honshu",
+                "distance_km": 232.85556960934667,
+                "nearest_coast_lat_deg": 33.077999999999996,
+                "nearest_coast_lon_deg": 139.776
+              },
+              {
+                "sector": "Shikoku",
+                "distance_km": 353.48256597904907,
+                "nearest_coast_lat_deg": 33.821000000000005,
+                "nearest_coast_lon_deg": 134.73900000000003
+              }
+            ],
+            "radius_90_km": 364.41868895091034,
+            "issued_area_90_km2": 417092.8473693648,
+            "translation_speed_kmh": 36.16838608406619,
+            "displacement_from_baseline_km": 0.0,
+            "issued_area_ratio_vs_baseline": 1.0
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lead_h": 48,
+            "lat_deg": 30.436746735236987,
+            "lon_deg": 144.3309612069596,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 514.5423289275176,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Honshu",
+                "distance_km": 514.5423289275176,
+                "nearest_coast_lat_deg": 33.09400000000001,
+                "nearest_coast_lon_deg": 139.87400000000002
+              }
+            ],
+            "radius_90_km": 781.2921044272089,
+            "issued_area_90_km2": 1915280.5856939992,
+            "translation_speed_kmh": 26.977644771515003,
+            "displacement_from_baseline_km": 0.0,
+            "issued_area_ratio_vs_baseline": 1.0
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lead_h": 72,
+            "lat_deg": 30.429690018698924,
+            "lon_deg": 150.05663688019735,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 1006.7351903151225,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Honshu",
+                "distance_km": 1006.7351903151225,
+                "nearest_coast_lat_deg": 33.09400000000001,
+                "nearest_coast_lon_deg": 139.87400000000002
+              }
+            ],
+            "radius_90_km": 1382.091803831423,
+            "issued_area_90_km2": 5977503.067922299,
+            "translation_speed_kmh": 22.87037472219868,
+            "displacement_from_baseline_km": 9.493542909622192e-05,
+            "issued_area_ratio_vs_baseline": 1.0
+          }
+        ],
+        "coastal_crossings": []
+      },
+      {
+        "model_id": "TabPFN Direct-F2 + RF",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "generated_at_utc": "2026-10-26T17:07:26.298404+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lead_h": 6,
+            "lat_deg": 31.612109445654728,
+            "lon_deg": 131.04966774576837,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 19.5760111173243,
+              "nearest_coast_lat_deg": 31.436999999999998,
+              "nearest_coast_lon_deg": 131.07100000000003
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Kyushu",
+                "distance_km": 19.5760111173243,
+                "nearest_coast_lat_deg": 31.436999999999998,
+                "nearest_coast_lon_deg": 131.07100000000003
+              }
+            ],
+            "radius_90_km": 75.82759153148204,
+            "issued_area_90_km2": 18063.390463542717,
+            "translation_speed_kmh": 32.62304462639757,
+            "displacement_from_baseline_km": 9.722901115498658,
+            "issued_area_ratio_vs_baseline": 0.9221173066957868
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lead_h": 12,
+            "lat_deg": 31.817682524897563,
+            "lon_deg": 133.23404699124399,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 109.69925212214609,
+              "nearest_coast_lat_deg": 32.755,
+              "nearest_coast_lon_deg": 132.87
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Shikoku",
+                "distance_km": 109.69925212214609,
+                "nearest_coast_lat_deg": 32.755,
+                "nearest_coast_lon_deg": 132.87
+              },
+              {
+                "sector": "Kyushu",
+                "distance_km": 163.09052384416927,
+                "nearest_coast_lat_deg": 32.32500000000001,
+                "nearest_coast_lon_deg": 131.61
+              }
+            ],
+            "radius_90_km": 212.41956768139667,
+            "issued_area_90_km2": 141742.04071970863,
+            "translation_speed_kmh": 34.64652172742091,
+            "displacement_from_baseline_km": 11.592442295080426,
+            "issued_area_ratio_vs_baseline": 1.1864562930206053
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lead_h": 24,
+            "lat_deg": 32.01064081678703,
+            "lon_deg": 138.19122430121058,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 190.1341422422018,
+              "nearest_coast_lat_deg": 33.077999999999996,
+              "nearest_coast_lon_deg": 139.776
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Honshu",
+                "distance_km": 190.1341422422018,
+                "nearest_coast_lat_deg": 33.077999999999996,
+                "nearest_coast_lon_deg": 139.776
+              },
+              {
+                "sector": "Shikoku",
+                "distance_km": 379.9179414770289,
+                "nearest_coast_lat_deg": 33.821000000000005,
+                "nearest_coast_lon_deg": 134.73900000000003
+              }
+            ],
+            "radius_90_km": 403.55302179050574,
+            "issued_area_90_km2": 511453.16209914605,
+            "translation_speed_kmh": 39.02860763913707,
+            "displacement_from_baseline_km": 45.07987480699163,
+            "issued_area_ratio_vs_baseline": 1.2262333562536942
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lead_h": 48,
+            "lat_deg": 30.915289504701583,
+            "lon_deg": 145.8531621315044,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 613.5111813503775,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Honshu",
+                "distance_km": 613.5111813503775,
+                "nearest_coast_lat_deg": 33.09400000000001,
+                "nearest_coast_lon_deg": 139.87400000000002
+              }
+            ],
+            "radius_90_km": 883.1572498129348,
+            "issued_area_90_km2": 2446416.477354545,
+            "translation_speed_kmh": 30.69493450318068,
+            "displacement_from_baseline_km": 154.99425614471488,
+            "issued_area_ratio_vs_baseline": 1.2773149248354594
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lead_h": 72,
+            "lat_deg": 30.4555429092367,
+            "lon_deg": 152.86824606425387,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 1260.3640732820347,
+              "nearest_coast_lat_deg": 35.725,
+              "nearest_coast_lon_deg": 140.87400000000002
+            },
+            "position_region_coastal_sectors": [
+              {
+                "sector": "Honshu",
+                "distance_km": 1260.3640732820347,
+                "nearest_coast_lat_deg": 35.725,
+                "nearest_coast_lon_deg": 140.87400000000002
+              },
+              {
+                "sector": "Hokkaido",
+                "distance_km": 1544.979444651235,
+                "nearest_coast_lat_deg": 42.0,
+                "nearest_coast_lon_deg": 143.23699999999997
+              }
+            ],
+            "radius_90_km": 1552.4518194852253,
+            "issued_area_90_km2": 7534182.511291094,
+            "translation_speed_kmh": 28.027309195136027,
+            "displacement_from_baseline_km": 269.544414226084,
+            "issued_area_ratio_vs_baseline": 1.2604230270867727
+          }
+        ],
+        "coastal_crossings": []
+      },
+      {
+        "model_id": "Chronos-Bolt-small",
+        "issue_time_utc": "2026-10-26T00:00:00.000Z",
+        "generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lead_h": 6,
+            "lat_deg": 31.96413502214202,
+            "lon_deg": 130.59969013157206,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 27.863227984601544,
+              "nearest_coast_lat_deg": 31.717999999999996,
+              "nearest_coast_lon_deg": 130.65499999999997
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 27.308354844474888,
+            "displacement_from_baseline_km": 63.126194730494284
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lead_h": 12,
+            "lat_deg": 32.07546322575483,
+            "lon_deg": 132.2744570317982,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 68.28829523512522,
+              "nearest_coast_lat_deg": 32.29195827313128,
+              "nearest_coast_lon_deg": 131.59541091220444
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.3962094981681,
+            "displacement_from_baseline_km": 90.26875194514236
+          },
+          {
+            "valid_time_utc": "2026-10-26T18:00:00+00:00",
+            "lead_h": 18,
+            "lat_deg": 32.13722588107338,
+            "lon_deg": 134.0972939276175,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 123.65573517832611,
+              "nearest_coast_lat_deg": 33.247,
+              "nearest_coast_lon_deg": 134.18200000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 28.637811880037304
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lead_h": 24,
+            "lat_deg": 31.98614077007359,
+            "lon_deg": 136.0255209242216,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 169.72701343463297,
+              "nearest_coast_lat_deg": 33.487,
+              "nearest_coast_lon_deg": 135.695
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 30.413245788609846,
+            "displacement_from_baseline_km": 162.02464257149953
+          },
+          {
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
+            "lead_h": 30,
+            "lat_deg": 31.843171676925262,
+            "lon_deg": 138.25630888910587,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 197.94012518666065,
+              "nearest_coast_lat_deg": 33.077999999999996,
+              "nearest_coast_lon_deg": 139.776
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 35.191934403892
+          },
+          {
+            "valid_time_utc": "2026-10-27T12:00:00+00:00",
+            "lead_h": 36,
+            "lat_deg": 31.736842029346562,
+            "lon_deg": 140.4727946049241,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 157.70064527347608,
+              "nearest_coast_lat_deg": 33.045,
+              "nearest_coast_lon_deg": 139.824
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 34.96981010444579
+          },
+          {
+            "valid_time_utc": "2026-10-27T18:00:00+00:00",
+            "lead_h": 42,
+            "lat_deg": 31.661153612780797,
+            "lon_deg": 142.5400406464679,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 296.7425168754267,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 32.62567609493946
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lead_h": 48,
+            "lat_deg": 31.554466915999846,
+            "lon_deg": 144.5501112993819,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 471.4962338766873,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 31.78667638345425,
+            "displacement_from_baseline_km": 126.02804933779763
+          },
+          {
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
+            "lead_h": 54,
+            "lat_deg": 31.334105646728705,
+            "lon_deg": 146.86806522412934,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 686.3055299421766,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 36.87521641828715
+          },
+          {
+            "valid_time_utc": "2026-10-28T12:00:00+00:00",
+            "lead_h": 60,
+            "lat_deg": 31.149549199098225,
+            "lon_deg": 148.9418063216891,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 880.5607872631454,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 33.03552692164815
+          },
+          {
+            "valid_time_utc": "2026-10-28T18:00:00+00:00",
+            "lead_h": 66,
+            "lat_deg": 30.927506429438726,
+            "lon_deg": 151.11704306254012,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 1086.5077790631378,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 34.78434185395522
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lead_h": 72,
+            "lat_deg": 30.573711281847974,
+            "lon_deg": 153.23190589031333,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 1283.8075599395543,
+              "nearest_coast_lat_deg": 35.725,
+              "nearest_coast_lon_deg": 140.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 34.314752639870626,
+            "displacement_from_baseline_km": 304.62483200159653
+          }
+        ],
+        "coastal_crossings": []
+      },
+      {
+        "model_id": "Chronos-2",
+        "issue_time_utc": "2026-10-26T00:00:00.000Z",
+        "generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lead_h": 6,
+            "lat_deg": 31.601751976377354,
+            "lon_deg": 130.76137959419833,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 0.14691554595340262,
+              "nearest_coast_lat_deg": 31.60046359055944,
+              "nearest_coast_lon_deg": 130.76172338856264
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 28.081989344682388,
+            "displacement_from_baseline_km": 26.387780039677125
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lead_h": 12,
+            "lat_deg": 31.722050992193097,
+            "lon_deg": 132.4126220985351,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 88.8745490618505,
+              "nearest_coast_lat_deg": 31.778,
+              "nearest_coast_lon_deg": 131.47500000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.141911707494724,
+            "displacement_from_baseline_km": 69.53111456156259
+          },
+          {
+            "valid_time_utc": "2026-10-26T18:00:00+00:00",
+            "lead_h": 18,
+            "lat_deg": 31.879750608470953,
+            "lon_deg": 134.0594112089119,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 147.59273791846348,
+              "nearest_coast_lat_deg": 32.838924194165585,
+              "nearest_coast_lon_deg": 132.97321162690116
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.10161132988753
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lead_h": 24,
+            "lat_deg": 31.99903085341768,
+            "lon_deg": 135.72427558832794,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 165.47749971700784,
+              "nearest_coast_lat_deg": 33.487,
+              "nearest_coast_lon_deg": 135.695
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.2759430217035,
+            "displacement_from_baseline_km": 190.468448600484
+          },
+          {
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
+            "lead_h": 30,
+            "lat_deg": 32.1133609420607,
+            "lon_deg": 137.41324185707379,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 213.33515913228103,
+              "nearest_coast_lat_deg": 33.562,
+              "nearest_coast_lon_deg": 135.916
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.612495891027717
+          },
+          {
+            "valid_time_utc": "2026-10-27T12:00:00+00:00",
+            "lead_h": 36,
+            "lat_deg": 32.10569160405397,
+            "lon_deg": 139.07777472148155,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 125.69023304412339,
+              "nearest_coast_lat_deg": 33.045,
+              "nearest_coast_lon_deg": 139.824
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.12939905852106
+          },
+          {
+            "valid_time_utc": "2026-10-27T18:00:00+00:00",
+            "lead_h": 42,
+            "lat_deg": 32.14933748174542,
+            "lon_deg": 141.0052277493471,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 148.51544774250235,
+              "nearest_coast_lat_deg": 33.05599999999999,
+              "nearest_coast_lon_deg": 139.841
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 30.260948483968406
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lead_h": 48,
+            "lat_deg": 32.08343479920938,
+            "lon_deg": 142.92151610466453,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 306.8167843133717,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 30.103370369005262,
+            "displacement_from_baseline_km": 226.87472233160247
+          },
+          {
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
+            "lead_h": 54,
+            "lat_deg": 31.88137782270207,
+            "lon_deg": 144.88279698085398,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 488.7012584011807,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 31.05643395250341
+          },
+          {
+            "valid_time_utc": "2026-10-28T12:00:00+00:00",
+            "lead_h": 60,
+            "lat_deg": 31.586512063424216,
+            "lon_deg": 146.6651056071173,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 659.5155225337039,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 28.618746575413525
+          },
+          {
+            "valid_time_utc": "2026-10-28T18:00:00+00:00",
+            "lead_h": 66,
+            "lat_deg": 31.287901987195298,
+            "lon_deg": 148.69982155235482,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 854.162539625604,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 32.64521198945423
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lead_h": 72,
+            "lat_deg": 30.7707826648959,
+            "lon_deg": 150.59194031005586,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 1043.3559259242456,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 31.53866708911207,
+            "displacement_from_baseline_km": 63.74490653402229
+          }
+        ],
+        "coastal_crossings": []
+      },
+      {
+        "model_id": "Moirai-1.1-R-small",
+        "issue_time_utc": "2026-10-26T00:00:00.000Z",
+        "generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00+00:00",
+            "lead_h": 6,
+            "lat_deg": 31.311768900477826,
+            "lon_deg": 130.43905064677392,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 8.88585431504563,
+              "nearest_coast_lat_deg": 31.236819358742867,
+              "nearest_coast_lon_deg": 130.40661488020163
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 22.83268853065974,
+            "displacement_from_baseline_km": 60.60176657616541
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00+00:00",
+            "lead_h": 12,
+            "lat_deg": 31.480635379849897,
+            "lon_deg": 132.21845210463363,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 74.90300850455192,
+              "nearest_coast_lat_deg": 31.671,
+              "nearest_coast_lon_deg": 131.46000000000004
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 28.321604283785575,
+            "displacement_from_baseline_km": 92.70913409948793
+          },
+          {
+            "valid_time_utc": "2026-10-26T18:00:00+00:00",
+            "lead_h": 18,
+            "lat_deg": 32.29866362560607,
+            "lon_deg": 133.9603980028628,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 107.46636418186127,
+              "nearest_coast_lat_deg": 33.247,
+              "nearest_coast_lon_deg": 134.18200000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 31.32252282494359
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00+00:00",
+            "lead_h": 24,
+            "lat_deg": 32.37643574000366,
+            "lon_deg": 135.86415096414362,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 124.49417711329882,
+              "nearest_coast_lat_deg": 33.487,
+              "nearest_coast_lon_deg": 135.695
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 29.84402441891596,
+            "displacement_from_baseline_km": 184.82549265986938
+          },
+          {
+            "valid_time_utc": "2026-10-27T06:00:00+00:00",
+            "lead_h": 30,
+            "lat_deg": 32.575357794607605,
+            "lon_deg": 137.27111417384026,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 167.27303510850516,
+              "nearest_coast_lat_deg": 33.562,
+              "nearest_coast_lon_deg": 135.916
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 22.303552950508806
+          },
+          {
+            "valid_time_utc": "2026-10-27T12:00:00+00:00",
+            "lead_h": 36,
+            "lat_deg": 33.23336489476659,
+            "lon_deg": 139.37735433057873,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 39.0634873545602,
+              "nearest_coast_lat_deg": 33.11143164668906,
+              "nearest_coast_lon_deg": 139.7709692954527
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 34.96642649988247
+          },
+          {
+            "valid_time_utc": "2026-10-27T18:00:00+00:00",
+            "lead_h": 42,
+            "lat_deg": 33.065015672038236,
+            "lon_deg": 140.88995240566032,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 94.71270767622305,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 23.676225855526145
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00+00:00",
+            "lead_h": 48,
+            "lat_deg": 32.8965400888692,
+            "lon_deg": 142.97516808606122,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 290.0396379964732,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 32.56634775408035,
+            "displacement_from_baseline_km": 302.1091157129028
+          },
+          {
+            "valid_time_utc": "2026-10-28T06:00:00+00:00",
+            "lead_h": 54,
+            "lat_deg": 32.39036734389494,
+            "lon_deg": 143.65903616088497,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 362.5251875487283,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 14.20858093402694
+          },
+          {
+            "valid_time_utc": "2026-10-28T12:00:00+00:00",
+            "lead_h": 60,
+            "lat_deg": 31.819021892833227,
+            "lon_deg": 145.76502589165534,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 570.5327133368369,
+              "nearest_coast_lat_deg": 33.09400000000001,
+              "nearest_coast_lon_deg": 139.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 34.71428655660352
+          },
+          {
+            "valid_time_utc": "2026-10-28T18:00:00+00:00",
+            "lead_h": 66,
+            "lat_deg": 32.467322433477236,
+            "lon_deg": 148.00169770185028,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 749.3486857326466,
+              "nearest_coast_lat_deg": 35.725,
+              "nearest_coast_lon_deg": 140.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 37.09606465525615
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00+00:00",
+            "lead_h": 72,
+            "lat_deg": 32.008639749033634,
+            "lon_deg": 149.7926990683162,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 920.7948465231656,
+              "nearest_coast_lat_deg": 35.725,
+              "nearest_coast_lon_deg": 140.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 29.333123453457663,
+            "displacement_from_baseline_km": 177.35610816217783
+          }
+        ],
+        "coastal_crossings": []
+      },
+      {
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "generated_at_utc": "2026-10-26T17:23:00.265786+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00.000Z",
+            "lead_h": 6,
+            "lat_deg": 33.2,
+            "lon_deg": 130.9,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 49.48912118448059,
+              "nearest_coast_lat_deg": 33.0567532007519,
+              "nearest_coast_lon_deg": 130.39682384690104
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 44.70407146515692,
+            "displacement_from_baseline_km": 186.39524575610758
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00.000Z",
+            "lead_h": 12,
+            "lat_deg": 33.7,
+            "lon_deg": 133.7,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 20.50093264231807,
+              "nearest_coast_lat_deg": 33.51600000000001,
+              "nearest_coast_lon_deg": 133.68600000000004
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 44.275068210341345,
+            "displacement_from_baseline_km": 223.56522669630522
+          },
+          {
+            "valid_time_utc": "2026-10-26T18:00:00.000Z",
+            "lead_h": 18,
+            "lat_deg": 34.4,
+            "lon_deg": 136.9,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 1.7769850326139667,
+              "nearest_coast_lat_deg": 34.39975741121027,
+              "nearest_coast_lon_deg": 136.8806342717745
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 50.81734534990261
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00.000Z",
+            "lead_h": 24,
+            "lat_deg": 35.8,
+            "lon_deg": 139.8,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 16.102673138373397,
+              "nearest_coast_lat_deg": 35.65800000000001,
+              "nearest_coast_lon_deg": 139.83500000000004
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 51.05127336264362,
+            "displacement_from_baseline_km": 475.42246886022843
+          },
+          {
+            "valid_time_utc": "2026-10-27T06:00:00.000Z",
+            "lead_h": 30,
+            "lat_deg": 37.5,
+            "lon_deg": 145.2,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 339.01059124484163,
+              "nearest_coast_lat_deg": 39.11099999999999,
+              "nearest_coast_lon_deg": 141.901
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 86.2331593713378
+          },
+          {
+            "valid_time_utc": "2026-10-27T12:00:00.000Z",
+            "lead_h": 36,
+            "lat_deg": 40.1,
+            "lon_deg": 151.6,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 597.1244640031632,
+              "nearest_coast_lat_deg": 43.426,
+              "nearest_coast_lon_deg": 145.94399999999996
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 104.20327633857165
+          },
+          {
+            "valid_time_utc": "2026-10-27T18:00:00.000Z",
+            "lead_h": 42,
+            "lat_deg": 42.9,
+            "lon_deg": 154.9,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 728.3893925976103,
+              "nearest_coast_lat_deg": 43.426,
+              "nearest_coast_lon_deg": 145.94399999999996
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 69.20291124708844
+          },
+          {
+            "valid_time_utc": "2026-10-28T00:00:00.000Z",
+            "lead_h": 48,
+            "lat_deg": 44.9,
+            "lon_deg": 158.0,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 956.7123274156172,
+              "nearest_coast_lat_deg": 44.273,
+              "nearest_coast_lon_deg": 145.94
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 55.557229322807075,
+            "displacement_from_baseline_km": 2002.4600095981616
+          },
+          {
+            "valid_time_utc": "2026-10-28T06:00:00.000Z",
+            "lead_h": 54,
+            "lat_deg": 47.0,
+            "lon_deg": 161.2,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 1222.387600353629,
+              "nearest_coast_lat_deg": 44.273,
+              "nearest_coast_lon_deg": 145.94
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 56.690258333516034
+          },
+          {
+            "valid_time_utc": "2026-10-28T12:00:00.000Z",
+            "lead_h": 60,
+            "lat_deg": 49.3,
+            "lon_deg": 162.8,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 1396.1737986102892,
+              "nearest_coast_lat_deg": 44.273,
+              "nearest_coast_lon_deg": 145.94
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 46.989236641042
+          },
+          {
+            "valid_time_utc": "2026-10-28T18:00:00.000Z",
+            "lead_h": 66,
+            "lat_deg": 50.4,
+            "lon_deg": 163.4,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 1476.6615238378736,
+              "nearest_coast_lat_deg": 44.273,
+              "nearest_coast_lon_deg": 145.94
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 21.609634823467086
+          },
+          {
+            "valid_time_utc": "2026-10-29T00:00:00.000Z",
+            "lead_h": 72,
+            "lat_deg": 51.1,
+            "lon_deg": 165.4,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Hokkaido",
+              "distance_km": 1635.6689257152711,
+              "nearest_coast_lat_deg": 44.273,
+              "nearest_coast_lon_deg": 145.94
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.79891915581112,
+            "displacement_from_baseline_km": 2624.7568600510162
+          }
+        ],
+        "coastal_crossings": [
+          {
+            "lat_deg": 34.64959348299554,
+            "lon_deg": 137.39964132872393,
+            "valid_time_utc": "2026-10-26T19:02:54.757282+00:00",
+            "region": "日本本州附近",
+            "resolution_km": 3,
+            "sector": "Honshu"
+          }
+        ]
+      },
+      {
+        "model_id": "ATCF:NGX / TECHNUM 03",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "generated_at_utc": "2026-10-26T17:23:00.385625+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00.000Z",
+            "lead_h": 6,
+            "lat_deg": 32.1,
+            "lon_deg": 130.9,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 45.347622140611115,
+              "nearest_coast_lat_deg": 31.706000000000003,
+              "nearest_coast_lon_deg": 130.776
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 32.63117804572702,
+            "displacement_from_baseline_km": 64.80472616486207
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00.000Z",
+            "lead_h": 12,
+            "lat_deg": 32.2,
+            "lon_deg": 132.7,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 62.15014160298272,
+              "nearest_coast_lat_deg": 32.75200000000001,
+              "nearest_coast_lon_deg": 132.80399999999997
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 28.303658316314,
+            "displacement_from_baseline_km": 65.97668320107384
+          },
+          {
+            "valid_time_utc": "2026-10-26T18:00:00.000Z",
+            "lead_h": 18,
+            "lat_deg": 32.9,
+            "lon_deg": 135.1,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 79.68909921280645,
+              "nearest_coast_lat_deg": 33.553,
+              "nearest_coast_lon_deg": 135.45299999999997
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 39.671253970031394
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00.000Z",
+            "lead_h": 24,
+            "lat_deg": 33.0,
+            "lon_deg": 136.8,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 103.23631108305723,
+              "nearest_coast_lat_deg": 33.562,
+              "nearest_coast_lon_deg": 135.916
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 26.502091424357904,
+            "displacement_from_baseline_km": 152.32564869092272
+          },
+          {
+            "valid_time_utc": "2026-10-27T06:00:00.000Z",
+            "lead_h": 30,
+            "lat_deg": 33.8,
+            "lon_deg": 139.5,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 79.33318646502403,
+              "nearest_coast_lat_deg": 33.125,
+              "nearest_coast_lon_deg": 139.777
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 44.32504206352945
+          },
+          {
+            "valid_time_utc": "2026-10-27T12:00:00.000Z",
+            "lead_h": 36,
+            "lat_deg": 35.0,
+            "lon_deg": 144.4,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 329.7237091923808,
+              "nearest_coast_lat_deg": 35.725,
+              "nearest_coast_lon_deg": 140.87400000000002
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 78.14852044412369
+          }
+        ],
+        "coastal_crossings": []
+      },
+      {
+        "model_id": "ATCF:UKM / TECHNUM 03",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "generated_at_utc": "2026-10-26T17:23:00.451367+00:00",
+        "points": [
+          {
+            "valid_time_utc": "2026-10-26T06:00:00.000Z",
+            "lead_h": 6,
+            "lat_deg": 31.7,
+            "lon_deg": 131.3,
+            "centre_on_land": true,
+            "nearest_coast": {
+              "sector": "Kyushu",
+              "distance_km": 15.267740867937981,
+              "nearest_coast_lat_deg": 31.649683270892083,
+              "nearest_coast_lon_deg": 131.4501151094762
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 36.74642644394234,
+            "displacement_from_baseline_km": 32.31350057505406
+          },
+          {
+            "valid_time_utc": "2026-10-26T12:00:00.000Z",
+            "lead_h": 12,
+            "lat_deg": 32.2,
+            "lon_deg": 133.4,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Shikoku",
+              "distance_km": 79.24768261728026,
+              "nearest_coast_lat_deg": 32.755,
+              "nearest_coast_lon_deg": 132.87
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 34.29728220824468,
+            "displacement_from_baseline_km": 56.03366562908989
+          },
+          {
+            "valid_time_utc": "2026-10-26T18:00:00.000Z",
+            "lead_h": 18,
+            "lat_deg": 33.0,
+            "lon_deg": 136.8,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 103.23631108305723,
+              "nearest_coast_lat_deg": 33.562,
+              "nearest_coast_lon_deg": 135.916
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 55.111834755600995
+          },
+          {
+            "valid_time_utc": "2026-10-27T00:00:00.000Z",
+            "lead_h": 24,
+            "lat_deg": 32.6,
+            "lon_deg": 137.6,
+            "centre_on_land": false,
+            "nearest_coast": {
+              "sector": "Honshu",
+              "distance_km": 189.8892114555729,
+              "nearest_coast_lat_deg": 33.562,
+              "nearest_coast_lon_deg": 135.916
+            },
+            "position_region_coastal_sectors": [],
+            "radius_90_km": null,
+            "issued_area_90_km2": null,
+            "translation_speed_kmh": 14.500281122159281,
+            "displacement_from_baseline_km": 80.88360827341253
+          }
+        ],
+        "coastal_crossings": []
+      }
+    ]
+  },
   "agency_forecasts": {
     "checked_at_utc": "2026-10-26T03:22:48.946746+00:00",
     "ok": true,
@@ -1228,12 +2727,6 @@
       "raw_file_sha256": "9013694443b130fc8559e75aff3eb4821326e0fee4538680c84eac37ee2c5aa7"
     },
     "note": "CMA公开地图原始BABJ位置预报；逐行首次业务发布时间未知。仅保留原报时效，不外推缺失24h路径。"
-  },
-  "publication": {
-    "mode": "mac_auto",
-    "transfer_prepared_at_utc": "2026-10-26T02:47:48.792651+00:00",
-    "poll_interval_seconds": 900,
-    "model_source": "private local TabPFN-3.5 + frozen C0/C1; actual version times retained"
   },
   "verification": {
     "schema": 1,
@@ -2981,6 +4474,1012 @@
         "confirmed_at_utc": "2026-10-26T02:48:45.319063+00:00",
         "eligible": true,
         "exclusion": null
+      },
+      {
+        "id": "bf61982a42b489a4c35010b425103e531193b18a2abe5bec5e471fe3b674d2af",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T17:07:25.909631+00:00",
+        "calibration_n": 100,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "TabPFN Direct-F2",
+        "kind": "research",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 31.882039934401877,
+        "lon_deg": 137.73812398997632,
+        "radius_80_km": 256.77472862378994,
+        "radius_90_km": 364.41868895091034,
+        "radius_95_km": 529.7860928374074,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "9a52d39e9cd98645c02204ae6716ff3fe6b5ce153894374cca3ce679a7e532a1",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T17:07:25.909631+00:00",
+        "calibration_n": 100,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "TabPFN Direct-F2",
+        "kind": "research",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T00:00:00+00:00",
+        "lead_h": 48,
+        "lat_deg": 30.436746735236987,
+        "lon_deg": 144.3309612069596,
+        "radius_80_km": 510.36714552661755,
+        "radius_90_km": 781.2921044272089,
+        "radius_95_km": 1027.18144141704,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "96a5d7b820303aa62b3cdfcb4bfedb406dbc95623066a2c3aa30f7a065e8ee18",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T17:07:25.909631+00:00",
+        "calibration_n": 100,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "TabPFN Direct-F2",
+        "kind": "research",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-29T00:00:00+00:00",
+        "lead_h": 72,
+        "lat_deg": 30.429690018698924,
+        "lon_deg": 150.05663688019735,
+        "radius_80_km": 861.8047674857916,
+        "radius_90_km": 1382.091803831423,
+        "radius_95_km": 1639.084430565402,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "f362b5582f543c751f017a5212cbd6d5ad85cfddf0fd3441860a721c14ad7363",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T17:07:26.298404+00:00",
+        "calibration_n": 100,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "TabPFN Direct-F2 + RF",
+        "kind": "research",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 32.01064081678703,
+        "lon_deg": 138.19122430121058,
+        "radius_80_km": 258.90194865710924,
+        "radius_90_km": 403.55302179050574,
+        "radius_95_km": 491.86518529679137,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "e736138ee9c15a094275ff34495deb0234e4707cf4f60865154aa25721557907",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T17:07:26.298404+00:00",
+        "calibration_n": 100,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "TabPFN Direct-F2 + RF",
+        "kind": "research",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T00:00:00+00:00",
+        "lead_h": 48,
+        "lat_deg": 30.915289504701583,
+        "lon_deg": 145.8531621315044,
+        "radius_80_km": 553.0995242316511,
+        "radius_90_km": 883.1572498129348,
+        "radius_95_km": 1061.9242239574082,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "88514b29537c265021edaec905e3b8646713c90d239dd5ad17a49b57f915ca2b",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "local:TabPFN-3.5 frozen checkpoint",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T17:07:26.298404+00:00",
+        "calibration_n": 100,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "TabPFN Direct-F2 + RF",
+        "kind": "research",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-29T00:00:00+00:00",
+        "lead_h": 72,
+        "lat_deg": 30.4555429092367,
+        "lon_deg": 152.86824606425387,
+        "radius_80_km": 1171.1505917193745,
+        "radius_90_km": 1552.4518194852253,
+        "radius_95_km": 1877.8269514373837,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "853c6076eb3731a50807f2a05e66635bf39f224c822928dd04b90327a19d6c43",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-26T18:00:00+00:00",
+        "lead_h": 18,
+        "lat_deg": 32.13722588107338,
+        "lon_deg": 134.0972939276175,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "e25281200abf710264516ee69b67d3e7cd9bfd0ef3525ada11cc314665f5e5f1",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 31.98614077007359,
+        "lon_deg": 136.0255209242216,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "53e7970ee54b451e4e4e8a5a887d5004c70ce813c7ea3e395eece32d6fb76a84",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T06:00:00+00:00",
+        "lead_h": 30,
+        "lat_deg": 31.843171676925262,
+        "lon_deg": 138.25630888910587,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "d974e383e42c7930d77b0e73fca6206365b177106dc9ca264c0f967737d504bf",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T12:00:00+00:00",
+        "lead_h": 36,
+        "lat_deg": 31.736842029346562,
+        "lon_deg": 140.4727946049241,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "bccef8fed947b99512dcdb666e55f01b7c3bd2c6782d34ccca02d7e057133895",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T18:00:00+00:00",
+        "lead_h": 42,
+        "lat_deg": 31.661153612780797,
+        "lon_deg": 142.5400406464679,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "745ae9da265142d33bc492602eed456da3afd9a67e49cf90bb9c1a2806c740e4",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T00:00:00+00:00",
+        "lead_h": 48,
+        "lat_deg": 31.554466915999846,
+        "lon_deg": 144.5501112993819,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "68de91531acae82b59c0f45abd6955894e7d93393e3a38ecc54ea0be29357a74",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T06:00:00+00:00",
+        "lead_h": 54,
+        "lat_deg": 31.334105646728705,
+        "lon_deg": 146.86806522412934,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "76f6dd9832c46210ce52c969495dc13656aaa9ea030328edc555300fec85f63e",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T12:00:00+00:00",
+        "lead_h": 60,
+        "lat_deg": 31.149549199098225,
+        "lon_deg": 148.9418063216891,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "31740b735e70757c152a47aeb52b52065cbb4289090219238409e28dfa00db84",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T18:00:00+00:00",
+        "lead_h": 66,
+        "lat_deg": 30.927506429438726,
+        "lon_deg": 151.11704306254012,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "59adf44fc483d8619ae5db773a5f09c54569fceea39d624cdd17e4477bd521ae",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-Bolt-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-29T00:00:00+00:00",
+        "lead_h": 72,
+        "lat_deg": 30.573711281847974,
+        "lon_deg": 153.23190589031333,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "09a4c040817e55272beebc7f6d31469c67bcde6b4de5e0d249352b6f6acd62a2",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-26T18:00:00+00:00",
+        "lead_h": 18,
+        "lat_deg": 31.879750608470953,
+        "lon_deg": 134.0594112089119,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "5d054a8dfeda5e41cc18ff317e0017860eede986c48bc85b2079cdde56f45723",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 31.99903085341768,
+        "lon_deg": 135.72427558832794,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "10f67062d01b1cac4fc2aed463e1760dacd572fad5b47ae62998133201620dbf",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T06:00:00+00:00",
+        "lead_h": 30,
+        "lat_deg": 32.1133609420607,
+        "lon_deg": 137.41324185707379,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "0e01cace4511ecf0d06c42fedaccc6c19a5a72645a0291917078893f2f4a9357",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T12:00:00+00:00",
+        "lead_h": 36,
+        "lat_deg": 32.10569160405397,
+        "lon_deg": 139.07777472148155,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "142206cfb59f572f9d5abbf7eddf74c0ab8164318dc8c7ff18d14bda87347c9a",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T18:00:00+00:00",
+        "lead_h": 42,
+        "lat_deg": 32.14933748174542,
+        "lon_deg": 141.0052277493471,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "7285a4f5c04cfa38bf95b54b7bec38e822771ccdf46155dcfca3ef6ece865251",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T00:00:00+00:00",
+        "lead_h": 48,
+        "lat_deg": 32.08343479920938,
+        "lon_deg": 142.92151610466453,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "30995dfb60e2ad1b352635a9a00c1d43517125bd44fb84e11c196533386d3e8c",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T06:00:00+00:00",
+        "lead_h": 54,
+        "lat_deg": 31.88137782270207,
+        "lon_deg": 144.88279698085398,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "0e889991fc0746f18db41de20e656bf42f4e6fdb4a9e2ae0706ded5b37611fed",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T12:00:00+00:00",
+        "lead_h": 60,
+        "lat_deg": 31.586512063424216,
+        "lon_deg": 146.6651056071173,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "e73aa7df6934325052451ca23ed88ebd1c5be7c29c94275ccade0dfb7cb89c99",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T18:00:00+00:00",
+        "lead_h": 66,
+        "lat_deg": 31.287901987195298,
+        "lon_deg": 148.69982155235482,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "4ae1d7e19627cc61e0de505d129ac08d2e2c5adb6cf09ac230209706e58fcddf",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/amazon/chronos-2",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Chronos-2",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-29T00:00:00+00:00",
+        "lead_h": 72,
+        "lat_deg": 30.7707826648959,
+        "lon_deg": 150.59194031005586,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "117eb233125dc771e71f4489bfecdf658f176465743ab835c2594bcf1c9e986b",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-26T18:00:00+00:00",
+        "lead_h": 18,
+        "lat_deg": 32.29866362560607,
+        "lon_deg": 133.9603980028628,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "1bf711034e7d323a043f27ef791a6994f0aadb1c451c0f307e71da131c3e2626",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 32.37643574000366,
+        "lon_deg": 135.86415096414362,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "26589b61c2b1e796ab81fd8179b1b29827d444df3f09a08e9bd3f96246d5e50a",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T06:00:00+00:00",
+        "lead_h": 30,
+        "lat_deg": 32.575357794607605,
+        "lon_deg": 137.27111417384026,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "d6701f6cc6dca1ef62dff45de4e11da5fc4b1c61710116ba4d9474999817f5bd",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T12:00:00+00:00",
+        "lead_h": 36,
+        "lat_deg": 33.23336489476659,
+        "lon_deg": 139.37735433057873,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "f861b2b20f4e3cc527fb4fa0fb399952052a80bf542e717fbef0ffae1d994573",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T18:00:00+00:00",
+        "lead_h": 42,
+        "lat_deg": 33.065015672038236,
+        "lon_deg": 140.88995240566032,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "bb6165f445e79d1e20483c2d6bf4733ff41bc4e4e1329b33ae0c7a3e0c8245c3",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T00:00:00+00:00",
+        "lead_h": 48,
+        "lat_deg": 32.8965400888692,
+        "lon_deg": 142.97516808606122,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "e6a5f51129b3461a3e132e66215188843f55eea6f4f1e36cdc3ce618bf08a201",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T06:00:00+00:00",
+        "lead_h": 54,
+        "lat_deg": 32.39036734389494,
+        "lon_deg": 143.65903616088497,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "1a2af3d8e7cfe64110fa84798fc055fd891288f6c7897ce7a1637da5dce785bc",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T12:00:00+00:00",
+        "lead_h": 60,
+        "lat_deg": 31.819021892833227,
+        "lon_deg": 145.76502589165534,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "bb64c886caa93dc2b26d2808af4bd5c0b9681e546dae76b9fc626767e0798424",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T18:00:00+00:00",
+        "lead_h": 66,
+        "lat_deg": 32.467322433477236,
+        "lon_deg": 148.00169770185028,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "45399bb168bc666f08fa6cdd84342d5238aeb1a8045a871bb024918074de63af",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+        "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+        "model_generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "Moirai-1.1-R-small",
+        "kind": "tsfm",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-29T00:00:00+00:00",
+        "lead_h": 72,
+        "lat_deg": 32.008639749033634,
+        "lon_deg": 149.7926990683162,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "f8485d912663f26ce51db24b7dea48f994a670a3af1dcb0a53ee2df3c9c7c703",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-26T18:00:00+00:00",
+        "lead_h": 18,
+        "lat_deg": 34.4,
+        "lon_deg": 136.9,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "2c4b544e63e8ac83ced45d1b828bbe3a520a1e88ec222ae563f04e6ad73114ac",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 35.8,
+        "lon_deg": 139.8,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "ac140717532cd8133043e31f43580253b8307e6ed375b65820e7c656ddc35342",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T06:00:00+00:00",
+        "lead_h": 30,
+        "lat_deg": 37.5,
+        "lon_deg": 145.2,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "25305556a1a0949ad1830ed5204defa7e6338fb663b89f1758423b4373964100",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T12:00:00+00:00",
+        "lead_h": 36,
+        "lat_deg": 40.1,
+        "lon_deg": 151.6,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "decdfa064389181ebf00ce902a4cefdab9d87a551dbeb845cc23204613542f04",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T18:00:00+00:00",
+        "lead_h": 42,
+        "lat_deg": 42.9,
+        "lon_deg": 154.9,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "d322d902794c75bce5f2fc7e0c04cb3bed61508c7d0c396425dea740b67f55d5",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T00:00:00+00:00",
+        "lead_h": 48,
+        "lat_deg": 44.9,
+        "lon_deg": 158.0,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "4455dbf604a4918e030d08de0427fc2a9d9d9e3ab3c477e868bd0ffd973f3330",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T06:00:00+00:00",
+        "lead_h": 54,
+        "lat_deg": 47.0,
+        "lon_deg": 161.2,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "c1e832ed75c203973d61a0a12a9e9d4d7f64cd096fe1adbe91fdc1eea4cc2774",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T12:00:00+00:00",
+        "lead_h": 60,
+        "lat_deg": 49.3,
+        "lon_deg": 162.8,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "c6c0a4d7b44defbac6df60eda8d08a9ed90b387aead6de81d2032b8fd293ed59",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-28T18:00:00+00:00",
+        "lead_h": 66,
+        "lat_deg": 50.4,
+        "lon_deg": 163.4,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "1266e257abe16d6f610484525d5e3945ee8ed30155bbae136cb180cd2ee0adbe",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:CMC / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-29T00:00:00+00:00",
+        "lead_h": 72,
+        "lat_deg": 51.1,
+        "lon_deg": 165.4,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "4aee887beaabba5ea095ce2fc1c9e58ad13c3cb9b5514f32ef6b341190274253",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:NGX / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-26T18:00:00+00:00",
+        "lead_h": 18,
+        "lat_deg": 32.9,
+        "lon_deg": 135.1,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "d781f6ca14002594942c1969f46d57804632651d42c1e35c382e8f45e7314c60",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:NGX / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 33.0,
+        "lon_deg": 136.8,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "66e964abc67a4d6a2f9254467dee46f4188db290c70d092bd36d3243ace02c95",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:NGX / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T06:00:00+00:00",
+        "lead_h": 30,
+        "lat_deg": 33.8,
+        "lon_deg": 139.5,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "01b82afba58ef8d6ecc943e3c0c324d005771b067d41a21f58894db09dc62b48",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:NGX / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T12:00:00+00:00",
+        "lead_h": 36,
+        "lat_deg": 35.0,
+        "lon_deg": 144.4,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "fccb4e9668c5325c160ef0eeb7147516cbc42635df4c3ce900ac5dc6a2464440",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:UKM / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-26T18:00:00+00:00",
+        "lead_h": 18,
+        "lat_deg": 33.0,
+        "lon_deg": 136.8,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
+      },
+      {
+        "id": "e12b1c2ccf81832f1d84a9a33952c7dde95a68bb91466c1cb76e95357ad2d375",
+        "recorded_at_utc": "2026-10-26T17:11:37.427287+00:00",
+        "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+        "source_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
+        "model_generated_at_utc": null,
+        "calibration_n": null,
+        "storm_id": "CHAMPI_2026",
+        "model_id": "ATCF:UKM / TECHNUM 03",
+        "kind": "nwp",
+        "issue_time_utc": "2026-10-26T00:00:00+00:00",
+        "valid_time_utc": "2026-10-27T00:00:00+00:00",
+        "lead_h": 24,
+        "lat_deg": 32.6,
+        "lon_deg": 137.6,
+        "confirmed_at_utc": "2026-10-26T17:31:49.817919+00:00",
+        "eligible": true,
+        "exclusion": null
       }
     ],
     "truths": {
@@ -3000,6 +5499,6 @@
       }
     },
     "protocol": "Public Git snapshot confirmed before valid; exact storm/issue/lead/valid pairing; first subsequently retrieved UCAR truth; no backfill",
-    "updated_at_utc": "2026-10-26T02:48:45.319063+00:00"
+    "updated_at_utc": "2026-10-26T17:31:49.817919+00:00"
   }
 }

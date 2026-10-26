@@ -26,7 +26,11 @@ def merge_live(existing, candidate):
     if existing.get('storm_id') != candidate.get('storm_id'):
         raise ValueError('cannot merge different storms')
     public = max((existing, candidate), key=lambda p: stamp(p.get('last_checked_at_utc')))
-    model = max((existing, candidate), key=model_version)
+    from .method_contract import PROTOCOL
+    active=[p for p in (existing,candidate) if p.get('model',{}).get('protocol_id')==PROTOCOL]
+    # A delayed legacy worker must not replace the user-approved algorithm,
+    # even if its retrieval or computation clock happens to be newer.
+    model = max(active or (existing, candidate), key=model_version)
     out = copy.deepcopy(public)
     out['model'] = copy.deepcopy(model['model'])
     own = [p for p in out['model']['paths'] if not p.get('model_raw_aid') and p.get('model_family')!='tsfm']

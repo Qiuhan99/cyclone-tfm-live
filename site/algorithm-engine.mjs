@@ -1,7 +1,7 @@
 import {distance,sphereExp,RADIUS_KM} from './engine.mjs';
-import {METHOD_LABELS} from './method-labels.mjs?v=names1';
-export const OWN=['TabPFN CV-F2','TabPFN CV-F2 + C0','TabPFN CV-F2 + C1'];
-export const PUBLIC_OWN=[OWN[0],OWN[2]];
+import {METHOD_LABELS} from './method-labels.mjs?v=direct1';
+export const OWN=['TabPFN Direct-F2','TabPFN Direct-F2 + RF'];
+export const PUBLIC_OWN=[...OWN];
 export const LABELS={...METHOD_LABELS,'Chronos-Bolt-small':'Chronos-Bolt-small','Chronos-2':'Chronos-2','Moirai-1.1-R-small':'Moirai-1.1-R-small'};
 export const point=(p,h)=>p?.points.find(q=>q.lead_h===h);
 export const sameTime=(a,b)=>Number.isFinite(Date.parse(a))&&Date.parse(a)===Date.parse(b);

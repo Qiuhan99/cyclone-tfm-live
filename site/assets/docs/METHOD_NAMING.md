@@ -1,3 +1,9 @@
+# Current method
+
+The active method is **direct TabPFN + Vector Residual Feedback**, protocol `direct_vector_feedback_v1`. See [the algorithm contract](DIRECT_VECTOR_FEEDBACK.md). First-stage labels are true future displacement; correction inputs are [X, mature vector residual history]. CV is an archived auxiliary experiment.
+
+The following records describe the earlier naming-only release and retain its historical scope.
+
 # Method naming and research roles
 
 The proposed method is **TabPFN + Vector Residual Feedback**. Compact map legends and tables use **Vector residual feedback** after the backbone has been introduced.

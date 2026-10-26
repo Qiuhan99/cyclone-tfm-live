@@ -10,15 +10,13 @@ from .refresh import validate_tfm,atomic
 from .publication import merge_live
 from .verification import advance
 from .agency_forecast import attach
+from .method_contract import validate_core
 
 
 def checked_payload(value):
     validate_tfm(value)
     if value.get('storm_id')!='CHAMPI_2026':raise ValueError('unsupported storm identity')
-    own=[p for p in value['model']['paths'] if p['model_id'].startswith('TabPFN')]
-    if {p['model_id'] for p in own}!={'TabPFN CV-F2','TabPFN CV-F2 + C0','TabPFN CV-F2 + C1'}:raise ValueError('missing real Base/C0/C1')
-    issues={p['issue_time_utc'] for p in own}
-    if len(issues)!=1:raise ValueError('Base/C0/C1 must share the same origin')
+    own=validate_core(value['model'])
     now=datetime.now(timezone.utc)
     for p in [p for p in value['model']['paths'] if not p.get('model_raw_aid')]:
         for field in ['issue_time_utc','generated_at_utc']:

@@ -18,7 +18,7 @@ class BridgeTests(unittest.TestCase):
         v=copy.deepcopy(self.value);v['model']['paths'][0]['issue_time_utc']='2026-10-01T00:00:00+00:00'
         with self.assertRaises(ValueError):checked_payload(v)
     def test_missing_real_c1_or_private_machine_path_is_rejected(self):
-        v=copy.deepcopy(self.value);v['model']['paths']=[p for p in v['model']['paths'] if not p['model_id'].endswith(' + C1')]
+        v=copy.deepcopy(self.value);v['model']['paths']=[p for p in v['model']['paths'] if not p['model_id'].endswith(' + RF')]
         with self.assertRaises(ValueError):checked_payload(v)
         v=copy.deepcopy(self.value);v['private_root']='/Users/example/private'
         with self.assertRaises(ValueError):checked_payload(v)

@@ -1,3 +1,7 @@
+# Historical implementation note
+
+This file describes an earlier correction-input configuration. The active user-approved method is defined in [DIRECT_VECTOR_FEEDBACK.md](DIRECT_VECTOR_FEEDBACK.md): direct first-stage displacement, followed by g(X,H), with no CV target offset or Base input augmentation. Original historical material follows unchanged.
+
 # TabPFN with vector residual feedback
 
 Public presentation and implementation note · 26 October 2026

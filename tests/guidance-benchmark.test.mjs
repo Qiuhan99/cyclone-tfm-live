@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {guidanceEvidence,guidanceCycles,guidanceCase,guidanceRegion,GUIDANCE_LEADS,GUIDANCE_MODELS} from '../site/guidance-benchmark-engine.mjs';
+import {guidanceEvidence,guidanceCycles,guidanceCase,guidanceRegion,guidanceModels,GUIDANCE_LEADS,GUIDANCE_MODELS} from '../site/guidance-benchmark-engine.mjs';
 const read=()=>JSON.parse(fs.readFileSync(new URL('../site/assets/motion-residual.json',import.meta.url)));
 const asset=n=>JSON.parse(fs.readFileSync(new URL('../site/assets/'+n,import.meta.url)));
 test('map cycles reproduce aggregate MAE from coordinates, preserve provenance and keep future truth separate',()=>{
@@ -25,11 +25,11 @@ for(const file of ['conformal-benchmark.html','results.html'])test(file+' expose
  const html=fs.readFileSync(new URL('../site/'+file,import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:s==='#guidance-lead'?'24':'',checked:s==='#guidance-regions',innerHTML:'',textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;},querySelectorAll(){this.controls=[...this.innerHTML.matchAll(/data-guidance-model="([^"]+)"/g)].map(m=>({dataset:{guidanceModel:m[1]},checked:true,listeners:{},addEventListener(k,f){this.listeners[k]=f;}}));return this.controls;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>asset(url.replace('assets/',''))});
- try{await import('../site/guidance-benchmark.mjs?'+file);await new Promise(r=>setImmediate(r));const table=()=>nodes.get('#guidance-table').innerHTML;for(const m of GUIDANCE_MODELS)assert(table().includes(m.label));assert(table().includes('136.59'));assert(nodes.get('#guidance-scope').textContent.includes('9 common issue / valid-time pairs'));
+ try{await import('../site/guidance-benchmark.mjs?'+file);await new Promise(r=>setImmediate(r));const table=()=>nodes.get('#guidance-table').innerHTML;for(const m of guidanceModels(asset('direct-guidance.json')))assert(table().includes(m.label));assert(table().includes(guidanceEvidence(asset('direct-guidance.json'),24).rows[1].mae.toFixed(2)));assert(nodes.get('#guidance-scope').textContent.includes('9 common issue / valid-time pairs'));
   assert(!table().includes('CV-F'));assert.equal((nodes.get('#guidance-map').innerHTML.match(/data-guidance-path=/g)||[]).length,5);assert.equal((nodes.get('#guidance-map').innerHTML.match(/data-guidance-region=/g)||[]).length,2);assert(nodes.get('#guidance-detail').innerHTML.includes('ENDPOINT DETAIL'));assert(!nodes.get('#guidance-map').innerHTML.includes('NaN'));
   const initial=nodes.get('#guidance-issue').value;nodes.get('#guidance-prev').listeners.click();assert.notEqual(nodes.get('#guidance-issue').value,initial);nodes.get('#guidance-next').listeners.click();assert.equal(nodes.get('#guidance-issue').value,initial);
   const input=nodes.get('#guidance-models').controls[2];input.checked=false;input.listeners.change();assert.equal((nodes.get('#guidance-map').innerHTML.match(/data-guidance-path=/g)||[]).length,4);input.checked=true;input.listeners.change();
   nodes.get('#guidance-regions').checked=false;nodes.get('#guidance-regions').listeners.change();assert(!nodes.get('#guidance-map').innerHTML.includes('data-guidance-region='));
-  nodes.get('#guidance-lead').value='72';nodes.get('#guidance-lead').listeners.change();assert(table().includes('245.59'));assert(table().includes('62.85'));assert(nodes.get('#guidance-scope').textContent.includes('+72h · 8 common'));assert(html.includes('archive does not contain comparable conformal position regions'));assert(html.includes('algorithm-live.html#verification'));assert(nodes.get('#guidance-map-note').textContent.includes('Retrospective replay'));
+  nodes.get('#guidance-lead').value='72';nodes.get('#guidance-lead').listeners.change();assert(table().includes(guidanceEvidence(asset('direct-guidance.json'),72).rows[1].mae.toFixed(2)));assert(table().includes('62.85'));assert(nodes.get('#guidance-scope').textContent.includes('+72h · 8 common'));assert(html.includes('archive does not contain comparable conformal position regions'));assert(html.includes('algorithm-live.html#verification'));assert(nodes.get('#guidance-map-note').textContent.includes('Retrospective replay'));
  }finally{Object.assign(globalThis,saved);}
 });

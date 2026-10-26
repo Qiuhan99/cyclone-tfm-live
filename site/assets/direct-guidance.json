@@ -1,0 +1,174 @@
+{
+  "config": {
+    "protocol": "direct_vector_feedback_v1",
+    "base_target": "u = Log_issue(truth); v = TabPFN(X)",
+    "correction_target": "r = u - v, a two-component issue-frame vector in km",
+    "correction_input": "[X, four mature same-storm same-lead residual vectors, ages and availability masks]",
+    "correction_output": "v_RF = v + TabPFN_residual(X, H)",
+    "constant_velocity_offset": false,
+    "base_prediction_as_correction_input": false,
+    "scalar_residual": false,
+    "gate": false,
+    "correction_weight": 1.0,
+    "feature_group": "F2",
+    "base_features": 52,
+    "correction_features": 68,
+    "residual_slots": 4,
+    "max_residual_age_hours": 96,
+    "age_divisor_hours": 144,
+    "calibration": "Separate per-method mature errors; existing circle100 and endpoint geometry128/score256 protocols"
+  },
+  "external_common": [
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 6,
+      "n": 10,
+      "mean_error_km": 48.47365087822903
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 6,
+      "n": 10,
+      "mean_error_km": 47.09188320504126
+    },
+    {
+      "model_id": "ATCF:CMC",
+      "lead_h": 6,
+      "n": 10,
+      "mean_error_km": 42.22648598630855
+    },
+    {
+      "model_id": "ATCF:UKM",
+      "lead_h": 6,
+      "n": 10,
+      "mean_error_km": 32.784940119887125
+    },
+    {
+      "model_id": "ATCF:NGX",
+      "lead_h": 6,
+      "n": 10,
+      "mean_error_km": 43.96009192477907
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 12,
+      "n": 10,
+      "mean_error_km": 98.53437643208436
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 12,
+      "n": 10,
+      "mean_error_km": 95.23362597367343
+    },
+    {
+      "model_id": "ATCF:CMC",
+      "lead_h": 12,
+      "n": 10,
+      "mean_error_km": 58.81255187297239
+    },
+    {
+      "model_id": "ATCF:UKM",
+      "lead_h": 12,
+      "n": 10,
+      "mean_error_km": 47.76625316592878
+    },
+    {
+      "model_id": "ATCF:NGX",
+      "lead_h": 12,
+      "n": 10,
+      "mean_error_km": 47.94453041426602
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 24,
+      "n": 9,
+      "mean_error_km": 123.37579179749822
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 24,
+      "n": 9,
+      "mean_error_km": 121.17042632259447
+    },
+    {
+      "model_id": "ATCF:CMC",
+      "lead_h": 24,
+      "n": 9,
+      "mean_error_km": 90.74896994537941
+    },
+    {
+      "model_id": "ATCF:UKM",
+      "lead_h": 24,
+      "n": 9,
+      "mean_error_km": 75.6303863781647
+    },
+    {
+      "model_id": "ATCF:NGX",
+      "lead_h": 24,
+      "n": 9,
+      "mean_error_km": 44.8842949766068
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 48,
+      "n": 8,
+      "mean_error_km": 219.1552853110069
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 48,
+      "n": 8,
+      "mean_error_km": 233.94693606236112
+    },
+    {
+      "model_id": "ATCF:CMC",
+      "lead_h": 48,
+      "n": 8,
+      "mean_error_km": 107.83669837839486
+    },
+    {
+      "model_id": "ATCF:UKM",
+      "lead_h": 48,
+      "n": 8,
+      "mean_error_km": 69.80836150940075
+    },
+    {
+      "model_id": "ATCF:NGX",
+      "lead_h": 48,
+      "n": 8,
+      "mean_error_km": 88.66788813289766
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 72,
+      "n": 8,
+      "mean_error_km": 251.7040963410731
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 72,
+      "n": 8,
+      "mean_error_km": 243.3754128253462
+    },
+    {
+      "model_id": "ATCF:CMC",
+      "lead_h": 72,
+      "n": 8,
+      "mean_error_km": 83.61099159373525
+    },
+    {
+      "model_id": "ATCF:UKM",
+      "lead_h": 72,
+      "n": 8,
+      "mean_error_km": 62.84774368223008
+    },
+    {
+      "model_id": "ATCF:NGX",
+      "lead_h": 72,
+      "n": 8,
+      "mean_error_km": 108.98016416351834
+    }
+  ],
+  "scope": "Same locked original intersection, newly computed direct-target research methods; external guidance unchanged"
+}

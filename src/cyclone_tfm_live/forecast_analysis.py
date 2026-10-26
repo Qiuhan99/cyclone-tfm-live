@@ -55,7 +55,9 @@ class CoastalSectors:
 
 def build_analysis(payload,coast):
     geography=CoastalSectors(coast);paths=[]
-    base=next((p for p in payload['model']['paths'] if p['model_id']=='TabPFN CV-F2'),None)
+    from .method_contract import BASE
+    base=next((p for p in payload['model']['paths'] if p['model_id']==BASE),None)
+    if base is None:base=next((p for p in payload['model']['paths'] if p['model_id']=='TabPFN CV-F2'),None)
     for path in payload['model']['paths']:
         rows=[];previous=path.get('anchor')
         for q in sorted(path['points'],key=lambda q:q['lead_h']):

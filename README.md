@@ -1,3 +1,7 @@
+# Active research method
+
+The live model and default benchmark now use **direct TabPFN + Vector Residual Feedback** (`direct_vector_feedback_v1`): `v=f(X)`, `r=u-v`, `v_RF=v+g(X,H)`. The 68-field correction input contains current F2 features and mature vector residual history; no constant-velocity target offset or Base input augmentation is used. See [the algorithm contract](site/assets/docs/DIRECT_VECTOR_FEEDBACK.md). Earlier CV experiments keep their original IDs and numbers as archives.
+
 # CYCLONE TFM Live 
 
 The public entry is now an [authored, immersive research notebook](https://qiuhan99.github.io/cyclone-tfm-live/) with a staged map and keyboard presentation mode. Complete tables and controls remain at [Research results](https://qiuhan99.github.io/cyclone-tfm-live/results.html) and the existing benchmark / live URLs. See [presentation definitions](site/assets/docs/IMMERSIVE_RESEARCH_NOTEBOOK.md).
