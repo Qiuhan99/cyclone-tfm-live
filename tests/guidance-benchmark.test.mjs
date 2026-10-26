@@ -21,7 +21,7 @@ test('guidance benchmark preserves the original exact-intersection scores at all
  const e=guidanceEvidence(data,24);assert.equal(e.rows.find(r=>r.id==='ATCF:NGX').mae.toFixed(2),'44.88');assert.equal(e.rows.find(r=>r.id.endsWith('C1')).mae.toFixed(2),'136.59');assert(!GUIDANCE_MODELS.some(m=>m.id.endsWith('C0')));
  const broken=read();broken.external_common.find(r=>r.model_id==='ATCF:CMC'&&r.lead_h===24).n--;assert.throws(()=>guidanceEvidence(broken));assert.throws(()=>guidanceEvidence(data,18));
 });
-for(const file of ['conformal-benchmark.html','results.html','index.html'])test(file+' exposes cyclone guidance with a working independent horizon selector',async()=>{
+for(const file of ['conformal-benchmark.html','results.html'])test(file+' exposes cyclone guidance with a working independent horizon selector',async()=>{
  const html=fs.readFileSync(new URL('../site/'+file,import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:s==='#guidance-lead'?'24':'',checked:s==='#guidance-regions',innerHTML:'',textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;},querySelectorAll(){this.controls=[...this.innerHTML.matchAll(/data-guidance-model="([^"]+)"/g)].map(m=>({dataset:{guidanceModel:m[1]},checked:true,listeners:{},addEventListener(k,f){this.listeners[k]=f;}}));return this.controls;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>asset(url.replace('assets/',''))});

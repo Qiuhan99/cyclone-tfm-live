@@ -1,5 +1,7 @@
 # CYCLONE TFM Live 
 
+The public entry is now an [authored, immersive research notebook](https://qiuhan99.github.io/cyclone-tfm-live/) with a staged map and keyboard presentation mode. Complete tables and controls remain at [Research results](https://qiuhan99.github.io/cyclone-tfm-live/results.html) and the existing benchmark / live URLs. See [presentation definitions](site/assets/docs/IMMERSIVE_RESEARCH_NOTEBOOK.md).
+
 [Research briefing](https://qiuhan99.github.io/cyclone-tfm-live/research-briefing.html) · [Matched guidance maps](https://qiuhan99.github.io/cyclone-tfm-live/conformal-benchmark.html#guidance-benchmark) · [Live forecast desk](https://qiuhan99.github.io/cyclone-tfm-live/champi.html)
 
 CHAMPI台风公开路径查看器，复用既有CYCLONE网站。展示官方中心/风级/预警、UCAR外部模式路径、真实TabPFN研究预测，以及24h圆/椭圆Conformal对照。
