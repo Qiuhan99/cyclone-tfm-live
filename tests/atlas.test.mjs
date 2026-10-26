@@ -22,14 +22,14 @@ test('future truth and metrics stay hidden outside retrospective mode',()=>{
  const past=observations(s,o.issue);assert.equal(past.length,o.index+1);assert.deepEqual(past.at(-1),o.anchor);
 });
 test('actual map module switches114-storm replay, paired split maps, future truth and live paths',async()=>{
- const html=fs.readFileSync(new URL('../site/index.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch,setInterval:globalThis.setInterval};
+ const html=fs.readFileSync(new URL('../site/research-atlas.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch,setInterval:globalThis.setInterval};
  const values={'#atlas-layout':'overlay','#atlas-lead':'24','#atlas-level':'90'};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s]??'',checked:s!=='#layer-c0',hidden:false,innerHTML:'',textContent:'',classList:{add(){},remove(){},toggle(){}},listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>read(url.replace('assets/',''))});globalThis.setInterval=()=>0;
  try{await import('../site/atlas.mjs?integration');await new Promise(r=>setImmediate(r));
-  assert.equal((nodes.get('#atlas-storm').innerHTML.match(/<option/g)||[]).length,114);assert(nodes.get('#atlas-map').innerHTML.includes('事后真值'));assert(nodes.get('#atlas-cohort').innerHTML.includes('1245'));
-  nodes.get('#atlas-layout').value='split';nodes.get('#atlas-layout').listeners.change();assert(nodes.get('#atlas-map').innerHTML.includes('BASE / 原始预测'));assert(nodes.get('#atlas-map').innerHTML.includes('C1 / 因果残差校正'));
-  nodes.get('#atlas-retro').checked=false;nodes.get('#atlas-retro').listeners.change();assert(!nodes.get('#atlas-map').innerHTML.includes('事后真值'));assert(nodes.get('#atlas-metrics').innerHTML.includes('已隐藏'));
-  nodes.get('#mode-live').onclick();assert.equal(nodes.get('#history-controls').hidden,true);assert(nodes.get('#atlas-verdict').textContent.includes('实际生成'));assert(nodes.get('#atlas-metrics').innerHTML.includes('尚未知'));assert(nodes.get('#atlas-map').innerHTML.includes('官方当前中心'));
+  assert.equal((nodes.get('#atlas-storm').innerHTML.match(/<option/g)||[]).length,114);assert(nodes.get('#atlas-map').innerHTML.includes('Retrospective truth'));assert(nodes.get('#atlas-cohort').innerHTML.includes('1,245'));
+  nodes.get('#atlas-layout').value='split';nodes.get('#atlas-layout').listeners.change();assert(nodes.get('#atlas-map').innerHTML.includes('BASE / original forecast'));assert(nodes.get('#atlas-map').innerHTML.includes('C1 / residual feedback'));
+  nodes.get('#atlas-retro').checked=false;nodes.get('#atlas-retro').listeners.change();assert(!nodes.get('#atlas-map').innerHTML.includes('Retrospective truth'));assert(nodes.get('#atlas-metrics').innerHTML.includes('Hidden'));
+  nodes.get('#mode-live').onclick();assert.equal(nodes.get('#history-controls').hidden,true);assert(nodes.get('#atlas-verdict').textContent.includes('Generated'));assert(nodes.get('#atlas-metrics').innerHTML.includes('Not yet known'));assert(nodes.get('#atlas-map').innerHTML.includes('Last CMA analysis'));
  }finally{Object.assign(globalThis,saved);}
 });

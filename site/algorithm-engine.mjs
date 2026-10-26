@@ -1,6 +1,6 @@
 import {distance,sphereExp,RADIUS_KM} from './engine.mjs';
 export const OWN=['TabPFN CV-F2','TabPFN CV-F2 + C0','TabPFN CV-F2 + C1'];
-export const LABELS={'TabPFN CV-F2':'Base · TabPFN','TabPFN CV-F2 + C0':'C0 · 残差模型','TabPFN CV-F2 + C1':'C1 · 残差历史反馈'};
+export const LABELS={'TabPFN CV-F2':'TabPFN · Base','TabPFN CV-F2 + C0':'TabPFN · C0 correction','TabPFN CV-F2 + C1':'TabPFN · C1 feedback'};
 export const point=(p,h)=>p?.points.find(q=>q.lead_h===h);
 export const sameTime=(a,b)=>Number.isFinite(Date.parse(a))&&Date.parse(a)===Date.parse(b);
 export function comparators(data,issue,mode='matched'){
@@ -18,7 +18,7 @@ export function verified(ledger,hours,now=Date.now()){
   if(!old||Date.parse(r.recorded_at_utc)<Date.parse(old.recorded_at_utc))records.set(key,r);
  }
  return [...records.values()].flatMap(r=>{const t=ledger.truths?.[new Date(r.valid_time_utc).toISOString().replace('.000Z','+00:00')]??ledger.truths?.[r.valid_time_utc];if(!t||Date.parse(t.first_seen_at_utc)>now||Date.parse(t.first_seen_at_utc)<Date.parse(r.valid_time_utc))return [];
-  return [{...r,error:distance([r.lat_deg,r.lon_deg],[t.lat_deg,t.lon_deg])}];});
+  return [{...r,truth:t,error:distance([r.lat_deg,r.lon_deg],[t.lat_deg,t.lon_deg])}];});
 }
 const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
 export function pairedScore(ledger,method,other,hours,level,now=Date.now()){
@@ -28,4 +28,17 @@ export function pairedScore(ledger,method,other,hours,level,now=Date.now()){
  return {n:pairs.length,own:mean(pairs.map(([a])=>a.error)),other:mean(pairs.map(([,b])=>b.error)),
   wins:pairs.filter(([a,b])=>a.error<b.error).length,regionN:regions.length,
   coverage:mean(regions.map(a=>+(a.error<=a[`radius_${level}_km`]))),area:mean(regions.map(a=>area(a[`radius_${level}_km`])))};
+}
+
+export function verificationState(ledger,model,hours,now=Date.now()){
+ const rows=(ledger?.records??[]).filter(r=>r.model_id===model&&r.lead_h===hours),first=new Map();
+ for(const r of rows){const key=[r.storm_id,r.issue_time_utc,r.lead_h,r.valid_time_utc].join('|'),old=first.get(key);if(!old||Date.parse(r.recorded_at_utc)<Date.parse(old.recorded_at_utc))first.set(key,r);}
+ const eligible=[...first.values()].filter(r=>r.eligible&&Date.parse(r.confirmed_at_utc)<Date.parse(r.valid_time_utc));
+ const scored=verified(ledger,hours,now).filter(r=>r.model_id===model),waiting=eligible.filter(r=>Date.parse(r.valid_time_utc)>now);
+ return {registered:first.size,eligible:eligible.length,scored:scored.length,awaitingTarget:waiting.length,
+   awaitingTruth:eligible.filter(r=>Date.parse(r.valid_time_utc)<=now).length-scored.length,
+   nextValid:waiting.length?new Date(Math.min(...waiting.map(r=>Date.parse(r.valid_time_utc)))).toISOString():null};
+}
+export function defaultVerificationLead(ledger,model,now=Date.now()){
+ return [24,12,6,48,72].find(h=>verified(ledger,h,now).some(r=>r.model_id===model))??24;
 }

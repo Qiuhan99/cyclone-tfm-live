@@ -21,7 +21,7 @@ test('map uses genuine spherical issued ellipse, not matched scales or enclosing
  assert(shapeTruth(data,r.valid_time_utc,true));
 });
 test('actual page module switches cohorts, levels, shapes and truth without altering issued data',async()=>{
- const html=fs.readFileSync(new URL('../site/champi.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch};
+ const html=fs.readFileSync(new URL('../site/champi-research.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch};
  const values={'#shape-phase':'test','#shape-level':'90','#shape-mode':'both'};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s]??'',checked:false,innerHTML:'',textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>url==='assets/endpoint24-shapes.json'?data:read('coastline.json')});

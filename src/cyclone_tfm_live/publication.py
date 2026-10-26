@@ -49,4 +49,11 @@ def merge_live(existing, candidate):
         choices = [p[field] for p in (existing, candidate) if field in p]
         if choices:
             out[field] = copy.deepcopy(max(choices, key=lambda v: stamp(v.get('last_attempt_at_utc',v.get(clock)) if field=='agency_forecasts' else v.get(clock))))
+    # Retrieval recency must not revive an older warning after cancellation.
+    for kind in ('center','warning'):
+        choices=[p.get('official',{}).get(kind) for p in (public,existing,candidate)]
+        choices=[v for v in choices if v]
+        if choices:
+            out.setdefault('official',{})[kind]=copy.deepcopy(max(choices,key=lambda v:
+                (stamp(v.get('issued_at_utc',v.get('valid_time_utc'))),stamp(v.get('retrieved_at_utc')))))
     return out

@@ -4,7 +4,7 @@ from datetime import datetime,timezone
 import copy,hashlib,json,subprocess
 import pandas as pd
 from .atcf import UCAR,parse_atcf
-from .official import nmc_center,nmc_warning,Coast
+from .official import nmc_center,nmc_warning,Coast,OtherStormBulletin
 from .agency_forecast import attach
 
 URLS={'bdeck':UCAR+'bwp292026.dat','adeck':UCAR+'awp292026.dat',
@@ -87,6 +87,8 @@ def refresh(site,cache,tfm_path=None):
                 data=(nmc_center if kind=='center' else nmc_warning)(target.read_text(),checked)
                 data.update(source_url=url,retrieved_at_utc=checked,raw_file_sha256=digest(target));parsed[kind]=data
             status[kind]=dict(ok=True,checked_at_utc=checked,url=url,sha256=digest(target))
+        except OtherStormBulletin as exc:
+            status[kind]=dict(ok=True,state='other_storm',checked_at_utc=checked,url=url,note=str(exc))
         except Exception as exc:status[kind]=dict(ok=False,checked_at_utc=checked,url=url,error=str(exc))
     b=parsed.get('bdeck');a=parsed.get('adeck')
     # A-deck cannot advance on a failed B-deck fetch: retain the matched prior

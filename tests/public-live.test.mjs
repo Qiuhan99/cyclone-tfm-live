@@ -10,7 +10,7 @@ test('public checks and model generation are independent clocks',()=>{
 });
 test('public atlas restores existing research pages while retaining source boundaries',()=>{
  const html=fs.readFileSync(new URL('../site/index.html',import.meta.url),'utf8');
- assert(html.includes('atlas.mjs'));assert(html.includes('cases.html'));assert(html.includes('research-overview.html'));assert(html.includes('historical.html'));
+ assert(html.includes('algorithm-live.mjs'));assert(html.includes('research-atlas.html'));assert(html.includes('research.html'));const archive=fs.readFileSync(new URL('../site/research.html',import.meta.url),'utf8');assert(archive.includes('cases.html'));assert(archive.includes('research-overview.html'));assert(archive.includes('historical.html'));
  assert(html.includes('Qiuhan99/cyclone-tfm-live'));
  for(const name of ['champi.html','cases.html','historical.html','research-overview.html'])assert(fs.existsSync(new URL('../site/'+name,import.meta.url)));
 });

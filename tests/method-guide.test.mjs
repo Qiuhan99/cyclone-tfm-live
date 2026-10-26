@@ -24,7 +24,7 @@ test('horizon diagnostics distinguish available from paired origins and marginal
  assert.throws(()=>horizonRows(data.diagnostics,'validation',24));
 });
 test('actual guide module renders catalog search, paired horizons and explicit geometry limitations',async()=>{
- const html=fs.readFileSync(new URL('../site/champi.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch};
+ const html=fs.readFileSync(new URL('../site/champi-research.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:s==='#method-kind'?'local':s==='#method-query'?'':s==='#guide-phase'?'champi':'24',checked:false,innerHTML:'',textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>{assert.equal(url,'assets/prediction-method-guide.json');return {ok:true,json:async()=>data};};
  try{await import('../site/method-guide.mjs?integration');await new Promise(resolve=>setImmediate(resolve));

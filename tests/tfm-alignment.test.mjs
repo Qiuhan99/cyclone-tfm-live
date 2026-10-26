@@ -6,7 +6,7 @@ test('single-storm uncertainty is missing and malformed task controls are reject
 test('reported intervals transform log ratios monotonically and raw coverage remains separate',()=>{const r=alignmentRows(data,'test',1).find(r=>r.method==='c1'&&r.calibrator==='Original PI+');const ci=areaRatioCI(r);assert(ci[0]<1&&ci[1]>1);assert(r.coverage<.9);assert.equal(r.matched_candidate_coverage,.9);});
 test('official TS fixed-issue paths are real and online corrections are not merged into them',()=>{const d=JSON.parse(fs.readFileSync(new URL('../site/assets/champi-2026.json',import.meta.url)));const paths=d.paths.filter(p=>p.model_id==='TabPFN-TS official');assert.equal(paths.length,31);assert(!d.paths.some(p=>/online|aligned c1/i.test(p.model_id)));for(const p of paths)for(const q of p.points)assert.equal((Date.parse(q.valid_time_utc)-Date.parse(p.issue_time_utc))/3600000,q.lead_h);});
 test('page module binds real HTML controls and renders both historical and CHAMPI results',async()=>{
-  const html=fs.readFileSync(new URL('../site/champi.html',import.meta.url),'utf8'),nodes=new Map();
+  const html=fs.readFileSync(new URL('../site/champi-research.html',import.meta.url),'utf8'),nodes=new Map();
   const previousDocument=globalThis.document,previousFetch=globalThis.fetch;
   globalThis.document={querySelector(selector){
     assert(html.includes(`id="${selector.slice(1)}"`),`missing actual HTML control ${selector}`);

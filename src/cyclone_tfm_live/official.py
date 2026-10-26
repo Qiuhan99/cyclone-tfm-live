@@ -6,6 +6,11 @@ import numpy as np
 from .geometry import unit_vector, sphere_log, sphere_exp, to_lat_lon
 
 
+class OtherStormBulletin(ValueError):
+    """A valid latest-general bulletin has moved on to another cyclone."""
+    pass
+
+
 class Text(HTMLParser):
     def __init__(self):super().__init__();self.parts=[];self.skip=0
     def handle_starttag(self,tag,attrs):
@@ -38,11 +43,34 @@ def hazard_facts(text,kind):
     return '；'.join(parts)+'。'
 
 
+def hazard_facts_en(text,kind):
+    if not text:return None
+    names={'黄海南部':'southern Yellow Sea','东海':'East China Sea','台湾海峡':'Taiwan Strait',
+        '长江口':'Yangtze estuary','杭州湾':'Hangzhou Bay','江苏南部沿海':'southern Jiangsu coast',
+        '浙江北部沿海':'northern Zhejiang coast','福建北部沿海':'northern Fujian coast',
+        '台湾东部沿海':'eastern Taiwan coast','上海':'Shanghai','浙江东北部':'northeastern Zhejiang'}
+    places=[v for k,v in names.items() if k in text]
+    parts=[];window=re.search(r'(\d+)日(\d+)时至(\d+)日(\d+)时',text)
+    if window:parts.append(f'Bulletin window: day {window[1]} {window[2]}:00 to day {window[3]} {window[4]}:00 China time (UTC+8)')
+    if places:parts.append('Areas: '+', '.join(places))
+    if kind=='wind':
+        ranges=re.findall(r'(\d+)[-～](\d+)级(?:大风)?[、，]阵风(\d+)[-～](\d+)级',text)
+        if ranges:parts.append('Reported sustained wind / gust force: '+'; '.join(f'{a}–{b} / {c}–{d}' for a,b,c,d in ranges))
+    else:
+        amount=re.search(r'(\d+)[～~—-](\d+)毫米',text)
+        if amount:parts.append(f'Local forecast rainfall: {amount[1]}–{amount[2]} mm')
+    parts.append('See the official bulletin for regional detail')
+    return '. '.join(parts)+'.'
+
+
 def nmc_center(html, retrieved_at):
     text=visible_text(html)
     # Select the bulletin body, not a navigation link or unrelated cyclone.
     text=text[text.find('2026年总'):] if '2026年总' in text else text
-    if not re.search(r'蔷琵.{0,20}CHAMPI',text):raise ValueError('NMC current bulletin is not CHAMPI')
+    if not re.search(r'蔷琵.{0,20}CHAMPI',text):
+        if re.search(r'命\s*名[：:]?.{0,60}[A-Z][A-Z-]+',text):
+            raise OtherStormBulletin('Latest general bulletin covers another storm; CHAMPI analysis retained')
+        raise ValueError('NMC current bulletin identity could not be verified')
     stamp=re.search(r'中央气象台\s*(\d+)月(\d+)日(\d+)时(?:(\d+)分)?',text)
     if not stamp:raise ValueError('missing NMC publication date')
     now=datetime.fromisoformat(retrieved_at);local=now.astimezone(timezone(timedelta(hours=8)))
@@ -78,11 +106,12 @@ def nmc_warning(html,retrieved_at):
     if not stamp:raise ValueError('missing warning date')
     local=datetime(*map(int,stamp.groups()),tzinfo=timezone(timedelta(hours=8)))
     if local>datetime.fromisoformat(retrieved_at)+timedelta(minutes=5):raise ValueError('future-dated warning')
-    warning=re.search(r'中央气象台\s*\d+月\d+日\d+时\s*(继续)?发布台风(蓝色|黄色|橙色|红色)预警',text)
+    warning=re.search(r'中央气象台\s*\d+月\d+日\d+时\s*(?:继续)?(发布|解除)台风(蓝色|黄色|橙色|红色)预警',text)
     if not warning or '蔷琵' not in text:raise ValueError('no verified CHAMPI warning; unknown, not no-warning')
     # Concise factual extracts retain attribution. No derived alert color.
     trajectory=re.search(r'预计[，,]?(.*?)(?=大风预报)',text)
     wind=re.search(r'大风预报[：:](.*?)(?=降水预报|防御指南|展开阅读全文|$)',text)
+    if not wind:wind=re.search(r'(受冷空气.*?)(?=防御指南|展开阅读全文|$)',text)
     rain=re.search(r'降水预报[：:](.*?)(?=防御指南|展开阅读全文|$)',text)
     outlook=[]
     if trajectory:
@@ -95,8 +124,18 @@ def nmc_warning(html,retrieved_at):
         if '日本西南部' in raw:outlook.append('后续关注日本西南部沿海')
         if '登陆' in raw:outlook.append('原报提及登陆可能，具体地区与条件须查原报')
         elif outlook:outlook.append('这份公报未确认具体登陆点')
+    outlook_en=[]
+    body=trajectory[1] if trajectory else text
+    if '东北方向移动' in body or '转向东北' in body:outlook_en.append('Moving or turning northeast')
+    if '东偏北方向移动' in body:outlook_en.append('Moving east-northeast')
+    if '减弱' in body:outlook_en.append('weakening')
+    if '温带气旋' in body:outlook_en.append('extratropical transition expected')
     return dict(agency='中央气象台',jurisdiction='中国国家级台风预警；不等同各市县信号或香港风球',
+                status='cancelled' if warning[1]=='解除' else 'active',
                 color=warning[2],issued_at_utc=local.astimezone(timezone.utc).isoformat(),stale_after_hours=12,
+                trajectory_en='; '.join(outlook_en)+'.' if outlook_en else None,
+                wind_forecast_en=hazard_facts_en(wind[1],'wind') if wind else None,
+                rain_forecast_en=hazard_facts_en(rain[1],'rain') if rain else None,
                 trajectory='；'.join(outlook)+'。' if outlook else None,
                 wind_forecast=hazard_facts(wind[1],'wind') if wind else None,rain_forecast=hazard_facts(rain[1],'rain') if rain else None,
                 valid_window_note='风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布')

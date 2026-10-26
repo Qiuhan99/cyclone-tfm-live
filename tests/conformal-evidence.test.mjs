@@ -18,13 +18,13 @@ for(const [page,view] of [['conformal-benchmark.html','full'],['algorithm-live.h
  const values={'#cp-phase':'test','#cp-lead':'24','#cp-level':'90','#cp-shape':'ellipse','#cp-calibrator':'Causal rolling','#cp-regime':'all','#cp-curve-method':'TabPFN CV-F2 + C1','#cp-preprocessing':'shared_cv','#cp-ratio-reference':'f0'};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s],dataset:{cpView:view},innerHTML:'',textContent:'',listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>url.endsWith('tsfm-cv-sensitivity.json')?CV:D});
- try{await import('../site/conformal-evidence.mjs?'+view);await new Promise(r=>setImmediate(r));assert(nodes.get('#cp-table').innerHTML.includes('94.7%'));assert(nodes.get('#cp-cards').innerHTML.includes('样本欠覆盖缺口'));assert(nodes.get('#cp-intervals').textContent.includes('整台风95%区间'));
-  if(view==='full'){assert(nodes.get('#cp-frontier').innerHTML.includes('目标90%'));assert(nodes.get('#cp-model-status').innerHTML.includes('待接入'));assert(nodes.get('#cp-curve').innerHTML.includes('固定2019'));assert(nodes.get('#cp-table').innerHTML.includes('1.460×'));
-   nodes.get('#cp-preprocessing').value='direct';nodes.get('#cp-preprocessing').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('2.006×'));assert(nodes.get('#cp-status').textContent.includes('直接ENU'));
+ try{await import('../site/conformal-evidence.mjs?'+view);await new Promise(r=>setImmediate(r));assert(nodes.get('#cp-table').innerHTML.includes('94.7%'));assert(nodes.get('#cp-cards').innerHTML.includes('shortfall'));assert(nodes.get('#cp-intervals').textContent.includes('whole-storm 95% interval'));
+  if(view==='full'){assert(nodes.get('#cp-frontier').innerHTML.includes('Target 90%'));assert(nodes.get('#cp-model-status').innerHTML.includes('Pending'));assert(nodes.get('#cp-curve').innerHTML.includes('Frozen 2019'));assert(nodes.get('#cp-table').innerHTML.includes('1.460×'));
+   nodes.get('#cp-preprocessing').value='direct';nodes.get('#cp-preprocessing').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('2.006×'));assert(nodes.get('#cp-status').textContent.includes('direct ENU'));
    nodes.get('#cp-ratio-reference').value='f2';nodes.get('#cp-ratio-reference').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('1.683×'));
   }
   nodes.get('#cp-level').value='80';nodes.get('#cp-level').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('/ 80%'));
-  nodes.get('#cp-shape').value='circle';nodes.get('#cp-shape').listeners.change();assert(nodes.get('#cp-status').textContent.includes('圆'));
-  nodes.get('#cp-phase').value='champi';nodes.get('#cp-regime').value='motion_change';nodes.get('#cp-regime').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('无共同成熟终点'));assert.equal(nodes.get('#cp-cards').innerHTML,'');
+  nodes.get('#cp-shape').value='circle';nodes.get('#cp-shape').listeners.change();assert(nodes.get('#cp-status').textContent.includes('circle'));
+  nodes.get('#cp-phase').value='champi';nodes.get('#cp-regime').value='motion_change';nodes.get('#cp-regime').listeners.change();assert(nodes.get('#cp-table').innerHTML.includes('No common mature endpoints'));assert.equal(nodes.get('#cp-cards').innerHTML,'');
  }finally{Object.assign(globalThis,saved);}
 });

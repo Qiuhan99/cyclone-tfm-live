@@ -22,7 +22,7 @@ def check(root=ROOT):
             if target and not (page.parent/target).is_file():errors.append('broken link '+page.name+': '+link)
     for module in site.glob('*.mjs'):
         for link in re.findall(r"(?:from\s*|import\s*)['\"](\./[^'\"]+)['\"]",module.read_text()):
-            if not (module.parent/link).is_file():errors.append('missing module '+link)
+            if not (module.parent/link.split("?")[0]).is_file():errors.append('missing module '+link)
     for path in site.rglob('*'):
         if not path.is_file():continue
         relative=str(path.relative_to(site));text=path.read_text()

@@ -84,3 +84,18 @@ python tools/check_public.py
 公平性复核另提供共享6h匀速残差表示，网站默认CV对齐，可切换原直接ENU外推。两种目标表示的真实原始结果均保留；不把运动预处理收益全部归于网络架构。
 
 C1流程与覆盖估计补充见[独立审计](site/assets/docs/C1_PIPELINE_AUDIT_CN.md)：当前固定上下文/滚动秩分支与原TS C1＋PI+分别评价，不以小队列样本覆盖比例代替长期校准结论。
+
+## English operations terminal · 26 October 2026
+
+Open [Storm monitor](https://qiuhan99.github.io/cyclone-tfm-live/) for actual CHAMPI forecasts, official advisory state and prospective verification. The default verification lead is independent of the map lead and selects an already scoreable horizon. A 24-hour forecast remains pending until its target and source truth arrive.
+
+- [Storm briefing](https://qiuhan99.github.io/cyclone-tfm-live/champi.html): last CMA analysis, warning cancellation, source clocks and coastal crossing diagnostics.
+- [Model evaluation](https://qiuhan99.github.io/cyclone-tfm-live/conformal-benchmark.html): coverage, shortfall, excess, area and foundation-model comparisons.
+- [Method & data](https://qiuhan99.github.io/cyclone-tfm-live/champi-pipeline.html): sources, features, actual CV/C0/C1 pipeline and deployment.
+- [Research atlas](https://qiuhan99.github.io/cyclone-tfm-live/research-atlas.html) and [Archive](https://qiuhan99.github.io/cyclone-tfm-live/research.html): the complete prior studies; original Chinese materials are labelled.
+
+CV means **constant velocity**, not cross-validation. Absolute **coverage** gap is measured in percentage points, not kilometres. The current C1 fit contexts and rolling-rank calibration differ from the original short-horizon TS + PI+ protocol. The site retains all original numerical results.
+
+The supported live case is CHAMPI. Global active-storm discovery and position-to-intensity prediction are not implemented. Checks do not imply new source observations; source retrieval, model generation and target time remain separate clocks.
+
+See [operations audit and reproduction](site/assets/docs/OPERATIONS_TERMINAL_V1.md).

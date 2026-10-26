@@ -3,7 +3,7 @@ export function operationalState(data,now=Date.now()){
   const c=data.official?.center,w=data.official?.warning;
   return {watcherStale:hoursSince(data.last_checked_at_utc,now)>data.refresh_interval_seconds*2/3600+1/60,
     centerStale:!c||hoursSince(c.valid_time_utc,now)>c.stale_after_hours,
-    warningStale:!w||hoursSince(w.issued_at_utc,now)>w.stale_after_hours,
+    warningStale:!w||(w.status!=='cancelled'&&hoursSince(w.issued_at_utc,now)>w.stale_after_hours),
     forecastStale:hoursSince(data.model?.input_last_valid_utc,now)>9,
     failedSources:Object.entries(data.fetch_status??{}).filter(([,v])=>!v.ok).map(([k])=>k)};
 }

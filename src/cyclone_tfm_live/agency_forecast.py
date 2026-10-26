@@ -17,6 +17,19 @@ def parse_forecasts(text, checked, own_issue, url):
     t = decode(text)['typhoon']
     if t[1].upper() != 'CHAMPI' or str(t[4]) != '2630':
         raise ValueError('CMA storm identity mismatch')
+    analyses=[]
+    for row in t[8]:
+        issue=datetime.strptime(row[1],'%Y%m%d%H%M').replace(tzinfo=timezone.utc)
+        if abs(issue.timestamp()*1000-row[2])>1000:
+            raise ValueError('CMA UTC timestamp conflict')
+        if issue>datetime.fromisoformat(checked.replace('Z','+00:00')):
+            continue
+        if not -90<=row[5]<=90 or not -180<=row[4]<=180:
+            raise ValueError('invalid CMA analysis coordinates')
+        analyses.append(dict(storm_id='CHAMPI_2026',agency='CMA / BABJ',
+            valid_time_utc=issue.isoformat(),lat_deg=row[5],lon_deg=row[4],
+            mslp_hpa=row[6],vmax_ms=row[7],intensity_code=row[3],
+            source_url=url,retrieved_at_utc=checked,raw_file_sha256=hashlib.sha256(text.encode()).hexdigest()))
     cycles = []
     for row in t[8]:
         if not row[11].get('BABJ'):
@@ -48,6 +61,7 @@ def parse_forecasts(text, checked, own_issue, url):
     if latest not in selected:
         selected.append(latest)
     return dict(checked_at_utc=checked,ok=True,source_url=url,paths=selected,
+        latest_analysis=max(analyses,key=lambda p:p['valid_time_utc']) if analyses else None,
         note='CMA公开地图原始BABJ位置预报；逐行首次业务发布时间未知。仅保留原报时效，不外推缺失24h路径。')
 
 

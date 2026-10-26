@@ -20,14 +20,15 @@ test('prospective scoring excludes future truth, late confirmation and unmatched
 });
 test('algorithm window renders real paths and changes lead, level, model and latest-source mode',async()=>{
  const html=fs.readFileSync(new URL('../site/algorithm-live.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,fetch:globalThis.fetch,setInterval:globalThis.setInterval};
- const values={'#algo-method':OWN[2],'#algo-lead':'24','#algo-level':'90','#algo-pairing':'matched'};
+ const values={'#algo-method':OWN[2],'#algo-lead':'24','#algo-level':'90','#algo-pairing':'matched','#algo-verify-lead':'auto'};
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s]??'',innerHTML:'',textContent:'',classList:{toggle(){},add(){}},listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>{const d=JSON.parse(fs.readFileSync(new URL('../site/'+url,import.meta.url)));if(url.endsWith('champi-operations.json'))d.verification={records:[],truths:{}};return d;}});globalThis.setInterval=()=>0;
  try{await import('../site/algorithm-live.mjs?integration');await new Promise(r=>setImmediate(r));
-  assert(nodes.get('#algo-own-map').innerHTML.includes('Conformal'));assert(nodes.get('#algo-retro').innerHTML.includes('119.82'));assert(nodes.get('#algo-forward').innerHTML.includes('待实况'));
+  assert(nodes.get('#algo-own-map').innerHTML.includes('conformal'));assert(nodes.get('#algo-retro').innerHTML.includes('119.82'));assert(nodes.get('#algo-forward').innerHTML.includes('No eligible forecast'));
   const old=nodes.get('#algo-radius').textContent;nodes.get('#algo-level').value='80';nodes.get('#algo-level').listeners.change();assert.notEqual(nodes.get('#algo-radius').textContent,old);
   nodes.get('#algo-lead').value='6';nodes.get('#algo-lead').listeners.change();assert(nodes.get('#algo-target-time').textContent.includes('+6h'));
   nodes.get('#algo-method').value=OWN[1];nodes.get('#algo-method').listeners.change();assert(nodes.get('#algo-own-clock').textContent.includes('C0'));
-  nodes.get('#algo-pairing').value='latest';nodes.get('#algo-pairing').listeners.change();assert(nodes.get('#algo-other-note').textContent.includes('不用于公平技能排名'));
+  nodes.get('#algo-verify-lead').value='6';nodes.get('#algo-verify-lead').listeners.change();assert(nodes.get('#algo-verification-status').textContent.includes('+6h'));
+  nodes.get('#algo-pairing').value='latest';nodes.get('#algo-pairing').listeners.change();assert(nodes.get('#algo-other-note').textContent.includes('not a matched skill ranking'));
  }finally{Object.assign(globalThis,saved);}
 });

@@ -1,5 +1,5 @@
 export const REFERENCES=['TabPFN CV-F0','TabPFN CV-F2','TabPFN CV-F2 + C0','TabPFN CV-F2 + C1'];
-export const NAMES={'TabPFN CV-F0':'TabPFN CV-F0 · 位置','TabPFN CV-F2':'TabPFN CV-F2 · Base','TabPFN CV-F2 + C0':'TabPFN CV-F2 + C0','TabPFN CV-F2 + C1':'TabPFN CV-F2 + C1'};
+export const NAMES={'TabPFN CV-F0':'TabPFN CV-F0 · position','TabPFN CV-F2':'TabPFN CV-F2 · Base','TabPFN CV-F2 + C0':'TabPFN CV-F2 + C0','TabPFN CV-F2 + C1':'TabPFN CV-F2 + C1'};
 export const ORDER=[...REFERENCES,'Chronos-Bolt-small','Chronos-2','Moirai-1.1-R-small'];
 export function metricRows(data,filters,compact=false){
  return data.summary.filter(r=>Object.entries(filters).every(([k,v])=>r[k]===v)&&(!compact||REFERENCES.includes(r.model_id))).sort((a,b)=>ORDER.indexOf(a.model_id)-ORDER.indexOf(b.model_id));
