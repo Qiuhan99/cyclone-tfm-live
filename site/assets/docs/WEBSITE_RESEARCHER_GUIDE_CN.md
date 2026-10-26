@@ -849,3 +849,9 @@ Results主页面与Live monitor主页面新增可见的完整共同队列模型�
 “Present”模式支持左右方向键、Page Up/Down、上一章/下一章按钮，Esc退出；不拦截原生表单输入。减少动态效果偏好会关闭动画和顺滑滚动。手机使用上下布局，普通浏览保留自然滚动。
 
 主图明确为早期 rolling-v2 示意，实时 CV-F2 为后续配置。精选改善、完整队列、原发区域与事后匹配面积继续区分；完整结果、Conformal基准、外部模式地图和实时窗口地址不变。原科研JSON均不改。说明见 [IMMERSIVE_RESEARCH_NOTEBOOK.md](IMMERSIVE_RESEARCH_NOTEBOOK.md)。
+
+## 36. 主方法命名与实现标识（2026-10-26）
+
+公众主方法名称统一为 **TabPFN + Vector Residual Feedback**，紧凑图例简称 Vector residual feedback。TabPFN为基础模型，Residual Feedback为所研究的校正方法，Conformal为不确定性校准外层；CV为匀速参考目标表示，不作为主方法品牌。
+
+基准主表、面积参考和诊断选择器使用研究角色名称；CV/F2/C1原始标识放入折叠实现说明和原始下载。共享匀速表示仍作为对照变量明确展示，避免隐去TSFM比较的信息预算。所有原始model_id、选项value、数据、推理与校准保留不变。命名说明见 [METHOD_NAMING.md](METHOD_NAMING.md)。

@@ -1,9 +1,9 @@
-import {REFERENCES,NAMES,ORDER,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=vector1';
+import {REFERENCES,NAMES,ORDER,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=names1';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 const COLORS=['#e1ae78','#d6bc95','#b69ee0','#8bdec4','#83b6df','#e09fac','#bac37f'];
 let D;const SETS={};const full=$('#cp-evidence').dataset.cpView==='full';
 const filters=()=>({phase:$('#cp-phase').value,lead_h:+$('#cp-lead').value,level:+$('#cp-level').value,shape:$('#cp-shape').value,calibrator:$('#cp-calibrator').value,regime:$('#cp-regime').value});
-const name=m=>NAMES[m]??(m+(D?.protocol.preprocessing==='shared_6h_CV_offset'?' + CV':' · direct ENU'));
+const name=m=>NAMES[m]??m;
 function frontier(rows,f){
  const W=700,H=390,margin={l:80,r:35,t:25,b:90},valid=rows.filter(r=>r.mean_area_km2>0);
  if(!valid.length){$('#cp-frontier').innerHTML='';return;}
@@ -29,8 +29,8 @@ function curve(f){
  svg+=`<text x="65" y="314" fill="#a7bec2" font-size="12">1</text><text x="665" y="314" text-anchor="end" fill="#a7bec2" font-size="12">${max} mature endpoints →</text>`;$('#cp-curve').innerHTML=svg;
 }
 function render(){
- if(!D)return;const f=filters(),rows=metricRows(D,f,!full),e=correctionEvidence(rows),reference=full?$('#cp-ratio-reference').value:'f2';if(full)$('#cp-ratio-heading').textContent='Matched-area ratio / CV-'+(reference==='f0'?'F0 · position':'F2 · Base');
- $('#cp-status').textContent=rows.length?`${f.phase==='test'?'2024 historical cohort':'CHAMPI locked snapshot'} · +${f.lead_h}h endpoint · ${f.level}% marginal region · ${f.shape==='ellipse'?'ellipse':'circle'} · ${f.calibrator==='Causal rolling'?'causal rolling · mature labels only':'frozen 2019 geometry and threshold'} · ${rows[0].n} common endpoints / ${rows[0].storms} storms. TSFM: ${D.protocol.preprocessing==='shared_6h_CV_offset'?'shared 6h CV-residual target':'direct ENU, original baseline'}. ${f.regime!=='all'?' Motion proxy stratum; not a confirmed concept-drift label.':''}`:'No common mature endpoint for this selection.';
+ if(!D)return;const f=filters(),rows=metricRows(D,f,!full),e=correctionEvidence(rows),reference=full?$('#cp-ratio-reference').value:'f2';if(full)$('#cp-ratio-heading').textContent='Matched-area ratio / '+(reference==='f0'?'TabPFN position-only':'TabPFN baseline');
+ $('#cp-status').textContent=rows.length?`${f.phase==='test'?'2024 historical cohort':'CHAMPI locked snapshot'} · +${f.lead_h}h endpoint · ${f.level}% marginal region · ${f.shape==='ellipse'?'ellipse':'circle'} · ${f.calibrator==='Causal rolling'?'causal rolling · mature labels only':'frozen 2019 geometry and threshold'} · ${rows[0].n} common endpoints / ${rows[0].storms} storms. TSFM: ${D.protocol.preprocessing==='shared_6h_CV_offset'?'shared 6h constant-velocity residual target':'direct ENU, original baseline'}. ${f.regime!=='all'?' Motion proxy stratum; not a confirmed concept-drift label.':''}`:'No common mature endpoint for this selection.';
  $('#cp-table').innerHTML=rows.length?rows.map(r=>`<tr class="${r.model_id===REFERENCES[3]?'cp-primary':''}"><td>${esc(name(r.model_id))}</td><td>${r.n} / ${r.storms}</td><td>${fmt(r.coverage*100)}% / ${f.level}%</td><td>${fmt(Math.max(0,f.level-r.coverage*100),2)} / ${fmt(Math.max(0,r.coverage*100-f.level),2)}</td><td>${fmt(r.absolute_gap_pp,2)}</td><td>${fmt(r.mean_area_km2,0)}</td><td>${fmt(r[reference==='f0'?'matched_area_ratio_vs_f0':'matched_area_ratio_vs_f2'],3)}×</td></tr>`).join(''):'<tr><td colspan="7">No common mature endpoints</td></tr>';
  $('#cp-cards').innerHTML=e?[
   ['Baseline → feedback coverage',`${fmt(e.base*100)}% → ${fmt(e.c1*100)}%`,`${f.level}% nominal target. Read the direction of the gap.`],

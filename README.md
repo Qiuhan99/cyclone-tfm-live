@@ -108,6 +108,8 @@ See [operations audit and reproduction](site/assets/docs/OPERATIONS_TERMINAL_V1.
 
 The public method is **TabPFN + Vector Residual Feedback**. The correction-only variant remains an archived ablation. [Selected research results](https://qiuhan99.github.io/cyclone-tfm-live/results.html) present the previously declared four-storm illustrations; selection and the distinction between issued and coverage-matched regions are stated on the page. Live verification is separate and is not filtered to wins.
 
+CV denotes a constant-velocity target representation and is kept in technical configuration records, not the proposed method's public name. Original model IDs remain unchanged. See [method naming and research roles](site/assets/docs/METHOD_NAMING.md).
+
 Regenerate the compact, source-hashed display bundle with `python tools/build_feedback_showcase.py`. See [method and evidence scope](site/assets/docs/VECTOR_RESIDUAL_FEEDBACK.md). All original numerical archives and internal model IDs are preserved.
 
 The site entry now opens the method showcase. Operational CHAMPI forecasting remains at [Live monitor](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html).

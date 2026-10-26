@@ -1,5 +1,5 @@
 import {comparisonEvidence} from './model-comparison-engine.mjs?v=compare2';
-import {NAMES,REFERENCES} from './conformal-evidence-engine.mjs';
+import {NAMES,REFERENCES} from './conformal-evidence-engine.mjs?v=names1';
 const $=s=>document.querySelector(s),fmt=(x,n=1)=>Number.isFinite(x)?x.toFixed(n):'—';
 let sets;
 function render(){

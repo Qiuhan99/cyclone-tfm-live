@@ -1,4 +1,4 @@
-import {guidanceEvidence,guidanceCycles,guidanceCase,guidanceRegion,GUIDANCE_MODELS} from './guidance-benchmark-engine.mjs?v=research2';
+import {guidanceEvidence,guidanceCycles,guidanceCase,guidanceRegion,GUIDANCE_MODELS} from './guidance-benchmark-engine.mjs?v=names1';
 import {wrap,mercator} from './engine.mjs';
 const $=s=>document.querySelector(s),ll=p=>[p.lat_deg,p.lon_deg],fmt=x=>x.toFixed(1);
 const time=t=>new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t))+' UTC';

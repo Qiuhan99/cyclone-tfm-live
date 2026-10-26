@@ -1,8 +1,9 @@
 import {distance,sphereExp} from './engine.mjs';
+import {METHOD_LABELS} from './method-labels.mjs?v=names1';
 export const GUIDANCE_LEADS=[6,12,24,48,72];
 export const GUIDANCE_MODELS=[
- {id:'TabPFN CV-F2',label:'TabPFN baseline',kind:'Research model · CV-F2'},
- {id:'TabPFN CV-F2 + C1',label:'Vector residual feedback',kind:'Research model · CV-F2 + C1'},
+ {id:'TabPFN CV-F2',label:METHOD_LABELS['TabPFN CV-F2'],kind:'Base predictor'},
+ {id:'TabPFN CV-F2 + C1',label:METHOD_LABELS['TabPFN CV-F2 + C1'],kind:'Mature vector residuals'},
  {id:'ATCF:CMC',label:'ATCF:CMC',kind:'Archived track guidance'},
  {id:'ATCF:UKM',label:'ATCF:UKM',kind:'Archived track guidance'},
  {id:'ATCF:NGX',label:'ATCF:NGX',kind:'Archived track guidance'},

@@ -1,4 +1,4 @@
-import {metricRows,REFERENCES} from './conformal-evidence-engine.mjs';
+import {metricRows,REFERENCES} from './conformal-evidence-engine.mjs?v=names1';
 export const COMPARISON_MODELS=[REFERENCES[1],REFERENCES[3],'Chronos-Bolt-small','Chronos-2','Moirai-1.1-R-small'];
 export function comparisonEvidence(data,phase='test',lead_h=24){
  const rows=metricRows(data,{phase,lead_h,level:90,shape:'ellipse',calibrator:'Causal rolling',regime:'all'}).filter(r=>COMPARISON_MODELS.includes(r.model_id));
