@@ -27,9 +27,23 @@ test('actual map module switches114-storm replay, paired split maps, future trut
  globalThis.document={querySelector(s){assert(html.includes(`id="${s.slice(1)}"`),s);if(!nodes.has(s))nodes.set(s,{value:values[s]??'',checked:s!=='#layer-c0',hidden:false,innerHTML:'',textContent:'',classList:{add(){},remove(){},toggle(){}},listeners:{},addEventListener(k,f){this.listeners[k]=f;}});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>read(url.replace('assets/',''))});globalThis.setInterval=()=>0;
  try{await import('../site/atlas.mjs?integration');await new Promise(r=>setImmediate(r));
-  assert.equal((nodes.get('#atlas-storm').innerHTML.match(/<option/g)||[]).length,114);assert(nodes.get('#atlas-map').innerHTML.includes('Retrospective truth'));assert(nodes.get('#atlas-cohort').innerHTML.includes('1,245'));
+  assert.equal((nodes.get('#atlas-storm').innerHTML.match(/<option/g)||[]).length,114);assert(nodes.get('#atlas-map').innerHTML.includes('Retrospective truth'));assert(nodes.get('#atlas-cohort').innerHTML.includes('1,245'));assert(nodes.get('#atlas-cohort').innerHTML.includes('Ablation control'));assert(nodes.get('#atlas-cohort').innerHTML.includes('1117/1245'));assert(nodes.get('#atlas-cohort').innerHTML.includes('6/12/18/24h'));
   nodes.get('#atlas-layout').value='split';nodes.get('#atlas-layout').listeners.change();assert(nodes.get('#atlas-map').innerHTML.includes('BASE / original forecast'));assert(nodes.get('#atlas-map').innerHTML.includes('C1 / residual feedback'));
   nodes.get('#atlas-retro').checked=false;nodes.get('#atlas-retro').listeners.change();assert(!nodes.get('#atlas-map').innerHTML.includes('Retrospective truth'));assert(nodes.get('#atlas-metrics').innerHTML.includes('Hidden'));
-  nodes.get('#mode-live').onclick();assert.equal(nodes.get('#history-controls').hidden,true);assert(nodes.get('#atlas-verdict').textContent.includes('Generated'));assert(nodes.get('#atlas-metrics').innerHTML.includes('Not yet known'));assert(nodes.get('#atlas-map').innerHTML.includes('Last CMA analysis'));
+  nodes.get('#atlas-lead').onchange({target:{value:'6'}});assert(nodes.get('#atlas-cohort').innerHTML.includes('+6h MAE'));nodes.get('#mode-live').onclick();assert(nodes.get('#atlas-cohort').innerHTML.includes('+24h MAE'));assert(nodes.get('#atlas-cohort').innerHTML.includes('6/12/18/24h'));assert.equal(nodes.get('#history-controls').hidden,true);assert(nodes.get('#atlas-verdict').textContent.includes('Generated'));assert(nodes.get('#atlas-metrics').innerHTML.includes('Not yet known'));assert(nodes.get('#atlas-map').innerHTML.includes('Last CMA analysis'));
  }finally{Object.assign(globalThis,saved);}
+});
+
+test('archived cohort summaries reproduce per-origin MAE and joint coverage at every supported lead',async()=>{
+ const {cohortSummary}=await import('../site/atlas-engine.mjs');
+ assert.equal(A.source_sha256,(await import('node:crypto')).createHash('sha256').update(fs.readFileSync(new URL('../site/assets/rolling-v2.json',import.meta.url))).digest('hex'));
+ const origins=A.storms.flatMap(s=>s.origins);
+ for(const h of [6,12,24]){const s=cohortSummary(A,h);assert.deepEqual(s.leads,Array.from({length:h/6},(_,i)=>(i+1)*6));assert.equal(s.storms,114);
+  for(const row of s.rows){const mae=origins.reduce((n,o)=>n+o.errors[row.method][h/6-1],0)/origins.length,covered=origins.filter(o=>{const r=o.regions[row.method][h/6];return r.score<=r.q['0.1'];}).length;
+   assert(Math.abs(mae-row.mae_km)<1e-6);assert.equal(row.covered,covered);assert.equal(row.n_origins,1245);assert(Math.abs(row.coverage-covered/1245)<1e-7);
+  }
+ }
+ const s=cohortSummary(A,24);assert.equal(s.rows[0].covered,1117);assert.equal(s.rows[1].covered,1118);assert.equal(s.rows[2].covered,1109);assert(s.rows[2].delta_vs_base_km>13);
+ assert.throws(()=>cohortSummary(A,18),RangeError);
+ const html=fs.readFileSync(new URL('../site/research-atlas.html',import.meta.url),'utf8');assert(!html.match(/id="atlas-lead"[^>]*>.*?<option>18<\/option>/s));
 });

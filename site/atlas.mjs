@@ -1,9 +1,9 @@
 import {distance,sphereExp,wrap,mercator} from './engine.mjs';
-import {issuedBoundary,currentMetrics,observations,cohortRows} from './atlas-engine.mjs';
+import {issuedBoundary,currentMetrics,observations,cohortSummary} from './atlas-engine.mjs?v=cohort2';
 import {operationalState,futurePoints} from './operations-engine.mjs?v=terminal1';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(v,n=1)=>Number.isFinite(v)?v.toFixed(n):'—';
 const time=t=>new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t))+' UTC';
-const colors={tabpfn:'#e1ae78',rolling_c0:'#b69ee0',rolling_c1:'#8bdec4',truth:'#f3eee2'},labels={tabpfn:'TabPFN Base',rolling_c0:'C0 · no residual history',rolling_c1:'C1 · residual feedback'};
+const colors={tabpfn:'#e1ae78',rolling_c0:'#b69ee0',rolling_c1:'#8bdec4',truth:'#f3eee2'},labels={tabpfn:'TabPFN Base',rolling_c0:'C0 · correction-only control',rolling_c1:'C1 · residual-feedback variant'};
 let A,G,L,liveError='',S={mode:'history',storm:null,origin:0,hours:24,level:90,zoom:1,dx:0,dy:0},drag=null;
 const storm=()=>A.storms.find(s=>s.id===S.storm),origin=()=>storm().origins[S.origin],retro=()=>S.mode==='history'&&$('#atlas-retro').checked;
 const layer=m=>$('#layer-'+({tabpfn:'base',rolling_c0:'c0',rolling_c1:'c1'}[m])).checked;
@@ -78,8 +78,8 @@ function renderHistory(){
  $('#atlas-region-note').textContent=`${S.hours/6}-lead MaxScore joint-event projection · ${S.level}% target · Geometry n=${r.n_geometry} / rank scores n=${r.n_scores}. ${lags.length}/4 mature same-lead residuals. Mapped from the original issue tangent plane; projected area is distinct from joint volume.`;
  $('#atlas-contract').textContent='Revised historical-data replay. Base/C0/C1 share issue times and fixed 6–24h paths. This is a hindcast, separate from prospective publication.';
  $('#atlas-runtime').textContent='Locked historical model output. Map controls read the retained results.';
- const rows=cohortRows(A,S.hours),eff=A.efficiency[S.hours/6].maxscore['0.1'];
- $('#atlas-cohort').innerHTML=`<table><thead><tr><th>All 1,245 origins</th><th>Endpoint MAE · km</th><th>90% joint coverage</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${labels[r.method]}</td><td>${fmt(r.mae_km)}</td><td>${fmt(eff.find(e=>e.method===r.method).coverage*100,2)}%</td></tr>`).join('')}</tbody></table><p>This table stays at a 90% nominal target. Region efficiency and exploratory intervals are in the original research overview.</p>`;
+ const summary=cohortSummary(A,S.mode==='live'?24:S.hours),roles={tabpfn:'Baseline',rolling_c0:'Ablation control',rolling_c1:'Feedback variant'},delta=n=>(n>0?'+':'')+fmt(n);
+ $('#atlas-cohort').innerHTML=`<p class="cohort-contract">Archived rolling-v2 / X10 · 2020–2024 · ${summary.storms} storms · ${summary.rows[0].n_origins.toLocaleString('en-GB')} paired origins · +${summary.hours}h endpoint. Joint event: all ${summary.leads.join('/')}h positions covered; nominal target 90%.</p><div class="cohort-table-scroll"><table><thead><tr><th>Configuration</th><th>Research role</th><th>+${summary.hours}h MAE · km</th><th>Δ MAE vs Base · km</th><th>Joint coverage · observed</th></tr></thead><tbody>${summary.rows.map(r=>`<tr><td>${labels[r.method]}</td><td>${roles[r.method]}</td><td>${fmt(r.mae_km)}</td><td>${delta(r.delta_vs_base_km)}</td><td>${fmt(r.coverage*100,2)}% · ${r.covered}/${r.n_origins}</td></tr>`).join('')}</tbody></table></div><p>Positive Δ MAE means higher error. C0 and C1 use the same correction family; only C1 adds explicit mature residual-history inputs. C0 still learns from residual-labelled contexts. This archived protocol differs from live CV-F2 and original TS + PI+; its joint coverage is distinct from a single endpoint's coverage.</p><p><a href="assets/docs/COHORT_TABLE_AND_RESIDUAL_ARMS.md">Definitions, numerical audit & comparison design ↗</a></p>`;
 }
 function renderLive(){
  $('#atlas-badge').textContent='LATEST AVAILABLE / actual version';$('#atlas-badge').classList.add('live');$('#atlas-map-title').textContent='CHAMPI · current input & forecasts';
