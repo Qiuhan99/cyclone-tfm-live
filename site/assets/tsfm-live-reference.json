@@ -1,0 +1,340 @@
+{
+  "protocol": "champi_tsfm_operations_v1",
+  "status": "completed",
+  "issue_time_utc": "2026-10-26T00:00:00.000Z",
+  "generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+  "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+  "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+  "paths": [
+    {
+      "model_id": "Chronos-Bolt-small",
+      "model_family": "tsfm",
+      "protocol_id": "champi_tsfm_operations_v1",
+      "issue_time_utc": "2026-10-26T00:00:00.000Z",
+      "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+      "generated_at_utc": "2026-10-26T06:53:18.271356+00:00",
+      "input_downloaded_at_utc": "2026-10-26T06:50:35.513470+00:00",
+      "source_url": "https://huggingface.co/amazon/chronos-bolt-small",
+      "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+      "checkpoint_sha256": "06a6a19bbe74bc10a9cd193bd4bf2bf638ae07f7e0d51653ae7ab8ea968a21dd",
+      "model_revision": "772f3d25d38aec6d914c8949dab4462e2d46f5d8",
+      "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+      "context_fixes": 9,
+      "context_hours": 48,
+      "preprocessing": "shared_6h_CV_offset",
+      "calibration_status": "Point forecast; live conformal region not calibrated for this adapter",
+      "wind_averaging_period": null,
+      "anchor": {
+        "valid_time_utc": "2026-10-26T00:00:00.000Z",
+        "lat_deg": 31.4,
+        "lon_deg": 129.0
+      },
+      "points": [
+        {
+          "lead_h": 6,
+          "valid_time_utc": "2026-10-26T06:00:00+00:00",
+          "lat_deg": 31.96413502214202,
+          "lon_deg": 130.59969013157206,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 12,
+          "valid_time_utc": "2026-10-26T12:00:00+00:00",
+          "lat_deg": 32.07546322575483,
+          "lon_deg": 132.2744570317982,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 18,
+          "valid_time_utc": "2026-10-26T18:00:00+00:00",
+          "lat_deg": 32.13722588107338,
+          "lon_deg": 134.0972939276175,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 24,
+          "valid_time_utc": "2026-10-27T00:00:00+00:00",
+          "lat_deg": 31.98614077007359,
+          "lon_deg": 136.0255209242216,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 30,
+          "valid_time_utc": "2026-10-27T06:00:00+00:00",
+          "lat_deg": 31.843171676925262,
+          "lon_deg": 138.25630888910587,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 36,
+          "valid_time_utc": "2026-10-27T12:00:00+00:00",
+          "lat_deg": 31.736842029346562,
+          "lon_deg": 140.4727946049241,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 42,
+          "valid_time_utc": "2026-10-27T18:00:00+00:00",
+          "lat_deg": 31.661153612780797,
+          "lon_deg": 142.5400406464679,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 48,
+          "valid_time_utc": "2026-10-28T00:00:00+00:00",
+          "lat_deg": 31.554466915999846,
+          "lon_deg": 144.5501112993819,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 54,
+          "valid_time_utc": "2026-10-28T06:00:00+00:00",
+          "lat_deg": 31.334105646728705,
+          "lon_deg": 146.86806522412934,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 60,
+          "valid_time_utc": "2026-10-28T12:00:00+00:00",
+          "lat_deg": 31.149549199098225,
+          "lon_deg": 148.9418063216891,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 66,
+          "valid_time_utc": "2026-10-28T18:00:00+00:00",
+          "lat_deg": 30.927506429438726,
+          "lon_deg": 151.11704306254012,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 72,
+          "valid_time_utc": "2026-10-29T00:00:00+00:00",
+          "lat_deg": 30.573711281847974,
+          "lon_deg": 153.23190589031333,
+          "vmax_kt": null
+        }
+      ]
+    },
+    {
+      "model_id": "Chronos-2",
+      "model_family": "tsfm",
+      "protocol_id": "champi_tsfm_operations_v1",
+      "issue_time_utc": "2026-10-26T00:00:00.000Z",
+      "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+      "generated_at_utc": "2026-10-26T06:53:18.656720+00:00",
+      "input_downloaded_at_utc": "2026-10-26T06:50:35.513470+00:00",
+      "source_url": "https://huggingface.co/amazon/chronos-2",
+      "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+      "checkpoint_sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+      "model_revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+      "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+      "context_fixes": 9,
+      "context_hours": 48,
+      "preprocessing": "shared_6h_CV_offset",
+      "calibration_status": "Point forecast; live conformal region not calibrated for this adapter",
+      "wind_averaging_period": null,
+      "anchor": {
+        "valid_time_utc": "2026-10-26T00:00:00.000Z",
+        "lat_deg": 31.4,
+        "lon_deg": 129.0
+      },
+      "points": [
+        {
+          "lead_h": 6,
+          "valid_time_utc": "2026-10-26T06:00:00+00:00",
+          "lat_deg": 31.601751976377354,
+          "lon_deg": 130.76137959419833,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 12,
+          "valid_time_utc": "2026-10-26T12:00:00+00:00",
+          "lat_deg": 31.722050992193097,
+          "lon_deg": 132.4126220985351,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 18,
+          "valid_time_utc": "2026-10-26T18:00:00+00:00",
+          "lat_deg": 31.879750608470953,
+          "lon_deg": 134.0594112089119,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 24,
+          "valid_time_utc": "2026-10-27T00:00:00+00:00",
+          "lat_deg": 31.99903085341768,
+          "lon_deg": 135.72427558832794,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 30,
+          "valid_time_utc": "2026-10-27T06:00:00+00:00",
+          "lat_deg": 32.1133609420607,
+          "lon_deg": 137.41324185707379,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 36,
+          "valid_time_utc": "2026-10-27T12:00:00+00:00",
+          "lat_deg": 32.10569160405397,
+          "lon_deg": 139.07777472148155,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 42,
+          "valid_time_utc": "2026-10-27T18:00:00+00:00",
+          "lat_deg": 32.14933748174542,
+          "lon_deg": 141.0052277493471,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 48,
+          "valid_time_utc": "2026-10-28T00:00:00+00:00",
+          "lat_deg": 32.08343479920938,
+          "lon_deg": 142.92151610466453,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 54,
+          "valid_time_utc": "2026-10-28T06:00:00+00:00",
+          "lat_deg": 31.88137782270207,
+          "lon_deg": 144.88279698085398,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 60,
+          "valid_time_utc": "2026-10-28T12:00:00+00:00",
+          "lat_deg": 31.586512063424216,
+          "lon_deg": 146.6651056071173,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 66,
+          "valid_time_utc": "2026-10-28T18:00:00+00:00",
+          "lat_deg": 31.287901987195298,
+          "lon_deg": 148.69982155235482,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 72,
+          "valid_time_utc": "2026-10-29T00:00:00+00:00",
+          "lat_deg": 30.7707826648959,
+          "lon_deg": 150.59194031005586,
+          "vmax_kt": null
+        }
+      ]
+    },
+    {
+      "model_id": "Moirai-1.1-R-small",
+      "model_family": "tsfm",
+      "protocol_id": "champi_tsfm_operations_v1",
+      "issue_time_utc": "2026-10-26T00:00:00.000Z",
+      "input_last_valid_utc": "2026-10-26T00:00:00.000Z",
+      "generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
+      "input_downloaded_at_utc": "2026-10-26T06:50:35.513470+00:00",
+      "source_url": "https://huggingface.co/Salesforce/moirai-1.1-R-small",
+      "raw_file_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+      "checkpoint_sha256": "cc46831272ea07e99d78fe05c09e730c7c76a1b272cddbdaf5173dae371cb238",
+      "model_revision": "0c24ab99db2c1a70ea2a0fc03bf113329772ac64",
+      "forecast_digest": "362124f83676bf5fd62e468a9a7001d8c531cb25d6eeb1d8988032302e6ca594",
+      "context_fixes": 9,
+      "context_hours": 48,
+      "preprocessing": "shared_6h_CV_offset",
+      "calibration_status": "Point forecast; live conformal region not calibrated for this adapter",
+      "wind_averaging_period": null,
+      "anchor": {
+        "valid_time_utc": "2026-10-26T00:00:00.000Z",
+        "lat_deg": 31.4,
+        "lon_deg": 129.0
+      },
+      "points": [
+        {
+          "lead_h": 6,
+          "valid_time_utc": "2026-10-26T06:00:00+00:00",
+          "lat_deg": 31.311768900477826,
+          "lon_deg": 130.43905064677392,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 12,
+          "valid_time_utc": "2026-10-26T12:00:00+00:00",
+          "lat_deg": 31.480635379849897,
+          "lon_deg": 132.21845210463363,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 18,
+          "valid_time_utc": "2026-10-26T18:00:00+00:00",
+          "lat_deg": 32.29866362560607,
+          "lon_deg": 133.9603980028628,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 24,
+          "valid_time_utc": "2026-10-27T00:00:00+00:00",
+          "lat_deg": 32.37643574000366,
+          "lon_deg": 135.86415096414362,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 30,
+          "valid_time_utc": "2026-10-27T06:00:00+00:00",
+          "lat_deg": 32.575357794607605,
+          "lon_deg": 137.27111417384026,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 36,
+          "valid_time_utc": "2026-10-27T12:00:00+00:00",
+          "lat_deg": 33.23336489476659,
+          "lon_deg": 139.37735433057873,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 42,
+          "valid_time_utc": "2026-10-27T18:00:00+00:00",
+          "lat_deg": 33.065015672038236,
+          "lon_deg": 140.88995240566032,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 48,
+          "valid_time_utc": "2026-10-28T00:00:00+00:00",
+          "lat_deg": 32.8965400888692,
+          "lon_deg": 142.97516808606122,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 54,
+          "valid_time_utc": "2026-10-28T06:00:00+00:00",
+          "lat_deg": 32.39036734389494,
+          "lon_deg": 143.65903616088497,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 60,
+          "valid_time_utc": "2026-10-28T12:00:00+00:00",
+          "lat_deg": 31.819021892833227,
+          "lon_deg": 145.76502589165534,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 66,
+          "valid_time_utc": "2026-10-28T18:00:00+00:00",
+          "lat_deg": 32.467322433477236,
+          "lon_deg": 148.00169770185028,
+          "vmax_kt": null
+        },
+        {
+          "lead_h": 72,
+          "valid_time_utc": "2026-10-29T00:00:00+00:00",
+          "lat_deg": 32.008639749033634,
+          "lon_deg": 149.7926990683162,
+          "vmax_kt": null
+        }
+      ]
+    }
+  ]
+}

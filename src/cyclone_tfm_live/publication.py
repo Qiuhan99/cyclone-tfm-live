@@ -29,13 +29,25 @@ def merge_live(existing, candidate):
     model = max((existing, candidate), key=model_version)
     out = copy.deepcopy(public)
     out['model'] = copy.deepcopy(model['model'])
-    own = [p for p in out['model']['paths'] if not p.get('model_raw_aid')]
+    own = [p for p in out['model']['paths'] if not p.get('model_raw_aid') and p.get('model_family')!='tsfm']
+    # Frozen TSFM inference has a separate version clock: adding a fresh TSFM
+    # forecast must not retime or replace an unchanged TabPFN model version.
+    tsfm={}
+    for source in (existing,candidate):
+        for path in source['model']['paths']:
+            if path.get('model_family')!='tsfm':continue
+            key=path['model_id'];old=tsfm.get(key)
+            if old is None or (stamp(path['issue_time_utc']),stamp(path.get('generated_at_utc')))>(stamp(old['issue_time_utc']),stamp(old.get('generated_at_utc'))):tsfm[key]=copy.deepcopy(path)
+    components=[p['model']['tsfm'] for p in (existing,candidate) if p['model'].get('tsfm')]
+    if components:out['model']['tsfm']=copy.deepcopy(max(components,key=lambda v:stamp(v.get('checked_at_utc'))))
     external = [p for p in public['model']['paths'] if p.get('model_raw_aid')]
-    out['model']['paths'] = own + copy.deepcopy(external)
+    out['model']['paths'] = own + list(tsfm.values()) + copy.deepcopy(external)
     out['generated_at_utc'] = model['generated_at_utc']
     for field in ('publication', 'data_profile', 'inference_refresh'):
         if field in model:
             out[field] = copy.deepcopy(model[field])
+    publications=[(p['publication'],p) for p in (existing,candidate) if p.get('publication') and model_version(p)==model_version(model)]
+    if publications:out['publication']=copy.deepcopy(max(publications,key=lambda pair:stamp(pair[0].get('transfer_prepared_at_utc') or pair[1].get('generated_at_utc')))[0])
     # Keep the most recent observed prefix, including source revisions.
     def observation_version(p):
         return (max((stamp(o['valid_time_utc']) for o in p.get('observations', [])), default=stamp(None)),
@@ -44,6 +56,16 @@ def merge_live(existing, candidate):
     for field in ('observations', 'track_source'):
         if field in observed:
             out[field] = copy.deepcopy(observed[field])
+    # This is derived, not an immutable forecast. Rebuild after merging paths,
+    # so a late cloud refresh cannot leave analysis from a different model set.
+    if any('forecast_analysis' in p for p in (existing,candidate)):
+        from pathlib import Path
+        import json
+        coast_path=Path(__file__).resolve().parents[2]/'site/assets/coastline.json'
+        if coast_path.exists():
+            from .official import Coast
+            from .forecast_analysis import build_analysis
+            out['forecast_analysis']=build_analysis(out,Coast(json.loads(coast_path.read_text())['rings']))
     # Agency retrieval and the public verification ledger have their own clocks.
     for field, clock in [('agency_forecasts', 'checked_at_utc'), ('verification', 'updated_at_utc')]:
         choices = [p[field] for p in (existing, candidate) if field in p]

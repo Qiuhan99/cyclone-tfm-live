@@ -1,4 +1,11 @@
 export const hoursSince=(value,now=Date.now())=>value?(now-Date.parse(value))/3600000:Infinity;
+export function pipelinePulse(data,now=Date.now()){
+ const latest=data.observations?.at(-1)?.valid_time_utc,input=data.model?.input_last_valid_utc,next=Date.parse(latest)+6*3600000,state=operationalState(data,now);
+ return {latest,input,next:Number.isFinite(next)?new Date(next).toISOString():null,awaitingSlot:now>=next,
+  state:state.watcherStale?'delivery_overdue':Date.parse(latest)>Date.parse(input)?'inference_pending':now>=next?'awaiting_source':'current_prefix',
+  sourceChecked:data.fetch_status?.bdeck?.checked_at_utc??data.fetch_status?.ucar?.checked_at_utc??data.last_checked_at_utc,
+  baseGenerated:data.generated_at_utc,tsfmGenerated:data.model?.tsfm?.generated_at_utc,unchanged:data.source_progress?.state==='unchanged'||data.inference_refresh?.reused_identical_bdeck===true};
+}
 export function operationalState(data,now=Date.now()){
   const c=data.official?.center,w=data.official?.warning;
   return {watcherStale:hoursSince(data.last_checked_at_utc,now)>data.refresh_interval_seconds*2/3600+1/60,

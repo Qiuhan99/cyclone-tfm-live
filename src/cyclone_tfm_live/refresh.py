@@ -6,6 +6,9 @@ import pandas as pd
 from .atcf import UCAR,parse_atcf
 from .official import nmc_center,nmc_warning,Coast,OtherStormBulletin
 from .agency_forecast import attach
+from .forecast_analysis import build_analysis
+
+TSFM={'Chronos-Bolt-small','Chronos-2','Moirai-1.1-R-small'}
 
 URLS={'bdeck':UCAR+'bwp292026.dat','adeck':UCAR+'awp292026.dat',
       'center':'https://www.nmc.cn/publish/typhoon/typhoon_new.html','warning':'https://m.nmc.cn/publish/typhoon/warning_index.html'}
@@ -23,9 +26,11 @@ def validate_tfm(payload):
     if not model.get('input_last_valid_utc') or not model.get('paths'):raise ValueError('missing actual model provenance')
     for p in model['paths']:
         if p.get('model_raw_aid'):continue
-        if not p['model_id'].startswith('TabPFN') or not p.get('raw_file_sha256') or not p.get('generated_at_utc'):
+        tsfm=p.get('model_family')=='tsfm' and p['model_id'] in TSFM
+        if not (p['model_id'].startswith('TabPFN') or tsfm) or not p.get('raw_file_sha256') or not p.get('generated_at_utc'):
             raise ValueError('unverified TFM path')
         if len(p['raw_file_sha256'])!=64:raise ValueError('invalid TFM source digest')
+        if tsfm and (p.get('protocol_id')!='champi_tsfm_operations_v1' or len(p.get('checkpoint_sha256',''))!=64 or len(p.get('model_revision',''))!=40):raise ValueError('unverified TSFM provenance')
         issue=pd.Timestamp(p['issue_time_utc'])
         for point in p['points']:
             if pd.Timestamp(point['valid_time_utc'])!=issue+pd.Timedelta(hours=point['lead_h']):raise ValueError('TFM issue/lead mismatch')
@@ -67,6 +72,9 @@ def assemble(previous,b,a,official,status,coast,checked,tfm=None):
     if b is not None and len(b):
         out['observations']=json.loads(b[['valid_time_utc','lat_deg','lon_deg','vmax_kt','mslp_hpa']].to_json(orient='records',date_format='iso'))
         out['track_source']=dict(url=URLS['bdeck'],sha256=b.raw_file_sha256.iloc[0],downloaded_at_utc=checked,definition='UCAR working/revised B-deck; row publication times unknown')
+        prior=previous.get('track_source',{}).get('sha256');current=out['track_source']['sha256']
+        out['source_progress']=dict(checked_at_utc=checked,state='unchanged' if prior==current else 'advanced' if pd.Timestamp(out['observations'][-1]['valid_time_utc'])>pd.Timestamp(previous['observations'][-1]['valid_time_utc']) else 'revised',latest_fix_utc=out['observations'][-1]['valid_time_utc'],source_sha256=current)
+    out['forecast_analysis']=build_analysis(out,coast)
     return out
 
 

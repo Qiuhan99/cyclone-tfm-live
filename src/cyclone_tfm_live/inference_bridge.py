@@ -15,12 +15,12 @@ from .agency_forecast import attach
 def checked_payload(value):
     validate_tfm(value)
     if value.get('storm_id')!='CHAMPI_2026':raise ValueError('unsupported storm identity')
-    own=[p for p in value['model']['paths'] if not p.get('model_raw_aid')]
+    own=[p for p in value['model']['paths'] if p['model_id'].startswith('TabPFN')]
     if {p['model_id'] for p in own}!={'TabPFN CV-F2','TabPFN CV-F2 + C0','TabPFN CV-F2 + C1'}:raise ValueError('missing real Base/C0/C1')
     issues={p['issue_time_utc'] for p in own}
     if len(issues)!=1:raise ValueError('Base/C0/C1 must share the same origin')
     now=datetime.now(timezone.utc)
-    for p in own:
+    for p in [p for p in value['model']['paths'] if not p.get('model_raw_aid')]:
         for field in ['issue_time_utc','generated_at_utc']:
             stamp=datetime.fromisoformat(p[field].replace('Z','+00:00'))
             if stamp.tzinfo is None or stamp>now:raise ValueError('unverified or future model timestamp')
@@ -93,7 +93,7 @@ def once(research,python,cache,*,infer=False,allow_publish=False):
     if allow_publish:
         attach(value,datetime.now(timezone.utc).isoformat())
         value['publication']=dict(mode='mac_auto',transfer_prepared_at_utc=datetime.now(timezone.utc).isoformat(),poll_interval_seconds=900,
-                                  model_source='private local TabPFN-3.5 + frozen C0/C1; actual version times retained')
+                                  model_source='private local TabPFN-3.5 residual feedback and frozen Chronos/Moirai; actual version times retained')
     output=cache/'ready/champi-operations.json';atomic(output,value)
     status=dict(checked_at_utc=datetime.now(timezone.utc).isoformat(),model_origin=value['model']['input_last_valid_utc'],
         model_generated_at_utc=value['generated_at_utc'],payload_sha256=hashlib.sha256(output.read_bytes()).hexdigest(),
@@ -120,6 +120,8 @@ def main():
         while True:
             try:once(args.research_root,args.python,args.cache,infer=args.run_inference,allow_publish=args.publish)
             except Exception:
+                import traceback
+                traceback.print_exc()
                 atomic(args.cache/'status.json',dict(checked_at_utc=datetime.now(timezone.utc).isoformat(),ok=False,state='failed; public cache retained'))
                 if args.command=='once':raise
             if args.command=='once':break

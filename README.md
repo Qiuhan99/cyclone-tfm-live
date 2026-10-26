@@ -109,3 +109,5 @@ Regenerate the compact, source-hashed display bundle with `python tools/build_fe
 The site entry now opens the method showcase. Operational CHAMPI forecasting remains at [Live monitor](https://qiuhan99.github.io/cyclone-tfm-live/algorithm-live.html).
 
 The live monitor now shows both original conformal regions, an endpoint detail, explicit per-method verification and matched-cycle feedback comparisons. Results and Live monitor expose the completed Chronos/Moirai common-cohort experiments. See [map and comparison definitions](site/assets/docs/CONFORMAL_MAP_AND_MODEL_COMPARISON.md).
+
+The CHAMPI forecast desk adds real local Chronos/Moirai 72-hour paths, independent observation/computation clocks, paired correction evidence and time-resolved coastal analysis. See [live forecast desk protocol](site/assets/docs/LIVE_FORECAST_DESK_V1.md). Inference remains on the existing private Mac runner; public hosting receives validated forecasts only.

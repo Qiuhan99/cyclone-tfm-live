@@ -1,11 +1,11 @@
 import {distance,sphereExp,RADIUS_KM} from './engine.mjs';
 export const OWN=['TabPFN CV-F2','TabPFN CV-F2 + C0','TabPFN CV-F2 + C1'];
 export const PUBLIC_OWN=[OWN[0],OWN[2]];
-export const LABELS={'TabPFN CV-F2':'TabPFN baseline','TabPFN CV-F2 + C0':'Correction-only ablation','TabPFN CV-F2 + C1':'Vector residual feedback'};
+export const LABELS={'TabPFN CV-F2':'TabPFN baseline','TabPFN CV-F2 + C0':'Correction-only ablation','TabPFN CV-F2 + C1':'Vector residual feedback','Chronos-Bolt-small':'Chronos-Bolt-small','Chronos-2':'Chronos-2','Moirai-1.1-R-small':'Moirai-1.1-R-small'};
 export const point=(p,h)=>p?.points.find(q=>q.lead_h===h);
 export const sameTime=(a,b)=>Number.isFinite(Date.parse(a))&&Date.parse(a)===Date.parse(b);
 export function comparators(data,issue,mode='matched'){
- const paths=[...(data.agency_forecasts?.paths??[]),...data.model.paths.filter(p=>p.model_raw_aid)];
+ const paths=[...(data.agency_forecasts?.paths??[]),...data.model.paths.filter(p=>p.model_raw_aid||p.model_family==='tsfm')];
  const selected=mode==='matched'?paths.filter(p=>sameTime(p.issue_time_utc,issue)):paths;
  const out=new Map();for(const p of selected){const old=out.get(p.model_id);if(!old||Date.parse(p.issue_time_utc)>Date.parse(old.issue_time_utc))out.set(p.model_id,p);}return [...out.values()];
 }

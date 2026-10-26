@@ -39,7 +39,7 @@ def advance(previous, payload, checked=None):
             if (valid-issue).total_seconds()!=q['lead_h']*3600:
                 raise ValueError('verification issue/lead/valid mismatch')
             snapshot=dict(storm_id=payload['storm_id'],model_id=p['model_id'],
-                kind='agency' if p.get('forecast_kind')=='agency' else 'nwp' if p.get('model_raw_aid') else 'research',
+                kind='agency' if p.get('forecast_kind')=='agency' else 'nwp' if p.get('model_raw_aid') else 'tsfm' if p.get('model_family')=='tsfm' else 'research',
                 issue_time_utc=issue.isoformat(),valid_time_utc=valid.isoformat(),lead_h=q['lead_h'],
                 lat_deg=q['lat_deg'],lon_deg=q['lon_deg'])
             for level in (80,90,95):
@@ -50,7 +50,7 @@ def advance(previous, payload, checked=None):
             if oid not in known:
                 ledger['records'].append(dict(id=oid,recorded_at_utc=checked,
                     source_url=p.get('source_url'),source_sha256=p.get('raw_file_sha256'),
-                    model_generated_at_utc=p.get('generated_at_utc') if snapshot['kind']=='research' else None,
+                    model_generated_at_utc=p.get('generated_at_utc') if snapshot['kind'] in ('research','tsfm') else None,
                     calibration_n=q.get('calibration_n'),**snapshot));known.add(oid)
     # Never overwrite a truth with later best-track revisions.
     for q in payload.get('observations',[]):
