@@ -3,7 +3,7 @@
   "name_cn": "蔷琵",
   "started_at_utc": "2026-10-25T19:51:34.228573+00:00",
   "generated_at_utc": "2026-10-25T14:29:28.716371+00:00",
-  "last_checked_at_utc": "2026-10-25T22:31:19.947823+00:00",
+  "last_checked_at_utc": "2026-10-26T00:42:45.015880+00:00",
   "refresh_interval_seconds": 1800,
   "official": {
     "center": {
@@ -50,25 +50,25 @@
   "fetch_status": {
     "bdeck": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T22:31:19.947823+00:00",
+      "checked_at_utc": "2026-10-26T00:42:45.015880+00:00",
       "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
       "sha256": "a0887277024532c09b0e630d81126603d15d6ce211c6bc28327c141a320f1f05"
     },
     "adeck": {
       "ok": true,
-      "checked_at_utc": "2026-10-25T22:31:19.947823+00:00",
+      "checked_at_utc": "2026-10-26T00:42:45.015880+00:00",
       "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
       "sha256": "d703d7948ef6f02f884622bf93994ac344d638f8352882fd51aed147bd678559"
     },
     "center": {
       "ok": false,
-      "checked_at_utc": "2026-10-25T22:31:19.947823+00:00",
+      "checked_at_utc": "2026-10-26T00:42:45.015880+00:00",
       "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
       "error": "NMC current bulletin is not CHAMPI"
     },
     "warning": {
       "ok": false,
-      "checked_at_utc": "2026-10-25T22:31:19.947823+00:00",
+      "checked_at_utc": "2026-10-26T00:42:45.015880+00:00",
       "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
       "error": "no verified CHAMPI warning; unknown, not no-warning"
     }
@@ -492,8 +492,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "d703d7948ef6f02f884622bf93994ac344d638f8352882fd51aed147bd678559",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T22:31:19.947823+00:00",
-        "input_downloaded_at_utc": "2026-10-25T22:31:19.947823+00:00",
+        "generated_at_utc": "2026-10-26T00:42:45.015880+00:00",
+        "input_downloaded_at_utc": "2026-10-26T00:42:45.015880+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T18:00:00.000Z",
@@ -677,8 +677,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "d703d7948ef6f02f884622bf93994ac344d638f8352882fd51aed147bd678559",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T22:31:19.947823+00:00",
-        "input_downloaded_at_utc": "2026-10-25T22:31:19.947823+00:00",
+        "generated_at_utc": "2026-10-26T00:42:45.015880+00:00",
+        "input_downloaded_at_utc": "2026-10-26T00:42:45.015880+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T18:00:00.000Z",
@@ -804,8 +804,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "d703d7948ef6f02f884622bf93994ac344d638f8352882fd51aed147bd678559",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-25T22:31:19.947823+00:00",
-        "input_downloaded_at_utc": "2026-10-25T22:31:19.947823+00:00",
+        "generated_at_utc": "2026-10-26T00:42:45.015880+00:00",
+        "input_downloaded_at_utc": "2026-10-26T00:42:45.015880+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-25T18:00:00.000Z",
@@ -1213,7 +1213,7 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "a0887277024532c09b0e630d81126603d15d6ce211c6bc28327c141a320f1f05",
-    "downloaded_at_utc": "2026-10-25T22:31:19.947823+00:00",
+    "downloaded_at_utc": "2026-10-26T00:42:45.015880+00:00",
     "definition": "UCAR working/revised B-deck; row publication times unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
@@ -1264,7 +1264,7 @@
   },
   "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
   "agency_forecasts": {
-    "checked_at_utc": "2026-10-25T22:31:19.947823+00:00",
+    "checked_at_utc": "2026-10-26T00:42:45.015880+00:00",
     "ok": true,
     "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
     "paths": [
@@ -2599,7 +2599,10 @@
         "valid_time_utc": "2026-10-26T00:00:00+00:00",
         "lead_h": 12,
         "lat_deg": 32.1,
-        "lon_deg": 129.0
+        "lon_deg": 129.0,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": false,
+        "exclusion": "target reached before public confirmation"
       },
       {
         "id": "e3d5624bb31c2bf4e7f8889f68df125a2a429af22b2a46ad88df530c15d775d1",
@@ -2615,7 +2618,10 @@
         "valid_time_utc": "2026-10-26T06:00:00+00:00",
         "lead_h": 18,
         "lat_deg": 32.3,
-        "lon_deg": 130.8
+        "lon_deg": 130.8,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "d95f52db218abae4c29fb7b407b1acb8a83abdc073e134a9c28263e64b7c7d54",
@@ -2631,7 +2637,10 @@
         "valid_time_utc": "2026-10-26T12:00:00+00:00",
         "lead_h": 24,
         "lat_deg": 32.8,
-        "lon_deg": 133.1
+        "lon_deg": 133.1,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "44f9e1b38a5e08eaa3dd729d8c48ecda0ea5f2d77089f59a37fa11be446c0a22",
@@ -2647,7 +2656,10 @@
         "valid_time_utc": "2026-10-26T18:00:00+00:00",
         "lead_h": 30,
         "lat_deg": 33.4,
-        "lon_deg": 135.8
+        "lon_deg": 135.8,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "d7434f49e250c6fb354d8ff969f6ba2167c6e63510855627d1e7c27d53ceb534",
@@ -2663,7 +2675,10 @@
         "valid_time_utc": "2026-10-27T00:00:00+00:00",
         "lead_h": 36,
         "lat_deg": 34.7,
-        "lon_deg": 138.7
+        "lon_deg": 138.7,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "f7a135ffc277b73c47fea02bf8b5e54a2d77a0a8e262266514024de27f890ab3",
@@ -2679,7 +2694,10 @@
         "valid_time_utc": "2026-10-27T06:00:00+00:00",
         "lead_h": 42,
         "lat_deg": 35.3,
-        "lon_deg": 141.5
+        "lon_deg": 141.5,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "f6b7e8af26323d5b239586ba65e34b2b30935e62103cf66e441e248e160835b1",
@@ -2695,7 +2713,10 @@
         "valid_time_utc": "2026-10-27T12:00:00+00:00",
         "lead_h": 48,
         "lat_deg": 35.6,
-        "lon_deg": 146.5
+        "lon_deg": 146.5,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "d16a7dc57dc34429a705384e360e7e35f8776135fe968ee2e84e044351a46719",
@@ -2711,7 +2732,10 @@
         "valid_time_utc": "2026-10-27T18:00:00+00:00",
         "lead_h": 54,
         "lat_deg": 36.8,
-        "lon_deg": 151.3
+        "lon_deg": 151.3,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       },
       {
         "id": "b06b1d7e23062184984af4ec6bf175c7cfed00a9cf7b60a439ae9b4c8509e805",
@@ -2727,7 +2751,10 @@
         "valid_time_utc": "2026-10-28T00:00:00+00:00",
         "lead_h": 60,
         "lat_deg": 37.7,
-        "lon_deg": 156.9
+        "lon_deg": 156.9,
+        "confirmed_at_utc": "2026-10-26T00:43:03.709361+00:00",
+        "eligible": true,
+        "exclusion": null
       }
     ],
     "truths": {
@@ -2740,7 +2767,7 @@
       }
     },
     "protocol": "Public Git snapshot confirmed before valid; exact storm/issue/lead/valid pairing; first subsequently retrieved UCAR truth; no backfill",
-    "updated_at_utc": "2026-10-25T22:31:38.215140+00:00"
+    "updated_at_utc": "2026-10-26T00:43:03.709361+00:00"
   },
-  "public_data_generated_at_utc": "2026-10-25T22:31:19.947823+00:00"
+  "public_data_generated_at_utc": "2026-10-26T00:42:45.015880+00:00"
 }
