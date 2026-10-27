@@ -1,0 +1,186 @@
+{
+  "protocol": "conformal_transfer_audit_v1",
+  "source_sha256": {
+    "tabpfn_joint_trajectory_research/artifacts/direct_vector_feedback_v1/conformal/regions.json": "c22528c453a813b2f6f3727b2b3a5634ccf982f3bc03691afb9f89f068aa6d8c",
+    "tabpfn_joint_trajectory_research/artifacts/direct_vector_feedback_v1/conformal/causality_trace.json": "92ebcf34c64b1045010f52111d1cda4e52afcad50036f5db939623509bcb4464",
+    "cyclone-tfm-live-runtime/site/assets/direct-vector-feedback.json": "11d4345a7dbd074049867098953f89c4c828e14c4dd7ae12e454412aefee6fe7",
+    "tabpfn_residual_realdata/results/realdata_verification_s0.json": "3de9fa3c37b135f48e35da07bf423735a26845e09f0b695e75a3a577c91eacc4",
+    "tabpfn_residual_realdata/src/realdata_verification.py": "0b5b617dc3325130b4b3b329f89b6fc7fa893b0bc89bb32e41b72a7505fe4859",
+    "tabpfn_residual_realdata/results/etth1/conformal_results.csv": "85ae352cff19c005bb5caf6b45b235170d8faf67807bc455c7454617f3f724b9"
+  },
+  "audit": {
+    "scored_regions": 45000,
+    "primary_regions": 1014,
+    "max_score_error": 6.139089236967266e-12,
+    "max_area_relative_error": 1.9984014443252818e-15,
+    "maturity_checks": 338808,
+    "scope": "Independent score/coverage, primary area and matched ratio; recorded label maturity. No cold model refit or full calibration-rank replay.",
+    "original_artifacts_unchanged": true
+  },
+  "primary": {
+    "TabPFN Direct-F0": {
+      "n": 169,
+      "hits": 156,
+      "coverage": 0.9230769230769231,
+      "mean_area_km2": 577571.1403837206,
+      "matched_scale": 0.9402955898086358,
+      "matched_hits": 153,
+      "matched_geomean_area_km2": 510291.30059672566,
+      "matched_ratio_vs_base": 1.0536758728234366
+    },
+    "TabPFN Direct-F2": {
+      "n": 169,
+      "hits": 156,
+      "coverage": 0.9230769230769231,
+      "mean_area_km2": 634555.3580280208,
+      "matched_scale": 0.8737673249092203,
+      "matched_hits": 153,
+      "matched_geomean_area_km2": 484296.27531410195,
+      "matched_ratio_vs_base": 1.0
+    },
+    "TabPFN Direct-F2 + RF": {
+      "n": 169,
+      "hits": 154,
+      "coverage": 0.9112426035502958,
+      "mean_area_km2": 608138.1935234533,
+      "matched_scale": 0.8658927285537079,
+      "matched_hits": 153,
+      "matched_geomean_area_km2": 455863.8794314529,
+      "matched_ratio_vs_base": 0.9412913182860873
+    },
+    "Chronos-Bolt-small": {
+      "n": 169,
+      "hits": 154,
+      "coverage": 0.9112426035502958,
+      "mean_area_km2": 2278981.266699808,
+      "matched_scale": 0.9637243534783905,
+      "matched_hits": 153,
+      "matched_geomean_area_km2": 2114963.5699519967,
+      "matched_ratio_vs_base": 4.367086177939911
+    },
+    "Chronos-2": {
+      "n": 169,
+      "hits": 152,
+      "coverage": 0.8994082840236687,
+      "mean_area_km2": 904904.9386489542,
+      "matched_scale": 1.029441616663392,
+      "matched_hits": 153,
+      "matched_geomean_area_km2": 958548.7989629313,
+      "matched_ratio_vs_base": 1.9792611420379838
+    },
+    "Moirai-1.1-R-small": {
+      "n": 169,
+      "hits": 150,
+      "coverage": 0.8875739644970414,
+      "mean_area_km2": 2250369.380180525,
+      "matched_scale": 1.06271131349292,
+      "matched_hits": 153,
+      "matched_geomean_area_km2": 2538735.6224329774,
+      "matched_ratio_vs_base": 5.2421126319553455
+    }
+  },
+  "score_pool_diagnostics": {
+    "TabPFN Direct-F2": {
+      "mean_pool_size": 206.1301775147929,
+      "mean_current_storm_scores": 3.1301775147928996,
+      "mean_warmup_fraction": 0.984950726960401
+    },
+    "TabPFN Direct-F2 + RF": {
+      "mean_pool_size": 206.1301775147929,
+      "mean_current_storm_scores": 3.1301775147928996,
+      "mean_warmup_fraction": 0.984950726960401
+    }
+  },
+  "code_sha256": "4219be5bc9c96a6737577db02f1d751ca801f52372208eb4334c32b571fbb383",
+  "paired_interval": {
+    "base": "TabPFN Direct-F2",
+    "candidate": "TabPFN Direct-F2 + RF",
+    "n": 169,
+    "storms": 27,
+    "matched_area_ratio": 0.9412913182860924,
+    "ratio_ci95": [
+      0.829715507577933,
+      1.3005947690293196
+    ]
+  },
+  "etth1_staleness_L2": [
+    {
+      "k": 0,
+      "n": 456,
+      "base_coverage": 0.8925438596491229,
+      "feedback_coverage": 0.8925438596491229,
+      "dimension_normalized_volume_ratio": 0.9958201656265655,
+      "mse_gain": 0.005828031226541075,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    },
+    {
+      "k": 1,
+      "n": 456,
+      "base_coverage": 0.8925438596491229,
+      "feedback_coverage": 0.8925438596491229,
+      "dimension_normalized_volume_ratio": 0.9958201657173105,
+      "mse_gain": 0.005828031238759301,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    },
+    {
+      "k": 2,
+      "n": 456,
+      "base_coverage": 0.8947368421052632,
+      "feedback_coverage": 0.8925438596491229,
+      "dimension_normalized_volume_ratio": 0.9549007347947817,
+      "mse_gain": 0.08408551651368157,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    },
+    {
+      "k": 4,
+      "n": 456,
+      "base_coverage": 0.8947368421052632,
+      "feedback_coverage": 0.8925438596491229,
+      "dimension_normalized_volume_ratio": 0.8838555671525744,
+      "mse_gain": 0.2022382620473061,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    },
+    {
+      "k": 8,
+      "n": 456,
+      "base_coverage": 0.8881578947368421,
+      "feedback_coverage": 0.8903508771929824,
+      "dimension_normalized_volume_ratio": 0.7663005552077303,
+      "mse_gain": 0.460780249889263,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    },
+    {
+      "k": 16,
+      "n": 456,
+      "base_coverage": 0.8969298245614035,
+      "feedback_coverage": 0.8859649122807017,
+      "dimension_normalized_volume_ratio": 0.7127836190809027,
+      "mse_gain": 0.590490593010522,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    },
+    {
+      "k": 32,
+      "n": 456,
+      "base_coverage": 0.9013157894736842,
+      "feedback_coverage": 0.881578947368421,
+      "dimension_normalized_volume_ratio": 0.6902648914783786,
+      "mse_gain": 0.4864017688944198,
+      "corrector": "rolling SCALAR-C",
+      "calibration": "L2 rolling rank + ACI"
+    }
+  ],
+  "etth1_original_C1": {
+    "n": 456,
+    "eval_range": "[16964, 17420]",
+    "base_coverage": 0.875,
+    "feedback_coverage": 0.868421052631579,
+    "geometric_volume_ratio": 0.7577502037862395,
+    "dimension_normalized_volume_ratio": 0.9611461649332784
+  }
+}

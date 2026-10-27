@@ -8,7 +8,7 @@ export function metricRows(data,filters,compact=false){
 export function correctionEvidence(rows){
  const direct=rows.some(r=>r.model_id==='TabPFN Direct-F2'),base=rows.find(r=>r.model_id===(direct?'TabPFN Direct-F2':REFERENCES[1])),c0=rows.find(r=>r.model_id===REFERENCES[2]),c1=rows.find(r=>r.model_id===(direct?'TabPFN Direct-F2 + RF':REFERENCES[3]));
  if(!base||!c1)return null;
- return {n:c1.n,storms:c1.storms,base:base.coverage,c1:c1.coverage,gapReduction:base.absolute_gap_pp-c1.absolute_gap_pp,
+ return {n:c1.n,storms:c1.storms,base:base.coverage,c1:c1.coverage,baseHits:Math.round(base.coverage*base.n),feedbackHits:Math.round(c1.coverage*c1.n),baseGap:base.absolute_gap_pp,feedbackGap:c1.absolute_gap_pp,baseArea:base.mean_area_km2,feedbackArea:c1.mean_area_km2,matchedAttained:c1.matched_attained,baseMatchedAttained:base.matched_attained,gapReduction:base.absolute_gap_pp-c1.absolute_gap_pp,
   baseShortfall:Math.max(0,base.level-base.coverage*100),c1Shortfall:Math.max(0,c1.level-c1.coverage*100),
   issuedAreaRatio:c1.mean_area_km2/base.mean_area_km2,matchedAreaRatio:c1.matched_area_ratio_vs_f2,feedbackGapReduction:c0?c0.absolute_gap_pp-c1.absolute_gap_pp:null};
 }

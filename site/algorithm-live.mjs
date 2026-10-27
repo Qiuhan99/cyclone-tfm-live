@@ -1,8 +1,8 @@
-import './release-watch.mjs?v=verify3';
+import './release-watch.mjs?v=verify4';
 import {distance,wrap,mercator} from './engine.mjs';
 import {OWN,PUBLIC_OWN,LABELS,point,area,comparators,pairedScore,verified,verificationState,defaultVerificationLead,forecastRegions,modelScores} from './algorithm-engine.mjs?v=direct1';
 import {operationalState} from './operations-engine.mjs?v=terminal1';
-import {historicalRows,historicalScores,historicalPair,evaluationMode} from './verification-view-engine.mjs?v=verify3';
+import {historicalRows,historicalScores,historicalPair,evaluationMode} from './verification-view-engine.mjs?v=verify4';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 const time=t=>Number.isFinite(Date.parse(t))?new Intl.DateTimeFormat('en-GB',{timeZone:'UTC',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t))+' UTC':'Not reported';
 const colors=['#f2ac63','#62ddc0'],otherColors=['#f4ce7b','#91b9df','#d990a3','#a7a5eb','#83c7ef','#d98fd7','#b7c779'];

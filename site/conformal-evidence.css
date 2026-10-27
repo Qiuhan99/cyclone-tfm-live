@@ -5,3 +5,5 @@
 #c1-audit #c1-original-evidence{display:block;overflow:auto}#c1-audit table{width:100%}
 
 #cp-evidence .cp-table table{min-width:940px}
+
+.cp-method-explanation{padding:18px 22px;border:1px solid #cedde4;border-radius:5px;background:#fff}.cp-method-explanation summary{font-weight:600;color:#254b60}.cp-method-explanation p,.cp-transfer p{font-size:12px;line-height:1.9;color:#627587}.cp-method-explanation a{font-size:12px}.cp-transfer{padding:23px 25px;border-left:3px solid #358a81;background:#eaf3f1;margin:22px 0;border-radius:0 5px 5px 0}.cp-transfer h3{font-size:18px;margin:10px 0;color:#254b60}.cp-charts article>label{margin-top:14px}.cp-charts article>p{min-height:62px}.cp-charts svg{display:block}.cp-cards strong{font-variant-numeric:tabular-nums}.cp-cards small{display:block}
