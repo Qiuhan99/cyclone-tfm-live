@@ -24,6 +24,6 @@ test('published entry templates declare the current version and direct first-sta
 test('new chart and evaluation entry points version their changed dependencies',()=>{
  const model=fs.readFileSync(new URL('../site/model-comparison.mjs',import.meta.url),'utf8');
  const live=fs.readFileSync(new URL('../site/algorithm-live.mjs',import.meta.url),'utf8');
- assert(model.includes('model-comparison-engine.mjs?v=verify4'));
- assert(live.includes('verification-view-engine.mjs?v=verify4'));
+ assert(model.includes('model-comparison-engine.mjs?v=verify5'));
+ assert(live.includes('verification-view-engine.mjs?v=verify5'));
 });

@@ -1,5 +1,5 @@
-import './release-watch.mjs?v=verify4';
-import {selectedEvidence} from './results-engine.mjs';
+import './release-watch.mjs?v=verify5';
+import {selectedEvidence} from './results-engine.mjs?v=desk1';
 import {storyFrame,chapterIndex,CHAPTERS} from './immersive-engine.mjs?v=folio1';
 import {wrap,mercator} from './engine.mjs';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(v,n=1)=>v.toFixed(n);
@@ -64,7 +64,7 @@ async function init(){
  E=selectedEvidence(bundle.selection,bundle.endpoint,bundle.atlas);G=coast;
  $('#story-case').innerHTML=E.cases.map(c=>`<option value="${esc(c.storm_id)}">${esc(c.name)} · ${c.year}</option>`).join('');$('#story-case').value=(E.cases.find(c=>c.name==='TALIM')??E.cases[0]).storm_id;
  const ellipse=E.areas.find(a=>a.family==='rolling_ellipse'),spci=E.areas.find(a=>a.family==='spci');
- $('#story-evidence').innerHTML=`<div><strong>${fmt(E.reduction)}%</strong><span>lower mean position error<small>${fmt(E.base)} → ${fmt(E.feedback)} km</small></span></div><div><strong>${fmt(ellipse.reduction)}%</strong><span>smaller coverage-matched ellipse area</span></div><div><strong>${fmt(spci.reduction)}%</strong><span>smaller SPCI-adapted matched area</span></div>`;
+ $('#story-evidence').innerHTML=`<div><strong>${fmt(E.reduction)}%</strong><span>lower mean position error<small>${fmt(E.base)} → ${fmt(E.feedback)} km</small></span></div><div><strong>${fmt(ellipse.reduction)}%</strong><span>smaller coverage-matched ellipse area</span></div><div><strong>${fmt(spci.reduction)}%</strong><span>smaller SPCI-adapted matched area<small>Archived rolling-v2 · 2D rectangles · 4 storms / 44 origins</small></span></div>`;
  ready=true;$('#story-case').disabled=false;$('#present-toggle').disabled=false;bind();render();updateByScroll();
 }
 init().catch(e=>{$('#story-status').textContent='Archived map unavailable: '+e.message;$('#story-issue').textContent='Research text and original results remain accessible.';});

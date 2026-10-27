@@ -1,0 +1,353 @@
+{
+  "protocol": "forecast_desk_audit_v1",
+  "source_check": {
+    "checked_at_utc": "2026-10-27T02:28:45.976069+00:00",
+    "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
+    "latest_source_fix": "2026102600",
+    "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+    "public_source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
+    "public_latest_fix": "2026-10-26T00:00:00.000Z",
+    "public_feed_checked_at_utc": "2026-10-27T02:24:57.475622+00:00",
+    "public_model_generated_at_utc": "2026-10-26T17:07:28.172883+00:00",
+    "public_model_cutoff": "2026-10-26T00:00:00+00:00",
+    "public_matches_current_source": true
+  },
+  "spci": {
+    "protocol": "endpoint24_2d_v1",
+    "prediction_protocol": "archived rolling-v2",
+    "geometry": "coordinate Bonferroni rectangle",
+    "selected_n": 44,
+    "selected_storms": 4,
+    "selected": {
+      "tabpfn": {
+        "arm": "tabpfn",
+        "family": "spci",
+        "n": 44,
+        "covered": 39,
+        "coverage": 0.8863636363636364,
+        "mean_log_area": 12.650194411649403,
+        "geometric_mean_area_km2": 311824.0644189778,
+        "arithmetic_mean_area_km2": 322207.2704298136,
+        "matched_coverage": 0.9090909090909091,
+        "posthoc_scale": 1.004635325422874,
+        "matched_mean_log_area": 12.659443642420548,
+        "matched_geometric_mean_area_km2": 314721.5763727481,
+        "matched_arithmetic_mean_area_km2": 325201.2645572441,
+        "matched_area_ratio_vs_same_family_base": 1.0
+      },
+      "rolling_c1": {
+        "arm": "rolling_c1",
+        "family": "spci",
+        "n": 44,
+        "covered": 42,
+        "coverage": 0.9545454545454546,
+        "mean_log_area": 12.777485090067792,
+        "geometric_mean_area_km2": 354153.27904966526,
+        "arithmetic_mean_area_km2": 361882.3636634624,
+        "matched_coverage": 0.9090909090909091,
+        "posthoc_scale": 0.7968979983520511,
+        "matched_mean_log_area": 12.323427909318344,
+        "matched_geometric_mean_area_km2": 224903.77191295367,
+        "matched_arithmetic_mean_area_km2": 229812.09942510293,
+        "matched_area_ratio_vs_same_family_base": 0.7146118626661409
+      }
+    },
+    "full": {
+      "tabpfn": {
+        "arm": "tabpfn",
+        "family": "spci",
+        "n": 1245,
+        "covered": 1063,
+        "coverage": 0.8538152610441767,
+        "mean_log_area": 12.725487717838858,
+        "geometric_mean_area_km2": 336208.81456754665,
+        "arithmetic_mean_area_km2": 343904.09136807994,
+        "matched_coverage": 0.9004016064257028,
+        "posthoc_scale": 1.1387557874961203,
+        "matched_mean_log_area": 12.985360221644502,
+        "matched_geometric_mean_area_km2": 435983.7372039207,
+        "matched_arithmetic_mean_area_km2": 445962.700850756,
+        "matched_area_ratio_vs_same_family_base": 1.0
+      },
+      "rolling_c1": {
+        "arm": "rolling_c1",
+        "family": "spci",
+        "n": 1245,
+        "covered": 1067,
+        "coverage": 0.8570281124497992,
+        "mean_log_area": 12.833788450690038,
+        "geometric_mean_area_km2": 374665.32907997066,
+        "arithmetic_mean_area_km2": 384050.89292783756,
+        "matched_coverage": 0.9004016064257028,
+        "posthoc_scale": 1.116030957780652,
+        "matched_mean_log_area": 13.05334565773243,
+        "matched_geometric_mean_area_km2": 466655.07099109114,
+        "matched_arithmetic_mean_area_km2": 478345.02632929274,
+        "matched_area_ratio_vs_same_family_base": 1.0703497198860532
+      }
+    },
+    "selected_reduction_pct": 28.538813733385904,
+    "full_ratio_ci95": [
+      0.9623257196790889,
+      1.1597863283641978
+    ],
+    "active_direct_core_uses_spci": false,
+    "live_circle_uses_spci": false
+  },
+  "direct_core_point_metrics": {
+    "n": 169,
+    "storms": 27,
+    "base_mae_km": 217.66022553161858,
+    "feedback_mae_km": 227.71758485414702,
+    "feedback_wins": 70
+  },
+  "live_circle_ranks": [
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 6,
+      "n": 100,
+      "current_storm_scores": 38,
+      "historical_scores": 62,
+      "thresholds": {
+        "80": {
+          "q_km": 56.37651194624974,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 78.96495494313682,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 163.38519067845994,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 19589.037460178544,
+      "latest_residual_origin": "2026-10-25T18:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 12,
+      "n": 100,
+      "current_storm_scores": 37,
+      "historical_scores": 63,
+      "thresholds": {
+        "80": {
+          "q_km": 128.56860884732941,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 195.01386372893813,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 325.663694269312,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 119466.71913117576,
+      "latest_residual_origin": "2026-10-25T12:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 24,
+      "n": 100,
+      "current_storm_scores": 35,
+      "historical_scores": 65,
+      "thresholds": {
+        "80": {
+          "q_km": 256.77472862378994,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 364.41868895091034,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 529.7860928374074,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 417092.8473693648,
+      "latest_residual_origin": "2026-10-25T00:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 48,
+      "n": 100,
+      "current_storm_scores": 31,
+      "historical_scores": 69,
+      "thresholds": {
+        "80": {
+          "q_km": 510.36714552661755,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 781.2921044272089,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 1027.18144141704,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 1915280.5856939992,
+      "latest_residual_origin": "2026-10-24T00:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2",
+      "lead_h": 72,
+      "n": 100,
+      "current_storm_scores": 27,
+      "historical_scores": 73,
+      "thresholds": {
+        "80": {
+          "q_km": 861.8047674857916,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 1382.091803831423,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 1639.084430565402,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 5977503.067922299,
+      "latest_residual_origin": "2026-10-23T00:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 6,
+      "n": 100,
+      "current_storm_scores": 38,
+      "historical_scores": 62,
+      "thresholds": {
+        "80": {
+          "q_km": 51.7470661289211,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 75.82759153148204,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 176.58021478008027,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 18063.390463542717,
+      "latest_residual_origin": "2026-10-25T18:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 12,
+      "n": 100,
+      "current_storm_scores": 37,
+      "historical_scores": 63,
+      "thresholds": {
+        "80": {
+          "q_km": 127.92200107332788,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 212.41956768139667,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 314.26115044588704,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 141742.04071970863,
+      "latest_residual_origin": "2026-10-25T12:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 24,
+      "n": 100,
+      "current_storm_scores": 35,
+      "historical_scores": 65,
+      "thresholds": {
+        "80": {
+          "q_km": 258.90194865710924,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 403.55302179050574,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 491.86518529679137,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 511453.16209914605,
+      "latest_residual_origin": "2026-10-25T00:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 48,
+      "n": 100,
+      "current_storm_scores": 31,
+      "historical_scores": 69,
+      "thresholds": {
+        "80": {
+          "q_km": 553.0995242316511,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 883.1572498129348,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 1061.9242239574082,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 2446416.477354545,
+      "latest_residual_origin": "2026-10-24T00:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    },
+    {
+      "model_id": "TabPFN Direct-F2 + RF",
+      "lead_h": 72,
+      "n": 100,
+      "current_storm_scores": 27,
+      "historical_scores": 73,
+      "thresholds": {
+        "80": {
+          "q_km": 1171.1505917193745,
+          "rank": 81
+        },
+        "90": {
+          "q_km": 1552.4518194852253,
+          "rank": 91
+        },
+        "95": {
+          "q_km": 1877.8269514373837,
+          "rank": 96
+        }
+      },
+      "area_90_km2": 7534182.511291094,
+      "latest_residual_origin": "2026-10-23T00:00:00+00:00",
+      "latest_residual_valid": "2026-10-26T00:00:00+00:00"
+    }
+  ],
+  "sources_sha256": {
+    "tabpfn_joint_trajectory_research/artifacts/endpoint24_2d_v1/results.json": "bffa25ec84d6453d5c837f085051aa6f753b3e6fe31ef53e7986d95a25da51cb",
+    "tabpfn_joint_trajectory_research/artifacts/direct_vector_feedback_v1/predictions.parquet": "14f3e41ce8339a677b172ae912ada5a4214184b58467542b92b061e052744fe4",
+    "tabpfn_joint_trajectory_research/artifacts/champi_operations_direct_v1/5c2845db420b5e31/locked_config.json": "e28eb7fb036342b5e9945559a63dada2071c06819cdc8c7aa95674e044230a57",
+    "tabpfn_joint_trajectory_research/scripts/audit_forecast_desk.py": "b02eea3f190e152b94923f25ddad135d9f3dd91b6fdd132c74852f97c371eb35"
+  },
+  "original_artifacts_unchanged": true
+}

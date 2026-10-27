@@ -863,3 +863,7 @@ Results主页面与Live monitor主页面新增可见的完整共同队列模型�
 公众主方法名称统一为 **TabPFN + Vector Residual Feedback**，紧凑图例简称 Vector residual feedback。TabPFN为基础模型，Residual Feedback为所研究的校正方法，Conformal为不确定性校准外层；CV为匀速参考目标表示，不作为主方法品牌。
 
 基准主表、面积参考和诊断选择器使用研究角色名称；CV/F2/C1原始标识放入折叠实现说明和原始下载。共享匀速表示仍作为对照变量明确展示，避免隐去TSFM比较的信息预算。所有原始model_id、选项value、数据、推理与校准保留不变。命名说明见 [METHOD_NAMING.md](METHOD_NAMING.md)。
+
+## 2026-10-27：SPCI 与当前 forecast desk 的方法分流
+
+旧 rolling-v2 四场44点的28.5388%来自二维SPCI坐标矩形的事后匹配面积。当前direct-core全队列使用128/256秩椭圆，CHAMPI地图使用各方法100个成熟距离的秩圆；后两者未接入SPCI条件分位数。当前周期诊断默认展开，旧历史插图分开展示。详细公式、真实阈值复算、预测提前量与残差标签时延的联系，见 [SPCI_DESK_AUDIT_CN.md](SPCI_DESK_AUDIT_CN.md)。

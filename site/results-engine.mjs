@@ -13,5 +13,7 @@ export function selectedEvidence(selection,endpoint,atlas){
   if(Math.abs(ratio-b.matched_area_ratio_vs_same_family_base)>1e-10)throw Error('Area ratio mismatch');
   return {family,n,base:a,feedback:b,ratio,reduction:100*(1-ratio)};
  });
- return {n,storms:storms.length,hours:24,base,feedback,reduction:100*(1-feedback/base),cases,areas};
+ return {n,storms:storms.length,hours:24,base,feedback,reduction:100*(1-feedback/base),cases,areas,
+  predictionProtocol:'rolling_repair_v2',regionProtocol:'endpoint24_2d_v1',spciGeometry:'2D coordinate rectangles',
+  scope:'Archived outcome-selected illustrations; separate from direct_vector_feedback_v1 and the live rank circles'};
 }

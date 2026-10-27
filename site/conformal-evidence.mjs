@@ -1,6 +1,6 @@
-import './release-watch.mjs?v=verify4';
-import {NAMES,referencesFor,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=verify4';
-import {modelColor,frontierLayout,coverageCurves} from './conformal-chart-engine.mjs?v=verify4';
+import './release-watch.mjs?v=verify5';
+import {NAMES,referencesFor,metricRows,correctionEvidence,primaryEvidence} from './conformal-evidence-engine.mjs?v=verify5';
+import {modelColor,frontierLayout,coverageCurves} from './conformal-chart-engine.mjs?v=verify5';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
 let D;let refs;const SETS={};const full=$('#cp-evidence').dataset.cpView==='full';
 const filters=()=>({phase:$('#cp-phase').value,lead_h:+$('#cp-lead').value,level:+$('#cp-level').value,shape:$('#cp-shape').value,calibrator:$('#cp-calibrator').value,regime:$('#cp-regime').value});
