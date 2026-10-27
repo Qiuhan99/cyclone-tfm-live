@@ -1,0 +1,166 @@
+{
+  "protocol": "feedback_validation_20261027",
+  "scope": "Exploratory2017 validation; primary24h; original common148 endpoints/29storms. Dense-cohort gates use535 endpoints/29storms.",
+  "formula": "v=f(X); r=u-v; v_RF=v+g(X,H). X52 + mature-vector/age/mask H16; no Base-output augmentation, CV offset, gates or correction scaling.",
+  "selection": "Capacity grid locked before outcomes. A candidate must beat unchanged Base on original-common and subsequently full-dense validation. No test-season selection.",
+  "candidates": [
+    {
+      "id": "direct_rolling_feedback_v2_1",
+      "label": "Dense6h · rolling320 · pooled leads",
+      "n": 148,
+      "base_mae_km": 209.91585222800808,
+      "feedback_mae_km": 234.19351650581257,
+      "passed": false,
+      "dense_validation": [
+        {
+          "scope": "dense6h",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2",
+          "n": 535,
+          "storms": 29,
+          "mae_km": 205.3893645892811
+        },
+        {
+          "scope": "dense6h",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2 + RF-DenseFrozen",
+          "n": 535,
+          "storms": 29,
+          "mae_km": 282.0617591575441
+        },
+        {
+          "scope": "dense6h",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2 + RF-Rolling",
+          "n": 535,
+          "storms": 29,
+          "mae_km": 227.73064052928422
+        },
+        {
+          "scope": "original_common",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2",
+          "n": 148,
+          "storms": 29,
+          "mae_km": 209.91585222800808
+        },
+        {
+          "scope": "original_common",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2 + RF-DenseFrozen",
+          "n": 148,
+          "storms": 29,
+          "mae_km": 280.72070687878056
+        },
+        {
+          "scope": "original_common",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2 + RF-Rolling",
+          "n": 148,
+          "storms": 29,
+          "mae_km": 234.19351650581257
+        }
+      ]
+    },
+    {
+      "id": "direct_rolling_by_lead_v3",
+      "label": "Dense6h · rolling320 · +24h only",
+      "n": 148,
+      "base_mae_km": 209.91585222800808,
+      "feedback_mae_km": 227.09840311024115,
+      "passed": false,
+      "dense_validation": [
+        {
+          "scope": "dense6h",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2",
+          "n": 535,
+          "storms": 29,
+          "mae_km": 205.3893645892811
+        },
+        {
+          "scope": "dense6h",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2 + RF-Rolling",
+          "n": 535,
+          "storms": 29,
+          "mae_km": 223.00067646881357
+        },
+        {
+          "scope": "original_common",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2",
+          "n": 148,
+          "storms": 29,
+          "mae_km": 209.91585222800808
+        },
+        {
+          "scope": "original_common",
+          "phase": "validation",
+          "lead_h": 24,
+          "model_id": "TabPFN Direct-F2 + RF-Rolling",
+          "n": 148,
+          "storms": 29,
+          "mae_km": 227.09840311024115
+        }
+      ]
+    },
+    {
+      "id": "context1024_ensemble1",
+      "label": "context1024 · ensemble1",
+      "n": 148,
+      "base_mae_km": 209.91585222800808,
+      "feedback_mae_km": 216.10533490655553,
+      "passed": false,
+      "common_gate_passed": false
+    },
+    {
+      "id": "context320_ensemble4",
+      "label": "context320 · ensemble4",
+      "n": 148,
+      "base_mae_km": 209.91585222800808,
+      "feedback_mae_km": 227.27109785649412,
+      "passed": false,
+      "common_gate_passed": false
+    },
+    {
+      "id": "context1024_ensemble4",
+      "label": "context1024 · ensemble4",
+      "n": 148,
+      "base_mae_km": 209.91585222800808,
+      "feedback_mae_km": 215.10364391189694,
+      "passed": false,
+      "common_gate_passed": false
+    }
+  ],
+  "audited_contexts": 1400,
+  "needs_full_dense_validation": [],
+  "adopted": false,
+  "preservation": "All original and failed-run numerical arrays retained locally. Partial calibration from the failed pooled candidate retained but not used to claim test performance. No prospective records backfilled.",
+  "source_sha256": {
+    "artifacts/direct_rolling_feedback_v2_1/feedback_arrays.npz": "cdc88faf6d85194fa588a72f4b54b65ca018f9a006c8b939985e31b3fab30392",
+    "artifacts/direct_rolling_feedback_v2_1/effective_base.npy": "c22d830d1c9fb0b1943dd313d05efac5fd1b4cf42621e0c700b0fb0e970204cf",
+    "artifacts/feedback_validation_capacity_v1/locked_config.json": "ba138ff51362be2a291ac5ae3c43e4430d3ea1c6f9008878eb10e2fc3bd4e99b",
+    "scripts/export_feedback_validation.py": "636548e3ad330fff21e2792a4a350faf01118d56dc1ad0e96fcd163147f9d862",
+    "artifacts/direct_rolling_feedback_v2_1/locked_config.json": "3116db95cbb86d773a3db1e811ae301778cc3b2bd06589a9e520414996499292",
+    "artifacts/direct_rolling_feedback_v2_1/point_results.json": "34211cd063b2c10f647438daeda3edacc5e61631ff5dc07febe1fa9c688ba28f",
+    "artifacts/direct_rolling_feedback_v2_1/rolling_deltas.npy": "4afa193a771e0dbff1875901d2ea15c2e3443b4afc944f0bbce36669b6ddf694",
+    "artifacts/direct_rolling_feedback_v2_1/context_trace.json": "cd1d56e9e38dcb0e2c574c88334ea10f9a84778e5c0e0fe47a2bccd5f6cf5881",
+    "artifacts/direct_rolling_by_lead_v3/locked_config.json": "cb53d53dda7c74e8c4d8b2877cabb757ee5b1a567d5245df6c7239b89cf29d9e",
+    "artifacts/direct_rolling_by_lead_v3/point_results.json": "4f0338f14741c0860d1423b2b23bf2a178ff95383985964ead5f2460d0597441",
+    "artifacts/direct_rolling_by_lead_v3/rolling_deltas.npy": "7d5b137014f5de31dbf5d16eb023ec3ba1122038ef17328789e0b346fad24251",
+    "artifacts/direct_rolling_by_lead_v3/context_trace.json": "d1c178d9d1696eb67e77c4e40ec7b7d99078d16373611c2ddd379d015d3933ed",
+    "artifacts/feedback_validation_capacity_v1/context1024_ensemble1/summary.json": "315a9ad6cc435bf4c8911dbd45ffde8db953ca75ea5dfbcc2b646f9bfc1a2bfb",
+    "artifacts/feedback_validation_capacity_v1/context320_ensemble4/summary.json": "7f49a14a85bdec80eafc5ed5c0c0aac8cefe36d967b1baf2a00362cd2ec80e86",
+    "artifacts/feedback_validation_capacity_v1/context1024_ensemble4/summary.json": "08dfdaa99d28d6947dba66c14378340156b90b6362386bbdce5279e21b0ea4ec"
+  }
+}
