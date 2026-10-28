@@ -25,4 +25,4 @@ function render(){if(!D||!G)return;const storm=$('#ts-storm').value||'INFA_2026'
  $('#v2-map').innerHTML=svg+'</g>';
 }
 window.renderTwoStageV2=render;
-try{[D,G]=await Promise.all([fetch('assets/two-stage-0a-v2.json').then(r=>{if(!r.ok)throw Error('v2 bundle unavailable');return r.json();}),fetch('assets/coastline.json').then(r=>r.json())]);render();}catch(e){$('#v2-status').textContent='v2数据未能加载：'+e.message+'。v1档案保持可用。';}
+try{[D,G]=await Promise.all([window.TWO_STAGE_V2_DATA??fetch('assets/two-stage-0a-v2.json').then(r=>{if(!r.ok)throw Error('v2 bundle unavailable');return r.json();}),window.TWO_STAGE_COAST??fetch('assets/coastline.json').then(r=>r.json())]);render();}catch(e){$('#v2-status').textContent='v2数据未能加载：'+e.message+'。v1档案保持可用。';}
