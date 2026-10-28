@@ -11,6 +11,16 @@ Local QA uses `http://127.0.0.1:8772/two-stage.html`; this is not the public sit
 Historical inputs are `retrospective_prefix`. Conformal is not calibrated for
 this new protocol. Existing direct-vector experiments retain their original IDs.
 
+The [v2 continuation panel](https://qiuhan99.github.io/cyclone-tfm-live/two-stage.html#ts-v2)
+adds 320 newly inferred rolling OOS origins, nine CHAMPI replay cycles,
+independent CMA observations, the verified IN-FA IBTrACS SID, and a 26-storm /
+78-issue turning benchmark. It retains unsuccessful corrections and false
+alarms. [The v2 report](site/assets/docs/TWO_STAGE_0A_V2_REPORT.md) distinguishes
+these completed runs from the still-running full ETTh1/Electricity rerun.
+Its computation counters are an export-time snapshot, not automatic monitoring.
+The new event rules are independently fitted kinematic proxies and remain an
+exploratory revision; they are not an expert confirmation of physical loops.
+
 # Earlier research method (archived protocol)
 
 The live model and default benchmark now use **direct TabPFN + Vector Residual Feedback** (`direct_vector_feedback_v1`): `v=f(X)`, `r=u-v`, `v_RF=v+g(X,H)`. The 68-field correction input contains current F2 features and mature vector residual history; no constant-velocity target offset or Base input augmentation is used. See [the algorithm contract](site/assets/docs/DIRECT_VECTOR_FEEDBACK.md). Earlier CV experiments keep their original IDs and numbers as archives.

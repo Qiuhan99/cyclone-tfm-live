@@ -47,7 +47,7 @@ function render(){const {storm,cycle,lead}=state(),replay=$('#ts-storm').value==
  chart('ts-dynamics',ds,360,'Heading · deg');
  renderFactorial();const p=data.model_provenance;$('#ts-provenance').textContent=`${p.package} ${p.package_version} / model ${p.model_version} / ${p.checkpoint_file} / SHA256 ${p.checkpoint_sha256} / ${p.device} / ${p.n_estimators} estimators / ${p.point_summary}. ${data.protocol}`;
  $('#ts-sources').innerHTML=Object.entries(storm.sources).map(([kind,s])=>`<div class="ts-sources-row"><a href="${esc(s.url)}">UCAR ${esc(kind)}</a> · ${s.bytes.toLocaleString()} bytes · ${s.rows.toLocaleString()} parsed rows<br>下载 ${esc(time(s.downloaded_at_utc))} · 最新源时次 ${esc(kind==='bdeck'?s.latest_valid_utc:s.latest_issue_utc)}<br><code>SHA256 ${esc(s.sha256)}</code></div>`).join('');
- $('#ts-caveats').innerHTML=data.caveats.map(s=>'<li>'+esc(s)+'</li>').join('');drawMap();}
+ $('#ts-caveats').innerHTML=data.caveats.map(s=>'<li>'+esc(s)+'</li>').join('');drawMap();window.renderTwoStageV2?.();}
 $('#ts-storm').onchange=()=>{focus=false;stop();setupIssues();};$('#ts-mode').onchange=()=>{$('#ts-storm').value=$('#ts-mode').value==='live'?'INFA_2026':'CHAMPI_2026';focus=false;stop();setupIssues();};
 $('#ts-issue').onchange=()=>{setupExternal();render();};$('#ts-slider').oninput=()=>{$('#ts-issue').value=$('#ts-slider').value;setupExternal();render();};
 for(const id of ['ts-base','ts-corr','ts-truth','ts-external','ts-event','ts-lead'])$('#'+id).onchange=render;
