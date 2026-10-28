@@ -1,8 +1,11 @@
 """Validate the allowlisted static bundle before it is made public."""
 from pathlib import Path
 from html.parser import HTMLParser
-import json,re,sys
+import hashlib,json,re,sys
 ROOT=Path(__file__).resolve().parents[1]
+REVIEWED_PUBLIC_IMAGES={
+    'assets/champi-turn-paths-v2.png':'4e94ab803eba867723a99c586408e3371e5a1614ea71a478de07c083827a6ffb',
+}
 
 
 class Links(HTMLParser):
@@ -25,8 +28,17 @@ def check(root=ROOT):
             if not (module.parent/link.split("?")[0]).is_file():errors.append('missing module '+link)
     for path in site.rglob('*'):
         if not path.is_file():continue
-        relative=str(path.relative_to(site));text=path.read_text()
-        if '/Users/' in text or re.search(r'-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',text):errors.append('private material '+relative)
+        relative=str(path.relative_to(site));payload=path.read_bytes()
+        if b'/Users/' in payload or re.search(rb'-----BEGIN (?:RSA |OPENSSH |EC )?PRIVATE KEY-----',payload):errors.append('private material '+relative)
+        if path.suffix=='.png':
+            if (not payload.startswith(b'\x89PNG\r\n\x1a\n') or
+                REVIEWED_PUBLIC_IMAGES.get(relative)!=hashlib.sha256(payload).hexdigest()):
+                errors.append('unreviewed public image '+relative)
+            continue
+        try:text=payload.decode('utf-8')
+        except UnicodeDecodeError:
+            errors.append('unsupported binary '+relative)
+            continue
         if path.suffix=='.json':
             try:json.loads(text,parse_constant=lambda x:(_ for _ in ()).throw(ValueError(x)))
             except ValueError:errors.append('invalid finite JSON '+relative)
