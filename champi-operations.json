@@ -1,9 +1,9 @@
 {
   "storm_id": "CHAMPI_2026",
   "name_cn": "蔷琵",
-  "started_at_utc": "2026-10-28T12:51:55.784981+00:00",
+  "started_at_utc": "2026-10-28T13:08:02.726274+00:00",
   "generated_at_utc": "2026-10-26T17:07:28.172883+00:00",
-  "last_checked_at_utc": "2026-10-28T12:52:47.338869+00:00",
+  "last_checked_at_utc": "2026-10-28T13:08:31.238631+00:00",
   "refresh_interval_seconds": 900,
   "official": {
     "warning": {
@@ -21,8 +21,8 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-28T12:52:45.829748+00:00",
-      "raw_file_sha256": "6a576dca6b7618e70a1528e835f336c846c7cdc5786bfa77999894e583225d02"
+      "retrieved_at_utc": "2026-10-28T13:08:29.709971+00:00",
+      "raw_file_sha256": "5ec2684ee70c4acfd9a6084aaddd823ae3f607b973f831aa75c377198acd1d57"
     },
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -54,20 +54,20 @@
   "fetch_status": {
     "ucar": {
       "ok": true,
-      "checked_at_utc": "2026-10-28T12:52:44.819640+00:00"
+      "checked_at_utc": "2026-10-28T13:08:28.603844+00:00"
     },
     "center": {
       "ok": true,
       "state": "other_storm",
-      "checked_at_utc": "2026-10-28T12:52:45.336791+00:00",
+      "checked_at_utc": "2026-10-28T13:08:29.219603+00:00",
       "note": "Latest general bulletin covers another storm; CHAMPI analysis retained",
       "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
     },
     "warning": {
       "ok": true,
       "cached": false,
-      "checked_at_utc": "2026-10-28T12:52:45.829748+00:00",
-      "sha256": "6a576dca6b7618e70a1528e835f336c846c7cdc5786bfa77999894e583225d02",
+      "checked_at_utc": "2026-10-28T13:08:29.709971+00:00",
+      "sha256": "5ec2684ee70c4acfd9a6084aaddd823ae3f607b973f831aa75c377198acd1d57",
       "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
     }
   },
@@ -721,8 +721,8 @@
           "lon_deg": 129.0
         },
         "landfall_candidates": [],
-        "generated_at_utc": "2026-10-28T12:52:47.178886+00:00",
-        "input_downloaded_at_utc": "2026-10-28T12:51:57.622852+00:00"
+        "generated_at_utc": "2026-10-28T13:08:31.086125+00:00",
+        "input_downloaded_at_utc": "2026-10-28T13:08:06.582962+00:00"
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
@@ -787,8 +787,8 @@
           "lon_deg": 129.0
         },
         "landfall_candidates": [],
-        "generated_at_utc": "2026-10-28T12:52:47.283115+00:00",
-        "input_downloaded_at_utc": "2026-10-28T12:51:57.622852+00:00"
+        "generated_at_utc": "2026-10-28T13:08:31.184321+00:00",
+        "input_downloaded_at_utc": "2026-10-28T13:08:06.582962+00:00"
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
@@ -837,8 +837,8 @@
           "lon_deg": 129.0
         },
         "landfall_candidates": [],
-        "generated_at_utc": "2026-10-28T12:52:47.338853+00:00",
-        "input_downloaded_at_utc": "2026-10-28T12:51:57.622852+00:00"
+        "generated_at_utc": "2026-10-28T13:08:31.238615+00:00",
+        "input_downloaded_at_utc": "2026-10-28T13:08:06.582962+00:00"
       }
     ],
     "protocol_id": "direct_vector_feedback_v1",
@@ -869,7 +869,7 @@
     "label": "Actual direct TabPFN and vector residual feedback; earlier reconstructed origins are not retrospective operational publications",
     "tsfm": {
       "status": "completed",
-      "checked_at_utc": "2026-10-28T12:52:45.940627+00:00",
+      "checked_at_utc": "2026-10-28T13:08:29.817812+00:00",
       "worker_sha256": "267a358ce7d14bee813574515348880d6c785b16d38db1b436aa40cd5112737f",
       "protocol": "champi_tsfm_operations_v1",
       "generated_at_utc": "2026-10-26T06:53:19.607284+00:00",
@@ -1228,7 +1228,7 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-    "downloaded_at_utc": "2026-10-28T12:51:57.622852+00:00",
+    "downloaded_at_utc": "2026-10-28T13:08:06.582962+00:00",
     "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
@@ -1280,14 +1280,14 @@
   },
   "site_status": "local watcher required for ongoing updates; stale states computed in browser",
   "source_progress": {
-    "checked_at_utc": "2026-10-28T12:52:47.339992+00:00",
+    "checked_at_utc": "2026-10-28T13:08:31.239742+00:00",
     "state": "unchanged",
     "latest_fix_utc": "2026-10-26T00:00:00.000Z",
     "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
   },
   "forecast_analysis": {
     "schema": 1,
-    "as_of_utc": "2026-10-28T12:52:47.338869+00:00",
+    "as_of_utc": "2026-10-28T13:08:31.238631+00:00",
     "method": "Shortest spherical distance to Natural Earth 1:50m coastal segments; approximate named sectors",
     "interpretation": "Endpoint position-region/coast overlap is not a landfall probability or a wind/rain impact forecast. Translation speed is not wind speed.",
     "paths": [
@@ -2251,7 +2251,7 @@
       {
         "model_id": "ATCF:CMC / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-28T12:52:47.178886+00:00",
+        "generated_at_utc": "2026-10-28T13:08:31.086125+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2468,7 +2468,7 @@
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-28T12:52:47.283115+00:00",
+        "generated_at_utc": "2026-10-28T13:08:31.184321+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2581,7 +2581,7 @@
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-28T12:52:47.338853+00:00",
+        "generated_at_utc": "2026-10-28T13:08:31.238615+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2660,7 +2660,7 @@
     ]
   },
   "agency_forecasts": {
-    "checked_at_utc": "2026-10-28T12:52:47.914408+00:00",
+    "checked_at_utc": "2026-10-28T13:08:31.733658+00:00",
     "ok": true,
     "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
     "paths": [
@@ -2706,14 +2706,14 @@
       "vmax_ms": 18,
       "intensity_code": "TS",
       "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
-      "retrieved_at_utc": "2026-10-28T12:52:47.914408+00:00",
+      "retrieved_at_utc": "2026-10-28T13:08:31.733658+00:00",
       "raw_file_sha256": "ff65e8eebea5461d5c2db38273d67946e19feaab21d3213f8b943ca3ec558fb6"
     },
     "note": "CMA公开地图原始BABJ位置预报；逐行首次业务发布时间未知。仅保留原报时效，不外推缺失24h路径。"
   },
   "publication": {
     "mode": "mac_auto",
-    "transfer_prepared_at_utc": "2026-10-28T12:52:48.859642+00:00",
+    "transfer_prepared_at_utc": "2026-10-28T13:08:32.672718+00:00",
     "poll_interval_seconds": 900,
     "model_source": "private local TabPFN-3.5 residual feedback and frozen Chronos/Moirai; actual version times retained"
   },
