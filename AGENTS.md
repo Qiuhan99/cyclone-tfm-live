@@ -1,5 +1,12 @@
 # Research method and publication contract
 
+## 2026-10-28 explicit user override
+
+The current user task gives `../Typhoon_Research_Agent_Files/AGENT.md` §0A
+priority. The new two-stage research view must use its own experiment IDs,
+honest OOS residual labels and exact addition. Keep the existing direct-vector
+results as explicitly labelled archives. Do not export private contexts/weights.
+
 The active method is **direct TabPFN + Vector Residual Feedback**, protocol `direct_vector_feedback_v1`. The user explicitly rejected using a constant-velocity target offset as the main method.
 
 - Main formula: `v=f(X); r=u-v; v_RF=v+g(X,H)`. H contains only mature historical residual vectors, ages and masks. Base displacement is not an extra correction input. Current dimensions are 52 base features and 68 correction features.

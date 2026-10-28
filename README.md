@@ -1,4 +1,17 @@
-# Active research method
+# Current Two-Stage TabPFN research window · 28 October 2026
+
+The existing website remains **https://qiuhan99.github.io/cyclone-tfm-live/**.
+The new [Two-Stage window](https://qiuhan99.github.io/cyclone-tfm-live/two-stage.html)
+implements the user's updated §0A protocol: real TabPFN #1, historical OOS
+residual labels, real TabPFN #2, exact addition, separate lat/lon tasks.
+It includes frozen IN-FA predictions, nine CHAMPI replay issues, all positive
+and negative paired results, dense real turn queries, and the separate
+F0/F1 four-arm experiment. See [the actual run report](site/assets/docs/TWO_STAGE_0A_REPORT.md).
+Local QA uses `http://127.0.0.1:8772/two-stage.html`; this is not the public site.
+Historical inputs are `retrospective_prefix`. Conformal is not calibrated for
+this new protocol. Existing direct-vector experiments retain their original IDs.
+
+# Earlier research method (archived protocol)
 
 The live model and default benchmark now use **direct TabPFN + Vector Residual Feedback** (`direct_vector_feedback_v1`): `v=f(X)`, `r=u-v`, `v_RF=v+g(X,H)`. The 68-field correction input contains current F2 features and mature vector residual history; no constant-velocity target offset or Base input augmentation is used. See [the algorithm contract](site/assets/docs/DIRECT_VECTOR_FEEDBACK.md). Earlier CV experiments keep their original IDs and numbers as archives.
 
