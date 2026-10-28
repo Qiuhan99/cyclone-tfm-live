@@ -21,7 +21,12 @@ test('actual v2 panel follows selected issue and keeps independent CMA analyses 
   assert(!get('v2-map').innerHTML.includes('realized-future'));assert(get('v2-paired').innerHTML.includes('class="loss"'));
   assert(get('v2-full-status').textContent.includes('尚未完成'));assert(get('v2-cma').textContent.includes('未用这条分析改写'));
   const old=get('v2-map').innerHTML;get('ts-lead').value='6';globalThis.window.renderTwoStageV2();assert.notEqual(get('v2-map').innerHTML,old);
+  const predictions=get('v2-residuals').innerHTML;get('ts-truth').checked=true;globalThis.window.renderTwoStageV2();
+  assert(get('v2-map').innerHTML.includes('data-v2-layer="realized-future"'));assert(get('v2-truth-note').textContent.includes('不进入模型输入'));assert.equal(get('v2-residuals').innerHTML,predictions);
+  get('ts-truth').checked=false;globalThis.window.renderTwoStageV2();assert(!get('v2-map').innerHTML.includes('realized-future'));
+  get('ts-truth').checked=true;
   get('ts-storm').value='INFA_2026';get('ts-issue').value='0';globalThis.window.renderTwoStageV2();assert(get('v2-residuals').innerHTML.includes('不计前瞻'));
+  assert(!get('v2-map').innerHTML.includes('realized-future'));
   assert(get('v2-turns').innerHTML.includes('26 / 78'));
  }finally{Object.assign(globalThis,saved);}
 });

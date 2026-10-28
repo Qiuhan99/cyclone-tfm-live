@@ -3,7 +3,9 @@ const fmt=(n,d=2)=>Number.isFinite(n)?n.toFixed(d):'—';
 let D,G;
 const clock=t=>new Intl.DateTimeFormat('zh-CN',{timeZone:$('#ts-zone').value||'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(t));
 function render(){if(!D||!G)return;const storm=$('#ts-storm').value||'INFA_2026',all=D.rolling_forecasts.filter(r=>r.storm_id===storm),issues=[...new Set(all.map(r=>r.issue_time_utc))].sort((a,b)=>Date.parse(a)-Date.parse(b)),issue=issues[+$('#ts-issue').value||0],lead=+$('#ts-lead').value||72;
- const selected=all.filter(r=>r.issue_time_utc===issue),past=(D.observed_tracks[storm]??[]).filter(r=>Date.parse(r.valid_at_utc)<=Date.parse(issue));
+ const selected=all.filter(r=>r.issue_time_utc===issue),observed=D.observed_tracks[storm]??[],past=observed.filter(r=>Date.parse(r.valid_at_utc)<=Date.parse(issue));
+ const showTruth=storm==='CHAMPI_2026'&&$('#ts-truth').checked,future=showTruth?observed.filter(r=>Date.parse(r.valid_at_utc)>Date.parse(issue)&&Date.parse(r.valid_at_utc)<=Date.parse(issue)+lead*3600000):[];
+ $('#v2-truth-note').textContent=showTruth?'粉红虚线：事后UCAR实况，仅用于验证，不进入模型输入。':'事后实况隐藏；CHAMPI可用上方事后验证开关查看。';
  $('#v2-status').textContent=`已完成 ${D.rolling_oos_origins} 个逐起点OOS基础预测 → ${D.rolling_oos_rows} 条真实残差上下文 → 第二次TabPFN。当前 ${storm} / ${clock(issue)}。历史资料仍为 retrospective_prefix。`;
  $('#v2-residuals').innerHTML=selected.filter(r=>[6,12,24,36,48,72].includes(r.lead_h)).map(r=>`<tr><td>+${r.lead_h}h</td><td>${fmt(r.mu_base_lat,4)} / ${fmt(r.mu_base_lon,4)}</td><td>${fmt(r.r_hat_lat,4)} / ${fmt(r.r_hat_lon,4)}</td><td>${fmt(r.corrected_lat,4)} / ${fmt(r.corrected_lon,4)}</td><td>${esc(clock(r.created_at_utc))} · ${storm==='INFA_2026'?(r.prospective_at_creation?'冻结时目标未到':'冻结时目标已到，不计前瞻'):'retrospective'}</td></tr>`).join('');
  $('#v2-paired').innerHTML=D.rolling_paired_summary.map(r=>`<tr><td>+${r.lead_h}h</td><td>${r.n}</td><td>${fmt(r.T0_MAE_km)}</td><td>${fmt(r.T1_MAE_km)}</td><td class="${r.mean_improvement_km>=0?'gain':'loss'}">${fmt(r.mean_improvement_km)}</td><td>${fmt(100*r.win_rate,1)}%</td></tr>`).join('');
@@ -14,13 +16,14 @@ function render(){if(!D||!G)return;const storm=$('#ts-storm').value||'INFA_2026'
  const analyses=D.cma_observations[storm]??[],eligible=storm==='INFA_2026'?analyses:analyses.filter(r=>Date.parse(r.valid_at_utc)<=Date.parse(issue)),official=eligible.at(-1);
  $('#v2-cma').textContent=official?`独立CMA分析 ${clock(official.valid_at_utc)}：${fmt(official.lat)}°N / ${fmt(official.lon)}°E；${fmt(official.vmax_ms,0)} m/s，${fmt(official.mslp_hpa>=800&&official.mslp_hpa<=1100?official.mslp_hpa:null,0)} hPa。未用这条分析改写旧模型输入、起报或UCAR主真值。`:'该时次没有独立CMA分析；不插值补观测。';
  const paths=['T0','T1'].map((model,j)=>({model,color:j?'#008e7c':'#b47528',points:selected.filter(r=>r.lead_h<=lead).map(r=>({lat:r[j?'corrected_lat':'mu_base_lat'],lon:r[j?'corrected_lon':'mu_base_lon'],lead_h:r.lead_h}))}));
- const coords=[...past.slice(-4),...paths.flatMap(p=>p.points)];if(!coords.length)return;
+ const coords=[...past.slice(-4),...paths.flatMap(p=>p.points),...future];if(!coords.length)return;
  let x0=Math.min(...coords.map(p=>p.lon))-2,x1=Math.max(...coords.map(p=>p.lon))+2,y0=Math.min(...coords.map(p=>p.lat))-1.5,y1=Math.max(...coords.map(p=>p.lat))+1.5;
  const aspect=900/350,w=x1-x0,h=y1-y0,cx=(x0+x1)/2,cy=(y0+y1)/2,W=Math.max(w,h*aspect),H=Math.max(h,w/aspect);x0=cx-W/2;x1=cx+W/2;y0=cy-H/2;y1=cy+H/2;
  const P=p=>[(p.lon-x0)/(x1-x0)*900,350-(p.lat-y0)/(y1-y0)*350],line=a=>a.map((p,i)=>(i?'L':'M')+P(p).map(v=>v.toFixed(2)).join(',')).join(' ');
  let svg='<defs><clipPath id="v2clip"><rect width="900" height="350"/></clipPath></defs><g clip-path="url(#v2clip)"><rect width="900" height="350" fill="#eaf2f7"/>';
  for(const ring of G.rings){if(!ring.some(([lo,la])=>lo>=x0-3&&lo<=x1+3&&la>=y0-3&&la<=y1+3))continue;svg+=`<path d="${line(ring.map(([lon,lat])=>({lat,lon})))}Z" fill="#f8faf5" stroke="#b6c7be"/>`;}
  svg+=`<path d="${line(past)}" fill="none" stroke="#334d66" stroke-width="2"/>`;
+ if(future.length)svg+=`<path data-v2-layer="realized-future" d="${line([...past.slice(-1),...future])}" fill="none" stroke="#b65e83" stroke-width="2.5" stroke-dasharray="3 3"><title>事后UCAR实况：仅用于验证，不是模型输入</title></path>`;
  for(const p of paths){const pts=[...past.slice(-1),...p.points];svg+=`<path data-v2-model="${p.model}" d="${line(pts)}" fill="none" stroke="${p.color}" stroke-width="3" ${p.model==='T0'?'stroke-dasharray="7 4"':''}/>`;for(const q of p.points){const [x,y]=P(q);svg+=`<circle cx="${x}" cy="${y}" r="3" fill="${p.color}"><title>v2 ${p.model} +${q.lead_h}h ${fmt(q.lat)} / ${fmt(q.lon)}</title></circle>`;}}
  $('#v2-map').innerHTML=svg+'</g>';
 }
