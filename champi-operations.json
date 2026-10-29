@@ -3,8 +3,8 @@
   "name_cn": "蔷琵",
   "started_at_utc": "2026-10-29T15:17:32.747978+00:00",
   "generated_at_utc": "2026-10-26T17:07:28.172883+00:00",
-  "last_checked_at_utc": "2026-10-29T15:18:20.728838+00:00",
-  "refresh_interval_seconds": 900,
+  "last_checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
+  "refresh_interval_seconds": 1800,
   "official": {
     "warning": {
       "agency": "中央气象台",
@@ -21,7 +21,7 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-29T15:18:18.493852+00:00",
+      "retrieved_at_utc": "2026-10-29T15:19:10.809112+00:00",
       "raw_file_sha256": "475291c81c616a2a28a2e9b530cc45effedd4f6c279641de492e31bf254b3231"
     },
     "center": {
@@ -52,23 +52,30 @@
     }
   },
   "fetch_status": {
-    "ucar": {
+    "bdeck": {
       "ok": true,
-      "checked_at_utc": "2026-10-29T15:18:16.930689+00:00"
+      "checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
+      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
+      "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
+    },
+    "adeck": {
+      "ok": true,
+      "checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
+      "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
+      "sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951"
     },
     "center": {
       "ok": true,
       "state": "other_storm",
-      "checked_at_utc": "2026-10-29T15:18:17.733105+00:00",
-      "note": "Latest general bulletin covers another storm; CHAMPI analysis retained",
-      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html"
+      "checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
+      "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
+      "note": "Latest general bulletin covers another storm; CHAMPI analysis retained"
     },
     "warning": {
       "ok": true,
-      "cached": false,
-      "checked_at_utc": "2026-10-29T15:18:18.493852+00:00",
-      "sha256": "475291c81c616a2a28a2e9b530cc45effedd4f6c279641de492e31bf254b3231",
-      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html"
+      "checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
+      "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
+      "sha256": "475291c81c616a2a28a2e9b530cc45effedd4f6c279641de492e31bf254b3231"
     }
   },
   "model": {
@@ -617,6 +624,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
+        "generated_at_utc": "2026-10-29T15:19:10.809112+00:00",
+        "input_downloaded_at_utc": "2026-10-29T15:19:10.809112+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -720,9 +729,43 @@
           "lat_deg": 31.4,
           "lon_deg": 129.0
         },
-        "landfall_candidates": [],
-        "generated_at_utc": "2026-10-29T15:18:20.526068+00:00",
-        "input_downloaded_at_utc": "2026-10-29T15:17:34.915091+00:00"
+        "landfall_candidates": [
+          {
+            "lat_deg": 32.34355300898737,
+            "lon_deg": 129.982799043272,
+            "valid_time_utc": "2026-10-26T03:08:00+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 32.862204865528646,
+            "lon_deg": 130.535272474431,
+            "valid_time_utc": "2026-10-26T04:52:00+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 33.449430342851905,
+            "lon_deg": 132.24877501999504,
+            "valid_time_utc": "2026-10-26T08:53:55.955056+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.02594540012832,
+            "lon_deg": 135.1365859383759,
+            "valid_time_utc": "2026-10-26T14:42:21.176471+00:00",
+            "region": "日本本州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 34.64959348299554,
+            "lon_deg": 137.39964132872393,
+            "valid_time_utc": "2026-10-26T19:02:54.757282+00:00",
+            "region": "日本本州附近",
+            "resolution_km": 3
+          }
+        ]
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
@@ -731,6 +774,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
+        "generated_at_utc": "2026-10-29T15:19:10.809112+00:00",
+        "input_downloaded_at_utc": "2026-10-29T15:19:10.809112+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -786,9 +831,22 @@
           "lat_deg": 31.4,
           "lon_deg": 129.0
         },
-        "landfall_candidates": [],
-        "generated_at_utc": "2026-10-29T15:18:20.656265+00:00",
-        "input_downloaded_at_utc": "2026-10-29T15:17:34.915091+00:00"
+        "landfall_candidates": [
+          {
+            "lat_deg": 31.668463083955537,
+            "lon_deg": 129.7163168397907,
+            "valid_time_utc": "2026-10-26T02:16:21.818182+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 31.859268211078717,
+            "lon_deg": 130.23461674949885,
+            "valid_time_utc": "2026-10-26T03:54:32.727273+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          }
+        ]
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
@@ -797,6 +855,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
+        "generated_at_utc": "2026-10-29T15:19:10.809112+00:00",
+        "input_downloaded_at_utc": "2026-10-29T15:19:10.809112+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -836,9 +896,22 @@
           "lat_deg": 31.4,
           "lon_deg": 129.0
         },
-        "landfall_candidates": [],
-        "generated_at_utc": "2026-10-29T15:18:20.728828+00:00",
-        "input_downloaded_at_utc": "2026-10-29T15:17:34.915091+00:00"
+        "landfall_candidates": [
+          {
+            "lat_deg": 31.579338119595615,
+            "lon_deg": 130.33469208379086,
+            "valid_time_utc": "2026-10-26T03:29:11.351351+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          },
+          {
+            "lat_deg": 31.638629846677233,
+            "lon_deg": 130.80146364335872,
+            "valid_time_utc": "2026-10-26T04:42:09.729730+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3
+          }
+        ]
       }
     ],
     "protocol_id": "direct_vector_feedback_v1",
@@ -1228,8 +1301,8 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-    "downloaded_at_utc": "2026-10-29T15:17:34.915091+00:00",
-    "definition": "UCAR working/revised B-deck; availability of each historical row unknown"
+    "downloaded_at_utc": "2026-10-29T15:19:10.809112+00:00",
+    "definition": "UCAR working/revised B-deck; row publication times unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
   "publication_note": "Model origin follows latest6h observation; byte-identical B-deck reuses original model times. Forecast lead is relative to origin, not publication. No hindsight truth displayed.",
@@ -1278,16 +1351,16 @@
     "regime_gate": false,
     "original_row_publication_times_known": false
   },
-  "site_status": "local watcher required for ongoing updates; stale states computed in browser",
+  "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
   "source_progress": {
-    "checked_at_utc": "2026-10-29T15:18:20.729662+00:00",
+    "checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
     "state": "unchanged",
     "latest_fix_utc": "2026-10-26T00:00:00.000Z",
     "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
   },
   "forecast_analysis": {
     "schema": 1,
-    "as_of_utc": "2026-10-29T15:18:20.728838+00:00",
+    "as_of_utc": "2026-10-29T15:19:10.809112+00:00",
     "method": "Shortest spherical distance to Natural Earth 1:50m coastal segments; approximate named sectors",
     "interpretation": "Endpoint position-region/coast overlap is not a landfall probability or a wind/rain impact forecast. Translation speed is not wind speed.",
     "paths": [
@@ -1304,21 +1377,21 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 10.896682753476385,
+              "distance_km": 10.89668275306283,
               "nearest_coast_lat_deg": 31.436999999999998,
               "nearest_coast_lon_deg": 131.07100000000003
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Kyushu",
-                "distance_km": 10.896682753476385,
+                "distance_km": 10.89668275306283,
                 "nearest_coast_lat_deg": 31.436999999999998,
                 "nearest_coast_lon_deg": 131.07100000000003
               }
             ],
             "radius_90_km": 78.96495494313682,
             "issued_area_90_km2": 19589.037460178544,
-            "translation_speed_kmh": 32.10848252383736,
+            "translation_speed_kmh": 32.10848252383346,
             "displacement_from_baseline_km": 0.0,
             "issued_area_ratio_vs_baseline": 1.0
           },
@@ -1330,27 +1403,27 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Shikoku",
-              "distance_km": 115.41464569030867,
+              "distance_km": 115.41464569034773,
               "nearest_coast_lat_deg": 32.755,
               "nearest_coast_lon_deg": 132.87
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Shikoku",
-                "distance_km": 115.41464569030867,
+                "distance_km": 115.41464569034773,
                 "nearest_coast_lat_deg": 32.755,
                 "nearest_coast_lon_deg": 132.87
               },
               {
                 "sector": "Kyushu",
-                "distance_km": 157.62445942700768,
-                "nearest_coast_lat_deg": 32.01116609999452,
-                "nearest_coast_lon_deg": 131.50799028836025
+                "distance_km": 157.62445942713074,
+                "nearest_coast_lat_deg": 32.01116609999474,
+                "nearest_coast_lon_deg": 131.507990288359
               }
             ],
             "radius_90_km": 195.01386372893813,
             "issued_area_90_km2": 119466.71913117576,
-            "translation_speed_kmh": 33.71634579185905,
+            "translation_speed_kmh": 33.71634579186276,
             "displacement_from_baseline_km": 0.0,
             "issued_area_ratio_vs_baseline": 1.0
           },
@@ -1363,14 +1436,14 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 232.85556960934667,
-              "nearest_coast_lat_deg": 33.077999999999996,
+              "nearest_coast_lat_deg": 33.07800000000001,
               "nearest_coast_lon_deg": 139.776
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
                 "distance_km": 232.85556960934667,
-                "nearest_coast_lat_deg": 33.077999999999996,
+                "nearest_coast_lat_deg": 33.07800000000001,
                 "nearest_coast_lon_deg": 139.776
               },
               {
@@ -1382,7 +1455,7 @@
             ],
             "radius_90_km": 364.41868895091034,
             "issued_area_90_km2": 417092.8473693648,
-            "translation_speed_kmh": 36.16838608406619,
+            "translation_speed_kmh": 36.16838608406706,
             "displacement_from_baseline_km": 0.0,
             "issued_area_ratio_vs_baseline": 1.0
           },
@@ -1394,14 +1467,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 514.5423289275176,
+              "distance_km": 514.5423289275001,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
-                "distance_km": 514.5423289275176,
+                "distance_km": 514.5423289275001,
                 "nearest_coast_lat_deg": 33.09400000000001,
                 "nearest_coast_lon_deg": 139.87400000000002
               }
@@ -1454,22 +1527,22 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 19.5760111173243,
+              "distance_km": 19.5760111170941,
               "nearest_coast_lat_deg": 31.436999999999998,
               "nearest_coast_lon_deg": 131.07100000000003
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Kyushu",
-                "distance_km": 19.5760111173243,
+                "distance_km": 19.5760111170941,
                 "nearest_coast_lat_deg": 31.436999999999998,
                 "nearest_coast_lon_deg": 131.07100000000003
               }
             ],
             "radius_90_km": 75.82759153148204,
             "issued_area_90_km2": 18063.390463542717,
-            "translation_speed_kmh": 32.62304462639757,
-            "displacement_from_baseline_km": 9.722901115498658,
+            "translation_speed_kmh": 32.623044626393735,
+            "displacement_from_baseline_km": 9.722901115962138,
             "issued_area_ratio_vs_baseline": 0.9221173066957868
           },
           {
@@ -1493,15 +1566,15 @@
               },
               {
                 "sector": "Kyushu",
-                "distance_km": 163.09052384416927,
+                "distance_km": 163.0905238441969,
                 "nearest_coast_lat_deg": 32.32500000000001,
                 "nearest_coast_lon_deg": 131.61
               }
             ],
             "radius_90_km": 212.41956768139667,
             "issued_area_90_km2": 141742.04071970863,
-            "translation_speed_kmh": 34.64652172742091,
-            "displacement_from_baseline_km": 11.592442295080426,
+            "translation_speed_kmh": 34.64652172742452,
+            "displacement_from_baseline_km": 11.59244229546916,
             "issued_area_ratio_vs_baseline": 1.1864562930206053
           },
           {
@@ -1512,15 +1585,15 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 190.1341422422018,
-              "nearest_coast_lat_deg": 33.077999999999996,
+              "distance_km": 190.1341422422255,
+              "nearest_coast_lat_deg": 33.07800000000001,
               "nearest_coast_lon_deg": 139.776
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
-                "distance_km": 190.1341422422018,
-                "nearest_coast_lat_deg": 33.077999999999996,
+                "distance_km": 190.1341422422255,
+                "nearest_coast_lat_deg": 33.07800000000001,
                 "nearest_coast_lon_deg": 139.776
               },
               {
@@ -1544,22 +1617,22 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 613.5111813503775,
+              "distance_km": 613.5111813503773,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
-                "distance_km": 613.5111813503775,
+                "distance_km": 613.5111813503773,
                 "nearest_coast_lat_deg": 33.09400000000001,
                 "nearest_coast_lon_deg": 139.87400000000002
               }
             ],
             "radius_90_km": 883.1572498129348,
             "issued_area_90_km2": 2446416.477354545,
-            "translation_speed_kmh": 30.69493450318068,
-            "displacement_from_baseline_km": 154.99425614471488,
+            "translation_speed_kmh": 30.694934503180423,
+            "displacement_from_baseline_km": 154.9942561446858,
             "issued_area_ratio_vs_baseline": 1.2773149248354594
           },
           {
@@ -1570,14 +1643,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 1260.3640732820347,
+              "distance_km": 1260.364073282031,
               "nearest_coast_lat_deg": 35.725,
               "nearest_coast_lon_deg": 140.87400000000002
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
-                "distance_km": 1260.3640732820347,
+                "distance_km": 1260.364073282031,
                 "nearest_coast_lat_deg": 35.725,
                 "nearest_coast_lon_deg": 140.87400000000002
               },
@@ -1590,7 +1663,7 @@
             ],
             "radius_90_km": 1552.4518194852253,
             "issued_area_90_km2": 7534182.511291094,
-            "translation_speed_kmh": 28.027309195136027,
+            "translation_speed_kmh": 28.027309195136024,
             "displacement_from_baseline_km": 269.544414226084,
             "issued_area_ratio_vs_baseline": 1.2604230270867727
           }
@@ -1610,15 +1683,15 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 27.863227984601544,
-              "nearest_coast_lat_deg": 31.717999999999996,
+              "distance_km": 27.863227984439817,
+              "nearest_coast_lat_deg": 31.718000000000004,
               "nearest_coast_lon_deg": 130.65499999999997
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 27.308354844474888,
-            "displacement_from_baseline_km": 63.126194730494284
+            "displacement_from_baseline_km": 63.126194730565665
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00+00:00",
@@ -1628,15 +1701,15 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 68.28829523512522,
-              "nearest_coast_lat_deg": 32.29195827313128,
-              "nearest_coast_lon_deg": 131.59541091220444
+              "distance_km": 68.28829523505706,
+              "nearest_coast_lat_deg": 32.29195827313112,
+              "nearest_coast_lon_deg": 131.59541091220512
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.3962094981681,
-            "displacement_from_baseline_km": 90.26875194514236
+            "translation_speed_kmh": 26.39620949817284,
+            "displacement_from_baseline_km": 90.26875194519228
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00+00:00",
@@ -1646,14 +1719,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Shikoku",
-              "distance_km": 123.65573517832611,
+              "distance_km": 123.65573517832614,
               "nearest_coast_lat_deg": 33.247,
               "nearest_coast_lon_deg": 134.18200000000002
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.637811880037304
+            "translation_speed_kmh": 28.637811880046044
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
@@ -1663,15 +1736,15 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 169.72701343463297,
-              "nearest_coast_lat_deg": 33.487,
+              "distance_km": 169.72701343460642,
+              "nearest_coast_lat_deg": 33.48700000000001,
               "nearest_coast_lon_deg": 135.695
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 30.413245788609846,
-            "displacement_from_baseline_km": 162.02464257149953
+            "displacement_from_baseline_km": 162.0246425714717
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00+00:00",
@@ -1682,7 +1755,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 197.94012518666065,
-              "nearest_coast_lat_deg": 33.077999999999996,
+              "nearest_coast_lat_deg": 33.07800000000001,
               "nearest_coast_lon_deg": 139.776
             },
             "position_region_coastal_sectors": [],
@@ -1699,7 +1772,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 157.70064527347608,
-              "nearest_coast_lat_deg": 33.045,
+              "nearest_coast_lat_deg": 33.04500000000001,
               "nearest_coast_lon_deg": 139.824
             },
             "position_region_coastal_sectors": [],
@@ -1732,15 +1805,15 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 471.4962338766873,
+              "distance_km": 471.4962338766969,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 31.78667638345425,
-            "displacement_from_baseline_km": 126.02804933779763
+            "translation_speed_kmh": 31.78667638345819,
+            "displacement_from_baseline_km": 126.02804933783338
           },
           {
             "valid_time_utc": "2026-10-28T06:00:00+00:00",
@@ -1774,7 +1847,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 33.03552692164815
+            "translation_speed_kmh": 33.03552692165194
           },
           {
             "valid_time_utc": "2026-10-28T18:00:00+00:00",
@@ -1784,14 +1857,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 1086.5077790631378,
+              "distance_km": 1086.507779063142,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 34.78434185395522
+            "translation_speed_kmh": 34.78434185396241
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00+00:00",
@@ -1801,7 +1874,7 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 1283.8075599395543,
+              "distance_km": 1283.8075599395577,
               "nearest_coast_lat_deg": 35.725,
               "nearest_coast_lon_deg": 140.87400000000002
             },
@@ -1827,14 +1900,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 0.14691554595340262,
-              "nearest_coast_lat_deg": 31.60046359055944,
+              "distance_km": 0.1469155459539034,
+              "nearest_coast_lat_deg": 31.60046359055945,
               "nearest_coast_lon_deg": 130.76172338856264
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.081989344682388,
+            "translation_speed_kmh": 28.081989344686846,
             "displacement_from_baseline_km": 26.387780039677125
           },
           {
@@ -1852,7 +1925,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.141911707494724,
+            "translation_speed_kmh": 26.141911707499514,
             "displacement_from_baseline_km": 69.53111456156259
           },
           {
@@ -1863,14 +1936,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Shikoku",
-              "distance_km": 147.59273791846348,
-              "nearest_coast_lat_deg": 32.838924194165585,
-              "nearest_coast_lon_deg": 132.97321162690116
+              "distance_km": 147.59273791853957,
+              "nearest_coast_lat_deg": 32.83892419416603,
+              "nearest_coast_lon_deg": 132.97321162690054
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.10161132988753
+            "translation_speed_kmh": 26.10161132989712
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
@@ -1880,15 +1953,15 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 165.47749971700784,
-              "nearest_coast_lat_deg": 33.487,
+              "distance_km": 165.47749971700782,
+              "nearest_coast_lat_deg": 33.48700000000001,
               "nearest_coast_lon_deg": 135.695
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.2759430217035,
-            "displacement_from_baseline_km": 190.468448600484
+            "translation_speed_kmh": 26.275943021693973,
+            "displacement_from_baseline_km": 190.46844860050768
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00+00:00",
@@ -1916,7 +1989,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 125.69023304412339,
-              "nearest_coast_lat_deg": 33.045,
+              "nearest_coast_lat_deg": 33.04500000000001,
               "nearest_coast_lon_deg": 139.824
             },
             "position_region_coastal_sectors": [],
@@ -1932,8 +2005,8 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 148.51544774250235,
-              "nearest_coast_lat_deg": 33.05599999999999,
+              "distance_km": 148.5154477425327,
+              "nearest_coast_lat_deg": 33.056000000000004,
               "nearest_coast_lon_deg": 139.841
             },
             "position_region_coastal_sectors": [],
@@ -1967,7 +2040,7 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 488.7012584011807,
+              "distance_km": 488.70125840118993,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
@@ -1991,7 +2064,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.618746575413525
+            "translation_speed_kmh": 28.618746575409148
           },
           {
             "valid_time_utc": "2026-10-28T18:00:00+00:00",
@@ -2026,7 +2099,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 31.53866708911207,
-            "displacement_from_baseline_km": 63.74490653402229
+            "displacement_from_baseline_km": 63.74490653395159
           }
         ],
         "coastal_crossings": []
@@ -2044,7 +2117,7 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 8.88585431504563,
+              "distance_km": 8.885854315046137,
               "nearest_coast_lat_deg": 31.236819358742867,
               "nearest_coast_lon_deg": 130.40661488020163
             },
@@ -2052,7 +2125,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 22.83268853065974,
-            "displacement_from_baseline_km": 60.60176657616541
+            "displacement_from_baseline_km": 60.60176657609105
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00+00:00",
@@ -2069,7 +2142,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.321604283785575,
+            "translation_speed_kmh": 28.321604283781156,
             "displacement_from_baseline_km": 92.70913409948793
           },
           {
@@ -2087,7 +2160,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 31.32252282494359
+            "translation_speed_kmh": 31.322522824939593
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
@@ -2098,13 +2171,13 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 124.49417711329882,
-              "nearest_coast_lat_deg": 33.487,
+              "nearest_coast_lat_deg": 33.48700000000001,
               "nearest_coast_lon_deg": 135.695
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 29.84402441891596,
+            "translation_speed_kmh": 29.844024418920153,
             "displacement_from_baseline_km": 184.82549265986938
           },
           {
@@ -2115,14 +2188,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 167.27303510850516,
+              "distance_km": 167.2730351084782,
               "nearest_coast_lat_deg": 33.562,
               "nearest_coast_lon_deg": 135.916
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 22.303552950508806
+            "translation_speed_kmh": 22.30355295049758
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00+00:00",
@@ -2132,14 +2205,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 39.0634873545602,
-              "nearest_coast_lat_deg": 33.11143164668906,
-              "nearest_coast_lon_deg": 139.7709692954527
+              "distance_km": 39.06348735503255,
+              "nearest_coast_lat_deg": 33.111431646687564,
+              "nearest_coast_lon_deg": 139.7709692954574
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 34.96642649988247
+            "translation_speed_kmh": 34.96642649987889
           },
           {
             "valid_time_utc": "2026-10-27T18:00:00+00:00",
@@ -2166,14 +2239,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 290.0396379964732,
+              "distance_km": 290.0396379964576,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 32.56634775408035,
+            "translation_speed_kmh": 32.56634775407651,
             "displacement_from_baseline_km": 302.1091157129028
           },
           {
@@ -2184,14 +2257,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 362.5251875487283,
+              "distance_km": 362.52518754871585,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 14.20858093402694
+            "translation_speed_kmh": 14.208580934009321
           },
           {
             "valid_time_utc": "2026-10-28T12:00:00+00:00",
@@ -2218,14 +2291,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 749.3486857326466,
+              "distance_km": 749.3486857326526,
               "nearest_coast_lat_deg": 35.725,
               "nearest_coast_lon_deg": 140.87400000000002
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 37.09606465525615
+            "translation_speed_kmh": 37.096064655252775
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00+00:00",
@@ -2242,8 +2315,8 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 29.333123453457663,
-            "displacement_from_baseline_km": 177.35610816217783
+            "translation_speed_kmh": 29.33312345344913,
+            "displacement_from_baseline_km": 177.35610816212701
           }
         ],
         "coastal_crossings": []
@@ -2251,7 +2324,7 @@
       {
         "model_id": "ATCF:CMC / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-29T15:18:20.526068+00:00",
+        "generated_at_utc": "2026-10-29T15:19:10.809112+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2261,7 +2334,7 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 49.48912118448059,
+              "distance_km": 49.4891211844805,
               "nearest_coast_lat_deg": 33.0567532007519,
               "nearest_coast_lon_deg": 130.39682384690104
             },
@@ -2269,7 +2342,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 44.70407146515692,
-            "displacement_from_baseline_km": 186.39524575610758
+            "displacement_from_baseline_km": 186.39524575613177
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
@@ -2279,15 +2352,15 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Shikoku",
-              "distance_km": 20.50093264231807,
+              "distance_km": 20.500932642757697,
               "nearest_coast_lat_deg": 33.51600000000001,
               "nearest_coast_lon_deg": 133.68600000000004
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 44.275068210341345,
-            "displacement_from_baseline_km": 223.56522669630522
+            "translation_speed_kmh": 44.275068210347,
+            "displacement_from_baseline_km": 223.56522669634552
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
@@ -2297,14 +2370,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 1.7769850326139667,
-              "nearest_coast_lat_deg": 34.39975741121027,
+              "distance_km": 1.7769850326137884,
+              "nearest_coast_lat_deg": 34.399757411210274,
               "nearest_coast_lon_deg": 136.8806342717745
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 50.81734534990261
+            "translation_speed_kmh": 50.817345349907534
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
@@ -2321,7 +2394,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 51.05127336264362,
+            "translation_speed_kmh": 51.05127336264116,
             "displacement_from_baseline_km": 475.42246886022843
           },
           {
@@ -2333,7 +2406,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 339.01059124484163,
-              "nearest_coast_lat_deg": 39.11099999999999,
+              "nearest_coast_lat_deg": 39.111000000000004,
               "nearest_coast_lon_deg": 141.901
             },
             "position_region_coastal_sectors": [],
@@ -2349,14 +2422,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Hokkaido",
-              "distance_km": 597.1244640031632,
+              "distance_km": 597.1244640031631,
               "nearest_coast_lat_deg": 43.426,
               "nearest_coast_lon_deg": 145.94399999999996
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 104.20327633857165
+            "translation_speed_kmh": 104.20327633857285
           },
           {
             "valid_time_utc": "2026-10-27T18:00:00.000Z",
@@ -2366,14 +2439,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Hokkaido",
-              "distance_km": 728.3893925976103,
+              "distance_km": 728.3893925976226,
               "nearest_coast_lat_deg": 43.426,
               "nearest_coast_lon_deg": 145.94399999999996
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 69.20291124708844
+            "translation_speed_kmh": 69.20291124709387
           },
           {
             "valid_time_utc": "2026-10-28T00:00:00.000Z",
@@ -2390,7 +2463,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 55.557229322807075,
+            "translation_speed_kmh": 55.55722932281159,
             "displacement_from_baseline_km": 2002.4600095981616
           },
           {
@@ -2401,7 +2474,7 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Hokkaido",
-              "distance_km": 1222.387600353629,
+              "distance_km": 1222.3876003536252,
               "nearest_coast_lat_deg": 44.273,
               "nearest_coast_lon_deg": 145.94
             },
@@ -2418,7 +2491,7 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Hokkaido",
-              "distance_km": 1396.1737986102892,
+              "distance_km": 1396.1737986102826,
               "nearest_coast_lat_deg": 44.273,
               "nearest_coast_lon_deg": 145.94
             },
@@ -2435,14 +2508,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Hokkaido",
-              "distance_km": 1476.6615238378736,
+              "distance_km": 1476.6615238378768,
               "nearest_coast_lat_deg": 44.273,
               "nearest_coast_lon_deg": 145.94
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 21.609634823467086
+            "translation_speed_kmh": 21.609634823461292
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00.000Z",
@@ -2463,12 +2536,53 @@
             "displacement_from_baseline_km": 2624.7568600510162
           }
         ],
-        "coastal_crossings": []
+        "coastal_crossings": [
+          {
+            "lat_deg": 32.34355300898737,
+            "lon_deg": 129.982799043272,
+            "valid_time_utc": "2026-10-26T03:08:00+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Kyushu"
+          },
+          {
+            "lat_deg": 32.862204865528646,
+            "lon_deg": 130.535272474431,
+            "valid_time_utc": "2026-10-26T04:52:00+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Kyushu"
+          },
+          {
+            "lat_deg": 33.449430342851905,
+            "lon_deg": 132.24877501999504,
+            "valid_time_utc": "2026-10-26T08:53:55.955056+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Shikoku"
+          },
+          {
+            "lat_deg": 34.02594540012832,
+            "lon_deg": 135.1365859383759,
+            "valid_time_utc": "2026-10-26T14:42:21.176471+00:00",
+            "region": "日本本州附近",
+            "resolution_km": 3,
+            "sector": "Honshu"
+          },
+          {
+            "lat_deg": 34.64959348299554,
+            "lon_deg": 137.39964132872393,
+            "valid_time_utc": "2026-10-26T19:02:54.757282+00:00",
+            "region": "日本本州附近",
+            "resolution_km": 3,
+            "sector": "Honshu"
+          }
+        ]
       },
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-29T15:18:20.656265+00:00",
+        "generated_at_utc": "2026-10-29T15:19:10.809112+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2486,7 +2600,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 32.63117804572702,
-            "displacement_from_baseline_km": 64.80472616486207
+            "displacement_from_baseline_km": 64.80472616493162
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
@@ -2496,7 +2610,7 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Shikoku",
-              "distance_km": 62.15014160298272,
+              "distance_km": 62.15014160305523,
               "nearest_coast_lat_deg": 32.75200000000001,
               "nearest_coast_lon_deg": 132.80399999999997
             },
@@ -2504,7 +2618,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 28.303658316314,
-            "displacement_from_baseline_km": 65.97668320107384
+            "displacement_from_baseline_km": 65.97668320114215
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
@@ -2549,14 +2663,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 79.33318646502403,
+              "distance_km": 79.33318646491041,
               "nearest_coast_lat_deg": 33.125,
               "nearest_coast_lon_deg": 139.777
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 44.32504206352945
+            "translation_speed_kmh": 44.32504206353229
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00.000Z",
@@ -2573,15 +2687,32 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 78.14852044412369
+            "translation_speed_kmh": 78.14852044412366
           }
         ],
-        "coastal_crossings": []
+        "coastal_crossings": [
+          {
+            "lat_deg": 31.668463083955537,
+            "lon_deg": 129.7163168397907,
+            "valid_time_utc": "2026-10-26T02:16:21.818182+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Kyushu"
+          },
+          {
+            "lat_deg": 31.859268211078717,
+            "lon_deg": 130.23461674949885,
+            "valid_time_utc": "2026-10-26T03:54:32.727273+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Kyushu"
+          }
+        ]
       },
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-29T15:18:20.728828+00:00",
+        "generated_at_utc": "2026-10-29T15:19:10.809112+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2591,8 +2722,8 @@
             "centre_on_land": true,
             "nearest_coast": {
               "sector": "Kyushu",
-              "distance_km": 15.267740867937981,
-              "nearest_coast_lat_deg": 31.649683270892083,
+              "distance_km": 15.2677408679379,
+              "nearest_coast_lat_deg": 31.649683270892076,
               "nearest_coast_lon_deg": 131.4501151094762
             },
             "position_region_coastal_sectors": [],
@@ -2609,15 +2740,15 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Shikoku",
-              "distance_km": 79.24768261728026,
+              "distance_km": 79.24768261733712,
               "nearest_coast_lat_deg": 32.755,
               "nearest_coast_lon_deg": 132.87
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 34.29728220824468,
-            "displacement_from_baseline_km": 56.03366562908989
+            "translation_speed_kmh": 34.297282208251985,
+            "displacement_from_baseline_km": 56.03366562933117
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
@@ -2634,7 +2765,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 55.111834755600995
+            "translation_speed_kmh": 55.11183475560326
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00.000Z",
@@ -2644,23 +2775,40 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 189.8892114555729,
+              "distance_km": 189.88921145559664,
               "nearest_coast_lat_deg": 33.562,
               "nearest_coast_lon_deg": 135.916
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 14.500281122159281,
+            "translation_speed_kmh": 14.500281122167914,
             "displacement_from_baseline_km": 80.88360827341253
           }
         ],
-        "coastal_crossings": []
+        "coastal_crossings": [
+          {
+            "lat_deg": 31.579338119595615,
+            "lon_deg": 130.33469208379086,
+            "valid_time_utc": "2026-10-26T03:29:11.351351+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Kyushu"
+          },
+          {
+            "lat_deg": 31.638629846677233,
+            "lon_deg": 130.80146364335872,
+            "valid_time_utc": "2026-10-26T04:42:09.729730+00:00",
+            "region": "日本九州附近",
+            "resolution_km": 3,
+            "sector": "Kyushu"
+          }
+        ]
       }
     ]
   },
   "agency_forecasts": {
-    "checked_at_utc": "2026-10-29T15:18:21.370688+00:00",
+    "checked_at_utc": "2026-10-29T15:19:10.809112+00:00",
     "ok": true,
     "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
     "paths": [
@@ -2706,7 +2854,7 @@
       "vmax_ms": 18,
       "intensity_code": "TS",
       "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
-      "retrieved_at_utc": "2026-10-29T15:18:21.370688+00:00",
+      "retrieved_at_utc": "2026-10-29T15:19:10.809112+00:00",
       "raw_file_sha256": "ff65e8eebea5461d5c2db38273d67946e19feaab21d3213f8b943ca3ec558fb6"
     },
     "note": "CMA公开地图原始BABJ位置预报；逐行首次业务发布时间未知。仅保留原报时效，不外推缺失24h路径。"
@@ -5603,5 +5751,6 @@
     },
     "protocol": "Public Git snapshot confirmed before valid; exact storm/issue/lead/valid pairing; first subsequently retrieved UCAR truth; no backfill",
     "updated_at_utc": "2026-10-26T17:49:00.242891+00:00"
-  }
+  },
+  "public_data_generated_at_utc": "2026-10-29T15:19:10.809112+00:00"
 }
