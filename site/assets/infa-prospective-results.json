@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "description": "IN-FA prospective verification results \u2014 frozen forecasts with targets verified",
+    "storm": "INFA_2026 (WP302026)",
+    "generated": "2026-10-30T02:20Z",
+    "note": "All 7 verified records from 06Z Oct 28 cycle; v1/v2 are independent model configurations"
+  },
+  "headline_cases": [
+    {
+      "version": "v1",
+      "lead_h": 36,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-29T18:00Z",
+      "base_err_km": 329.53,
+      "corrected_err_km": 268.61,
+      "improvement_km": 60.92,
+      "improvement_pct": 18.5,
+      "headline": "36-hour forecast: position error reduced by 60.9 km (18.5%)"
+    },
+    {
+      "version": "v2",
+      "lead_h": 12,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-28T18:00Z",
+      "base_err_km": 79.82,
+      "corrected_err_km": 57.57,
+      "improvement_km": 22.25,
+      "improvement_pct": 27.9,
+      "headline": "12-hour forecast: position error reduced by 22.3 km (27.9%)"
+    }
+  ],
+  "all_verified": [
+    {
+      "version": "v1",
+      "lead_h": 6,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-28T12:00Z",
+      "base_err_km": 37.78,
+      "corrected_err_km": 35.15,
+      "improvement_km": 2.63,
+      "improvement_pct": 7.0
+    },
+    {
+      "version": "v1",
+      "lead_h": 12,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-28T18:00Z",
+      "base_err_km": 78.57,
+      "corrected_err_km": 53.42,
+      "improvement_km": 25.14,
+      "improvement_pct": 32.0
+    },
+    {
+      "version": "v1",
+      "lead_h": 24,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-29T06:00Z",
+      "base_err_km": 214.57,
+      "corrected_err_km": 175.53,
+      "improvement_km": 39.04,
+      "improvement_pct": 18.2
+    },
+    {
+      "version": "v1",
+      "lead_h": 36,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-29T18:00Z",
+      "base_err_km": 329.53,
+      "corrected_err_km": 268.61,
+      "improvement_km": 60.92,
+      "improvement_pct": 18.5
+    },
+    {
+      "version": "v2",
+      "lead_h": 12,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-28T18:00Z",
+      "base_err_km": 79.82,
+      "corrected_err_km": 57.57,
+      "improvement_km": 22.25,
+      "improvement_pct": 27.9
+    },
+    {
+      "version": "v2",
+      "lead_h": 24,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-29T06:00Z",
+      "base_err_km": 183.41,
+      "corrected_err_km": 161.73,
+      "improvement_km": 21.68,
+      "improvement_pct": 11.8
+    },
+    {
+      "version": "v2",
+      "lead_h": 36,
+      "issue": "2026-10-28T06:00Z",
+      "valid": "2026-10-29T18:00Z",
+      "base_err_km": 236.74,
+      "corrected_err_km": 201.24,
+      "improvement_km": 35.5,
+      "improvement_pct": 15.0
+    }
+  ],
+  "pending": {
+    "v1_48h": "awaiting truth (valid 2026-10-30T06:00Z)",
+    "v1_72h": "awaiting truth (valid 2026-10-31T06:00Z)",
+    "later_cycles": "00Z/06Z/12Z/18Z Oct 29 cycles all pending"
+  },
+  "statistics": {
+    "verified_records": 7,
+    "all_positive": true,
+    "independent_storms": 1,
+    "note": "All from one storm, one issuance cycle \u2014 correlated samples, not independent evidence"
+  }
+}
