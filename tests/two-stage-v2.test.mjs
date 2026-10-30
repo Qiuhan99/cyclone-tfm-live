@@ -11,7 +11,13 @@ test('v2 reports only completed rolling inference and preserves negative results
  for(const r of d.multistorm_turn_summary)for(const k of ['precision','recall'])if(r[k+'_raw_degenerate_bootstrap'])assert.equal(r[k+'_ci95'],null);
  assert(!JSON.stringify(d).includes('/Users/'));
  const live=d.infa_live_update;assert.equal(live.native_marginal_calls,4);assert.equal(live.forecast_hash_verified,true);
- assert(live.forecasts.every(r=>r.prospective_at_creation&&r.verification_status==='pending'));
+ // Honesty invariant across cycles: a forecast whose valid time had already
+ // passed at export creation must be labelled NOT prospective_at_creation;
+ // every forecast stays pending until the loop verifies it against truth.
+ const created=Date.parse(live.forecast_manifest.created_at_utc);
+ for(const r of live.forecasts){assert.equal(r.verification_status,'pending');
+  const valid=Date.parse(r.valid_at_utc);
+  assert.equal(r.prospective_at_creation,valid>created);}
  const verified=live.verification_06z.filter(r=>r.status==='verified'&&r.prospective_at_creation);assert(verified.length>=1);assert(verified.every(r=>['v1','v2'].includes(r.version)));
 });
 test('actual v2 panel follows selected issue and keeps independent CMA analyses separate from model forecasts',async()=>{

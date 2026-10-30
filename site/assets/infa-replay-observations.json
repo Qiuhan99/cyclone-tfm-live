@@ -2,8 +2,8 @@
   "storm_id": "INFA_2026",
   "purpose": "Retrospective verification overlay; never an input to frozen predictions",
   "source_url": "https://verif.rap.ucar.edu/jntweb/hurricanes-beta/realtime/plots/northwestpacific/2026/wp302026/bwp302026.dat",
-  "source_sha256": "382d4e5324f47874e20defa830b7326a5c249364308934fa8efcae218d916617",
-  "downloaded_at_utc": "2026-10-29T21:46:11.969540+00:00",
+  "source_sha256": "7ae258134718b97825b114f5f623a2c11ccd6138cb2144911b526ad25aa0dbb5",
+  "downloaded_at_utc": "2026-10-30T08:32:29.411955+00:00",
   "observations": [
     {
       "valid_at_utc": "2026-10-23T12:00:00+00:00",
@@ -129,6 +129,11 @@
       "valid_at_utc": "2026-10-29T18:00:00+00:00",
       "lat": 17.1,
       "lon": 149.7
+    },
+    {
+      "valid_at_utc": "2026-10-30T00:00:00+00:00",
+      "lat": 17.8,
+      "lon": 147.8
     }
   ]
 }
