@@ -9,7 +9,7 @@ test('real two-stage bundle uses exact addition, actual source hashes and unscor
  for(const s of Object.values(d.storms))for(const v of Object.values(s.sources)){assert.equal(v.http_status,'200');assert.match(v.sha256,/^[a-f0-9]{64}$/);assert(v.bytes>0);}
 });
 test('actual UI changes storms, issues, leads, layers and hides future truth by default',async()=>{
- const html=fs.readFileSync(new URL('../site/two-stage.html',import.meta.url),'utf8'),nodes=new Map();
+ const html=fs.readFileSync(new URL('../site/two-stage-archive.html',import.meta.url),'utf8'),nodes=new Map();
  const keys=['document','window','location','fetch','setInterval','clearInterval'];const saved=Object.fromEntries(keys.map(k=>[k,globalThis[k]]));
  const values={'ts-storm':'INFA_2026','ts-lead':'72','ts-zone':'Asia/Shanghai','ts-event':'both','ts-external':'none','ts-issue':'0','ts-factorial':'2024_multi_storm'};
  globalThis.document={querySelector(id){const key=id.slice(1);assert(html.includes(`id="${key}"`),id);if(!nodes.has(id))nodes.set(id,{value:values[key]??'',checked:['ts-base','ts-corr'].includes(key),innerHTML:'',textContent:'',disabled:false});return nodes.get(id);}};

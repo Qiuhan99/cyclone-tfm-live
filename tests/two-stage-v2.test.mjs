@@ -15,7 +15,7 @@ test('v2 reports only completed rolling inference and preserves negative results
  const verified=live.verification_06z.filter(r=>r.status==='verified'&&r.prospective_at_creation);assert(verified.length>=1);assert(verified.every(r=>['v1','v2'].includes(r.version)));
 });
 test('actual v2 panel follows selected issue and keeps independent CMA analyses separate from model forecasts',async()=>{
- const html=fs.readFileSync(new URL('../site/two-stage.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,window:globalThis.window,fetch:globalThis.fetch};
+ const html=fs.readFileSync(new URL('../site/two-stage-archive.html',import.meta.url),'utf8'),nodes=new Map(),saved={document:globalThis.document,window:globalThis.window,fetch:globalThis.fetch};
  const defaults={'ts-storm':'CHAMPI_2026','ts-issue':'5','ts-lead':'72','ts-zone':'Asia/Shanghai'};
  globalThis.window={};globalThis.document={querySelector(s){const key=s.slice(1);assert(html.includes(`id="${key}"`),key);if(!nodes.has(s))nodes.set(s,{value:defaults[key]??'',textContent:'',innerHTML:''});return nodes.get(s);}};
  globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(fs.readFileSync(new URL('../site/'+url,import.meta.url)))});
