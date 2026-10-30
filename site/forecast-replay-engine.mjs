@@ -20,3 +20,6 @@ export function frame(cycle,lead){
  return {base,corrected,time,truth,baseError,correctedError,gain:baseError!=null&&correctedError!=null?baseError-correctedError:null,shift:base&&corrected?distance(base,corrected):null};
 }
 export function region(p){return p&&Number.isFinite(p.radius)&&p.radius>0?{points:circle(p,p.radius),area:2*Math.PI*6371.0088**2*(1-Math.cos(p.radius/6371.0088)),n:p.n}:null;}
+// Keep native aid identities in the archive; curate only their presentation.
+export function modelGroups(cycle){const primary=[],archive=[];for(const p of cycle.paths){if(p.id===cycle.base||p.id===cycle.corrected||/Chronos|Moirai/.test(p.id)||/^ATCF:(CMC|UKM|NGX|AEMN)(?:$|[ /])/.test(p.id))primary.push(p);else archive.push(p);}return {primary,archive};}
+export function nextPoint(cycle,lead){return cycle.paths.find(p=>p.id===cycle.corrected)?.points.filter(p=>p.lead>lead).sort((a,b)=>a.lead-b.lead)[0]??null;}
