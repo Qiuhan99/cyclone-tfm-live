@@ -3,7 +3,7 @@
   "name_cn": "蔷琵",
   "started_at_utc": "2026-10-31T01:41:54.843612+00:00",
   "generated_at_utc": "2026-10-26T17:07:28.172883+00:00",
-  "last_checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+  "last_checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
   "refresh_interval_seconds": 1800,
   "official": {
     "warning": {
@@ -21,8 +21,8 @@
       "rain_forecast": null,
       "valid_window_note": "风雨有效时段以原公报正文为准；警报解除状态须核查官方后续发布",
       "source_url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "retrieved_at_utc": "2026-10-31T01:43:23.870563+00:00",
-      "raw_file_sha256": "b36fd07e668c933376dfe81450400df5d7dae9177655b84e3e82ee23a3ae0622"
+      "retrieved_at_utc": "2026-10-31T01:56:15.868939+00:00",
+      "raw_file_sha256": "681b4c5d54e226ff5580d8ae28c957fbe917e0bd05fde3fbfd4735cbb833940d"
     },
     "center": {
       "storm_id": "CHAMPI_2026",
@@ -54,28 +54,28 @@
   "fetch_status": {
     "bdeck": {
       "ok": true,
-      "checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+      "checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
       "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
       "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
     },
     "adeck": {
       "ok": true,
-      "checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+      "checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
       "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
       "sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951"
     },
     "center": {
       "ok": true,
       "state": "other_storm",
-      "checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+      "checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
       "url": "https://www.nmc.cn/publish/typhoon/typhoon_new.html",
       "note": "Latest general bulletin covers another storm; CHAMPI analysis retained"
     },
     "warning": {
       "ok": true,
-      "checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+      "checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
       "url": "https://m.nmc.cn/publish/typhoon/warning_index.html",
-      "sha256": "b36fd07e668c933376dfe81450400df5d7dae9177655b84e3e82ee23a3ae0622"
+      "sha256": "681b4c5d54e226ff5580d8ae28c957fbe917e0bd05fde3fbfd4735cbb833940d"
     }
   },
   "model": {
@@ -624,8 +624,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-31T01:43:23.870563+00:00",
-        "input_downloaded_at_utc": "2026-10-31T01:43:23.870563+00:00",
+        "generated_at_utc": "2026-10-31T01:56:15.868939+00:00",
+        "input_downloaded_at_utc": "2026-10-31T01:56:15.868939+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -774,8 +774,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-31T01:43:23.870563+00:00",
-        "input_downloaded_at_utc": "2026-10-31T01:43:23.870563+00:00",
+        "generated_at_utc": "2026-10-31T01:56:15.868939+00:00",
+        "input_downloaded_at_utc": "2026-10-31T01:56:15.868939+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -855,8 +855,8 @@
         "source_url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/awp292026.dat",
         "raw_file_sha256": "5cf0fe7d7a0c4d0f0716b32710a72c00a11105c250c89d67137117e65f3a0951",
         "wind_averaging_period": "该aid平均时段未核实；保留kt，不转为CMA强度等级",
-        "generated_at_utc": "2026-10-31T01:43:23.870563+00:00",
-        "input_downloaded_at_utc": "2026-10-31T01:43:23.870563+00:00",
+        "generated_at_utc": "2026-10-31T01:56:15.868939+00:00",
+        "input_downloaded_at_utc": "2026-10-31T01:56:15.868939+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -1301,7 +1301,7 @@
   "track_source": {
     "url": "https://hurricanes.ral.ucar.edu/realtime/plots/northwestpacific/2026/wp292026/bwp292026.dat",
     "sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4",
-    "downloaded_at_utc": "2026-10-31T01:43:23.870563+00:00",
+    "downloaded_at_utc": "2026-10-31T01:56:15.868939+00:00",
     "definition": "UCAR working/revised B-deck; row publication times unknown"
   },
   "landfall_method": "Deterministic centerline sea-to-land crossings, 3km great-circle sampling on Natural Earth1:50m; approximate regional boxes, no landfall probabilities or hazard footprints",
@@ -1353,14 +1353,14 @@
   },
   "site_status": "Public-data refresh; TFM remains the actual timestamped output of the separate private inference service",
   "source_progress": {
-    "checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+    "checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
     "state": "unchanged",
     "latest_fix_utc": "2026-10-26T00:00:00.000Z",
     "source_sha256": "8cf3a9e0ff01f2e85b4a12bb5ac7d03cfbb7a9ce278017fd7b1f8549779ba4f4"
   },
   "forecast_analysis": {
     "schema": 1,
-    "as_of_utc": "2026-10-31T01:43:23.870563+00:00",
+    "as_of_utc": "2026-10-31T01:56:15.868939+00:00",
     "method": "Shortest spherical distance to Natural Earth 1:50m coastal segments; approximate named sectors",
     "interpretation": "Endpoint position-region/coast overlap is not a landfall probability or a wind/rain impact forecast. Translation speed is not wind speed.",
     "paths": [
@@ -1391,7 +1391,7 @@
             ],
             "radius_90_km": 78.96495494313682,
             "issued_area_90_km2": 19589.037460178544,
-            "translation_speed_kmh": 32.10848252383346,
+            "translation_speed_kmh": 32.10848252383736,
             "displacement_from_baseline_km": 0.0,
             "issued_area_ratio_vs_baseline": 1.0
           },
@@ -1436,14 +1436,14 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 232.85556960934667,
-              "nearest_coast_lat_deg": 33.07800000000001,
+              "nearest_coast_lat_deg": 33.077999999999996,
               "nearest_coast_lon_deg": 139.776
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
                 "distance_km": 232.85556960934667,
-                "nearest_coast_lat_deg": 33.07800000000001,
+                "nearest_coast_lat_deg": 33.077999999999996,
                 "nearest_coast_lon_deg": 139.776
               },
               {
@@ -1455,7 +1455,7 @@
             ],
             "radius_90_km": 364.41868895091034,
             "issued_area_90_km2": 417092.8473693648,
-            "translation_speed_kmh": 36.16838608406706,
+            "translation_speed_kmh": 36.16838608406619,
             "displacement_from_baseline_km": 0.0,
             "issued_area_ratio_vs_baseline": 1.0
           },
@@ -1541,7 +1541,7 @@
             ],
             "radius_90_km": 75.82759153148204,
             "issued_area_90_km2": 18063.390463542717,
-            "translation_speed_kmh": 32.623044626393735,
+            "translation_speed_kmh": 32.62304462639757,
             "displacement_from_baseline_km": 9.722901115962138,
             "issued_area_ratio_vs_baseline": 0.9221173066957868
           },
@@ -1574,7 +1574,7 @@
             "radius_90_km": 212.41956768139667,
             "issued_area_90_km2": 141742.04071970863,
             "translation_speed_kmh": 34.64652172742452,
-            "displacement_from_baseline_km": 11.59244229546916,
+            "displacement_from_baseline_km": 11.592442295080426,
             "issued_area_ratio_vs_baseline": 1.1864562930206053
           },
           {
@@ -1586,14 +1586,14 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 190.1341422422255,
-              "nearest_coast_lat_deg": 33.07800000000001,
+              "nearest_coast_lat_deg": 33.077999999999996,
               "nearest_coast_lon_deg": 139.776
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
                 "distance_km": 190.1341422422255,
-                "nearest_coast_lat_deg": 33.07800000000001,
+                "nearest_coast_lat_deg": 33.077999999999996,
                 "nearest_coast_lon_deg": 139.776
               },
               {
@@ -1617,22 +1617,22 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Honshu",
-              "distance_km": 613.5111813503773,
+              "distance_km": 613.5111813503775,
               "nearest_coast_lat_deg": 33.09400000000001,
               "nearest_coast_lon_deg": 139.87400000000002
             },
             "position_region_coastal_sectors": [
               {
                 "sector": "Honshu",
-                "distance_km": 613.5111813503773,
+                "distance_km": 613.5111813503775,
                 "nearest_coast_lat_deg": 33.09400000000001,
                 "nearest_coast_lon_deg": 139.87400000000002
               }
             ],
             "radius_90_km": 883.1572498129348,
             "issued_area_90_km2": 2446416.477354545,
-            "translation_speed_kmh": 30.694934503180423,
-            "displacement_from_baseline_km": 154.9942561446858,
+            "translation_speed_kmh": 30.69493450318068,
+            "displacement_from_baseline_km": 154.99425614471488,
             "issued_area_ratio_vs_baseline": 1.2773149248354594
           },
           {
@@ -1663,7 +1663,7 @@
             ],
             "radius_90_km": 1552.4518194852253,
             "issued_area_90_km2": 7534182.511291094,
-            "translation_speed_kmh": 28.027309195136024,
+            "translation_speed_kmh": 28.027309195136027,
             "displacement_from_baseline_km": 269.544414226084,
             "issued_area_ratio_vs_baseline": 1.2604230270867727
           }
@@ -1684,14 +1684,14 @@
             "nearest_coast": {
               "sector": "Kyushu",
               "distance_km": 27.863227984439817,
-              "nearest_coast_lat_deg": 31.718000000000004,
+              "nearest_coast_lat_deg": 31.717999999999996,
               "nearest_coast_lon_deg": 130.65499999999997
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 27.308354844474888,
-            "displacement_from_baseline_km": 63.126194730565665
+            "displacement_from_baseline_km": 63.126194730494284
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00+00:00",
@@ -1708,8 +1708,8 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.39620949817284,
-            "displacement_from_baseline_km": 90.26875194519228
+            "translation_speed_kmh": 26.3962094981681,
+            "displacement_from_baseline_km": 90.26875194514236
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00+00:00",
@@ -1726,7 +1726,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.637811880046044
+            "translation_speed_kmh": 28.637811880046048
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
@@ -1744,7 +1744,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 30.413245788609846,
-            "displacement_from_baseline_km": 162.0246425714717
+            "displacement_from_baseline_km": 162.0246425714439
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00+00:00",
@@ -1755,13 +1755,13 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 197.94012518666065,
-              "nearest_coast_lat_deg": 33.07800000000001,
+              "nearest_coast_lat_deg": 33.077999999999996,
               "nearest_coast_lon_deg": 139.776
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 35.191934403892
+            "translation_speed_kmh": 35.19193440388488
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00+00:00",
@@ -1772,7 +1772,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 157.70064527347608,
-              "nearest_coast_lat_deg": 33.04500000000001,
+              "nearest_coast_lat_deg": 33.045,
               "nearest_coast_lon_deg": 139.824
             },
             "position_region_coastal_sectors": [],
@@ -1812,8 +1812,8 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 31.78667638345819,
-            "displacement_from_baseline_km": 126.02804933783338
+            "translation_speed_kmh": 31.78667638345425,
+            "displacement_from_baseline_km": 126.02804933779763
           },
           {
             "valid_time_utc": "2026-10-28T06:00:00+00:00",
@@ -1907,7 +1907,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.081989344686846,
+            "translation_speed_kmh": 28.081989344691305,
             "displacement_from_baseline_km": 26.387780039677125
           },
           {
@@ -1943,7 +1943,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.10161132989712
+            "translation_speed_kmh": 26.10161132988753
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
@@ -1960,8 +1960,8 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 26.275943021693973,
-            "displacement_from_baseline_km": 190.46844860050768
+            "translation_speed_kmh": 26.2759430217035,
+            "displacement_from_baseline_km": 190.468448600484
           },
           {
             "valid_time_utc": "2026-10-27T06:00:00+00:00",
@@ -1989,7 +1989,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 125.69023304412339,
-              "nearest_coast_lat_deg": 33.04500000000001,
+              "nearest_coast_lat_deg": 33.045,
               "nearest_coast_lon_deg": 139.824
             },
             "position_region_coastal_sectors": [],
@@ -2006,7 +2006,7 @@
             "nearest_coast": {
               "sector": "Honshu",
               "distance_km": 148.5154477425327,
-              "nearest_coast_lat_deg": 33.056000000000004,
+              "nearest_coast_lat_deg": 33.056,
               "nearest_coast_lon_deg": 139.841
             },
             "position_region_coastal_sectors": [],
@@ -2064,7 +2064,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.618746575409148
+            "translation_speed_kmh": 28.618746575413525
           },
           {
             "valid_time_utc": "2026-10-28T18:00:00+00:00",
@@ -2099,7 +2099,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 31.53866708911207,
-            "displacement_from_baseline_km": 63.74490653395159
+            "displacement_from_baseline_km": 63.74490653402229
           }
         ],
         "coastal_crossings": []
@@ -2125,7 +2125,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 22.83268853065974,
-            "displacement_from_baseline_km": 60.60176657609105
+            "displacement_from_baseline_km": 60.60176657616541
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00+00:00",
@@ -2142,7 +2142,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 28.321604283781156,
+            "translation_speed_kmh": 28.321604283785575,
             "displacement_from_baseline_km": 92.70913409948793
           },
           {
@@ -2160,7 +2160,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 31.322522824939593
+            "translation_speed_kmh": 31.32252282494359
           },
           {
             "valid_time_utc": "2026-10-27T00:00:00+00:00",
@@ -2177,7 +2177,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 29.844024418920153,
+            "translation_speed_kmh": 29.84402441891596,
             "displacement_from_baseline_km": 184.82549265986938
           },
           {
@@ -2212,7 +2212,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 34.96642649987889
+            "translation_speed_kmh": 34.96642649988247
           },
           {
             "valid_time_utc": "2026-10-27T18:00:00+00:00",
@@ -2246,7 +2246,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 32.56634775407651,
+            "translation_speed_kmh": 32.566347754072666,
             "displacement_from_baseline_km": 302.1091157129028
           },
           {
@@ -2298,7 +2298,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 37.096064655252775
+            "translation_speed_kmh": 37.09606465525615
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00+00:00",
@@ -2324,7 +2324,7 @@
       {
         "model_id": "ATCF:CMC / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-31T01:43:23.870563+00:00",
+        "generated_at_utc": "2026-10-31T01:56:15.868939+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2342,7 +2342,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 44.70407146515692,
-            "displacement_from_baseline_km": 186.39524575613177
+            "displacement_from_baseline_km": 186.39524575610758
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
@@ -2394,7 +2394,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 51.05127336264116,
+            "translation_speed_kmh": 51.05127336264362,
             "displacement_from_baseline_km": 475.42246886022843
           },
           {
@@ -2422,14 +2422,14 @@
             "centre_on_land": false,
             "nearest_coast": {
               "sector": "Hokkaido",
-              "distance_km": 597.1244640031631,
+              "distance_km": 597.1244640031632,
               "nearest_coast_lat_deg": 43.426,
               "nearest_coast_lon_deg": 145.94399999999996
             },
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 104.20327633857285
+            "translation_speed_kmh": 104.20327633857165
           },
           {
             "valid_time_utc": "2026-10-27T18:00:00.000Z",
@@ -2446,7 +2446,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 69.20291124709387
+            "translation_speed_kmh": 69.20291124709388
           },
           {
             "valid_time_utc": "2026-10-28T00:00:00.000Z",
@@ -2515,7 +2515,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 21.609634823461292
+            "translation_speed_kmh": 21.609634823467086
           },
           {
             "valid_time_utc": "2026-10-29T00:00:00.000Z",
@@ -2582,7 +2582,7 @@
       {
         "model_id": "ATCF:NGX / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-31T01:43:23.870563+00:00",
+        "generated_at_utc": "2026-10-31T01:56:15.868939+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2600,7 +2600,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 32.63117804572702,
-            "displacement_from_baseline_km": 64.80472616493162
+            "displacement_from_baseline_km": 64.80472616486207
           },
           {
             "valid_time_utc": "2026-10-26T12:00:00.000Z",
@@ -2618,7 +2618,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 28.303658316314,
-            "displacement_from_baseline_km": 65.97668320114215
+            "displacement_from_baseline_km": 65.97668320107384
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
@@ -2670,7 +2670,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 44.32504206353229
+            "translation_speed_kmh": 44.32504206352945
           },
           {
             "valid_time_utc": "2026-10-27T12:00:00.000Z",
@@ -2687,7 +2687,7 @@
             "position_region_coastal_sectors": [],
             "radius_90_km": null,
             "issued_area_90_km2": null,
-            "translation_speed_kmh": 78.14852044412366
+            "translation_speed_kmh": 78.14852044412369
           }
         ],
         "coastal_crossings": [
@@ -2712,7 +2712,7 @@
       {
         "model_id": "ATCF:UKM / TECHNUM 03",
         "issue_time_utc": "2026-10-26T00:00:00+00:00",
-        "generated_at_utc": "2026-10-31T01:43:23.870563+00:00",
+        "generated_at_utc": "2026-10-31T01:56:15.868939+00:00",
         "points": [
           {
             "valid_time_utc": "2026-10-26T06:00:00.000Z",
@@ -2723,7 +2723,7 @@
             "nearest_coast": {
               "sector": "Kyushu",
               "distance_km": 15.2677408679379,
-              "nearest_coast_lat_deg": 31.649683270892076,
+              "nearest_coast_lat_deg": 31.649683270892083,
               "nearest_coast_lon_deg": 131.4501151094762
             },
             "position_region_coastal_sectors": [],
@@ -2748,7 +2748,7 @@
             "radius_90_km": null,
             "issued_area_90_km2": null,
             "translation_speed_kmh": 34.297282208251985,
-            "displacement_from_baseline_km": 56.03366562933117
+            "displacement_from_baseline_km": 56.03366562925074
           },
           {
             "valid_time_utc": "2026-10-26T18:00:00.000Z",
@@ -2808,7 +2808,7 @@
     ]
   },
   "agency_forecasts": {
-    "checked_at_utc": "2026-10-31T01:43:23.870563+00:00",
+    "checked_at_utc": "2026-10-31T01:56:15.868939+00:00",
     "ok": true,
     "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
     "paths": [
@@ -2854,7 +2854,7 @@
       "vmax_ms": 18,
       "intensity_code": "TS",
       "source_url": "https://typhoon.nmc.cn/weatherservice/typhoon/jsons/view_3359119",
-      "retrieved_at_utc": "2026-10-31T01:43:23.870563+00:00",
+      "retrieved_at_utc": "2026-10-31T01:56:15.868939+00:00",
       "raw_file_sha256": "ff65e8eebea5461d5c2db38273d67946e19feaab21d3213f8b943ca3ec558fb6"
     },
     "note": "CMA公开地图原始BABJ位置预报；逐行首次业务发布时间未知。仅保留原报时效，不外推缺失24h路径。"
@@ -5752,5 +5752,5 @@
     "protocol": "Public Git snapshot confirmed before valid; exact storm/issue/lead/valid pairing; first subsequently retrieved UCAR truth; no backfill",
     "updated_at_utc": "2026-10-26T17:49:00.242891+00:00"
   },
-  "public_data_generated_at_utc": "2026-10-31T01:43:23.870563+00:00"
+  "public_data_generated_at_utc": "2026-10-31T01:56:15.868939+00:00"
 }
