@@ -1,0 +1,30 @@
+{
+  "dataset": "electricity",
+  "window": "300-step calibration + 128-step evaluation (frozen window; distribution extension)",
+  "n_series": 321,
+  "source": "results_manifest.json P1F / reports/electricity_distribution_conformal_v1",
+  "point": {
+    "rmse_pooled_all_variable": {"base": 644.0448, "corrected": 499.9833, "improvement_pct": 22.37},
+    "rmse_per_variable_mean": {"base": 187.3087, "corrected": 131.4726},
+    "note": "two RMSE conventions reported separately"
+  },
+  "native_distribution": {
+    "crps_mean": {"base": 86.3231, "corrected": 61.5875, "rel_reduction_pct": 28.65},
+    "paired_diff": -24.7356, "ci95": [-40.9276, -13.5429],
+    "decomposition_std": {"center": -0.0404, "center_ci": [-0.0635, -0.0248],
+                          "shape_same_center": -0.0090, "shape_ci": [-0.0110, -0.0069]},
+    "per_variable": {"strictly_better": 314, "tied": 1, "worse": 6}
+  },
+  "conformal": {
+    "point_cp_90": {"halfwidth_base": 294.60, "halfwidth_corrected": 231.73,
+                    "halfwidth_reduction_pct": 21.34, "coverage_base": 0.9090, "coverage_corrected": 0.9203},
+    "cqr_width_reduction_pct": {"p80": 37.3, "p90": 39.2, "p95": 39.3},
+    "cqr_coverage": {"p80": [0.8064, 0.8006], "p90": [0.9063, 0.9003], "p95": [0.9549, 0.9518]},
+    "cqr_note": "width reduced 37-39%, pooled coverage near target; paired coverage diff crosses zero"
+  },
+  "joint_archived_recheck": {
+    "full_328": {"pooled_plus": 0.826867, "cond_plus": 0.860809},
+    "aligned_128": {"pooled_plus": 0.740876, "cond_plus": 0.827170},
+    "note": "archived joint method recomputed offline from cached scores; separate from fresh marginal results"
+  }
+}

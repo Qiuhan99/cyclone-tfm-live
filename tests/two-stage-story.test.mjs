@@ -25,3 +25,19 @@ test('English story renders published evidence and keeps storm, horizon and laye
   buttons[0].events.click();assert.equal(node('truth').checked,false);assert.equal(node('truth').disabled,true);
  }finally{Object.assign(globalThis,saved);}
 });
+test('electricity distribution metric card traces to the shared manifest asset',async()=>{
+ const el=JSON.parse(fs.readFileSync(new URL('../site/assets/electricity-distribution-results.json',import.meta.url),'utf8'));
+ assert.equal(el.dataset,'electricity');assert.equal(el.n_series,321);
+ assert.equal(el.native_distribution.crps_mean.base,86.3231);
+ assert.equal(el.native_distribution.crps_mean.corrected,61.5875);
+ assert.equal(el.native_distribution.crps_mean.rel_reduction_pct,28.65);
+ assert.equal(el.native_distribution.paired_diff,-24.7356);
+ assert.deepEqual(el.native_distribution.paired_diff_ci||el.native_distribution.ci95,[-40.9276,-13.5429]);
+ assert.equal(el.native_distribution.per_variable.strictly_better,314);
+ assert.equal(el.native_distribution.per_variable.tied,1);
+ assert.equal(el.native_distribution.per_variable.worse,6);
+ assert.equal(el.conformal.point_cp_90.halfwidth_reduction_pct,21.34);
+ assert.ok(!('coverage_claim' in el.conformal),'no coverage non-inferiority claim');
+ const html=fs.readFileSync(new URL('../site/two-stage.html',import.meta.url),'utf8');
+ assert(html.includes('metric-electricity'),'metric card container present');
+});

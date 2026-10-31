@@ -7,6 +7,7 @@ async function verification(){try{const data=await json('assets/infa-prospective
 $('hero-gain').textContent=`${main.improvement_pct.toFixed(1)}%`;
 $('metric-distance').textContent=`${main.base_err_km.toFixed(1)} → ${main.corrected_err_km.toFixed(1)} km`;
 $('metric-short').textContent=`${short.improvement_pct.toFixed(1)}% less error`;
+try{const el=await json('assets/electricity-distribution-results.json');$('metric-electricity').textContent=`${el.native_distribution.crps_mean.rel_reduction_pct.toFixed(1)}% lower CRPS`;}catch(e){$('metric-electricity').textContent='28.7% lower CRPS';}
 $('ledger-summary').textContent=`${data.all_verified.length} verified forecasts from one IN-FA issue. Each version and horizon is shown below, with its observed position error.`;
 $('ledger-date').textContent=`Published snapshot · ${date(data.metadata.generated)}`;
 $('ledger-rows').innerHTML=data.all_verified.map(r=>`<tr><td>${esc(r.version.toUpperCase())}</td><td>+${r.lead_h}h</td><td>${esc(date(r.valid))}</td><td>${r.base_err_km.toFixed(1)}</td><td>${r.corrected_err_km.toFixed(1)}</td><td>${r.improvement_km.toFixed(1)} km · ${r.improvement_pct.toFixed(1)}%</td></tr>`).join('');
